@@ -10,6 +10,7 @@
 #import "TeacherResponse.h"
 #import "MJRefresh.h"
 #import "TeacherUICollectionViewCell.h"
+#import "LoginViewController.h"
 @interface attteacherViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property(strong,nonatomic)UICollectionView *gzyingluCollectionV;
 @end
@@ -56,8 +57,13 @@ NSMutableArray<TeacherResponse *> *gzyinluCourse;
     
     
     _gzyingluCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        if([DEFAULTS objectForKey:@"islogin"]){
+            [self initgzyinluCourse];
+        }else{
+            [_gzyingluCollectionV.mj_header  endRefreshing];
+            [self presentViewController:[LoginViewController new] animated:YES completion:nil];
+        }
         
-        [self initgzyinluCourse];
         
     }];
     
@@ -120,7 +126,7 @@ NSMutableArray<TeacherResponse *> *gzyinluCourse;
 
 -(void)initgzyinluCourse
 {
-    
+    if([DEFAULTS objectForKey:@"islogin"]){
     NSUserDefaults *defaults= DEFAULTS;
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
     [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
@@ -164,6 +170,7 @@ NSMutableArray<TeacherResponse *> *gzyinluCourse;
         [_gzyingluCollectionV.mj_header  endRefreshing];
         
     }];
+    }
 }
 
 

@@ -512,7 +512,7 @@ int Coursetab;
     NSDate *createDate = [formatter_ dateFromString:timer];
     
     NSLog(@"date:%@",createDate);
-    NSTimeInterval a=[createDate timeIntervalSince1970]*1000; // *1000 是精确到毫秒，不乘就是精确到秒
+    NSTimeInterval a=[createDate timeIntervalSince1970]; // *1000 是精确到毫秒，不乘就是精确到秒
     timeString = [NSString stringWithFormat:@"%.0f", a]; //转为字符型
     NSLog(@"时间戳:%@",timeString); //时间戳的值
     

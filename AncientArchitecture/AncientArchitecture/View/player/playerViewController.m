@@ -72,12 +72,9 @@ UIView *contentView;
     NSURL *url = [NSURL URLWithString:@"http://player.alicdn.com/video/aliyunmedia.mp4"];
     //prepareToPlay:此方法传入的参数是NSURL类型.
     AliVcMovieErrorCode err = [mediaPlayer prepareToPlay:url];
+     NSLog(@"play error code is %d",(int)err);
     
-    if(err != ALIVC_SUCCESS) {
-        NSLog(@"play failed,error code is %d",(int)err);
-     
-        return;
-    }
+    [mediaPlayer play];
     
 }
 

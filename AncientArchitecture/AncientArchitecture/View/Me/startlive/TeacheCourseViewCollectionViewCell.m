@@ -20,10 +20,10 @@
 
 - (void)setImageName:(NSString *)imageName
 {
-   
+    
     if (!self.imageview) {
         self.imageview=[UIImageView new];
-         self.imageview.userInteractionEnabled = YES;
+        self.imageview.userInteractionEnabled = YES;
     }
     self.imageview.frame=CGRectMake(10, 25,kScreen_Width-20,177 );
     [self.imageview setContentScaleFactor:[[UIScreen mainScreen] scale]];
@@ -36,7 +36,7 @@
         }
         
     }];
-   
+    
     
     [self addSubview:self.imageview];
 }
@@ -46,9 +46,9 @@
 {
     if (!self.headimageview) {
         self.headimageview=[UIImageView new];
-         self.headimageview.userInteractionEnabled = YES;
+        self.headimageview.userInteractionEnabled = YES;
     }
-    self.headimageview.frame=CGRectMake(10,212,30,30 );
+    self.headimageview.frame=CGRectMake(10,222,30,30 );
     [self.headimageview setContentScaleFactor:[[UIScreen mainScreen] scale]];
     self.headimageview.contentMode =  UIViewContentModeScaleAspectFill;
     self.headimageview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -74,11 +74,11 @@
 {
     if (!self.timeLbl) {
         self.timeLbl=[[UILabel alloc] init];
-         self.timeLbl.userInteractionEnabled = YES;
+        self.timeLbl.userInteractionEnabled = YES;
     }
-    self.timeLbl.frame = CGRectMake(kScreen_Width/4*3-10, 217, kScreen_Width /4, 20);
+    self.timeLbl.frame = CGRectMake(kScreen_Width/2-10, 240, kScreen_Width /2, 20);
     self.timeLbl.textAlignment = NSTextAlignmentRight;
-    self.timeLbl.textColor = [UIColor blackColor];
+    self.timeLbl.textColor = [UIColor grayColor];
     [self.timeLbl setText: timename];
     [self addSubview:self.timeLbl];
     
@@ -89,11 +89,11 @@
 {
     if (!self.titleLbl) {
         self.titleLbl=[[UILabel alloc] init];
-         self.titleLbl.userInteractionEnabled = YES;
+        self.titleLbl.userInteractionEnabled = YES;
     }
-    self.titleLbl.frame = CGRectMake(30, 50, kScreen_Width - 120, 20);
-    self.titleLbl.textAlignment = NSTextAlignmentLeft;
-    self.titleLbl.textColor = [UIColor whiteColor];
+    self.titleLbl.frame = CGRectMake(kScreen_Width/2-10, 205, kScreen_Width /2, 20);
+    self.titleLbl.textAlignment = NSTextAlignmentRight;
+    self.titleLbl.textColor = [UIColor blackColor];
     [self.titleLbl setText:titlename];
     [self addSubview:self.titleLbl];
 }
@@ -102,10 +102,10 @@
 {
     if (!self.teacherLbl) {
         self.teacherLbl=[[UILabel alloc] init];
-         self.teacherLbl.userInteractionEnabled = YES;
+        self.teacherLbl.userInteractionEnabled = YES;
     }
     
-    self.teacherLbl.frame = CGRectMake(47, 217, kScreen_Width /4, 20);
+    self.teacherLbl.frame = CGRectMake(47, 227, kScreen_Width /4, 20);
     self.teacherLbl.textAlignment = NSTextAlignmentLeft;
     self.teacherLbl.textColor = [UIColor blackColor];
     [self.teacherLbl setText: teachername];

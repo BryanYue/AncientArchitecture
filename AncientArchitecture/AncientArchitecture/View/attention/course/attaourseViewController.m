@@ -10,6 +10,7 @@
 #import "CourseDetailResponse.h"
 #import "MJRefresh.h"
 #import "TeacheCourseViewCollectionViewCell.h"
+#import "LoginViewController.h"
 @interface attaourseViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property(strong,nonatomic)UICollectionView *guanzhuCollectionV;
 @end
@@ -71,8 +72,13 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
     
     
     _guanzhuCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
-        [self initgzyinluCourse];
+        if([DEFAULTS objectForKey:@"islogin"]){
+            [self initgzyinluCourse];
+        }else{
+            [_guanzhuCollectionV.mj_header  endRefreshing];
+            [self presentViewController:[LoginViewController new] animated:YES completion:nil];
+        }
+       
         
     }];
     
@@ -131,49 +137,53 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
 
 -(void)initgzyinluCourse
 {
-    
-    NSUserDefaults *defaults= DEFAULTS;
-    NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-    [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
-    
-    
-    
-    [self GeneralButtonAction];
-    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_getFollowCourse withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
-        NSLog(@"error%zd",error.code);
-        if (!error) {
-            BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
-            if (response.code  == 200) {
-                if (guanzhuCourse) {
-                    [guanzhuCourse removeAllObjects ];
-                }
-                guanzhuCourse=[CourseDetailResponse mj_objectArrayWithKeyValuesArray:response.data];
-                
-                
-                if (guanzhuCourse) {
-                    
-                    
-                    [_guanzhuCollectionV reloadData];
-                    
-                }else{
-                    NSLog(@"hotCourse.count==nil");
-                }
-            }
-            
-            
-            if (self.HUD) {
-                [self.HUD hideAnimated:true];
-            }
-            [self TextButtonAction:response.msg];
-            
-        }else{
-            if (self.HUD) {
-                [self.HUD hideAnimated:true];
-            }
-            [self TextButtonAction:error.domain];
-        }
-        [_guanzhuCollectionV.mj_header  endRefreshing];
+   
+    if([DEFAULTS objectForKey:@"islogin"]){
+        NSUserDefaults *defaults= DEFAULTS;
+        NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
+        [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
         
-    }];
+        
+        
+        [self GeneralButtonAction];
+        [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_getFollowCourse withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+            NSLog(@"error%zd",error.code);
+            if (!error) {
+                BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
+                if (response.code  == 200) {
+                    if (guanzhuCourse) {
+                        [guanzhuCourse removeAllObjects ];
+                    }
+                    guanzhuCourse=[CourseDetailResponse mj_objectArrayWithKeyValuesArray:response.data];
+                    
+                    
+                    if (guanzhuCourse) {
+                        
+                        
+                        [_guanzhuCollectionV reloadData];
+                        
+                    }else{
+                        NSLog(@"hotCourse.count==nil");
+                    }
+                }
+                
+                
+                if (self.HUD) {
+                    [self.HUD hideAnimated:true];
+                }
+                [self TextButtonAction:response.msg];
+                
+            }else{
+                if (self.HUD) {
+                    [self.HUD hideAnimated:true];
+                }
+                [self TextButtonAction:error.domain];
+            }
+            [_guanzhuCollectionV.mj_header  endRefreshing];
+            
+        }];
+    }
+    
+
 }
 @end
