@@ -35,7 +35,11 @@ UIView *contentView;
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)viewDidDisappear:(BOOL)animated{
+    if (mediaPlayer) {
+        [mediaPlayer stop];
+    }
+}
 
 
 -(void)initview{

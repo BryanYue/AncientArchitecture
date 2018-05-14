@@ -243,6 +243,16 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     if (indexPath.section==0) {
        
+        
+        
+        
+        NSUserDefaults *defaults= DEFAULTS;
+        
+        [defaults removeObjectForKey:@"play_url"];
+        [defaults synchronize];
+        [defaults setObject:hotCourse[indexPath.row].id forKey:@"play_url"];
+        
+        
         [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
   
     }
