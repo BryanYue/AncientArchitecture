@@ -91,7 +91,7 @@
         self.titleLbl=[[UILabel alloc] init];
         self.titleLbl.userInteractionEnabled = YES;
     }
-    self.titleLbl.frame = CGRectMake(kScreen_Width/2-10, 205, kScreen_Width /2, 20);
+    self.titleLbl.frame = CGRectMake(kScreen_Width/2-10, 215, kScreen_Width /2, 20);
     self.titleLbl.textAlignment = NSTextAlignmentRight;
     self.titleLbl.textColor = [UIColor blackColor];
     [self.titleLbl setText:titlename];
@@ -111,4 +111,27 @@
     [self.teacherLbl setText: teachername];
     [self addSubview:self.teacherLbl];
 }
+
+-(void)setClassificationname:(NSString *)classificationname
+{
+    if (!self.classification) {
+         self.classification =[[UILabel alloc] init];
+         self.classification.userInteractionEnabled = YES;
+        
+    }
+    
+    self.classification.frame = CGRectMake(kScreen_Width/3, 240, kScreen_Width /4, 20);
+    self.classification.textAlignment = NSTextAlignmentRight;
+    self.classification.textColor = [UIColor_ColorChange colorWithHexString:app_theme];
+    [self.classification setText: classificationname];
+    [self addSubview:self.classification];
+    
+    
+}
+
+
+
+
+
+
 @end

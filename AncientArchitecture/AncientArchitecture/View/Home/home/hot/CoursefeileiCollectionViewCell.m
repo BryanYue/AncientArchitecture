@@ -19,7 +19,7 @@
         self.imageview=[UIImageView new];
         self.imageview.userInteractionEnabled = YES;
     }
-    self.imageview.frame=CGRectMake(10, 15,kScreen_Width-20,110 );
+    self.imageview.frame=CGRectMake(0, 0,kScreen_Width-20,110 );
     [self.imageview setContentScaleFactor:[[UIScreen mainScreen] scale]];
     self.imageview.contentMode =  UIViewContentModeScaleAspectFill;
     self.imageview.autoresizingMask = UIViewAutoresizingFlexibleHeight;

@@ -98,5 +98,11 @@
 #define url_allCourse      @"/api/Document/allCourse"
 
 
+//获取会员购买的课程【订单列表】
+#define url_buyCourse     @"/api/Member/buyCourse"
+
+//
+
+
 
 #endif /* api_h */

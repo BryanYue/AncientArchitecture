@@ -60,17 +60,17 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     
     //格子的大小 (长，高)
     
-    flowL.itemSize =CGSizeMake(kScreen_Width,240);
+   
     
     
     //如果有多个区 就可以拉动
     
     [flowL setScrollDirection:UICollectionViewScrollDirectionVertical];
     
-    
+  
     //设置头部并给定大小
     
-    [flowL setHeaderReferenceSize:CGSizeMake(kScreen_Width,300)];
+ 
     
     
 
@@ -98,8 +98,8 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     
 #pragma mark -- 注册头部视图
     
-    [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid"];
-    
+     [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid"];
+     [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid2"];
     
     //添加视图
     _myhotCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -128,9 +128,18 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
 
 //返回每个item
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell  *cell = nil;
+    static NSString *ID;
+    
+    if (indexPath.section == 0) {
+        ID = @"hotcellid";
+    } else {
+        ID = @"categroycellid";
+    }
+    
+    UICollectionViewCell  *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    
     if (indexPath.section==0) {
-        TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"hotcellid" forIndexPath:indexPath];
+        TeacheCourseViewCollectionViewCell  *Coursecell  =(TeacheCourseViewCollectionViewCell *)cell;
 
         if (hotCourse) {
             if (hotCourse[indexPath.row].img_url) {
@@ -156,14 +165,16 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
                 Coursecell.timename=hotCourse[indexPath.row].start_time;
             }
             
-
+            if (hotCourse[indexPath.row].cate_name) {
+                 Coursecell.classificationname=hotCourse[indexPath.row].cate_name;
+            }
             cell=Coursecell;
         }
  
 
         
     }else{
-        CoursefeileiCollectionViewCell *categroycell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"categroycellid"forIndexPath:indexPath];
+        CoursefeileiCollectionViewCell *categroycell  =(CoursefeileiCollectionViewCell *)cell;
         
         if(hotCategory){
             if(hotCategory[indexPath.row].img_url){
@@ -178,9 +189,10 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
 }
 
 
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        return CGSizeMake(kScreen_Width, 240);
+        return CGSizeMake(kScreen_Width, 260);
     }else{
         return CGSizeMake(kScreen_Width, 140);
     }
@@ -200,31 +212,58 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
 
 
 
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    if (section==0) {
+        return  UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
+    }else{
+        return UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
+    }
+}
+
+
+
 //设置头尾部内容
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 
 {
+    static NSString *id;
     
-    UICollectionReusableView *reusableView =nil;
+    if (indexPath.section == 0) {
+        id = @"headerid";
+    } else {
+        id = @"headerid2";
+    }
+   
+    UICollectionReusableView *reusableView =[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:id forIndexPath:indexPath];;
     
     
     
     if (kind ==UICollectionElementKindSectionHeader) {
-        
-        //定制头部视图的内容
-        
-        HotReusableView *headerV = (HotReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerid" forIndexPath:indexPath];
-                                                       
-                                                     
-        
-        headerV.titleLab.text =@"头部视图";
-        
-      
-        
        
         
-        reusableView = headerV;
+        //定制头部视图的内容
+        if (indexPath.section==0) {
+            HotReusableView *headerV = (HotReusableView *)reusableView;
+            
+            headerV.titleLab.text =@"头部视图";
+            CGRect size =headerV.frame;
+            size.size.height=300;
+            headerV.frame=size;
+             reusableView = headerV;
+        }else{
+            HotReusableView *headerV = (HotReusableView *)reusableView;
+            
+            headerV.titleLab.text =@"头部视图";
+            CGRect size =headerV.frame;
+            size.size.height=50;
+            headerV.frame=size;
+             reusableView = headerV;
+        }
+       
+        
+       
         
     }
     

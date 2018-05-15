@@ -64,5 +64,6 @@
     @property (nonatomic,strong)NSString   *vod_vedio_url;
     @property (nonatomic,strong)NSString   *m3u8_vod_vedio_url;
 
+    @property (nonatomic,strong)NSString   *order_id;
 
 @end

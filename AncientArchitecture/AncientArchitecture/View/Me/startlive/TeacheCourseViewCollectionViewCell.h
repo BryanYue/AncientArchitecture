@@ -15,11 +15,13 @@
 @property (nonatomic,strong)    UIImageView *headimageview;
 @property (nonatomic,strong)    UILabel *timeLbl;
 @property (nonatomic,strong)    UILabel *teacherLbl;
+@property (nonatomic,strong)    UILabel *classification;
+
 
 @property (nonatomic, copy) NSString *imageName;
 @property (nonatomic, copy) NSString *headimageName;
 @property (nonatomic, copy) NSString *titlename;
 @property (nonatomic, copy) NSString *teachername;
 @property (nonatomic, copy) NSString *timename;
-
+@property (nonatomic, copy) NSString *classificationname;
 @end

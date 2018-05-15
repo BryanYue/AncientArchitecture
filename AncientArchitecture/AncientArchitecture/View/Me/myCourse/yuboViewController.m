@@ -13,10 +13,11 @@
 #import "startLiveViewController.h"
 
 @interface yuboViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property(strong,nonatomic)UICollectionView *yuboCollectionV;
+
 @end
 
 @implementation yuboViewController
+UICollectionView *yuboCollectionV;
 NSMutableArray<CourseDetailResponse *> *yuboCourse;
 NSString *teacher_nameyb;
 NSString *teacher_photoyb;
@@ -48,26 +49,26 @@ NSString *teacher_photoyb;
     flowL.itemSize =CGSizeMake(kScreen_Width,240);
     [flowL setScrollDirection:UICollectionViewScrollDirectionVertical];
     
-    _yuboCollectionV = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0, kScreen_Width,kScreen_Height-30-statusBar_Height-49)collectionViewLayout:flowL];
-    _yuboCollectionV.delegate =self;
-    _yuboCollectionV.dataSource =self;
-    _yuboCollectionV.backgroundColor =[UIColor whiteColor];
+    yuboCollectionV = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0, kScreen_Width,kScreen_Height-30-statusBar_Height-49)collectionViewLayout:flowL];
+    yuboCollectionV.delegate =self;
+    yuboCollectionV.dataSource =self;
+    yuboCollectionV.backgroundColor =[UIColor whiteColor];
     
-    _yuboCollectionV.delaysContentTouches = true;
-    
-    
-    
-    [_yuboCollectionV registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"yubocellid"];
+    yuboCollectionV.delaysContentTouches = true;
     
     
-    _yuboCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    
+    [yuboCollectionV registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"yubocellid"];
+    
+    
+    yuboCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         [self initgzyinluCourse];
         
     }];
     
     
-    [self.view addSubview:_yuboCollectionV];
+    [self.view addSubview:yuboCollectionV];
 }
 
 
@@ -115,7 +116,9 @@ NSString *teacher_photoyb;
             Coursecell.timename=yuboCourse[indexPath.item].start_time;
         }
         
-        
+        if (yuboCourse[indexPath.row].cate_name) {
+            Coursecell.classificationname=yuboCourse[indexPath.row].cate_name;
+        }
         
     }
     
@@ -143,11 +146,11 @@ NSString *teacher_photoyb;
                 }
                 yuboCourse=[CourseDetailResponse mj_objectArrayWithKeyValuesArray:response.data];
                 
-                
+                  NSLog(@"yuboCourse%@",yuboCourse);
                 if (yuboCourse) {
                     
                     
-                    [_yuboCollectionV reloadData];
+                    [yuboCollectionV reloadData];
                     
                 }else{
                     NSLog(@"hotCourse.count==nil");
@@ -166,7 +169,7 @@ NSString *teacher_photoyb;
             }
             [self TextButtonAction:error.domain];
         }
-        [_yuboCollectionV.mj_header  endRefreshing];
+        [yuboCollectionV.mj_header  endRefreshing];
         
     }];
 }
