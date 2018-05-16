@@ -22,13 +22,13 @@
     // Do any additional setup after loading the view.
     
     HomeController *v1=[HomeController new];
-    v1.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-49-39-statusBar_Height);
+    v1.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-36-statusBar_Height-49);
     v1.tabBarItem.image = [UIImage imageNamed:@"首页"];
     v1.tabBarItem.title = @"首页";
     
     
     VTattenViewController *v2 = [VTattenViewController new];
-    v2.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-49-39-statusBar_Height);
+    v2.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-36-statusBar_Height-49);
     v2.tabBarItem.image = [UIImage imageNamed:@"关注"];
     v2.tabBarItem.title = @"关注";
     
@@ -51,7 +51,7 @@
     
     
     self.viewControllers = @[v1,v2,me];
-    self.tabBarController.tabBar.frame =CGRectMake(0, kScreen_Height-49-49, kScreen_Width, 49);
+    self.tabBarController.tabBar.frame =CGRectMake(0, kScreen_Height-36-statusBar_Height, kScreen_Width, 49);
    
 
     

@@ -51,7 +51,6 @@
 		93BE9145206005DF009B9FF3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE9144206005DF009B9FF3 /* LoginViewController.m */; };
 		93BE914A20600630009B9FF3 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE914920600630009B9FF3 /* RegisterViewController.m */; };
 		93C4C54220554B90008716B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C4C54120554B90008716B3 /* AppDelegate.m */; };
-		93C4C54520554B90008716B3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C4C54420554B90008716B3 /* ViewController.m */; };
 		93C4C54A20554B90008716B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C4C54920554B90008716B3 /* Assets.xcassets */; };
 		93C4C54D20554B90008716B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93C4C54B20554B90008716B3 /* LaunchScreen.storyboard */; };
 		93C4C55020554B90008716B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C4C54F20554B90008716B3 /* main.m */; };
@@ -66,6 +65,7 @@
 		93E7031B206E867B000BF485 /* accountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E7031A206E867B000BF485 /* accountSettingsViewController.m */; };
 		93EF3D342067E06A005139EC /* BaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EF3D332067E06A005139EC /* BaseResponse.m */; };
 		93F9FE8320AA060F0026F781 /* buylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F9FE8220AA060F0026F781 /* buylist.m */; };
+		93F9FE8620AB16060026F781 /* inlurenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F9FE8520AB16060026F781 /* inlurenViewController.m */; };
 		D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F44495653776C857D3020C /* libPods-AncientArchitecture.a */; };
 /* End PBXBuildFile section */
 
@@ -179,8 +179,6 @@
 		93C4C53D20554B90008716B3 /* AncientArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AncientArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C4C54020554B90008716B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		93C4C54120554B90008716B3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		93C4C54320554B90008716B3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		93C4C54420554B90008716B3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		93C4C54920554B90008716B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93C4C54C20554B90008716B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93C4C54E20554B90008716B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -209,6 +207,8 @@
 		93EF3D332067E06A005139EC /* BaseResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseResponse.m; sourceTree = "<group>"; };
 		93F9FE8120AA060F0026F781 /* buylist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = buylist.h; sourceTree = "<group>"; };
 		93F9FE8220AA060F0026F781 /* buylist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = buylist.m; sourceTree = "<group>"; };
+		93F9FE8420AB16060026F781 /* inlurenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inlurenViewController.h; sourceTree = "<group>"; };
+		93F9FE8520AB16060026F781 /* inlurenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = inlurenViewController.m; sourceTree = "<group>"; };
 		93FEB9882067F39A0043263E /* api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
 		A6F44495653776C857D3020C /* libPods-AncientArchitecture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AncientArchitecture.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9FFBC86356E0BE9FAAE443A /* Pods-AncientArchitecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncientArchitecture.release.xcconfig"; path = "Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture.release.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +349,8 @@
 			children = (
 				93631BE220A832B600632B32 /* attteacherViewController.h */,
 				93631BE120A832B600632B32 /* attteacherViewController.m */,
+				93F9FE8420AB16060026F781 /* inlurenViewController.h */,
+				93F9FE8520AB16060026F781 /* inlurenViewController.m */,
 			);
 			path = teacher;
 			sourceTree = "<group>";
@@ -472,8 +474,6 @@
 				93C4C57820555056008716B3 /* app */,
 				93C4C57420554F92008716B3 /* Base */,
 				93C4C57220554F79008716B3 /* View */,
-				93C4C54320554B90008716B3 /* ViewController.h */,
-				93C4C54420554B90008716B3 /* ViewController.m */,
 				93C4C54920554B90008716B3 /* Assets.xcassets */,
 				93C4C54B20554B90008716B3 /* LaunchScreen.storyboard */,
 				93C4C54E20554B90008716B3 /* Info.plist */,
@@ -768,12 +768,14 @@
 				"${PODS_ROOT}/AlivcLivePusherWithPlayer/AlivcLivePusher.framework",
 				"${PODS_ROOT}/AlivcLivePusherWithPlayer/AlivcLibRtmp.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework",
+				"${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLivePusher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibRtmp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunPlayerSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PLPlayerKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -845,6 +847,7 @@
 				931E40AA20721CFA002D1847 /* TeacheCourseResponse.m in Sources */,
 				931CB92620666FA0009DC6EF /* postPpreviewViewController.m in Sources */,
 				93552485206E31F50056A881 /* EditDescibreViewController.m in Sources */,
+				93F9FE8620AB16060026F781 /* inlurenViewController.m in Sources */,
 				93631C1420A8335A00632B32 /* CoursefeileiCollectionViewCell.m in Sources */,
 				93631ADF20A8307000632B32 /* TeacherResponse.m in Sources */,
 				93CC7CAA2072866400C7F64D /* CategoryResponse.m in Sources */,
@@ -862,7 +865,6 @@
 				93631BF920A8335200632B32 /* HomeViewController.m in Sources */,
 				9320B54E206B40710055D9F1 /* UserInfoResponse.m in Sources */,
 				93631BDF20A8329A00632B32 /* VTattenViewController.m in Sources */,
-				93C4C54520554B90008716B3 /* ViewController.m in Sources */,
 				93631C0F20A8335A00632B32 /* xianchangViewController.m in Sources */,
 				93631C1520A8335A00632B32 /* HotReusableView.m in Sources */,
 				93C4C55020554B90008716B3 /* main.m in Sources */,

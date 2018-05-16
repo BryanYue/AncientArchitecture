@@ -42,6 +42,8 @@
 #define statusBar_Height [[UIApplication sharedApplication] statusBarFrame].size.height
 #define statusBar_Width  [[UIApplication sharedApplication] statusBarFrame].size.width
 
+#define IS_IPHONE_X (kScreen_Height == 812.0f) ? YES : NO
+
 
 //
 #define tabBarItem_height 49

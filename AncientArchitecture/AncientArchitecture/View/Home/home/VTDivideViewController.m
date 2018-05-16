@@ -111,7 +111,7 @@
 
 - (void)configCustomSlider {
     UIImageView *sliderView = [[UIImageView alloc] init];
-    [sliderView setImage:[UIImage imageNamed:@"magic_arrow"]];
+    [sliderView setImage:[UIImage imageNamed:@"icon_ring_reddark"]];
     sliderView.contentMode = UIViewContentModeScaleAspectFit;
     [self.magicView setSliderView:sliderView];
     self.magicView.sliderHeight = 5.f;

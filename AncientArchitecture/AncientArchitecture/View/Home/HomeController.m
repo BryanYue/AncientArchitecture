@@ -55,9 +55,9 @@ VTDivideViewController *tableview;
     [self initbaseView];
     [self.topTitleLabel setText:@"非物质"];
     float height=0;
-    if (!scrollView) {
-        scrollView = [UIScrollView new];
-        scrollView.frame=CGRectMake(0, self.topView.frame.size.height, kScreen_Width,kScreen_Height-self.topView.frame.size.height);
+   
+        scrollView = [[UIScrollView alloc]init ];
+        scrollView.frame=CGRectMake(0, self.topView.frame.size.height, kScreen_Width,kScreen_Height-self.topView.frame.size.height-49);
         
         scrollView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
             //刷新时候，需要执行的代码。一般是请求最新数据，请求成功之后，刷新列表
@@ -66,23 +66,28 @@ VTDivideViewController *tableview;
         
         
         
-    }
     
     
-    if (!bannerAd) {
+    
+    
         bannerAd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 224) delegate:self placeholderImage:[UIImage imageNamed:@"default"]];
         bannerAd.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
         bannerAd.currentPageDotColor = [UIColor whiteColor];
 //        bannerAd.imageURLStringsGroup = imagesURLStrings;
         height=height+224;
+  
+    
+    
+        tableview =[[VTDivideViewController alloc] init];
+    if (IS_IPHONE_X) {
+        tableview.view.frame=CGRectMake(0, 224, kScreen_Width,kScreen_Height-self.topView.frame.size.height-49-36);
+    }else{
+        tableview.view.frame=CGRectMake(0, 224, kScreen_Width,kScreen_Height-self.topView.frame.size.height-49);
     }
     
-    if (!tableview) {
-        tableview =[VTDivideViewController new];
-        tableview.view.frame=CGRectMake(0, 224, kScreen_Width,kScreen_Height-self.topView.frame.size.height-49);
 
         height=height+tableview.view.frame.size.height;
-    }
+    
     
     [scrollView addSubview:tableview.view];
     [scrollView addSubview:bannerAd];
