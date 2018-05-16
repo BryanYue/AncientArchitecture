@@ -194,7 +194,7 @@ NSString *isteacher;
 
 
 -(void)initavr{
-    UIView *avr = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, high+statusBar_Height)];
+    UIView *avr = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, high)];
     avr.backgroundColor =[UIColor_ColorChange colorWithHexString:app_theme];
     
     UIImageView *message =[[UIImageView alloc]init];

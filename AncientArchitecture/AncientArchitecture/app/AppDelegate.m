@@ -17,12 +17,25 @@
     
     
     
-    @end
+@end
 
 @implementation AppDelegate
     
     
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor clearColor];
+    [self.window makeKeyAndVisible];
+    
+    
+   
+    
+    HomeViewController *home =[[HomeViewController alloc] init];
+    
+    self.window.rootViewController = home;
     // Override point for customization after application launch.
     
     //初始化Bugly

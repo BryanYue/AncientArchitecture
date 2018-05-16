@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930A79D920567190006024A5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930A79D820567190006024A5 /* Home.storyboard */; };
 		931CB92620666FA0009DC6EF /* postPpreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931CB92520666FA0009DC6EF /* postPpreviewViewController.m */; };
 		931CB92B20667F28009DC6EF /* startLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931CB92A20667F28009DC6EF /* startLiveViewController.m */; };
 		931CB92F20668299009DC6EF /* uploadCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931CB92E20668299009DC6EF /* uploadCourseViewController.m */; };
@@ -89,7 +88,6 @@
 
 /* Begin PBXFileReference section */
 		5369914DE3AD4A6A8360A5CB /* Pods-AncientArchitecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncientArchitecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture.debug.xcconfig"; sourceTree = "<group>"; };
-		930A79D820567190006024A5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		931CB92420666FA0009DC6EF /* postPpreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = postPpreviewViewController.h; sourceTree = "<group>"; };
 		931CB92520666FA0009DC6EF /* postPpreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = postPpreviewViewController.m; sourceTree = "<group>"; };
 		931CB92920667F28009DC6EF /* startLiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = startLiveViewController.h; sourceTree = "<group>"; };
@@ -523,7 +521,6 @@
 				93631BF620A8335100632B32 /* HomeController.m */,
 				93631BF820A8335200632B32 /* HomeViewController.h */,
 				93631BF520A8335100632B32 /* HomeViewController.m */,
-				930A79D820567190006024A5 /* Home.storyboard */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -739,7 +736,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				930A79D920567190006024A5 /* Home.storyboard in Resources */,
 				93C4C54D20554B90008716B3 /* LaunchScreen.storyboard in Resources */,
 				93C4C54A20554B90008716B3 /* Assets.xcassets in Resources */,
 			);
