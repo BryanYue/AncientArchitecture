@@ -10,6 +10,7 @@
 #import "TeacherResponse.h"
 #import "MJRefresh.h"
 #import "TeacherUICollectionViewCell.h"
+#import "inlurenViewController.h"
 @interface yingluViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property(strong,nonatomic)UICollectionView *yingluCollectionV;
 @end
@@ -170,6 +171,25 @@ NSMutableArray<TeacherResponse *> *yinluCourse;
         [_yingluCollectionV.mj_header  endRefreshing];
         
     }];
+}
+
+
+//设置点击 Cell的点击事件
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
+    
+    if (yinluCourse.count>indexPath.row) {
+        NSLog(@"id %@",yinluCourse[indexPath.row].id);
+        
+        NSUserDefaults *defaults= DEFAULTS;
+        
+        [defaults removeObjectForKey:@"attteacher_id"];
+        
+        [defaults setObject:yinluCourse[indexPath.row].id forKey:@"attteacher_id"];
+        [defaults synchronize];
+        
+        [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
+    }
 }
 
 @end

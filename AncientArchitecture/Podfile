@@ -33,4 +33,8 @@ pod 'SDCycleScrollView','~> 1.64'
 pod 'WMPageController','~>2.3.0'
 
 pod 'VTMagic'
+
+pod 'PLPlayerKit'
+
+
 end

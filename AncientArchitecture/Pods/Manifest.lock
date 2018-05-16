@@ -25,6 +25,9 @@ PODS:
   - PGDatePicker (2.4.1):
     - PGPickerView
   - PGPickerView (1.2.6)
+  - PLPlayerKit (3.3.0):
+    - PLPlayerKit/iphoneos (= 3.3.0)
+  - PLPlayerKit/iphoneos (3.3.0)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
   - SDWebImage (4.3.3):
@@ -46,6 +49,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - PGDatePicker
+  - PLPlayerKit
   - SDCycleScrollView (~> 1.64)
   - SDWebImage (~> 4.0)
   - TZImagePickerController
@@ -64,6 +68,7 @@ SPEC REPOS:
     - MJRefresh
     - PGDatePicker
     - PGPickerView
+    - PLPlayerKit
     - SDCycleScrollView
     - SDWebImage
     - TZImagePickerController
@@ -81,6 +86,7 @@ SPEC CHECKSUMS:
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   PGDatePicker: 5e3a281d6daf85ea87d282699347448c3738df24
   PGPickerView: 8fbbf63d0404065a43a495a0115d339455e0f819
+  PLPlayerKit: bf3dcb35b9736c73c20a9a927f131c6bf18614e5
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
@@ -88,6 +94,6 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 676feec516a11173eafd1fe64b10d27babf28701
   WMPageController: 9f219bb8912a1a1f51af11fde61e2682a7b7e7f2
 
-PODFILE CHECKSUM: 011b4ff019c3bb2ee336a363a9dec14f33231a27
+PODFILE CHECKSUM: 72e0557ba1bf3ff20b39ba6382700c289462595b
 
 COCOAPODS: 1.5.2
