@@ -250,9 +250,10 @@ UIImageView *rightImageView;
             BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
             if (response.code  == 200) {
                 NSLog(@"%@",response.data);
+                 rightImageView.image = [UIImage imageNamed:is_follow==0?@"icon_colloect_white":@"icon_colloect_pink"];
                 is_follow=is_follow==1?0:1;
                
-                 rightImageView.image = [UIImage imageNamed:is_follow==0?@"icon_colloect_white":@"icon_colloect_pink"];
+                
             }
             [self TextButtonAction:response.msg];
         }else{

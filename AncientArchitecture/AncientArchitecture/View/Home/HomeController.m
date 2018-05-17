@@ -10,7 +10,8 @@
 #import "CarouselImgResponse.h"
 #import "SDCycleScrollView.h"
 #import "MJRefresh.h"
-
+#import "LoginViewController.h"
+#import "searchViewController.h"
 #import "VTDivideViewController.h"
 
 
@@ -52,12 +53,32 @@ VTDivideViewController *tableview;
 -(void)initview
 {
     self.view.backgroundColor=[UIColor whiteColor];
-    [self initbaseView];
-    [self.topTitleLabel setText:@"非物质"];
+    UIView *avr = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 44+statusBar_Height)];
+    avr.backgroundColor =[UIColor_ColorChange colorWithHexString:app_theme];
+    
+    UIImageView *message =[[UIImageView alloc]init];
+    message.image=[UIImage imageNamed:@"消息"];
+    message.frame = CGRectMake(10, 6+statusBar_Height, message.image.size.width, message.image.size.height);
+    message.userInteractionEnabled = YES;
+   
+    
+    UIImageView *edit =[[UIImageView alloc]init];
+    edit.image=[UIImage imageNamed:@"编辑"];
+    edit.frame = CGRectMake(kScreen_Width-10-message.image.size.width, 6+statusBar_Height, message.image.size.width, message.image.size.height);
+    edit.userInteractionEnabled = YES;
+    [edit addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(search)]];
+    
+    [avr addSubview:message];
+    [avr addSubview:edit];
+    
+    [self.view addSubview:avr];
+    
+    
+   
     float height=0;
    
         scrollView = [[UIScrollView alloc]init ];
-        scrollView.frame=CGRectMake(0, self.topView.frame.size.height, kScreen_Width,kScreen_Height-self.topView.frame.size.height-49);
+        scrollView.frame=CGRectMake(0, avr.frame.size.height, kScreen_Width,kScreen_Height-avr.frame.size.height-49);
         
         scrollView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
             //刷新时候，需要执行的代码。一般是请求最新数据，请求成功之后，刷新列表
@@ -80,9 +101,9 @@ VTDivideViewController *tableview;
     
         tableview =[[VTDivideViewController alloc] init];
     if (IS_IPHONE_X) {
-        tableview.view.frame=CGRectMake(0, 224, kScreen_Width,kScreen_Height-self.topView.frame.size.height-49-36);
+        tableview.view.frame=CGRectMake(0, 224, kScreen_Width,kScreen_Height-avr.frame.size.height-49-44);
     }else{
-        tableview.view.frame=CGRectMake(0, 224, kScreen_Width,kScreen_Height-self.topView.frame.size.height-49);
+        tableview.view.frame=CGRectMake(0, 224, kScreen_Width,kScreen_Height-avr.frame.size.height-49);
     }
     
 
@@ -101,7 +122,17 @@ VTDivideViewController *tableview;
 
 
 
-
+-(void)search{
+   
+    bool islogin = [DEFAULTS objectForKey:@"islogin"];
+    
+    if (islogin) {
+        
+        [self.view.window.rootViewController presentViewController:[searchViewController new] animated:YES completion:nil];
+    }else{
+         [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
+    }
+}
 
 
 

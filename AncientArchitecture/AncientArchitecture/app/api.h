@@ -101,7 +101,8 @@
 //获取会员购买的课程【订单列表】
 #define url_buyCourse     @"/api/Member/buyCourse"
 
-//
+//课程搜索
+#define searchCourse     @"/api/Document/searchCourse"
 
 
 

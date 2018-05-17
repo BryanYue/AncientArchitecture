@@ -40,11 +40,11 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     //自定义标题栏
     self.topView=[[UIView alloc] init];
-    self.topView.frame=CGRectMake(0, 0, kScreen_Width, 36+statusBar_Height);
+    self.topView.frame=CGRectMake(0, 0, kScreen_Width, 44+statusBar_Height);
     self.topView.backgroundColor=[UIColor_ColorChange colorWithHexString:app_theme ];
     
     self.topTitleLabel=[[UILabel alloc] init];
-    self.topTitleLabel.frame=CGRectMake(50, statusBar_Height, kScreen_Width-100, 36);
+    self.topTitleLabel.frame=CGRectMake(50, statusBar_Height, kScreen_Width-100, 44);
     self.topTitleLabel.backgroundColor=[UIColor clearColor];
     self.topTitleLabel.textAlignment=NSTextAlignmentCenter;
     self.topTitleLabel.textColor=[UIColor whiteColor];
@@ -59,7 +59,7 @@
     [self.topView addSubview:backImageView];
     
     _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_backButton setFrame:CGRectMake(0, statusBar_Height, 80, 36)];
+    [_backButton setFrame:CGRectMake(0, statusBar_Height, 80, 44)];
     [_backButton addTarget:self action:@selector(backButtonPress) forControlEvents:UIControlEventTouchUpInside];
     [self.topView addSubview:_backButton];
 }
