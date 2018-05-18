@@ -203,7 +203,7 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     if (section==0) {
-        return CGSizeMake(kScreen_Width, 300);
+        return CGSizeMake(kScreen_Width, 500);
     }else{
         return CGSizeMake(kScreen_Width, 50);
     }
@@ -247,19 +247,11 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
         if (indexPath.section==0) {
             HotReusableView *headerV = (HotReusableView *)reusableView;
             
-            headerV.titleLab.text =@"头部视图";
-            CGRect size =headerV.frame;
-            size.size.height=300;
-            headerV.frame=size;
-             reusableView = headerV;
+            
         }else{
             HotReusableView *headerV = (HotReusableView *)reusableView;
             
-            headerV.titleLab.text =@"头部视图";
-            CGRect size =headerV.frame;
-            size.size.height=50;
-            headerV.frame=size;
-             reusableView = headerV;
+          
         }
        
         

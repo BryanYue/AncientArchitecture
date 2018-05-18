@@ -8,6 +8,7 @@
 
 #import "HotReusableView.h"
 
+
 @implementation HotReusableView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -18,18 +19,12 @@
         
         
             
-            _titleLab = [[UILabel alloc]init];
+        self.headViewController =[headViewController new] ;
             
-            _titleLab.frame =CGRectMake(0,0, self.frame.size.width,self.frame.size.height);
+        [self addSubview:self.headViewController.view];
             
-            _titleLab.textAlignment =NSTextAlignmentCenter;
-            
-            _titleLab.backgroundColor = [UIColor redColor];
-            
-            [self addSubview:_titleLab];
-            
-        
-        
+      
+       
         
         
     }
@@ -39,6 +34,7 @@
     
     return self;
 }
+
 
 
 

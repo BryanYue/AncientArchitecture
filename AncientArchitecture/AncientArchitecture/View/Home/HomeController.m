@@ -56,18 +56,29 @@ VTDivideViewController *tableview;
     UIView *avr = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 44+statusBar_Height)];
     avr.backgroundColor =[UIColor_ColorChange colorWithHexString:app_theme];
     
+    UIImageView *back =[[UIImageView alloc]init];
+    back.image=[UIImage imageNamed:@"img_theme_bg_top"];
+    back.frame = CGRectMake(0, 0, kScreen_Width, 44+statusBar_Height);
+    
+    UIImageView *title =[[UIImageView alloc]init];
+    title.image=[UIImage imageNamed:@"img_logo_title"];
+    title.frame = CGRectMake((kScreen_Width-title.image.size.width)/2, 6+(44+statusBar_Height-title.image.size.height)/2, title.image.size.width, title.image.size.height);
+    
+    
     UIImageView *message =[[UIImageView alloc]init];
-    message.image=[UIImage imageNamed:@"消息"];
+    message.image=[UIImage imageNamed:@"icon_home"];
     message.frame = CGRectMake(10, 6+statusBar_Height, message.image.size.width, message.image.size.height);
     message.userInteractionEnabled = YES;
    
     
     UIImageView *edit =[[UIImageView alloc]init];
-    edit.image=[UIImage imageNamed:@"编辑"];
-    edit.frame = CGRectMake(kScreen_Width-10-message.image.size.width, 6+statusBar_Height, message.image.size.width, message.image.size.height);
+    edit.image=[UIImage imageNamed:@"icon_search_gray"];
+    edit.frame = CGRectMake(kScreen_Width-10-message.image.size.width, 12+statusBar_Height, edit.image.size.width, edit.image.size.height);
     edit.userInteractionEnabled = YES;
     [edit addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(search)]];
     
+    [avr addSubview:back];
+    [avr addSubview:title];
     [avr addSubview:message];
     [avr addSubview:edit];
     

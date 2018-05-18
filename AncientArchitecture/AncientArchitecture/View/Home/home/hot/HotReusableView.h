@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "headViewController.h"
 @interface HotReusableView : UICollectionReusableView
-@property(strong,nonatomic)UILabel *titleLab;
+@property(strong,nonatomic)headViewController *headViewController;
+
+
 @end

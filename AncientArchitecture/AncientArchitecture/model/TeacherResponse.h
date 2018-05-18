@@ -23,5 +23,7 @@
 @property (nonatomic,strong)NSString   *longevity;
 @property (nonatomic,strong)NSString   *descibre;
 @property (nonatomic,strong)NSString  *is_follow;
+@property (nonatomic,strong)NSString  *follow_num;
+
 
 @end

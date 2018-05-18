@@ -1,27 +1,24 @@
 //
-//  VTDivideViewController.m
+//  courseController.m
 //  AncientArchitecture
 //
-//  Created by bryan on 2018/5/12.
+//  Created by Bryan on 2018/5/18.
 //  Copyright © 2018年 通感科技. All rights reserved.
 //
 
-#import "VTDivideViewController.h"
-#import "HotViewController.h"
-#import "CourseViewController.h"
 #import "courseController.h"
-#import "xianchangViewController.h"
-#import "yingluViewController.h"
-@interface VTDivideViewController ()
+#import "jijiangViewController.h"
+#import "yiboViewController.h"
+@interface courseController ()
 @property (nonatomic, strong)  NSArray <NSString *> *menuList;
 @end
 
-@implementation VTDivideViewController
+@implementation courseController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+    
     
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -31,7 +28,7 @@
     self.magicView.navigationHeight = 50;
     self.magicView.againstStatusBar = NO;
     self.magicView.needPreloading = NO;
-
+    
     [self configCustomSlider];
     
     [self generateTestData];
@@ -60,6 +57,7 @@
     return titleList;
 }
 
+
 - (UIButton *)magicView:(VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
     static NSString *itemIdentifier = @"itemIdentifier";
     UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
@@ -69,9 +67,9 @@
         [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
         [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
         menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
-    
+        
     }
-   
+    
     return menuItem;
 }
 
@@ -81,30 +79,23 @@
     if (!view) {
         switch (pageIndex) {
             case 0:
-                view= [[HotViewController alloc] init];
+                view= [jijiangViewController new];
                 break;
             case 1:
-                view= [[courseController alloc] init];
+                view= [yiboViewController new];
                 break;
-            case 2:
-                view= [[xianchangViewController alloc] init];
-                break;
-            case 3:
-                view= [[yingluViewController alloc] init];
-                break;
-                
+           
         }
     }
-
-   
+    
+    
     return view;
 }
 
 
 
 - (void)generateTestData {
-    _menuList = @[@"热门", @"课程",
-                  @"现场", @"引路人"];
+    _menuList = @[@"即将开播", @"已播课程"];
 }
 
 
@@ -112,7 +103,7 @@
 
 - (void)configCustomSlider {
     UIImageView *sliderView = [[UIImageView alloc] init];
-    [sliderView setImage:[UIImage imageNamed:@"icon_ring_reddark"]];
+    [sliderView setImage:[UIImage imageNamed:@"magic_arrow"]];
     sliderView.contentMode = UIViewContentModeScaleAspectFit;
     [self.magicView setSliderView:sliderView];
     self.magicView.sliderHeight = 5.f;

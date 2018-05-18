@@ -50,6 +50,16 @@
 		93AA79C5205AC8BD002E9E10 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AA79C4205AC8BD002E9E10 /* MeViewController.m */; };
 		93BE9145206005DF009B9FF3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE9144206005DF009B9FF3 /* LoginViewController.m */; };
 		93BE914A20600630009B9FF3 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE914920600630009B9FF3 /* RegisterViewController.m */; };
+		93C3E3EC20AE79560018EA72 /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E3EB20AE79560018EA72 /* LaunchIntroductionView.m */; };
+		93C3E3EF20AEB5430018EA72 /* GLCoverFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E3EE20AEB5430018EA72 /* GLCoverFlowLayout.m */; };
+		93C3E3F520AEBA790018EA72 /* headViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E3F420AEBA790018EA72 /* headViewController.m */; };
+		93C3E3F820AEBCFA0018EA72 /* teacherCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E3F720AEBCFA0018EA72 /* teacherCollectionViewCell.m */; };
+		93C3E3FA20AEDA7C0018EA72 /* MRLineLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E3F920AEDA7C0018EA72 /* MRLineLayout.m */; };
+		93C3E3FE20AEDF650018EA72 /* MRCircleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E3FD20AEDF650018EA72 /* MRCircleLayout.m */; };
+		93C3E40120AEDFB90018EA72 /* MRGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E40020AEDFB90018EA72 /* MRGridLayout.m */; };
+		93C3E40520AEE1A10018EA72 /* courseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E40420AEE1A10018EA72 /* courseController.m */; };
+		93C3E40820AEE23B0018EA72 /* jijiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E40720AEE23B0018EA72 /* jijiangViewController.m */; };
+		93C3E40B20AEE2480018EA72 /* yiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E40A20AEE2480018EA72 /* yiboViewController.m */; };
 		93C4C54220554B90008716B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C4C54120554B90008716B3 /* AppDelegate.m */; };
 		93C4C54A20554B90008716B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C4C54920554B90008716B3 /* Assets.xcassets */; };
 		93C4C54D20554B90008716B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93C4C54B20554B90008716B3 /* LaunchScreen.storyboard */; };
@@ -177,6 +187,26 @@
 		93BE9144206005DF009B9FF3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		93BE914820600630009B9FF3 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		93BE914920600630009B9FF3 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		93C3E3EA20AE79560018EA72 /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
+		93C3E3EB20AE79560018EA72 /* LaunchIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchIntroductionView.m; sourceTree = "<group>"; };
+		93C3E3ED20AEB5430018EA72 /* GLCoverFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLCoverFlowLayout.h; sourceTree = "<group>"; };
+		93C3E3EE20AEB5430018EA72 /* GLCoverFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLCoverFlowLayout.m; sourceTree = "<group>"; };
+		93C3E3F320AEBA790018EA72 /* headViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headViewController.h; sourceTree = "<group>"; };
+		93C3E3F420AEBA790018EA72 /* headViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = headViewController.m; sourceTree = "<group>"; };
+		93C3E3F620AEBCFA0018EA72 /* teacherCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = teacherCollectionViewCell.h; sourceTree = "<group>"; };
+		93C3E3F720AEBCFA0018EA72 /* teacherCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = teacherCollectionViewCell.m; sourceTree = "<group>"; };
+		93C3E3F920AEDA7C0018EA72 /* MRLineLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRLineLayout.m; sourceTree = "<group>"; };
+		93C3E3FB20AEDA8A0018EA72 /* MRLineLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRLineLayout.h; sourceTree = "<group>"; };
+		93C3E3FC20AEDF5F0018EA72 /* MRCircleLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRCircleLayout.h; sourceTree = "<group>"; };
+		93C3E3FD20AEDF650018EA72 /* MRCircleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCircleLayout.m; sourceTree = "<group>"; };
+		93C3E3FF20AEDFB30018EA72 /* MRGridLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRGridLayout.h; sourceTree = "<group>"; };
+		93C3E40020AEDFB90018EA72 /* MRGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGridLayout.m; sourceTree = "<group>"; };
+		93C3E40320AEE1A10018EA72 /* courseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = courseController.h; sourceTree = "<group>"; };
+		93C3E40420AEE1A10018EA72 /* courseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = courseController.m; sourceTree = "<group>"; };
+		93C3E40620AEE23B0018EA72 /* jijiangViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jijiangViewController.h; sourceTree = "<group>"; };
+		93C3E40720AEE23B0018EA72 /* jijiangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jijiangViewController.m; sourceTree = "<group>"; };
+		93C3E40920AEE2480018EA72 /* yiboViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yiboViewController.h; sourceTree = "<group>"; };
+		93C3E40A20AEE2480018EA72 /* yiboViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yiboViewController.m; sourceTree = "<group>"; };
 		93C4C53D20554B90008716B3 /* AncientArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AncientArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C4C54020554B90008716B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		93C4C54120554B90008716B3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -370,13 +400,14 @@
 		93631BFB20A8335A00632B32 /* home */ = {
 			isa = PBXGroup;
 			children = (
+				93C3E40220AEE14D0018EA72 /* course */,
 				93631C0820A8335A00632B32 /* hot */,
 				93631C0120A8335A00632B32 /* yinluren */,
 				93631BFC20A8335A00632B32 /* xianchang */,
+				93631C0720A8335A00632B32 /* VTDivideViewController.h */,
 				93631BFF20A8335A00632B32 /* VTDivideViewController.m */,
 				93631C0020A8335A00632B32 /* CourseViewController.h */,
 				93631C0620A8335A00632B32 /* CourseViewController.m */,
-				93631C0720A8335A00632B32 /* VTDivideViewController.h */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -405,11 +436,15 @@
 			isa = PBXGroup;
 			children = (
 				93631C0920A8335A00632B32 /* HotReusableView.h */,
-				93631C0A20A8335A00632B32 /* HotViewController.h */,
-				93631C0B20A8335A00632B32 /* CoursefeileiCollectionViewCell.m */,
 				93631C0C20A8335A00632B32 /* HotReusableView.m */,
+				93631C0A20A8335A00632B32 /* HotViewController.h */,
 				93631C0D20A8335A00632B32 /* HotViewController.m */,
+				93631C0B20A8335A00632B32 /* CoursefeileiCollectionViewCell.m */,
 				93631C0E20A8335A00632B32 /* CoursefeileiCollectionViewCell.h */,
+				93C3E3F320AEBA790018EA72 /* headViewController.h */,
+				93C3E3F420AEBA790018EA72 /* headViewController.m */,
+				93C3E3F620AEBCFA0018EA72 /* teacherCollectionViewCell.h */,
+				93C3E3F720AEBCFA0018EA72 /* teacherCollectionViewCell.m */,
 			);
 			path = hot;
 			sourceTree = "<group>";
@@ -444,6 +479,28 @@
 				93BE914920600630009B9FF3 /* RegisterViewController.m */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		93C3E3E920AE79560018EA72 /* LaunchIntroduction */ = {
+			isa = PBXGroup;
+			children = (
+				93C3E3EA20AE79560018EA72 /* LaunchIntroductionView.h */,
+				93C3E3EB20AE79560018EA72 /* LaunchIntroductionView.m */,
+			);
+			path = LaunchIntroduction;
+			sourceTree = "<group>";
+		};
+		93C3E40220AEE14D0018EA72 /* course */ = {
+			isa = PBXGroup;
+			children = (
+				93C3E40320AEE1A10018EA72 /* courseController.h */,
+				93C3E40420AEE1A10018EA72 /* courseController.m */,
+				93C3E40620AEE23B0018EA72 /* jijiangViewController.h */,
+				93C3E40720AEE23B0018EA72 /* jijiangViewController.m */,
+				93C3E40920AEE2480018EA72 /* yiboViewController.h */,
+				93C3E40A20AEE2480018EA72 /* yiboViewController.m */,
+			);
+			path = course;
 			sourceTree = "<group>";
 		};
 		93C4C53420554B8F008716B3 = {
@@ -506,6 +563,7 @@
 		93C4C57220554F79008716B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				93C3E3E920AE79560018EA72 /* LaunchIntroduction */,
 				93EC6D1B20AC16B30065A1FF /* search */,
 				93631BDC20A8322000632B32 /* attention */,
 				93631AEA20A831CA00632B32 /* player */,
@@ -542,6 +600,14 @@
 				93CC7CA6207277F900C7F64D /* THDatePickerView.m */,
 				932C3769207A069000985372 /* SYDatePicker.h */,
 				932C376A207A069000985372 /* SYDatePicker.m */,
+				93C3E3ED20AEB5430018EA72 /* GLCoverFlowLayout.h */,
+				93C3E3EE20AEB5430018EA72 /* GLCoverFlowLayout.m */,
+				93C3E3FB20AEDA8A0018EA72 /* MRLineLayout.h */,
+				93C3E3F920AEDA7C0018EA72 /* MRLineLayout.m */,
+				93C3E3FC20AEDF5F0018EA72 /* MRCircleLayout.h */,
+				93C3E3FD20AEDF650018EA72 /* MRCircleLayout.m */,
+				93C3E3FF20AEDFB30018EA72 /* MRGridLayout.h */,
+				93C3E40020AEDFB90018EA72 /* MRGridLayout.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -846,6 +912,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C3E40820AEE23B0018EA72 /* jijiangViewController.m in Sources */,
 				93AA79C5205AC8BD002E9E10 /* MeViewController.m in Sources */,
 				93631BE320A832B600632B32 /* attteacherViewController.m in Sources */,
 				93631BF420A8330900632B32 /* buylistViewController.m in Sources */,
@@ -863,6 +930,7 @@
 				93F9FE8620AB16060026F781 /* inlurenViewController.m in Sources */,
 				93631C1420A8335A00632B32 /* CoursefeileiCollectionViewCell.m in Sources */,
 				93631ADF20A8307000632B32 /* TeacherResponse.m in Sources */,
+				93C3E3FA20AEDA7C0018EA72 /* MRLineLayout.m in Sources */,
 				93CC7CAA2072866400C7F64D /* CategoryResponse.m in Sources */,
 				93631C1120A8335A00632B32 /* yingluViewController.m in Sources */,
 				93E7031B206E867B000BF485 /* accountSettingsViewController.m in Sources */,
@@ -879,27 +947,35 @@
 				9320B54E206B40710055D9F1 /* UserInfoResponse.m in Sources */,
 				93631BDF20A8329A00632B32 /* VTattenViewController.m in Sources */,
 				93631C0F20A8335A00632B32 /* xianchangViewController.m in Sources */,
+				93C3E40520AEE1A10018EA72 /* courseController.m in Sources */,
 				93631C1520A8335A00632B32 /* HotReusableView.m in Sources */,
 				93C4C55020554B90008716B3 /* main.m in Sources */,
 				93631AED20A831CA00632B32 /* playerViewController.m in Sources */,
 				93631BF120A8330900632B32 /* myCourseViewController.m in Sources */,
+				93C3E40120AEDFB90018EA72 /* MRGridLayout.m in Sources */,
 				93631C1620A8335A00632B32 /* HotViewController.m in Sources */,
 				932C376B207A069000985372 /* SYDatePicker.m in Sources */,
 				93631C1020A8335A00632B32 /* VTDivideViewController.m in Sources */,
 				931CB92F20668299009DC6EF /* uploadCourseViewController.m in Sources */,
+				93C3E3FE20AEDF650018EA72 /* MRCircleLayout.m in Sources */,
 				93E04491205D794900E34F96 /* SettingViewController.m in Sources */,
 				93631AE920A830CA00632B32 /* GTMBase64.m in Sources */,
 				93631C1320A8335A00632B32 /* CourseViewController.m in Sources */,
 				93BE914A20600630009B9FF3 /* RegisterViewController.m in Sources */,
+				93C3E3F520AEBA790018EA72 /* headViewController.m in Sources */,
 				93631BF220A8330900632B32 /* courseViewController.m in Sources */,
 				93631AE820A830CA00632B32 /* NSString+AES.m in Sources */,
 				931E40A720721C7C002D1847 /* TeacheCourseViewController.m in Sources */,
 				93BE9145206005DF009B9FF3 /* LoginViewController.m in Sources */,
 				93576942207D09CC00871D95 /* TeacheCourseViewCollectionViewCell.m in Sources */,
+				93C3E3EF20AEB5430018EA72 /* GLCoverFlowLayout.m in Sources */,
+				93C3E40B20AEE2480018EA72 /* yiboViewController.m in Sources */,
 				93EF3D342067E06A005139EC /* BaseResponse.m in Sources */,
 				93C4C54220554B90008716B3 /* AppDelegate.m in Sources */,
 				93631ADC20A8306300632B32 /* CarouselImgResponse.m in Sources */,
+				93C3E3EC20AE79560018EA72 /* LaunchIntroductionView.m in Sources */,
 				93E04487205CEF7800E34F96 /* UIColor+ColorChange.m in Sources */,
+				93C3E3F820AEBCFA0018EA72 /* teacherCollectionViewCell.m in Sources */,
 				93EC6D1F20AC1A980065A1FF /* searchViewController.m in Sources */,
 				931CB92B20667F28009DC6EF /* startLiveViewController.m in Sources */,
 			);

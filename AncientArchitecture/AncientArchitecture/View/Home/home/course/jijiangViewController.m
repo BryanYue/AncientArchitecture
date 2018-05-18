@@ -1,0 +1,248 @@
+//
+//  jijiangViewController.m
+//  AncientArchitecture
+//
+//  Created by Bryan on 2018/5/18.
+//  Copyright © 2018年 通感科技. All rights reserved.
+//
+
+#import "jijiangViewController.h"
+#import "MJRefresh.h"
+#import "CourseDetailResponse.h"
+#import "TeacheCourseViewCollectionViewCell.h"
+@interface jijiangViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@property(strong,nonatomic)UICollectionView *jijianglistCollectionV;
+@end
+
+@implementation jijiangViewController
+NSMutableArray<CourseDetailResponse *> *jijianglistCourse;
+int jji = 1;
+bool isjjrefreshing =false;
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self addTheCollectionView];
+    [self initjijiangCourse];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+
+-(void)addTheCollectionView{
+    //=======================1===========================
+    
+    //创建一个块状表格布局对象
+    
+    UICollectionViewFlowLayout *flowL = [UICollectionViewFlowLayout new];
+    
+    //格子的大小 (长，高)
+    
+    flowL.itemSize =CGSizeMake(kScreen_Width,240);
+    
+    //如果有多个区 就可以拉动
+    
+    [flowL setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
+    
+    
+    
+    
+    
+    //创建一个UICollectionView
+    
+    _jijianglistCollectionV = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0, kScreen_Width,kScreen_Height-30-statusBar_Height-49-50)collectionViewLayout:flowL];
+    
+    //设置代理为当前控制器
+    
+    _jijianglistCollectionV.delegate =self;
+    
+    _jijianglistCollectionV.dataSource =self;
+    
+    
+    //设置背景
+    
+    _jijianglistCollectionV.backgroundColor =[UIColor whiteColor];
+    
+    _jijianglistCollectionV.delaysContentTouches = true;
+    
+#pragma mark -- 注册单元格
+    
+    [_jijianglistCollectionV registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"jijiangcellid"];
+    
+    
+    
+
+    
+    
+    _jijianglistCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [_jijianglistCollectionV.mj_footer  resetNoMoreData ];
+        isjjrefreshing=true;
+        jji=1;
+        [self initjijiangCourse];
+        
+    }];
+    
+    
+    _jijianglistCollectionV.mj_footer =[MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+        
+        
+        [self initjijiangCourse];
+        
+    }];
+    
+    [self.view addSubview:_jijianglistCollectionV];
+}
+
+//返回分区个数
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+//返回每个分区的item个数
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return jijianglistCourse.count;
+    
+}
+
+
+
+
+//返回每个item
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"jijiangcellid" forIndexPath:indexPath];
+    
+    if (jijianglistCourse) {
+        if (jijianglistCourse[indexPath.item].img_url) {
+            Coursecell.imageName =jijianglistCourse[indexPath.item].img_url;
+        }
+        
+        
+        if (jijianglistCourse[indexPath.item].title) {
+            
+            Coursecell.titlename  =jijianglistCourse[indexPath.item].title;
+            
+        }
+        
+        if (jijianglistCourse[indexPath.item].teacher_name) {
+            Coursecell.teachername=jijianglistCourse[indexPath.item].teacher_name;
+        }
+        
+        if (jijianglistCourse[indexPath.row].teacher_photo) {
+            Coursecell.headimageName=jijianglistCourse[indexPath.item].teacher_photo;
+        }
+        
+        if (jijianglistCourse[indexPath.row].start_time) {
+            Coursecell.timename=jijianglistCourse[indexPath.item].start_time;
+        }
+        
+        
+        
+    }
+    
+    return Coursecell;
+}
+
+
+
+
+-(void)initjijiangCourse
+{
+    
+    
+    NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
+    [parameterCountry setObject:@(jji) forKey:@"page"];
+    [parameterCountry setObject:@"2" forKey:@"type"];
+    
+    
+    
+    [self GeneralButtonAction];
+    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_allCourse withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+        NSLog(@"error%zd",error.code);
+        [_jijianglistCollectionV.mj_header  endRefreshing];
+        if (!error) {
+            
+            BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
+            if (response.code  == 200) {
+                
+                if (isjjrefreshing) {
+                    if (jijianglistCourse) {
+                        [jijianglistCourse removeAllObjects] ;
+                    }
+                    isjjrefreshing=false;
+                }
+                
+                
+                NSMutableArray<CourseDetailResponse *> *tempCourse=[CourseDetailResponse mj_objectArrayWithKeyValuesArray:response.data];
+                
+                
+                if (tempCourse) {
+                    
+                    if (tempCourse.count>0) {
+                        
+                        [jijianglistCourse addObjectsFromArray: tempCourse];
+                        NSLog(@"tempCourse%@",tempCourse);
+                        NSLog(@"buylistCourse%@",jijianglistCourse);
+                        NSLog(@"tempCourse.count%zd",tempCourse.count);
+                        NSLog(@"buylist.Course%zd",jijianglistCourse.count);
+                        [_jijianglistCollectionV reloadData];
+                    }
+                    
+                    
+                    
+                }
+                if (response.page_num>jji) {
+                    jji++;
+                }else{
+                    [_jijianglistCollectionV.mj_footer  endRefreshingWithNoMoreData];
+                }
+                
+                
+                
+            }
+            
+            if (self.HUD) {
+                [self.HUD hideAnimated:true];
+            }
+            [self TextButtonAction:response.msg];
+            
+        }else{
+            if (self.HUD) {
+                [self.HUD hideAnimated:true];
+            }
+            [self TextButtonAction:error.domain];
+        }
+        
+        
+        
+    }];
+}
+
+
+
+//设置点击 Cell的点击事件
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
+    
+    
+}
+
+
+@end

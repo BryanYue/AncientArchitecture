@@ -10,6 +10,7 @@
 #import "HomeViewController.h"
 #import "WXApi.h"
 #import <AFNetworking.h>
+#import "LaunchIntroductionView.h"
 
 #define weixinloginNotification @"weixinlogin"
 
@@ -27,20 +28,33 @@
     
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor clearColor];
-    [self.window makeKeyAndVisible];
+    self.window.backgroundColor = [UIColor whiteColor];
+   
     
     
    
     
     HomeViewController *home =[[HomeViewController alloc] init];
-    
     self.window.rootViewController = home;
+    [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     
     //初始化Bugly
     [Bugly startWithAppId:@"b698bd0225"];
     [WXApi registerApp:@"wx884bd8452e6e9112"];
+    
+    
+    LaunchIntroductionView *launch=[LaunchIntroductionView sharedWithImages:@[@"img_launch_1",
+                                               @"img_launch_2",
+                                               @"img_launch_3",
+                                               @"img_launch_4",
+                                               @"img_launch_5"]
+                                 buttonImage:@"login" buttonFrame:CGRectMake(kScreen_width/2 - 551/4, kScreen_height - 150, 551/2, 45)];
+    launch.currentColor = [UIColor grayColor];
+    launch.nomalColor = [UIColor_ColorChange colorWithHexString:app_theme];;
+   
+    
+    
     return YES;
 }
     
