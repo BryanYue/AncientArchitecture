@@ -48,6 +48,7 @@
 		93631C1920A833F300632B32 /* attaourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631C1720A833F300632B32 /* attaourseViewController.m */; };
 		9388FA742062388300A735F6 /* MyUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9388FA732062388300A735F6 /* MyUITextField.m */; };
 		93AA79C5205AC8BD002E9E10 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AA79C4205AC8BD002E9E10 /* MeViewController.m */; };
+		93AEF86D20AF1F7E00D72852 /* courseReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF86C20AF1F7E00D72852 /* courseReusableView.m */; };
 		93BE9145206005DF009B9FF3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE9144206005DF009B9FF3 /* LoginViewController.m */; };
 		93BE914A20600630009B9FF3 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE914920600630009B9FF3 /* RegisterViewController.m */; };
 		93C3E3EC20AE79560018EA72 /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E3EB20AE79560018EA72 /* LaunchIntroductionView.m */; };
@@ -183,6 +184,8 @@
 		93AA79C1205AC164002E9E10 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		93AA79C3205AC8BD002E9E10 /* MeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		93AA79C4205AC8BD002E9E10 /* MeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
+		93AEF86B20AF1F7E00D72852 /* courseReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = courseReusableView.h; sourceTree = "<group>"; };
+		93AEF86C20AF1F7E00D72852 /* courseReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = courseReusableView.m; sourceTree = "<group>"; };
 		93BE9143206005DF009B9FF3 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		93BE9144206005DF009B9FF3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		93BE914820600630009B9FF3 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -425,8 +428,8 @@
 			isa = PBXGroup;
 			children = (
 				93631C0220A8335A00632B32 /* TeacherUICollectionViewCell.h */,
-				93631C0320A8335A00632B32 /* yingluViewController.m */,
 				93631C0420A8335A00632B32 /* TeacherUICollectionViewCell.m */,
+				93631C0320A8335A00632B32 /* yingluViewController.m */,
 				93631C0520A8335A00632B32 /* yingluViewController.h */,
 			);
 			path = yinluren;
@@ -445,6 +448,8 @@
 				93C3E3F420AEBA790018EA72 /* headViewController.m */,
 				93C3E3F620AEBCFA0018EA72 /* teacherCollectionViewCell.h */,
 				93C3E3F720AEBCFA0018EA72 /* teacherCollectionViewCell.m */,
+				93AEF86B20AF1F7E00D72852 /* courseReusableView.h */,
+				93AEF86C20AF1F7E00D72852 /* courseReusableView.m */,
 			);
 			path = hot;
 			sourceTree = "<group>";
@@ -940,6 +945,7 @@
 				932575582068DA8E0073E458 /* LoginResponse.m in Sources */,
 				93CC7CAD20728A3200C7F64D /* CourseResponse.m in Sources */,
 				93552482206E263E0056A881 /* RadioButton.m in Sources */,
+				93AEF86D20AF1F7E00D72852 /* courseReusableView.m in Sources */,
 				93631BF320A8330900632B32 /* yuboViewController.m in Sources */,
 				931CB93220668499009DC6EF /* newCourseViewController.m in Sources */,
 				9388FA742062388300A735F6 /* MyUITextField.m in Sources */,
@@ -1244,7 +1250,7 @@
 				93C4C56820554B90008716B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		93C4C56920554B90008716B3 /* Build configuration list for PBXNativeTarget "AncientArchitecture" */ = {
 			isa = XCConfigurationList;
@@ -1253,7 +1259,7 @@
 				93C4C56B20554B90008716B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		93C4C56C20554B90008716B3 /* Build configuration list for PBXNativeTarget "AncientArchitectureTests" */ = {
 			isa = XCConfigurationList;
@@ -1262,7 +1268,7 @@
 				93C4C56E20554B90008716B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		93C4C56F20554B90008716B3 /* Build configuration list for PBXNativeTarget "AncientArchitectureUITests" */ = {
 			isa = XCConfigurationList;
@@ -1271,7 +1277,7 @@
 				93C4C57120554B90008716B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

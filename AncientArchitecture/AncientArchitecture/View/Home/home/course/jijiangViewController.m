@@ -175,7 +175,7 @@ bool isjjrefreshing =false;
     
 
     
-     NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?type=%@?page=%@",url_allCourse,@"2",@(jji)];
+     NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?type=%@&page=%@",url_allCourse,@"2",@(jji)];
     
     [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:pathWithPhoneNum withParams:nil withMethodType:Get autoShowError:true andBlock:^(id data, NSError *error) {
@@ -202,10 +202,7 @@ bool isjjrefreshing =false;
                     if (tempCourse.count>0) {
                         
                         [jijianglistCourse addObjectsFromArray: tempCourse];
-                        NSLog(@"tempCourse%@",tempCourse);
-                        NSLog(@"buylistCourse%@",jijianglistCourse);
-                        NSLog(@"tempCourse.count%zd",tempCourse.count);
-                        NSLog(@"buylist.Course%zd",jijianglistCourse.count);
+                    
                        
                     }
                     

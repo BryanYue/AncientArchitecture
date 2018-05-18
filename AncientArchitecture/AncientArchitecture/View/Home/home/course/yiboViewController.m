@@ -107,8 +107,7 @@ bool isybrefreshing =false;
     
     _yibolistCollectionV.mj_footer =[MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
-        
-        
+
         [self initjijiangCourse];
         
     }];
@@ -173,10 +172,10 @@ bool isybrefreshing =false;
 -(void)initjijiangCourse
 {
     
-    
+   
   
     
-    NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?type=%@?page=%@",url_allCourse,@"3",@(ybi)];
+    NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?type=%@&page=%@",url_allCourse,@"3",@(ybi)];
     
     [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:pathWithPhoneNum withParams:nil withMethodType:Get autoShowError:true andBlock:^(id data, NSError *error) {
@@ -197,22 +196,16 @@ bool isybrefreshing =false;
                 
                 NSMutableArray<CourseDetailResponse *> *tempCourse=[CourseDetailResponse mj_objectArrayWithKeyValuesArray:response.data];
                 
-                
+
                 if (tempCourse) {
                     
-                    if (tempCourse.count>0) {
-                        
                         [yibolistCourse addObjectsFromArray: tempCourse];
-                        NSLog(@"tempCourse%@",tempCourse);
-                        NSLog(@"buylistCourse%@",yibolistCourse);
-                        NSLog(@"tempCourse.count%zd",tempCourse.count);
-                        NSLog(@"buylist.Course%zd",yibolistCourse.count);
-                        
+                    
                     }
                     
                     
                     
-                }
+                
                 if (response.page_num>isybrefreshing) {
                     ybi++;
                 }else{

@@ -27,6 +27,7 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
     
     [self addtextAd];
     [self addTheCollectionView];
+    [self addtitle];
     
 }
 
@@ -48,7 +49,7 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
                              @"纯文字上下滚动轮播，纯文字上下滚动轮播2",
                              @"纯文字上下滚动轮播，纯文字上下滚动轮播3",
                              @"纯文字上下滚动轮播，纯文字上下滚动轮播4"];
-    self.textAd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(100, 33, kScreen_Width-200, 54) delegate:self placeholderImage:nil];
+    self.textAd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(100, 20, kScreen_Width-200, 54) delegate:self placeholderImage:nil];
     self.textAd.scrollDirection = UICollectionViewScrollDirectionVertical;
     self.textAd.onlyDisplayText = YES;
     self.textAd.titlesGroup = textStrings;
@@ -80,6 +81,73 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
     
 }
 
+
+-(void)addtitle{
+    if (!self.teacherbtn) {
+        self.teacherbtn=[[UIButton alloc] init];
+        self.teacherbtn.userInteractionEnabled = YES;
+    }
+    
+    self.teacherbtn.frame = CGRectMake(kScreen_Width/3, 80, kScreen_Width/3, 40);
+    [self.teacherbtn setImage:[UIImage imageNamed:@"icon_teacher_black"] forState:UIControlStateNormal];
+    [self.teacherbtn setTitle: @"推荐讲师" forState:UIControlStateNormal];
+    [self.teacherbtn setTitleColor:[UIColor_ColorChange grayColor] forState:UIControlStateNormal];
+    self.teacherbtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    self.teacherbtn.backgroundColor=[UIColor clearColor];
+    self.teacherbtn.imageEdgeInsets = UIEdgeInsetsMake(0,-20,0,0);
+
+    [self.view addSubview:self.teacherbtn];
+    
+    UIView *line1=[[UIView alloc] init ];
+    line1.backgroundColor=[UIColor_ColorChange blackColor];
+    line1.frame=CGRectMake(0, 80+self.teacherbtn.frame.size.height/2 , kScreen_Width/3,1 );
+    [self.view addSubview:line1];
+ 
+    UIView *line2=[[UIView alloc] init ];
+    line2.backgroundColor=[UIColor_ColorChange blackColor];
+    line2.frame=CGRectMake(kScreen_Width/3*2, 80+self.teacherbtn.frame.size.height/2 , kScreen_Width/3,1 );
+    [self.view addSubview:line2];
+    
+    
+    if (!self.coursebtn) {
+        self.coursebtn=[[UIButton alloc] init];
+        self.coursebtn.userInteractionEnabled = YES;
+    }
+    
+    self.coursebtn.frame = CGRectMake(kScreen_Width/3, 450, kScreen_Width/3, 40);
+    [self.coursebtn setImage:[UIImage imageNamed:@"icon_teacher_black"] forState:UIControlStateNormal];
+    [self.coursebtn setTitle: @"热门课程" forState:UIControlStateNormal];
+    [self.coursebtn setTitleColor:[UIColor_ColorChange grayColor] forState:UIControlStateNormal];
+    self.coursebtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    self.coursebtn.backgroundColor=[UIColor clearColor];
+    self.coursebtn.imageEdgeInsets = UIEdgeInsetsMake(0,-20,0,0);
+    
+    [self.view addSubview:self.coursebtn];
+    
+    UIView *line3=[[UIView alloc] init ];
+    line3.backgroundColor=[UIColor_ColorChange blackColor];
+    line3.frame=CGRectMake(0, 450+self.coursebtn.frame.size.height/2 , kScreen_Width/3,1 );
+    [self.view addSubview:line3];
+    
+    UIView *line4=[[UIView alloc] init ];
+    line4.backgroundColor=[UIColor_ColorChange blackColor];
+    line4.frame=CGRectMake(kScreen_Width/3*2, 450+self.coursebtn.frame.size.height/2 , kScreen_Width/3,1 );
+    [self.view addSubview:line4];
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
 -(void)addTheCollectionView{
     // 创建自定义布局
     MRLineLayout *layout = [[MRLineLayout alloc] init];
@@ -87,7 +155,7 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
     layout.itemSize = CGSizeMake(200, 300);
     
   
-    self.myhotteacherCollectionV=[[UICollectionView alloc]initWithFrame:CGRectMake(0,200, kScreen_Width,350)collectionViewLayout:layout];
+    self.myhotteacherCollectionV=[[UICollectionView alloc]initWithFrame:CGRectMake(0,120, kScreen_Width,340)collectionViewLayout:layout];
     self.myhotteacherCollectionV.delegate =self;
     self.myhotteacherCollectionV.dataSource =self;
     self.myhotteacherCollectionV.backgroundColor =[UIColor whiteColor];
@@ -98,59 +166,59 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
     [self.myhotteacherCollectionV registerClass:[teacherCollectionViewCell class] forCellWithReuseIdentifier:@"teacherColl"];
     
     
-//    self.myhotteacherCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        
-//        [self inithotteacher];
-//        
-//    }];
+    self.myhotteacherCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self inithotteacher];
+        
+    }];
     
     
     [self.view addSubview: self.myhotteacherCollectionV];
     [self inithotteacher];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    UICollectionViewLayout *layout; // 布局
-    
-    if([self.myhotteacherCollectionV.collectionViewLayout isKindOfClass:[MRLineLayout class]]) {
-        
-        layout = [[MRCircleLayout alloc] init];
-        
-    }else if([self.myhotteacherCollectionV.collectionViewLayout isKindOfClass:[MRCircleLayout class]]) {
-        
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        
-        layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
-        
-        // 重新设置布局
-        [self.myhotteacherCollectionV setCollectionViewLayout:layout animated:YES];
-        
-        return;
-        
-    }else if([self.myhotteacherCollectionV.collectionViewLayout isKindOfClass:[UICollectionViewFlowLayout class]]){
-        
-        MRGridLayout *layout = [[MRGridLayout alloc] init];
-        
-        [self.myhotteacherCollectionV setCollectionViewLayout:layout animated:YES];
-        
-        return;
-        
-    }else {
-        
-        MRLineLayout *layout = [[MRLineLayout alloc] init];
-        
-        layout.itemSize = CGSizeMake(150, 150);
-        
-        // 重新设置布局
-        [self.myhotteacherCollectionV setCollectionViewLayout:layout animated:YES];
-        
-        return;
-    }
-    
-    // 重新设置布局
-    [self.myhotteacherCollectionV setCollectionViewLayout:layout animated:YES];
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//
+//    UICollectionViewLayout *layout; // 布局
+//
+//    if([self.myhotteacherCollectionV.collectionViewLayout isKindOfClass:[MRLineLayout class]]) {
+//
+//        layout = [[MRCircleLayout alloc] init];
+//
+//    }else if([self.myhotteacherCollectionV.collectionViewLayout isKindOfClass:[MRCircleLayout class]]) {
+//
+//        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//
+//        layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+//
+//        // 重新设置布局
+//        [self.myhotteacherCollectionV setCollectionViewLayout:layout animated:YES];
+//
+//        return;
+//
+//    }else if([self.myhotteacherCollectionV.collectionViewLayout isKindOfClass:[UICollectionViewFlowLayout class]]){
+//
+//        MRGridLayout *layout = [[MRGridLayout alloc] init];
+//
+//        [self.myhotteacherCollectionV setCollectionViewLayout:layout animated:YES];
+//
+//        return;
+//
+//    }else {
+//
+//        MRLineLayout *layout = [[MRLineLayout alloc] init];
+//
+//        layout.itemSize = CGSizeMake(150, 150);
+//
+//        // 重新设置布局
+//        [self.myhotteacherCollectionV setCollectionViewLayout:layout animated:YES];
+//
+//        return;
+//    }
+//
+//    // 重新设置布局
+//    [self.myhotteacherCollectionV setCollectionViewLayout:layout animated:YES];
+//}
 
 
 

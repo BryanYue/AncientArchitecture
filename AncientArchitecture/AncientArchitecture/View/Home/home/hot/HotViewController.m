@@ -14,6 +14,7 @@
 #import "CourseDetailResponse.h"
 #import "MJRefresh.h"
 #import "playerViewController.h"
+#import "courseReusableView.h"
 #import "CoursefeileiCollectionViewCell.h"
 @interface HotViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property(strong,nonatomic)UICollectionView *myhotCollectionV;
@@ -99,13 +100,13 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
 #pragma mark -- 注册头部视图
     
      [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid"];
-     [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid2"];
+     [_myhotCollectionV registerClass: [courseReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid2"];
     
     //添加视图
     _myhotCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //刷新时候，需要执行的代码。一般是请求最新数据，请求成功之后，刷新列表
-        [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid"];
-        [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid2"];
+//        [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid"];
+//        [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid2"];
         [self initHotCourse];
         [self initcategroy];
     }];
@@ -206,7 +207,7 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     if (section==0) {
         return CGSizeMake(kScreen_Width, 500);
     }else{
-        return CGSizeMake(kScreen_Width, 50);
+        return CGSizeMake(kScreen_Width, 80);
     }
    
 }
@@ -246,11 +247,11 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
         
         //定制头部视图的内容
         if (indexPath.section==0) {
-            HotReusableView *headerV = (HotReusableView *)reusableView;
+            reusableView = (HotReusableView *)reusableView;
             
             
         }else{
-            HotReusableView *headerV = (HotReusableView *)reusableView;
+            reusableView = (courseReusableView *)reusableView;
             
           
         }

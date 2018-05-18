@@ -11,4 +11,6 @@
 @interface headViewController : UIViewController
 @property (nonatomic,strong)    UICollectionView *myhotteacherCollectionV;
 @property(nonatomic,strong) SDCycleScrollView *textAd;
+@property (nonatomic,strong)    UIButton *teacherbtn;
+@property (nonatomic,strong)    UIButton *coursebtn;
 @end
