@@ -14,7 +14,7 @@
 #import "TeacherResponse.h"
 #import "teacherCollectionViewCell.h"
 #import "inlurenViewController.h"
-@interface headViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface headViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,SDCycleScrollViewDelegate>
 
 @end
 
@@ -23,6 +23,9 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    [self addtextAd];
     [self addTheCollectionView];
     
 }
@@ -32,7 +35,50 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)addtextAd{
+    
+    UIImageView *title =[[UIImageView alloc]init];
+    title.image=[UIImage imageNamed:@"img_hom_hot_precourse"];
+    title.frame = CGRectMake(30, 33, title.image.size.width, title.image.size.height);
+    
 
+    
+    
+    NSArray *textStrings = @[@"纯文字上下滚动轮播，纯文字上下滚动轮播1",
+                             @"纯文字上下滚动轮播，纯文字上下滚动轮播2",
+                             @"纯文字上下滚动轮播，纯文字上下滚动轮播3",
+                             @"纯文字上下滚动轮播，纯文字上下滚动轮播4"];
+    self.textAd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(100, 33, kScreen_Width-200, 54) delegate:self placeholderImage:nil];
+    self.textAd.scrollDirection = UICollectionViewScrollDirectionVertical;
+    self.textAd.onlyDisplayText = YES;
+    self.textAd.titlesGroup = textStrings;
+    self.textAd.titleLabelTextColor = [UIColor darkTextColor];
+    self.textAd.titleLabelBackgroundColor = [UIColor whiteColor];
+    
+    
+    
+    UIButton *enterButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreen_Width-70,
+                                                                       26, 45,40)];
+    [enterButton setTitle:@"查看" forState:UIControlStateNormal];
+    [enterButton setTitleColor:[UIColor_ColorChange colorWithHexString:@"952e3a"] forState:UIControlStateNormal];
+    [enterButton.layer setBorderWidth:1.0];
+    [enterButton.layer setBorderColor:[UIColor_ColorChange colorWithHexString:@"952e3a"].CGColor];
+     enterButton.backgroundColor =[UIColor clearColor];
+    
+    [enterButton addTarget:self action:@selector(enterBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view  addSubview:enterButton];
+   
+    
+    
+    
+    [self.view addSubview: title];
+    [self.view addSubview: self.textAd];
+}
+-(void)enterBtnClick{
+    
+    
+    
+}
 
 -(void)addTheCollectionView{
     // 创建自定义布局
@@ -52,11 +98,11 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
     [self.myhotteacherCollectionV registerClass:[teacherCollectionViewCell class] forCellWithReuseIdentifier:@"teacherColl"];
     
     
-    self.myhotteacherCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
-        [self inithotteacher];
-        
-    }];
+//    self.myhotteacherCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        
+//        [self inithotteacher];
+//        
+//    }];
     
     
     [self.view addSubview: self.myhotteacherCollectionV];

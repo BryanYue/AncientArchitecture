@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <SDCycleScrollView.h>
 @interface headViewController : UIViewController
 @property (nonatomic,strong)    UICollectionView *myhotteacherCollectionV;
+@property(nonatomic,strong) SDCycleScrollView *textAd;
 @end

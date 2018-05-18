@@ -24,6 +24,12 @@ bool isybrefreshing =false;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (yibolistCourse) {
+         [yibolistCourse removeAllObjects] ;
+    }else{
+        yibolistCourse =[NSMutableArray array];
+    }
+    
     [self addTheCollectionView];
     [self initjijiangCourse];
 }
@@ -128,7 +134,7 @@ bool isybrefreshing =false;
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"jijiangcellid" forIndexPath:indexPath];
+    TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"yibocellid" forIndexPath:indexPath];
     
     if (yibolistCourse) {
         if (yibolistCourse[indexPath.item].img_url) {
@@ -168,14 +174,12 @@ bool isybrefreshing =false;
 {
     
     
-    NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-    [parameterCountry setObject:@(ybi) forKey:@"page"];
-    [parameterCountry setObject:@"3" forKey:@"type"];
+  
     
-    
+    NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?type=%@?page=%@",url_allCourse,@"3",@(ybi)];
     
     [self GeneralButtonAction];
-    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_allCourse withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:pathWithPhoneNum withParams:nil withMethodType:Get autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
         [_yibolistCollectionV.mj_header  endRefreshing];
         if (!error) {
@@ -203,7 +207,7 @@ bool isybrefreshing =false;
                         NSLog(@"buylistCourse%@",yibolistCourse);
                         NSLog(@"tempCourse.count%zd",tempCourse.count);
                         NSLog(@"buylist.Course%zd",yibolistCourse.count);
-                        [_yibolistCollectionV reloadData];
+                        
                     }
                     
                     
@@ -216,7 +220,7 @@ bool isybrefreshing =false;
                 }
                 
                 
-                
+               [_yibolistCollectionV reloadData];
             }
             
             if (self.HUD) {

@@ -17,7 +17,7 @@
         self.teachername.userInteractionEnabled = YES;
     }
     
-    self.teachername.frame = CGRectMake(0, self.teacherimageview.frame.size.height, 200, 30);
+    self.teachername.frame = CGRectMake(0, 260, 200, 30);
     self.teachername.textAlignment = NSTextAlignmentCenter;
     self.teachername.textColor = [UIColor blackColor];
     
@@ -32,7 +32,7 @@
         self.teachernum.userInteractionEnabled = YES;
     }
     
-    self.teachernum.frame = CGRectMake(0, 260, 200, 40);
+    self.teachernum.frame = CGRectMake(0, 220, 200, 40);
     [self.teachernum setImage:[UIImage imageNamed:@"icon_colloect_white"] forState:UIControlStateNormal];
     [self.teachernum setTitle: num forState:UIControlStateNormal];
     [self.teachernum setTitleColor:[UIColor_ColorChange whiteColor] forState:UIControlStateNormal];

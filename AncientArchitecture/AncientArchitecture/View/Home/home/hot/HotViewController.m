@@ -104,7 +104,8 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     //添加视图
     _myhotCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //刷新时候，需要执行的代码。一般是请求最新数据，请求成功之后，刷新列表
-       
+        [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid"];
+        [_myhotCollectionV registerClass: [HotReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerid2"];
         [self initHotCourse];
         [self initcategroy];
     }];

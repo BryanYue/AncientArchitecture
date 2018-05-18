@@ -23,6 +23,12 @@ bool isjjrefreshing =false;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (jijianglistCourse) {
+        [jijianglistCourse removeAllObjects] ;
+    }else{
+        jijianglistCourse =[NSMutableArray array];
+    }
+    
     [self addTheCollectionView];
     [self initjijiangCourse];
 }
@@ -167,14 +173,12 @@ bool isjjrefreshing =false;
 {
     
     
-    NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-    [parameterCountry setObject:@(jji) forKey:@"page"];
-    [parameterCountry setObject:@"2" forKey:@"type"];
+
     
-    
+     NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?type=%@?page=%@",url_allCourse,@"2",@(jji)];
     
     [self GeneralButtonAction];
-    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_allCourse withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:pathWithPhoneNum withParams:nil withMethodType:Get autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
         [_jijianglistCollectionV.mj_header  endRefreshing];
         if (!error) {
@@ -202,7 +206,7 @@ bool isjjrefreshing =false;
                         NSLog(@"buylistCourse%@",jijianglistCourse);
                         NSLog(@"tempCourse.count%zd",tempCourse.count);
                         NSLog(@"buylist.Course%zd",jijianglistCourse.count);
-                        [_jijianglistCollectionV reloadData];
+                       
                     }
                     
                     
@@ -217,6 +221,7 @@ bool isjjrefreshing =false;
                 
                 
             }
+             [_jijianglistCollectionV reloadData];
             
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
