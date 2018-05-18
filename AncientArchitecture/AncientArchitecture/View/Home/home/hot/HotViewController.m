@@ -16,6 +16,7 @@
 #import "playerViewController.h"
 #import "courseReusableView.h"
 #import "CoursefeileiCollectionViewCell.h"
+#import "classificationViewController.h"
 @interface HotViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property(strong,nonatomic)UICollectionView *myhotCollectionV;
 @end
@@ -288,6 +289,18 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
         
         [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
   
+    }else{
+        
+        NSUserDefaults *defaults= DEFAULTS;
+        
+        [defaults removeObjectForKey:@"classification_id"];
+        [defaults removeObjectForKey:@"classification_title"];
+        [defaults synchronize];
+        [defaults setObject:hotCategory[indexPath.row].id forKey:@"classification_id"];
+         [defaults setObject:hotCategory[indexPath.row].name forKey:@"classification_title"];
+ 
+        [self.view.window.rootViewController presentViewController:[classificationViewController new] animated:YES completion:nil];
+        
     }
 //    if (Coursearry.count>indexPath.row) {
 //        NSLog(@"id %@",Coursearry[indexPath.row].id);

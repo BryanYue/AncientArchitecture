@@ -57,6 +57,10 @@
 
 //获取分类下所有课程
 #define url_getAllCourseList        @"/api/Document/getAllCourseList"
+
+//根据课程分类id获取当前分类下的课程
+#define url_getCateCourseDetail      @"/api/Document/getCateCourseDetail"
+
 //获取课程详情
 #define url_getCourseDetail        @"/api/Document/getCourseDetail"
 

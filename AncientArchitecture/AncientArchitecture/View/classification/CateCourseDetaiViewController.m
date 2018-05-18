@@ -1,33 +1,34 @@
 //
-//  yiboViewController.m
+//  CateCourseDetaiViewController.m
 //  AncientArchitecture
 //
-//  Created by Bryan on 2018/5/18.
+//  Created by bryan on 2018/5/19.
 //  Copyright © 2018年 通感科技. All rights reserved.
 //
 
-#import "yiboViewController.h"
+#import "CateCourseDetaiViewController.h"
 #import "MJRefresh.h"
 #import "CourseDetailResponse.h"
 #import "TeacheCourseViewCollectionViewCell.h"
-@interface yiboViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property(strong,nonatomic)UICollectionView *yibolistCollectionV;
+@interface CateCourseDetaiViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@property(strong,nonatomic)UICollectionView *CateCourseDetaiCollectionV;
+
+
 @end
 
-@implementation yiboViewController
-
-NSMutableArray<CourseDetailResponse *> *yibolistCourse;
-int ybi = 1;
-bool isybrefreshing =false;
+@implementation CateCourseDetaiViewController
+NSMutableArray<CourseDetailResponse *> *CateCourseDetaiCourse;
+int CateCourseDetaii = 1;
+bool CateCourseDetairefreshing =false;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if (yibolistCourse) {
-         [yibolistCourse removeAllObjects] ;
+    if (CateCourseDetaiCourse) {
+        [CateCourseDetaiCourse removeAllObjects] ;
     }else{
-        yibolistCourse =[NSMutableArray array];
+        CateCourseDetaiCourse =[NSMutableArray array];
     }
     
     [self addTheCollectionView];
@@ -72,47 +73,48 @@ bool isybrefreshing =false;
     
     //创建一个UICollectionView
     
-    _yibolistCollectionV = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0, kScreen_Width,kScreen_Height-30-statusBar_Height-49-50)collectionViewLayout:flowL];
+    self.CateCourseDetaiCollectionV = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0, kScreen_Width,kScreen_Height-30-statusBar_Height-49-50)collectionViewLayout:flowL];
     
     //设置代理为当前控制器
     
-    _yibolistCollectionV.delegate =self;
+    self.CateCourseDetaiCollectionV.delegate =self;
     
-    _yibolistCollectionV.dataSource =self;
+    self.CateCourseDetaiCollectionV.dataSource =self;
     
     
     //设置背景
     
-    _yibolistCollectionV.backgroundColor =[UIColor whiteColor];
+    self.CateCourseDetaiCollectionV.backgroundColor =[UIColor whiteColor];
     
-    _yibolistCollectionV.delaysContentTouches = true;
+    self.CateCourseDetaiCollectionV.delaysContentTouches = true;
     
 #pragma mark -- 注册单元格
     
-    [_yibolistCollectionV registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"yibocellid"];
+    [self.CateCourseDetaiCollectionV registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"CateCourseDetai"];
     
     
     
     
     
     
-    _yibolistCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [_yibolistCollectionV.mj_footer  resetNoMoreData ];
-        isybrefreshing=true;
-        ybi=1;
+    self.CateCourseDetaiCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.CateCourseDetaiCollectionV.mj_footer  resetNoMoreData ];
+        CateCourseDetairefreshing=true;
+        CateCourseDetaii=1;
         [self initjijiangCourse];
         
     }];
     
     
-    _yibolistCollectionV.mj_footer =[MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.CateCourseDetaiCollectionV.mj_footer =[MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
-
+        
+        
         [self initjijiangCourse];
         
     }];
     
-    [self.view addSubview:_yibolistCollectionV];
+    [self.view addSubview:self.CateCourseDetaiCollectionV];
 }
 
 //返回分区个数
@@ -122,7 +124,7 @@ bool isybrefreshing =false;
 //返回每个分区的item个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return yibolistCourse.count;
+    return CateCourseDetaiCourse.count;
     
 }
 
@@ -133,30 +135,30 @@ bool isybrefreshing =false;
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"yibocellid" forIndexPath:indexPath];
+    TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"CateCourseDetai" forIndexPath:indexPath];
     
-    if (yibolistCourse) {
-        if (yibolistCourse[indexPath.item].img_url) {
-            Coursecell.imageName =yibolistCourse[indexPath.item].img_url;
+    if (CateCourseDetaiCourse) {
+        if (CateCourseDetaiCourse[indexPath.item].img_url) {
+            Coursecell.imageName =CateCourseDetaiCourse[indexPath.item].img_url;
         }
         
         
-        if (yibolistCourse[indexPath.item].title) {
+        if (CateCourseDetaiCourse[indexPath.item].title) {
             
-            Coursecell.titlename  =yibolistCourse[indexPath.item].title;
+            Coursecell.titlename  =CateCourseDetaiCourse[indexPath.item].title;
             
         }
         
-        if (yibolistCourse[indexPath.item].teacher_name) {
-            Coursecell.teachername=yibolistCourse[indexPath.item].teacher_name;
+        if (CateCourseDetaiCourse[indexPath.item].teacher_name) {
+            Coursecell.teachername=CateCourseDetaiCourse[indexPath.item].teacher_name;
         }
         
-        if (yibolistCourse[indexPath.row].teacher_photo) {
-            Coursecell.headimageName=yibolistCourse[indexPath.item].teacher_photo;
+        if (CateCourseDetaiCourse[indexPath.row].teacher_photo) {
+            Coursecell.headimageName=CateCourseDetaiCourse[indexPath.item].teacher_photo;
         }
         
-        if (yibolistCourse[indexPath.row].start_time) {
-            Coursecell.timename=yibolistCourse[indexPath.item].start_time;
+        if (CateCourseDetaiCourse[indexPath.row].start_time) {
+            Coursecell.timename=CateCourseDetaiCourse[indexPath.item].start_time;
         }
         
         
@@ -172,49 +174,53 @@ bool isybrefreshing =false;
 -(void)initjijiangCourse
 {
     
-   
-  
     
-    NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?type=%@&page=%@",url_allCourse,@"3",@(ybi)];
+    
+    
+    NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?id=%@&page=%@",url_getCateCourseDetail,self.CateCourseDetaiid,@(CateCourseDetaii)];
     
     [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:pathWithPhoneNum withParams:nil withMethodType:Get autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
-        [_yibolistCollectionV.mj_header  endRefreshing];
+        [self.CateCourseDetaiCollectionV.mj_header  endRefreshing];
         if (!error) {
             
             BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
             if (response.code  == 200) {
                 
-                if (isybrefreshing) {
-                    if (yibolistCourse) {
-                        [yibolistCourse removeAllObjects] ;
+                if (CateCourseDetairefreshing) {
+                    if (CateCourseDetaiCourse) {
+                        [CateCourseDetaiCourse removeAllObjects] ;
                     }
-                    isybrefreshing=false;
+                    CateCourseDetairefreshing=false;
                 }
                 
                 
                 NSMutableArray<CourseDetailResponse *> *tempCourse=[CourseDetailResponse mj_objectArrayWithKeyValuesArray:response.data];
                 
-
+                
                 if (tempCourse) {
                     
-                        [yibolistCourse addObjectsFromArray: tempCourse];
-                    
+                    if (tempCourse.count>0) {
+                        
+                        [CateCourseDetaiCourse addObjectsFromArray: tempCourse];
+                        
+                        
                     }
                     
                     
                     
-                
-                if (response.page>isybrefreshing) {
-                    ybi++;
+                }
+                if (response.page>CateCourseDetaii) {
+                    CateCourseDetaii++;
                 }else{
-                    [_yibolistCollectionV.mj_footer  endRefreshingWithNoMoreData];
+                    [self.CateCourseDetaiCollectionV.mj_footer  endRefreshingWithNoMoreData];
                 }
                 
                 
-               [_yibolistCollectionV reloadData];
+                
             }
+            [self.CateCourseDetaiCollectionV reloadData];
             
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
@@ -228,7 +234,7 @@ bool isybrefreshing =false;
             [self TextButtonAction:error.domain];
         }
         
-       
+        
         
     }];
 }
@@ -241,4 +247,20 @@ bool isybrefreshing =false;
     
     
 }
+
+
+
+
+- (void)setSetid:(NSString *)setid{
+    
+    self.CateCourseDetaiid=setid;
+
+}
+
+
+
+
+
+
+
 @end

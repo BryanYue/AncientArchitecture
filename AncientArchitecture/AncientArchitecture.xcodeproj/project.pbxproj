@@ -49,6 +49,9 @@
 		9388FA742062388300A735F6 /* MyUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9388FA732062388300A735F6 /* MyUITextField.m */; };
 		93AA79C5205AC8BD002E9E10 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AA79C4205AC8BD002E9E10 /* MeViewController.m */; };
 		93AEF86D20AF1F7E00D72852 /* courseReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF86C20AF1F7E00D72852 /* courseReusableView.m */; };
+		93AEF87120AF34E700D72852 /* classificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87020AF34E700D72852 /* classificationViewController.m */; };
+		93AEF87420AF37AC00D72852 /* classVTMagicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87320AF37AC00D72852 /* classVTMagicController.m */; };
+		93AEF87720AF40C300D72852 /* CateCourseDetaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87620AF40C300D72852 /* CateCourseDetaiViewController.m */; };
 		93BE9145206005DF009B9FF3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE9144206005DF009B9FF3 /* LoginViewController.m */; };
 		93BE914A20600630009B9FF3 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE914920600630009B9FF3 /* RegisterViewController.m */; };
 		93C3E3EC20AE79560018EA72 /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E3EB20AE79560018EA72 /* LaunchIntroductionView.m */; };
@@ -186,6 +189,12 @@
 		93AA79C4205AC8BD002E9E10 /* MeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		93AEF86B20AF1F7E00D72852 /* courseReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = courseReusableView.h; sourceTree = "<group>"; };
 		93AEF86C20AF1F7E00D72852 /* courseReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = courseReusableView.m; sourceTree = "<group>"; };
+		93AEF86F20AF34E700D72852 /* classificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classificationViewController.h; sourceTree = "<group>"; };
+		93AEF87020AF34E700D72852 /* classificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = classificationViewController.m; sourceTree = "<group>"; };
+		93AEF87220AF37AC00D72852 /* classVTMagicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classVTMagicController.h; sourceTree = "<group>"; };
+		93AEF87320AF37AC00D72852 /* classVTMagicController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = classVTMagicController.m; sourceTree = "<group>"; };
+		93AEF87520AF40C300D72852 /* CateCourseDetaiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CateCourseDetaiViewController.h; sourceTree = "<group>"; };
+		93AEF87620AF40C300D72852 /* CateCourseDetaiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CateCourseDetaiViewController.m; sourceTree = "<group>"; };
 		93BE9143206005DF009B9FF3 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		93BE9144206005DF009B9FF3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		93BE914820600630009B9FF3 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -468,6 +477,19 @@
 			path = Me;
 			sourceTree = "<group>";
 		};
+		93AEF86E20AF33E000D72852 /* classification */ = {
+			isa = PBXGroup;
+			children = (
+				93AEF86F20AF34E700D72852 /* classificationViewController.h */,
+				93AEF87020AF34E700D72852 /* classificationViewController.m */,
+				93AEF87220AF37AC00D72852 /* classVTMagicController.h */,
+				93AEF87320AF37AC00D72852 /* classVTMagicController.m */,
+				93AEF87520AF40C300D72852 /* CateCourseDetaiViewController.h */,
+				93AEF87620AF40C300D72852 /* CateCourseDetaiViewController.m */,
+			);
+			path = classification;
+			sourceTree = "<group>";
+		};
 		93BE9142206005C4009B9FF3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +590,7 @@
 		93C4C57220554F79008716B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				93AEF86E20AF33E000D72852 /* classification */,
 				93C3E3E920AE79560018EA72 /* LaunchIntroduction */,
 				93EC6D1B20AC16B30065A1FF /* search */,
 				93631BDC20A8322000632B32 /* attention */,
@@ -953,6 +976,7 @@
 				9320B54E206B40710055D9F1 /* UserInfoResponse.m in Sources */,
 				93631BDF20A8329A00632B32 /* VTattenViewController.m in Sources */,
 				93631C0F20A8335A00632B32 /* xianchangViewController.m in Sources */,
+				93AEF87120AF34E700D72852 /* classificationViewController.m in Sources */,
 				93C3E40520AEE1A10018EA72 /* courseController.m in Sources */,
 				93631C1520A8335A00632B32 /* HotReusableView.m in Sources */,
 				93C4C55020554B90008716B3 /* main.m in Sources */,
@@ -978,11 +1002,13 @@
 				93C3E40B20AEE2480018EA72 /* yiboViewController.m in Sources */,
 				93EF3D342067E06A005139EC /* BaseResponse.m in Sources */,
 				93C4C54220554B90008716B3 /* AppDelegate.m in Sources */,
+				93AEF87420AF37AC00D72852 /* classVTMagicController.m in Sources */,
 				93631ADC20A8306300632B32 /* CarouselImgResponse.m in Sources */,
 				93C3E3EC20AE79560018EA72 /* LaunchIntroductionView.m in Sources */,
 				93E04487205CEF7800E34F96 /* UIColor+ColorChange.m in Sources */,
 				93C3E3F820AEBCFA0018EA72 /* teacherCollectionViewCell.m in Sources */,
 				93EC6D1F20AC1A980065A1FF /* searchViewController.m in Sources */,
+				93AEF87720AF40C300D72852 /* CateCourseDetaiViewController.m in Sources */,
 				931CB92B20667F28009DC6EF /* startLiveViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

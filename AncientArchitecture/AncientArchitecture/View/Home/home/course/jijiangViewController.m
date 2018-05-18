@@ -209,7 +209,7 @@ bool isjjrefreshing =false;
                     
                     
                 }
-                if (response.page_num>jji) {
+                if (response.page>jji) {
                     jji++;
                 }else{
                     [_jijianglistCollectionV.mj_footer  endRefreshingWithNoMoreData];

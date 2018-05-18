@@ -187,7 +187,7 @@ bool isrefreshing =false;
                     
                     
                 }
-                if (response.page_num>i) {
+                if (response.page>i) {
                      i++;
                 }else{
                      [_buylistCollectionV.mj_footer  endRefreshingWithNoMoreData];

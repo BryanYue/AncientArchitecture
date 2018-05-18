@@ -560,7 +560,7 @@ int Coursetab;
                     for (int i=0; i<Category.count; i++) {
                          NSLog(@"category_name:%@",Category[i].name);
                         
-                        NSMutableArray<CourseResponse *> *Course=[CourseResponse mj_objectArrayWithKeyValuesArray:Category[i].subcat];
+                        NSMutableArray<CategoryResponse *> *Course=[CourseResponse mj_objectArrayWithKeyValuesArray:Category[i].subcat];
                         
                         NSLog(@"CourseResponse:%lu",Course.count);
                         NSMutableArray<NSString *> *vause=[NSMutableArray new];
