@@ -74,11 +74,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## Bugly
-
-Copyright (C) 2017 Tencent Bugly, Inc. All rights reserved.
-
-
 ## MBProgressHUD
 
 Copyright © 2009-2016 Matej Bukovinski
@@ -401,6 +396,16 @@ Apache License
    See the License for the specific language governing permissions and
    limitations under the License.
 
+
+
+## PgyUpdate
+
+Copyright 2015 pgyer.com. All rights reserved.
+
+
+## Pgyer
+
+Copyright 2017 pgyer.com. All rights reserved.
 
 
 ## SDCycleScrollView

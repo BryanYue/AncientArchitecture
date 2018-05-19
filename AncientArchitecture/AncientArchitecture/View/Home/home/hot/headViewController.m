@@ -14,6 +14,7 @@
 #import "TeacherResponse.h"
 #import "teacherCollectionViewCell.h"
 #import "inlurenViewController.h"
+#import "LoginViewController.h"
 @interface headViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,SDCycleScrollViewDelegate>
 
 @end
@@ -314,16 +315,25 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
     if (guzhuyinluCourse.count>indexPath.row) {
-        NSLog(@"id %@",guzhuyinluCourse[indexPath.row].id);
         
-        NSUserDefaults *defaults= DEFAULTS;
+        if([DEFAULTS objectForKey:@"islogin"]){
+            NSLog(@"id %@",guzhuyinluCourse[indexPath.row].id);
+            
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"attteacher_id"];
+            
+            [defaults setObject:guzhuyinluCourse[indexPath.row].id forKey:@"attteacher_id"];
+            [defaults synchronize];
+            
+            [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
+        }else{
+           
+            [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
+        }
         
-        [defaults removeObjectForKey:@"attteacher_id"];
         
-        [defaults setObject:guzhuyinluCourse[indexPath.row].id forKey:@"attteacher_id"];
-        [defaults synchronize];
-        
-        [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
+     
     }
 }
 

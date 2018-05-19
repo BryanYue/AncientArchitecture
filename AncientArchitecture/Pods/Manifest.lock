@@ -18,13 +18,14 @@ PODS:
     - AlivcLivePusherWithPlayer/AlivcLivePusherWithPlayer (= 3.2.0)
   - AlivcLivePusherWithPlayer/AlivcLivePusherWithPlayer (3.2.0)
   - AliyunPlayer_iOS/AliyunPlayerSDK (3.4.0.1)
-  - Bugly (2.5.0)
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.15.3)
   - PGDatePicker (2.4.1):
     - PGPickerView
   - PGPickerView (1.2.6)
+  - Pgyer (2.8.9)
+  - PgyUpdate (1.5)
   - PLPlayerKit (3.3.0):
     - PLPlayerKit/iphoneos (= 3.3.0)
   - PLPlayerKit/iphoneos (3.3.0)
@@ -44,11 +45,12 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - AlivcLivePusherWithPlayer
   - AliyunPlayer_iOS/AliyunPlayerSDK
-  - Bugly
   - MBProgressHUD
   - MJExtension
   - MJRefresh
   - PGDatePicker
+  - Pgyer
+  - PgyUpdate
   - PLPlayerKit
   - SDCycleScrollView (~> 1.64)
   - SDWebImage (~> 4.0)
@@ -57,16 +59,37 @@ DEPENDENCIES:
   - WechatOpenSDK
   - WMPageController (~> 2.3.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AlivcLivePusherWithPlayer
+    - AliyunPlayer_iOS
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - PGDatePicker
+    - PGPickerView
+    - Pgyer
+    - PgyUpdate
+    - PLPlayerKit
+    - SDCycleScrollView
+    - SDWebImage
+    - TZImagePickerController
+    - VTMagic
+    - WechatOpenSDK
+    - WMPageController
+
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   AlivcLivePusherWithPlayer: 7702636e5547659e0c36ada19921f875e03322a5
   AliyunPlayer_iOS: 286ac3f4ca91ea9581e92b9e5a4bcd66c81db8ed
-  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   PGDatePicker: 5e3a281d6daf85ea87d282699347448c3738df24
   PGPickerView: 8fbbf63d0404065a43a495a0115d339455e0f819
+  Pgyer: 830654e51e23f754cce5d8b3ea9ba72be68452eb
+  PgyUpdate: bad71685b91bba4aa520b7fe29356a476700fdf2
   PLPlayerKit: bf3dcb35b9736c73c20a9a927f131c6bf18614e5
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
@@ -75,6 +98,6 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 676feec516a11173eafd1fe64b10d27babf28701
   WMPageController: 9f219bb8912a1a1f51af11fde61e2682a7b7e7f2
 
-PODFILE CHECKSUM: 72e0557ba1bf3ff20b39ba6382700c289462595b
+PODFILE CHECKSUM: 186c3e986e2b777731bb87ee1d7cd1a473c813b6
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.2

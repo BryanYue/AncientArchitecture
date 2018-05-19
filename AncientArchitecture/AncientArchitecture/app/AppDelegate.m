@@ -11,7 +11,8 @@
 #import "WXApi.h"
 #import <AFNetworking.h>
 #import "LaunchIntroductionView.h"
-
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
 #define weixinloginNotification @"weixinlogin"
 
 @interface AppDelegate ()<WXApiDelegate>
@@ -40,8 +41,15 @@
     // Override point for customization after application launch.
     
     //初始化Bugly
-    [Bugly startWithAppId:@"b698bd0225"];
+//    [Bugly startWithAppId:@"b698bd0225"];
     [WXApi registerApp:@"wx884bd8452e6e9112"];
+    
+    
+    
+    //启动基本SDK
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"f5bc49c0c1f23243dddd6938c32f20d5"];
+    //启动更新检查SDK
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"f5bc49c0c1f23243dddd6938c32f20d5"];
     
     
     LaunchIntroductionView *launch=[LaunchIntroductionView sharedWithImages:@[@"img_launch_1",
