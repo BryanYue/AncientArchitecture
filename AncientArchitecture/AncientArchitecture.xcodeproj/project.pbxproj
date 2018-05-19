@@ -874,14 +874,18 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh",
 				"${PODS_ROOT}/AlivcLivePusherWithPlayer/AlivcLivePusher.framework",
 				"${PODS_ROOT}/AlivcLivePusherWithPlayer/AlivcLibRtmp.framework",
+				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerViewSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework",
+				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerSDK.framework",
 				"${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLivePusher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibRtmp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerViewSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunPlayerSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PLPlayerKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -915,6 +919,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-resources.sh",
 				"${PODS_ROOT}/AlivcLivePusherWithPlayer/AlivcLibFaceResource.bundle",
+				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunImageSource.bundle",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunLanguageSource.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/PGDatePicker/PGDatePicker/PGDatePicker.bundle",
@@ -923,6 +928,7 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlivcLibFaceResource.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AliyunImageSource.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AliyunLanguageSource.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PGDatePicker.bundle",

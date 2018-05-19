@@ -22,7 +22,7 @@ pod 'TZImagePickerController'
 
 pod 'AlivcLivePusherWithPlayer'
 pod 'AliyunPlayer_iOS/AliyunPlayerSDK'
-
+pod 'AliyunPlayer_iOS'
 
 pod 'MJRefresh'
 

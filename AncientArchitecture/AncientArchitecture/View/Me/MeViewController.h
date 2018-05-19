@@ -11,4 +11,5 @@
 @interface MeViewController : BaseViewController
 
 @property (retain,nonatomic)MBProgressHUD     *HUD;
+
 @end

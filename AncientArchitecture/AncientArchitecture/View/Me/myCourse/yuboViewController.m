@@ -132,7 +132,7 @@ NSString *teacher_photoyb;
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
     [parameterCountry setObject:[defaults objectForKey:@"teacher_id"] forKey:@"teacher_id"];
     [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
-    
+      [parameterCountry setObject:@"2" forKey:@"type"];
     
     
     [self GeneralButtonAction];

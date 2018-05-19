@@ -17,7 +17,12 @@ PODS:
   - AlivcLivePusherWithPlayer (3.2.0):
     - AlivcLivePusherWithPlayer/AlivcLivePusherWithPlayer (= 3.2.0)
   - AlivcLivePusherWithPlayer/AlivcLivePusherWithPlayer (3.2.0)
+  - AliyunPlayer_iOS (3.4.0.1):
+    - AliyunPlayer_iOS/AliyunPlayerSDK (= 3.4.0.1)
+    - AliyunPlayer_iOS/AliyunVodPlayerSDK (= 3.4.0.1)
   - AliyunPlayer_iOS/AliyunPlayerSDK (3.4.0.1)
+  - AliyunPlayer_iOS/AliyunVodPlayerSDK (3.4.0.1):
+    - AliyunPlayer_iOS/AliyunPlayerSDK
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.15.3)
@@ -44,6 +49,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - AlivcLivePusherWithPlayer
+  - AliyunPlayer_iOS
   - AliyunPlayer_iOS/AliyunPlayerSDK
   - MBProgressHUD
   - MJExtension
@@ -98,6 +104,6 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 676feec516a11173eafd1fe64b10d27babf28701
   WMPageController: 9f219bb8912a1a1f51af11fde61e2682a7b7e7f2
 
-PODFILE CHECKSUM: 186c3e986e2b777731bb87ee1d7cd1a473c813b6
+PODFILE CHECKSUM: a796fce1d475ef53ba905dac1217b48991099f27
 
 COCOAPODS: 1.5.2

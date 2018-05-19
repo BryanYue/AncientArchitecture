@@ -92,6 +92,7 @@ NSString *teacher_photo;
     if ([defaults objectForKey:@"teacher_id"]) {
         [parameterCountry setObject:[defaults objectForKey:@"teacher_id"] forKey:@"teacher_id"];
          [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
+         [parameterCountry setObject:@"3" forKey:@"type"];
         [self GeneralButtonAction];
         [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_getTeacheCourse withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
             NSLog(@"error%zd",error.code);

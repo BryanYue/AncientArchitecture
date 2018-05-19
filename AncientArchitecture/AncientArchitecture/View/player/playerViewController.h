@@ -7,7 +7,12 @@
 //
 
 #import "BaseViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import <AliyunPlayerSDK/AliyunPlayerSDK.h>
+#import <AliyunVodPlayerViewSDK/AliyunVodPlayerViewSDK.h>
 
 @interface playerViewController : BaseViewController
+@property (nonatomic, strong) AliyunVodPlayerView  * playerView;
 
+@property (nonatomic,strong) UIImageView     *rightChangeBtn;
 @end
