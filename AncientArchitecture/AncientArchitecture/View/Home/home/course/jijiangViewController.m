@@ -10,6 +10,8 @@
 #import "MJRefresh.h"
 #import "CourseDetailResponse.h"
 #import "TeacheCourseViewCollectionViewCell.h"
+#import "playerViewController.h"
+#import "LoginViewController.h"
 @interface jijiangViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property(strong,nonatomic)UICollectionView *jijianglistCollectionV;
 @end
@@ -242,7 +244,19 @@ bool isjjrefreshing =false;
 //设置点击 Cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
-    
+    if([DEFAULTS objectForKey:@"islogin"]){
+        NSUserDefaults *defaults= DEFAULTS;
+        
+        [defaults removeObjectForKey:@"play_url"];
+        [defaults synchronize];
+        [defaults setObject:jijianglistCourse[indexPath.row].id forKey:@"play_url"];
+        
+        
+        [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+    }else{
+        
+        [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
+    }
     
 }
 

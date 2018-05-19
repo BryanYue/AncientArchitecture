@@ -13,6 +13,10 @@
 
 @interface playerViewController : BaseViewController
 @property (nonatomic, strong) AliyunVodPlayerView  * playerView;
-
+@property (nonatomic, strong) UIImageView  * uiimage;
 @property (nonatomic,strong) UIImageView     *rightChangeBtn;
+@property (nonatomic,strong) UIView     *uiview;
+@property (nonatomic,strong) UIScrollView * scrollView;
+
+@property(nonatomic,strong)UICollectionView *collection;
 @end

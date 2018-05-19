@@ -92,7 +92,8 @@
 //获取热门教师
 #define url_getHotTeacher      @"/api/Document/getHotTeacher"
 
-
+//此课程是否允许播放
+#define url_isFreePlay      @"/api/Member/isFreePlay"
 
 
 //获取热播课程
@@ -108,6 +109,8 @@
 //课程搜索
 #define searchCourse     @"/api/Document/searchCourse"
 
+//获取相关课程
+#define relevantCourse     @"/api/Document/relevantCourse"
 
 
 #endif /* api_h */

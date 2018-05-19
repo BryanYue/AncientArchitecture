@@ -52,6 +52,9 @@
 		93AEF87120AF34E700D72852 /* classificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87020AF34E700D72852 /* classificationViewController.m */; };
 		93AEF87420AF37AC00D72852 /* classVTMagicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87320AF37AC00D72852 /* classVTMagicController.m */; };
 		93AEF87720AF40C300D72852 /* CateCourseDetaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87620AF40C300D72852 /* CateCourseDetaiViewController.m */; };
+		93AEF87A20B0834B00D72852 /* xiangguanCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87920B0834B00D72852 /* xiangguanCollectionViewCell.m */; };
+		93AEF87D20B08D0000D72852 /* relevantCourseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87C20B08D0000D72852 /* relevantCourseResponse.m */; };
+		93AEF88020B0957E00D72852 /* payerCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87F20B0957E00D72852 /* payerCollectionReusableView.m */; };
 		93BE9145206005DF009B9FF3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE9144206005DF009B9FF3 /* LoginViewController.m */; };
 		93BE914A20600630009B9FF3 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE914920600630009B9FF3 /* RegisterViewController.m */; };
 		93C3E3EC20AE79560018EA72 /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3E3EB20AE79560018EA72 /* LaunchIntroductionView.m */; };
@@ -195,6 +198,12 @@
 		93AEF87320AF37AC00D72852 /* classVTMagicController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = classVTMagicController.m; sourceTree = "<group>"; };
 		93AEF87520AF40C300D72852 /* CateCourseDetaiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CateCourseDetaiViewController.h; sourceTree = "<group>"; };
 		93AEF87620AF40C300D72852 /* CateCourseDetaiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CateCourseDetaiViewController.m; sourceTree = "<group>"; };
+		93AEF87820B0834B00D72852 /* xiangguanCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xiangguanCollectionViewCell.h; sourceTree = "<group>"; };
+		93AEF87920B0834B00D72852 /* xiangguanCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xiangguanCollectionViewCell.m; sourceTree = "<group>"; };
+		93AEF87B20B08D0000D72852 /* relevantCourseResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = relevantCourseResponse.h; sourceTree = "<group>"; };
+		93AEF87C20B08D0000D72852 /* relevantCourseResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = relevantCourseResponse.m; sourceTree = "<group>"; };
+		93AEF87E20B0957E00D72852 /* payerCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = payerCollectionReusableView.h; sourceTree = "<group>"; };
+		93AEF87F20B0957E00D72852 /* payerCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = payerCollectionReusableView.m; sourceTree = "<group>"; };
 		93BE9143206005DF009B9FF3 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		93BE9144206005DF009B9FF3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		93BE914820600630009B9FF3 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -374,6 +383,10 @@
 			children = (
 				93631AEB20A831CA00632B32 /* playerViewController.h */,
 				93631AEC20A831CA00632B32 /* playerViewController.m */,
+				93AEF87820B0834B00D72852 /* xiangguanCollectionViewCell.h */,
+				93AEF87920B0834B00D72852 /* xiangguanCollectionViewCell.m */,
+				93AEF87E20B0957E00D72852 /* payerCollectionReusableView.h */,
+				93AEF87F20B0957E00D72852 /* payerCollectionReusableView.m */,
 			);
 			path = player;
 			sourceTree = "<group>";
@@ -730,6 +743,8 @@
 				9357693E207CFA9600871D95 /* CourseDetailResponse.m */,
 				93F9FE8120AA060F0026F781 /* buylist.h */,
 				93F9FE8220AA060F0026F781 /* buylist.m */,
+				93AEF87B20B08D0000D72852 /* relevantCourseResponse.h */,
+				93AEF87C20B08D0000D72852 /* relevantCourseResponse.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -973,6 +988,7 @@
 				93F9FE8320AA060F0026F781 /* buylist.m in Sources */,
 				932575582068DA8E0073E458 /* LoginResponse.m in Sources */,
 				93CC7CAD20728A3200C7F64D /* CourseResponse.m in Sources */,
+				93AEF88020B0957E00D72852 /* payerCollectionReusableView.m in Sources */,
 				93552482206E263E0056A881 /* RadioButton.m in Sources */,
 				93AEF86D20AF1F7E00D72852 /* courseReusableView.m in Sources */,
 				93631BF320A8330900632B32 /* yuboViewController.m in Sources */,
@@ -982,6 +998,7 @@
 				9320B54E206B40710055D9F1 /* UserInfoResponse.m in Sources */,
 				93631BDF20A8329A00632B32 /* VTattenViewController.m in Sources */,
 				93631C0F20A8335A00632B32 /* xianchangViewController.m in Sources */,
+				93AEF87D20B08D0000D72852 /* relevantCourseResponse.m in Sources */,
 				93AEF87120AF34E700D72852 /* classificationViewController.m in Sources */,
 				93C3E40520AEE1A10018EA72 /* courseController.m in Sources */,
 				93631C1520A8335A00632B32 /* HotReusableView.m in Sources */,
@@ -1003,6 +1020,7 @@
 				93631AE820A830CA00632B32 /* NSString+AES.m in Sources */,
 				931E40A720721C7C002D1847 /* TeacheCourseViewController.m in Sources */,
 				93BE9145206005DF009B9FF3 /* LoginViewController.m in Sources */,
+				93AEF87A20B0834B00D72852 /* xiangguanCollectionViewCell.m in Sources */,
 				93576942207D09CC00871D95 /* TeacheCourseViewCollectionViewCell.m in Sources */,
 				93C3E3EF20AEB5430018EA72 /* GLCoverFlowLayout.m in Sources */,
 				93C3E40B20AEE2480018EA72 /* yiboViewController.m in Sources */,

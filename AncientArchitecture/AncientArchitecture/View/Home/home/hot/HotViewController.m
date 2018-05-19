@@ -17,6 +17,7 @@
 #import "courseReusableView.h"
 #import "CoursefeileiCollectionViewCell.h"
 #import "classificationViewController.h"
+#import "LoginViewController.h"
 @interface HotViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property(strong,nonatomic)UICollectionView *myhotCollectionV;
 @end
@@ -278,16 +279,22 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     if (indexPath.section==0) {
        
         
+        if([DEFAULTS objectForKey:@"islogin"]){
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"play_url"];
+            [defaults synchronize];
+            [defaults setObject:hotCourse[indexPath.row].id forKey:@"play_url"];
+            
+            
+            [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+        }else{
+            
+            [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
+        }
         
         
-        NSUserDefaults *defaults= DEFAULTS;
-        
-        [defaults removeObjectForKey:@"play_url"];
-        [defaults synchronize];
-        [defaults setObject:hotCourse[indexPath.row].id forKey:@"play_url"];
-        
-        
-        [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+       
   
     }else{
         

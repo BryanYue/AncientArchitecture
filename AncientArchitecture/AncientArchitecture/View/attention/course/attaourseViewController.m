@@ -11,6 +11,7 @@
 #import "MJRefresh.h"
 #import "TeacheCourseViewCollectionViewCell.h"
 #import "LoginViewController.h"
+#import "playerViewController.h"
 @interface attaourseViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property(strong,nonatomic)UICollectionView *guanzhuCollectionV;
 @end
@@ -134,6 +135,39 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
     
     return Coursecell;
 }
+
+
+
+
+
+//设置点击 Cell的点击事件
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
+   
+
+        if([DEFAULTS objectForKey:@"islogin"]){
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"play_url"];
+            [defaults synchronize];
+            [defaults setObject:guanzhuCourse[indexPath.row].id forKey:@"play_url"];
+            
+            
+            [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+        }else{
+            
+            [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
+        }
+
+    
+    
+}
+
+
+
+
+
+
 
 -(void)initgzyinluCourse
 {
