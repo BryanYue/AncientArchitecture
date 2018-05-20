@@ -13,6 +13,12 @@
 #import "xiangguanCollectionViewCell.h"
 #import "LoginViewController.h"
 #import "relevantCourseResponse.h"
+#import "weChatPay.h"
+#import "Pay.h"
+#import "orderresponse.h"
+#import "WXApi.h"
+
+#define weixinpayNotification @"weixinpay"
 @interface playerViewController ()<AliyunVodPlayerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 
@@ -32,10 +38,23 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor=[UIColor whiteColor];
-    
+    //注册观察者
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weixinpay:) name:weixinpayNotification object:nil];
     [self initview];
 }
-
+//收到通知
+-(void)weixinpay:(NSNotification *)sender{
+    NSDictionary *dic =sender.userInfo ;
+    BOOL b = [dic[@"weixinpay"] isEqualToString:@"0"]?NO:YES;
+    if (b) {
+        [self TextButtonAction:@"支付成功"];
+    }else{
+        [self TextButtonAction:@"支付失败"];
+    }
+    [self.playerView stop];
+    [self initdata];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -45,6 +64,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     if (self.playerView) {
          [self.playerView stop];
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -140,8 +160,10 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 is_playefollow=is_playefollow==1?0:1;
                 
                 
+            }else{
+                 [self TextButtonAction:response.msg];
             }
-            [self TextButtonAction:response.msg];
+           
         }else{
             [self TextButtonAction:error.domain];
         }
@@ -151,7 +173,93 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 
 -(void)buy{
     NSLog(@"buy");
+    NSUserDefaults *defaults= DEFAULTS;
+    NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
+    [parameterCountry setObject:courseId forKey:@"course_id"];
+    [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
+    [parameterCountry setObject:[defaults objectForKey:@"token"] forKey:@"token"];
+    
+    [self GeneralButtonAction];
+    
+    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_makeOrder withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+        NSLog(@"error%zd",error.code);
+        if (!error) {
+            BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
+            if (response.code  == 200) {
+                orderresponse *orderr =[orderresponse mj_objectWithKeyValues:response.data];
+                
+                NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+                [parameter setObject:orderr.order_id forKey:@"order_id"];
+                [parameter setObject:orderr.amount forKey:@"amount"];
+                
+                [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_weChatPay withParams:parameter withMethodType:Post autoShowError:true andBlock:^(id datas, NSError *errors) {
+                    NSLog(@"errors%zd",errors.code);
+                    if (!errors) {
+                        BaseResponse *responses = [BaseResponse mj_objectWithKeyValues:datas];
+                        if (responses.code  == 200) {
+                            
+                            weChatPay *weChatdata =[weChatPay mj_objectWithKeyValues:responses.data];
+                        
+                            Pay *paydata=weChatdata.datas;
+                            
+                       
+                            
+                            if ([WXApi isWXAppInstalled]) {
+                                //调起微信支付
+                                PayReq* req = [[PayReq alloc] init];
+                                req.partnerId  = paydata.partnerid;
+                                req.prepayId   = paydata.prepayid;
+                                req.nonceStr  = paydata.noncestr;
+                                req.timeStamp = [paydata.timestamp intValue];
+                                req.package  = paydata.package;
+                                req.sign    = paydata.sign;
+                                [WXApi sendReq:req];
+                            }else {
+                                [self showAction:@"请先安装微信客户端"];
+                            }
+                            
+                            
+                            if (self.HUD) {
+                                [self.HUD hideAnimated:true];
+                            }
+                            
+                        }else{
+                            if (self.HUD) {
+                                [self.HUD hideAnimated:true];
+                            }
+                        }
+                        
+                    }else{
+                        if (self.HUD) {
+                            [self.HUD hideAnimated:true];
+                        }
+                    }
+                    
+                }];
+                }else{
+                    if (self.HUD) {
+                        [self.HUD hideAnimated:true];
+                    }
+                [self TextButtonAction:response.msg];
+                
+            }
+        }else{
+            if (self.HUD) {
+                [self.HUD hideAnimated:true];
+            }
+        }
+        
+       
+        
+        
+    }];
+    
 }
+
+
+
+
+
 
 
 -(void)initdata{
@@ -251,46 +359,55 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                     }
                 }else{
                      NSLog(@"isFreePlay  false");
-                    UILabel *tlabele_buy_num=[[UILabel alloc] init];
-                    tlabele_buy_num.textAlignment=NSTextAlignmentLeft;
-                    tlabele_buy_num.textColor=[UIColor_ColorChange grayColor];
-                    tlabele_buy_num.numberOfLines=1;
-                    tlabele_buy_num.frame=CGRectMake(20, playerViewh,kScreen_Width/3,40);
-                    tlabele_buy_num.font = [UIFont boldSystemFontOfSize:15];
-                    NSString *num=[detailResponse.buy_num stringByAppendingString: @"位学员学习"];
-                    [tlabele_buy_num setText:num];
-                    [self.uiview addSubview:tlabele_buy_num];
-                    
-                    
-                    UILabel *tlabele_price=[[UILabel alloc] init];
-                    tlabele_price.textAlignment=NSTextAlignmentRight;
-                    tlabele_price.textColor=[UIColor_ColorChange colorWithHexString:app_theme];
-                    tlabele_price.numberOfLines=1;
-                    tlabele_price.frame=CGRectMake(kScreen_Width/3, playerViewh,kScreen_Width/3,40);
-                    tlabele_price.font = [UIFont boldSystemFontOfSize:15];
-                    NSString *price=[@"￥" stringByAppendingString:detailResponse.price ];
-                    [tlabele_price setText:price];
-                    [self.uiview addSubview:tlabele_price];
-                    
-                    
-            
-                    UIButton *btnbuy = [UIButton buttonWithType:UIButtonTypeSystem];
-                    btnbuy.frame = CGRectMake(kScreen_Width-120, playerViewh+5, 100, 30);
-                    [btnbuy setTitle:@"购买课程" forState:UIControlStateNormal];
-                    [btnbuy setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                    btnbuy.backgroundColor =[UIColor_ColorChange colorWithHexString:app_theme];
-                    btnbuy.layer.masksToBounds=YES;
-                    btnbuy.layer.cornerRadius = 10;
-                    [btnbuy addTarget:self action:@selector(buy) forControlEvents:UIControlEventTouchUpInside];
-                    btnbuy.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-                    [self.uiview addSubview:btnbuy];
-                    playerViewh=playerViewh+40;
-                    
-                    UIView *line2=[[UIView alloc] init ];
-                    line2.backgroundColor=[UIColor_ColorChange grayColor];
-                    line2.frame=CGRectMake(0, playerViewh , kScreen_Width,1 );
-                    [self.uiview addSubview:line2];
-                    playerViewh=playerViewh+1;
+                     NSLog(@"price%@",detailResponse.price);
+                      NSLog(@"is_buy%@",detailResponse.is_buy);
+                      NSLog(@"is_free%@",detailResponse.is_free);
+                    if (![detailResponse.price  isEqualToString:@"0.00"]) {
+                        UILabel *tlabele_buy_num=[[UILabel alloc] init];
+                        tlabele_buy_num.textAlignment=NSTextAlignmentLeft;
+                        tlabele_buy_num.textColor=[UIColor_ColorChange grayColor];
+                        tlabele_buy_num.numberOfLines=1;
+                        tlabele_buy_num.frame=CGRectMake(20, playerViewh,kScreen_Width/3,40);
+                        tlabele_buy_num.font = [UIFont boldSystemFontOfSize:15];
+                        NSString *num=[detailResponse.buy_num stringByAppendingString: @"位学员学习"];
+                        [tlabele_buy_num setText:num];
+                        [self.uiview addSubview:tlabele_buy_num];
+                        
+                        
+                        UILabel *tlabele_price=[[UILabel alloc] init];
+                        tlabele_price.textAlignment=NSTextAlignmentRight;
+                        tlabele_price.textColor=[UIColor_ColorChange colorWithHexString:app_theme];
+                        tlabele_price.numberOfLines=1;
+                        tlabele_price.frame=CGRectMake(kScreen_Width/3, playerViewh,kScreen_Width/3,40);
+                        tlabele_price.font = [UIFont boldSystemFontOfSize:15];
+                        NSString *price=[@"￥" stringByAppendingString:detailResponse.price ];
+                        [tlabele_price setText:price];
+                        [self.uiview addSubview:tlabele_price];
+                        
+                        
+                       
+                            UIButton *btnbuy = [UIButton buttonWithType:UIButtonTypeSystem];
+                            btnbuy.frame = CGRectMake(kScreen_Width-120, playerViewh+5, 100, 30);
+                            [btnbuy setTitle:@"购买课程" forState:UIControlStateNormal];
+                            [btnbuy setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                            btnbuy.backgroundColor =[UIColor_ColorChange colorWithHexString:app_theme];
+                            btnbuy.layer.masksToBounds=YES;
+                            btnbuy.layer.cornerRadius = 10;
+                            [btnbuy addTarget:self action:@selector(buy) forControlEvents:UIControlEventTouchUpInside];
+                            btnbuy.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+                            [self.uiview addSubview:btnbuy];
+                           
+                            
+                            
+                        
+                         playerViewh=playerViewh+40;
+                        UIView *line2=[[UIView alloc] init ];
+                        line2.backgroundColor=[UIColor_ColorChange grayColor];
+                        line2.frame=CGRectMake(0, playerViewh , kScreen_Width,1 );
+                        [self.uiview addSubview:line2];
+                        playerViewh=playerViewh+1;
+                    }
+     
                     
                 }
               if([detailResponse.on_live isEqualToString:@"0"]){
@@ -426,13 +543,13 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 
                 
             }else{
-                
+                 [self TextButtonAction:response.msg];
             }
             
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }
-            [self TextButtonAction:response.msg];
+           
             
         }else{
             

@@ -113,4 +113,12 @@
 #define relevantCourse     @"/api/Document/relevantCourse"
 
 
+//创建订单
+#define url_makeOrder     @"/api/Order/makeOrder"
+
+//app支付
+#define url_weChatPay     @"/api/Wxpay/weChatPay"
+
+
+
 #endif /* api_h */
