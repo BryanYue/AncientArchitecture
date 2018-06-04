@@ -80,7 +80,7 @@
     self.toolView = [[UIView alloc] init];
     self.toolView.frame = CGRectMake(0, 0, self.frame.size.width, 44);
     [self addSubview:self.toolView];
-    self.toolView.backgroundColor=[UIColor grayColor];
+    self.toolView.backgroundColor= [UIColor_ColorChange colorWithHexString:app_theme];
     
     UIButton *saveBtn = [[UIButton alloc] init];
     saveBtn.frame = CGRectMake(self.frame.size.width - 50, 2, 40, 40);

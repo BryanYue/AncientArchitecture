@@ -189,7 +189,7 @@ NSMutableArray<CourseDetailResponse *> *xianchangCourse;
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }
-            [self TextButtonAction:response.msg];
+            
             
         }else{
             if (self.HUD) {

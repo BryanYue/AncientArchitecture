@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 15/12/24.
 //  Copyright © 2015年 谭真. All rights reserved.
-//  version 2.0.1 - 2018.03.25
+//  version 2.1.4 - 2018.05.20
 //  更多信息，请前往项目的github地址：https://github.com/banchichen/TZImagePickerController
 
 #import "TZImagePickerController.h"
@@ -162,7 +162,7 @@
     if (self) {
         self.maxImagesCount = maxImagesCount > 0 ? maxImagesCount : 9; // Default is 9 / 默认最大可选9张图片
         self.pickerDelegate = delegate;
-        self.selectedModels = [NSMutableArray array];
+        self.selectedAssets = [NSMutableArray array];
         
         // Allow user picking original photo and video, you also can set No after this method
         // 默认准许用户选择原图和视频, 你也可以在这个方法后置为NO
@@ -170,6 +170,8 @@
         self.allowPickingVideo = YES;
         self.allowPickingImage = YES;
         self.allowTakePicture = YES;
+        self.allowTakeVideo = YES;
+        self.videoMaximumDuration = 10 * 60;
         self.sortAscendingByModificationDate = YES;
         self.autoDismiss = YES;
         self.columnNumber = columnNumber;
@@ -270,8 +272,9 @@
     self.barItemTextColor = [UIColor whiteColor];
     self.allowPreview = YES;
     self.statusBarStyle = UIStatusBarStyleLightContent;
+    self.cannotSelectLayerColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
     
-    [self configDefaultImageName];
+    self.iconThemeColor = [UIColor colorWithRed:31 / 255.0 green:185 / 255.0 blue:34 / 255.0 alpha:1.0];
     [self configDefaultBtnTitle];
     
     CGFloat cropViewWH = MIN(self.view.tz_width, self.view.tz_height) / 3 * 2;
@@ -279,13 +282,53 @@
 }
 
 - (void)configDefaultImageName {
-    self.takePictureImageName = @"takePicture";
+    self.takePictureImageName = @"takePicture80";
     self.photoSelImageName = @"photo_sel_photoPickerVc";
     self.photoDefImageName = @"photo_def_photoPickerVc";
-    self.photoNumberIconImageName = @"photo_number_icon";
+    self.photoNumberIconImage = [self createImageWithColor:nil size:CGSizeMake(48, 48) radius:24]; // @"photo_number_icon";
     self.photoPreviewOriginDefImageName = @"preview_original_def";
     self.photoOriginDefImageName = @"photo_original_def";
     self.photoOriginSelImageName = @"photo_original_sel";
+}
+
+- (void)setTakePictureImageName:(NSString *)takePictureImageName {
+    _takePictureImageName = takePictureImageName;
+    _takePictureImage = [UIImage imageNamedFromMyBundle:takePictureImageName];
+}
+
+- (void)setPhotoSelImageName:(NSString *)photoSelImageName {
+    _photoSelImageName = photoSelImageName;
+    _photoSelImage = [UIImage imageNamedFromMyBundle:photoSelImageName];
+}
+
+- (void)setPhotoDefImageName:(NSString *)photoDefImageName {
+    _photoDefImageName = photoDefImageName;
+    _photoDefImage = [UIImage imageNamedFromMyBundle:photoDefImageName];
+}
+
+- (void)setPhotoNumberIconImageName:(NSString *)photoNumberIconImageName {
+    _photoNumberIconImageName = photoNumberIconImageName;
+    _photoNumberIconImage = [UIImage imageNamedFromMyBundle:photoNumberIconImageName];
+}
+
+- (void)setPhotoPreviewOriginDefImageName:(NSString *)photoPreviewOriginDefImageName {
+    _photoPreviewOriginDefImageName = photoPreviewOriginDefImageName;
+    _photoPreviewOriginDefImage = [UIImage imageNamedFromMyBundle:photoPreviewOriginDefImageName];
+}
+
+- (void)setPhotoOriginDefImageName:(NSString *)photoOriginDefImageName {
+    _photoOriginDefImageName = photoOriginDefImageName;
+    _photoOriginDefImage = [UIImage imageNamedFromMyBundle:photoOriginDefImageName];
+}
+
+- (void)setPhotoOriginSelImageName:(NSString *)photoOriginSelImageName {
+    _photoOriginSelImageName = photoOriginSelImageName;
+    _photoOriginSelImage = [UIImage imageNamedFromMyBundle:photoOriginSelImageName];
+}
+
+- (void)setIconThemeColor:(UIColor *)iconThemeColor {
+    _iconThemeColor = iconThemeColor;
+    [self configDefaultImageName];
 }
 
 - (void)configDefaultBtnTitle {
@@ -295,6 +338,19 @@
     self.fullImageBtnTitleStr = [NSBundle tz_localizedStringForKey:@"Full image"];
     self.settingBtnTitleStr = [NSBundle tz_localizedStringForKey:@"Setting"];
     self.processHintStr = [NSBundle tz_localizedStringForKey:@"Processing..."];
+}
+
+- (void)setShowSelectedIndex:(BOOL)showSelectedIndex {
+    _showSelectedIndex = showSelectedIndex;
+    if (showSelectedIndex) {
+        self.photoSelImage = [self createImageWithColor:nil size:CGSizeMake(48, 48) radius:24];
+    }
+    [TZImagePickerConfig sharedInstance].showSelectedIndex = showSelectedIndex;
+}
+
+- (void)setShowPhotoCannotSelectLayer:(BOOL)showPhotoCannotSelectLayer {
+    _showPhotoCannotSelectLayer = showPhotoCannotSelectLayer;
+    [TZImagePickerConfig sharedInstance].showPhotoCannotSelectLayer = showPhotoCannotSelectLayer;
 }
 
 - (void)observeAuthrizationStatusChange {
@@ -327,7 +383,7 @@
         [[TZImageManager manager] getCameraRollAlbum:self.allowPickingVideo allowPickingImage:self.allowPickingImage needFetchAssets:NO completion:^(TZAlbumModel *model) {
             photoPickerVc.model = model;
             [self pushViewController:photoPickerVc animated:YES];
-            _didPushPhotoPickerVc = YES;
+            self->_didPushPhotoPickerVc = YES;
         }];
     }
 }
@@ -493,21 +549,28 @@
 - (void)setSelectedAssets:(NSMutableArray *)selectedAssets {
     _selectedAssets = selectedAssets;
     _selectedModels = [NSMutableArray array];
+    _selectedAssetIds = [NSMutableArray array];
     for (id asset in selectedAssets) {
         TZAssetModel *model = [TZAssetModel modelWithAsset:asset type:[[TZImageManager manager] getAssetType:asset]];
         model.isSelected = YES;
-        [_selectedModels addObject:model];
+        [self addSelectedModel:model];
     }
 }
 
 - (void)setAllowPickingImage:(BOOL)allowPickingImage {
     _allowPickingImage = allowPickingImage;
     [TZImagePickerConfig sharedInstance].allowPickingImage = allowPickingImage;
+    if (!allowPickingImage) {
+        _allowTakePicture = NO;
+    }
 }
 
 - (void)setAllowPickingVideo:(BOOL)allowPickingVideo {
     _allowPickingVideo = allowPickingVideo;
     [TZImagePickerConfig sharedInstance].allowPickingVideo = allowPickingVideo;
+    if (!allowPickingVideo) {
+        _allowTakeVideo = NO;
+    }
 }
 
 - (void)setPreferredLanguage:(NSString *)preferredLanguage {
@@ -540,6 +603,34 @@
 
 - (void)dealloc {
     // NSLog(@"%@ dealloc",NSStringFromClass(self.class));
+}
+
+- (void)addSelectedModel:(TZAssetModel *)model {
+    [_selectedModels addObject:model];
+    NSString *assetId = [[TZImageManager manager] getAssetIdentifier:model.asset];
+    [_selectedAssetIds addObject:assetId];
+}
+
+- (void)removeSelectedModel:(TZAssetModel *)model {
+    [_selectedModels removeObject:model];
+    NSString *assetId = [[TZImageManager manager] getAssetIdentifier:model.asset];
+    [_selectedAssetIds removeObject:assetId];
+}
+
+- (UIImage *)createImageWithColor:(UIColor *)color size:(CGSize)size radius:(CGFloat)radius {
+    if (!color) {
+        color = self.iconThemeColor;
+    }
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:radius];
+    CGContextAddPath(context, path.CGPath);
+    CGContextFillPath(context);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 #pragma mark - UIContentContainer
@@ -625,7 +716,7 @@
     [super viewWillAppear:animated];
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
     [imagePickerVc hideProgressHUD];
-    if (imagePickerVc.allowTakePicture) {
+    if (imagePickerVc.allowPickingImage) {
         self.navigationItem.title = [NSBundle tz_localizedStringForKey:@"Photos"];
     } else if (imagePickerVc.allowPickingVideo) {
         self.navigationItem.title = [NSBundle tz_localizedStringForKey:@"Videos"];
@@ -652,8 +743,8 @@
         TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
         [[TZImageManager manager] getAllAlbums:imagePickerVc.allowPickingVideo allowPickingImage:imagePickerVc.allowPickingImage needFetchAssets:!self.isFirstAppear completion:^(NSArray<TZAlbumModel *> *models) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                _albumArr = [NSMutableArray arrayWithArray:models];
-                for (TZAlbumModel *albumModel in _albumArr) {
+                self->_albumArr = [NSMutableArray arrayWithArray:models];
+                for (TZAlbumModel *albumModel in self->_albumArr) {
                     albumModel.selectedModels = imagePickerVc.selectedModels;
                 }
                 [imagePickerVc hideProgressHUD];
@@ -663,16 +754,16 @@
                     [self configTableView];
                 }
                 
-                if (!_tableView) {
-                    _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-                    _tableView.rowHeight = 70;
-                    _tableView.tableFooterView = [[UIView alloc] init];
-                    _tableView.dataSource = self;
-                    _tableView.delegate = self;
-                    [_tableView registerClass:[TZAlbumCell class] forCellReuseIdentifier:@"TZAlbumCell"];
-                    [self.view addSubview:_tableView];
+                if (!self->_tableView) {
+                    self->_tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+                    self->_tableView.rowHeight = 70;
+                    self->_tableView.tableFooterView = [[UIView alloc] init];
+                    self->_tableView.dataSource = self;
+                    self->_tableView.delegate = self;
+                    [self->_tableView registerClass:[TZAlbumCell class] forCellReuseIdentifier:@"TZAlbumCell"];
+                    [self.view addSubview:self->_tableView];
                 } else {
-                    [_tableView reloadData];
+                    [self->_tableView reloadData];
                 }
             });
         }];
@@ -711,7 +802,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TZAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TZAlbumCell"];
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
-    cell.selectedCountButton.backgroundColor = imagePickerVc.oKButtonTitleColorNormal;
+    cell.albumCellDidLayoutSubviewsBlock = imagePickerVc.albumCellDidLayoutSubviewsBlock;
+    cell.albumCellDidSetModelBlock = imagePickerVc.albumCellDidSetModelBlock;
+    cell.selectedCountButton.backgroundColor = imagePickerVc.iconThemeColor;
     cell.model = _albumArr[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;

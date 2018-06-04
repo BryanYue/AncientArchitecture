@@ -254,8 +254,10 @@ UIImageView *rightImageView;
                 is_follow=is_follow==1?0:1;
                
                 
+            }else{
+                [self TextButtonAction:response.msg];
+
             }
-            [self TextButtonAction:response.msg];
         }else{
              [self TextButtonAction:error.domain];
         }

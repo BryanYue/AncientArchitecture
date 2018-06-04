@@ -221,13 +221,15 @@ bool CateCourseDetairefreshing =false;
                 
                 
                 
+            }else{
+                 [self TextButtonAction:response.msg];
             }
             [self.CateCourseDetaiCollectionV reloadData];
             
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }
-            [self TextButtonAction:response.msg];
+           
             
         }else{
             if (self.HUD) {

@@ -352,7 +352,7 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
             
             
         
-            [self TextButtonAction:response.msg];
+          
             
         }else{
            
@@ -399,7 +399,7 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
             }
             
            
-            [self TextButtonAction:response.msg];
+          
             
         }else{
             

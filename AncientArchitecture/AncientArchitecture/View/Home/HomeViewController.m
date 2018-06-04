@@ -17,27 +17,37 @@
 
 @implementation HomeViewController
 
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     HomeController *v1=[HomeController new];
     v1.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-44-statusBar_Height-49);
-    v1.tabBarItem.image = [UIImage imageNamed:@"首页"];
+    v1.tabBarItem.image = [[UIImage imageNamed:@"ic_main_home_normal"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+
     v1.tabBarItem.title = @"首页";
-    
-    
+    [v1.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    v1.tabBarItem.selectedImage = [[UIImage imageNamed:@"ic_main_home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
     VTattenViewController *v2 = [VTattenViewController new];
     v2.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-44-statusBar_Height-49);
-    v2.tabBarItem.image = [UIImage imageNamed:@"关注"];
+    v2.tabBarItem.image = [[UIImage imageNamed:@"ic_main_attention_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     v2.tabBarItem.title = @"关注";
-    
+    [v2.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    v2.tabBarItem.selectedImage = [[UIImage imageNamed:@"ic_main_attention_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
     
     MeViewController *me = [MeViewController new];
     me.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-49);
-    me.tabBarItem.image = [UIImage imageNamed:@"我的"];
-    me.tabBarItem.title = @"我的";
+    me.tabBarItem.image = [[UIImage imageNamed:@"ic_main_mine_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+   
 
+    me.tabBarItem.title = @"我的";
+    [me.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+ me.tabBarItem.selectedImage = [[UIImage imageNamed:@"ic_main_mine_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
    
    
@@ -52,8 +62,9 @@
     
     self.viewControllers = @[v1,v2,me];
     self.tabBarController.tabBar.frame =CGRectMake(0, kScreen_Height-44-statusBar_Height, kScreen_Width, 49);
-   
-
+    
+    UIImage *image = [UIImage imageNamed:@"img_theme_bg_bottom"];
+    [self.tabBar setBackgroundImage:image];
     
     
 }

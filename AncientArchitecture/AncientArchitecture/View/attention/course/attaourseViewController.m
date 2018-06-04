@@ -199,13 +199,15 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
                     }else{
                         NSLog(@"hotCourse.count==nil");
                     }
+                }else{
+                    [self TextButtonAction:response.msg];
                 }
                 
                 
                 if (self.HUD) {
                     [self.HUD hideAnimated:true];
                 }
-                [self TextButtonAction:response.msg];
+                
                 
             }else{
                 if (self.HUD) {

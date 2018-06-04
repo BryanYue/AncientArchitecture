@@ -250,7 +250,6 @@ NSMutableArray* buttons;
                 if (self.HUD) {
                     [self.HUD hideAnimated:true];
                 }
-                [self TextButtonAction:response.msg];
                 UserInfoResponse *userinfo =[UserInfoResponse mj_objectWithKeyValues:response.data];
                 [self updateview:userinfo];
                 
@@ -338,7 +337,7 @@ NSMutableArray* buttons;
                     [self.HUD hideAnimated:true];
                 }
                 
-                [self TextButtonAction:response.msg];
+              
                 
                 NSDictionary *data =response.data;
                 NSString *url=[data objectForKey:@"headimgurl"];
@@ -402,7 +401,7 @@ NSMutableArray* buttons;
                         [self.HUD hideAnimated:true];
                     }
                     
-                    [self TextButtonAction:response.msg];
+                   
                     
                     NSDictionary *data =response.data;
                     NSString *url=[data objectForKey:@"headimgurl"];
@@ -604,13 +603,13 @@ NSMutableArray* buttons;
                 
                 
             }else{
-                
+                 [self TextButtonAction:response.msg];
             }
             
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }
-            [self TextButtonAction:response.msg];
+           
             
         }else{
             if (self.HUD) {

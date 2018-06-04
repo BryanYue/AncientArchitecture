@@ -11,7 +11,7 @@
 
 #define kAlivcLivePusherVCAlertTag 89976
 
-@interface startLiveViewController ()<AlivcLivePusherNetworkDelegate,AlivcLivePusherErrorDelegate,AlivcLivePusherInfoDelegate,AlivcLivePusherBGMDelegate, AlivcLiveSessionDelegate>
+@interface startLiveViewController ()<AlivcLivePusherNetworkDelegate,AlivcLivePusherErrorDelegate,AlivcLivePusherInfoDelegate,AlivcLivePusherBGMDelegate>
 @end
 
 @implementation startLiveViewController
@@ -92,13 +92,13 @@ NSString *pushurl;
               
                     
                 }else{
-                    
+                      [self TextButtonAction:response.msg];
                 }
                 
                 if (self.HUD) {
                     [self.HUD hideAnimated:true];
                 }
-                [self TextButtonAction:response.msg];
+              
                 
             }else{
                 if (self.HUD) {

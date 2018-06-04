@@ -87,7 +87,7 @@
 		93EF3D342067E06A005139EC /* BaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EF3D332067E06A005139EC /* BaseResponse.m */; };
 		93F9FE8320AA060F0026F781 /* buylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F9FE8220AA060F0026F781 /* buylist.m */; };
 		93F9FE8620AB16060026F781 /* inlurenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F9FE8520AB16060026F781 /* inlurenViewController.m */; };
-		D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F44495653776C857D3020C /* libPods-AncientArchitecture.a */; };
+		D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F44495653776C857D3020C /* libPods-AncientArchitecture.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +106,19 @@
 			remoteInfo = AncientArchitecture;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		939161E720C2EB99003E9D1B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5369914DE3AD4A6A8360A5CB /* Pods-AncientArchitecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncientArchitecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture.debug.xcconfig"; sourceTree = "<group>"; };
@@ -775,8 +788,9 @@
 				93C4C53920554B90008716B3 /* Sources */,
 				93C4C53A20554B90008716B3 /* Frameworks */,
 				93C4C53B20554B90008716B3 /* Resources */,
-				4047E2A275FC8CC63068E965 /* [CP] Embed Pods Frameworks */,
 				C10158A0C5AE75B2B1183C31 /* [CP] Copy Pods Resources */,
+				939161E720C2EB99003E9D1B /* Embed Frameworks */,
+				EC3425BFE50C6CE97C017BC5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -895,34 +909,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4047E2A275FC8CC63068E965 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh",
-				"${PODS_ROOT}/AlivcLivePusherWithPlayer/AlivcLivePusher.framework",
-				"${PODS_ROOT}/AlivcLivePusherWithPlayer/AlivcLibRtmp.framework",
-				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerViewSDK.framework",
-				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework",
-				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerSDK.framework",
-				"${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLivePusher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibRtmp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerViewSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunPlayerSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PLPlayerKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A361ACD5EFF4F36BFEE71034 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -948,8 +934,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-resources.sh",
-				"${PODS_ROOT}/AlivcLivePusherWithPlayer/AlivcLibFaceResource.bundle",
-				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunImageSource.bundle",
+				"${PODS_ROOT}/AlivcLivePusher/AlivcLibFaceResource.bundle",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunLanguageSource.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/PGDatePicker/PGDatePicker/PGDatePicker.bundle",
@@ -958,7 +943,6 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlivcLibFaceResource.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AliyunImageSource.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AliyunLanguageSource.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PGDatePicker.bundle",
@@ -967,6 +951,38 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC3425BFE50C6CE97C017BC5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh",
+				"${PODS_ROOT}/AlivcLivePusher/AlivcLivePusher.framework",
+				"${PODS_ROOT}/AlivcLivePusher/AlivcLibRtmp.framework",
+				"${PODS_ROOT}/AlivcLivePusher/AlivcLibBeauty.framework",
+				"${PODS_ROOT}/AlivcLivePusher/AlivcLibFace.framework",
+				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework",
+				"${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework",
+				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerSDK.framework",
+				"${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLivePusher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibRtmp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibBeauty.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibFace.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunPlayerSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliThirdparty.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PLPlayerKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1220,6 +1236,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WEBZ2BKCZS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/arm",
+					"$(PROJECT_DIR)/arm/arm&simulator",
+					"$(PROJECT_DIR)/arm&simulator",
+				);
 				INFOPLIST_FILE = AncientArchitecture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1326,6 +1349,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WEBZ2BKCZS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/arm",
+					"$(PROJECT_DIR)/arm/arm&simulator",
+					"$(PROJECT_DIR)/arm&simulator",
+				);
 				INFOPLIST_FILE = AncientArchitecture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -62,7 +62,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 
 - (void)viewDidDisappear:(BOOL)animated{
     if (self.playerView) {
-         [self.playerView stop];
+        [self.playerView stop];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -78,25 +78,25 @@ NSMutableArray<relevantCourseResponse *> *relevant;
         [self initdata];
     }];
     
-
-//    //创建播放器
-//    self.mediaPlayer = [[AliVcMediaPlayer alloc] init];
-//    //创建播放器视图，其中contentView为UIView实例，自己根据业务需求创建一个视图即可
-//    /*self.mediaPlayer:NSObject类型，需要UIView来展示播放界面。
-//     self.contentView：承载mediaPlayer图像的UIView类。
-//     self.contentView = [[UIView alloc] init];
-//     [self.view addSubview:self.contentView];
-//     */
-//    [self.mediaPlayer create:self.contentView];
-//    //设置播放类型，0为点播、1为直播，默认使用自动
-//    self.mediaPlayer.mediaType = MediaType_AUTO;
-//    //设置超时时间，单位为毫秒
-//    self.mediaPlayer.timeout = 25000;
-//    //缓冲区超过设置值时开始丢帧，单位为毫秒。直播时设置，点播设置无效。范围：500～100000
-//    self.mediaPlayer.dropBufferDuration = 8000;
+    
+    //    //创建播放器
+    //    self.mediaPlayer = [[AliVcMediaPlayer alloc] init];
+    //    //创建播放器视图，其中contentView为UIView实例，自己根据业务需求创建一个视图即可
+    //    /*self.mediaPlayer:NSObject类型，需要UIView来展示播放界面。
+    //     self.contentView：承载mediaPlayer图像的UIView类。
+    //     self.contentView = [[UIView alloc] init];
+    //     [self.view addSubview:self.contentView];
+    //     */
+    //    [self.mediaPlayer create:self.contentView];
+    //    //设置播放类型，0为点播、1为直播，默认使用自动
+    //    self.mediaPlayer.mediaType = MediaType_AUTO;
+    //    //设置超时时间，单位为毫秒
+    //    self.mediaPlayer.timeout = 25000;
+    //    //缓冲区超过设置值时开始丢帧，单位为毫秒。直播时设置，点播设置无效。范围：500～100000
+    //    self.mediaPlayer.dropBufferDuration = 8000;
     
     //创建播放器对象，AliyunVodPlayerView继承自UIView，可以创建多实例，提供4套皮肤可设置
-   self.playerView = [[AliyunVodPlayerView alloc] initWithFrame:CGRectMake(0,0, kScreen_Width, kScreen_Height/3) andSkin:AliyunVodPlayerViewSkinRed];
+    self.playerView = [[AliyunVodPlayerView alloc] initWithFrame:CGRectMake(0,0, kScreen_Width, kScreen_Height/3) andSkin:AliyunVodPlayerViewSkinRed];
     //设置播放器代理
     [self.playerView setDelegate:self];
     //将播放器添加到需要展示的界面上
@@ -107,17 +107,17 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     
     [self addRightbutton:@"icon_colloect_white"];
     self.uiview =[[UIView alloc]init ];
-//    self.uiview.frame=CGRectMake(0, kScreen_Height/3, kScreen_Width, 320);
-
-    
-
+    //    self.uiview.frame=CGRectMake(0, kScreen_Height/3, kScreen_Width, 320);
     
     
     
     
     
     
-
+    
+    
+    
+    
     
     courseId =[DEFAULTS objectForKey:@"play_url"];
     [self initdata];
@@ -134,9 +134,9 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 
 -(void)addRightbutton:(NSString *)image{
     self.rightChangeBtn = [[UIImageView alloc] init];
-     self.rightChangeBtn.image = [UIImage imageNamed:image];
-     self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
-
+    self.rightChangeBtn.image = [UIImage imageNamed:image];
+    self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
+    
     self.rightChangeBtn.userInteractionEnabled = YES;
     [self.rightChangeBtn addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(rightButtonPress)]];
     [self.view addSubview: self.rightChangeBtn];
@@ -161,9 +161,9 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 
                 
             }else{
-                 [self TextButtonAction:response.msg];
+                [self TextButtonAction:response.msg];
             }
-           
+            
         }else{
             [self TextButtonAction:error.domain];
         }
@@ -199,10 +199,10 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                         if (responses.code  == 200) {
                             
                             weChatPay *weChatdata =[weChatPay mj_objectWithKeyValues:responses.data];
-                        
+                            
                             Pay *paydata=weChatdata.datas;
                             
-                       
+                            
                             
                             if ([WXApi isWXAppInstalled]) {
                                 //调起微信支付
@@ -236,10 +236,10 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                     }
                     
                 }];
-                }else{
-                    if (self.HUD) {
-                        [self.HUD hideAnimated:true];
-                    }
+            }else{
+                if (self.HUD) {
+                    [self.HUD hideAnimated:true];
+                }
                 [self TextButtonAction:response.msg];
                 
             }
@@ -249,7 +249,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
             }
         }
         
-       
+        
         
         
     }];
@@ -270,7 +270,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     [parameterCountry setObject:[defaults objectForKey:@"token"] forKey:@"token"];
     
     NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?course_id=%@&memberid=%@",url_getCourseDetail,courseId ,[defaults objectForKey:@"memberid"]];
-   
+    
     [self GeneralButtonAction];
     
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_isFreePlay withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
@@ -292,14 +292,14 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     }];
     
     
-  
+    
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:pathWithPhoneNum withParams:nil withMethodType:Get autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
         if (!error) {
             BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
             if (response.code  == 200) {
                 
-               
+                
                 
                 
                 CourseDetailResponse *detailResponse =[CourseDetailResponse mj_objectWithKeyValues:response.data];
@@ -311,7 +311,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                     self.rightChangeBtn.image = [UIImage imageNamed:@"icon_colloect_white"];
                     is_playefollow=1;
                 }
-                 NSLog(@"is_follow%@",detailResponse.is_follow);
+                NSLog(@"is_follow%@",detailResponse.is_follow);
                 
                 //设置播放器封面，封面地址和标题可以从服务端下发，封面地址请使用https 地址。
                 self.playerView.coverUrl = [NSURL URLWithString:detailResponse.img_url];
@@ -325,8 +325,8 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_cate_name.textColor=[UIColor_ColorChange colorWithHexString:app_theme];
                 tlabele_cate_name.numberOfLines=1;
                 tlabele_cate_name.frame=CGRectMake(20, 0,kScreen_Width/2,40);
-                 tlabele_cate_name.font = [UIFont boldSystemFontOfSize:15];
-                 [tlabele_cate_name setText:detailResponse.cate_name];
+                tlabele_cate_name.font = [UIFont boldSystemFontOfSize:15];
+                [tlabele_cate_name setText:detailResponse.cate_name];
                 [self.uiview addSubview:tlabele_cate_name];
                 
                 
@@ -335,7 +335,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_title.textColor=[UIColor_ColorChange blackColor];
                 tlabele_title.numberOfLines=1;
                 tlabele_title.frame=CGRectMake(kScreen_Width/2, 0,kScreen_Width/2-20,40);
-                 tlabele_title.font = [UIFont boldSystemFontOfSize:20];
+                tlabele_title.font = [UIFont boldSystemFontOfSize:20];
                 [tlabele_title setText:detailResponse.title];
                 [self.uiview addSubview:tlabele_title];
                 playerViewh=playerViewh+40;
@@ -347,9 +347,9 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 playerViewh=playerViewh+1;
                 
                 
-    
+                
                 if (isFreePlay) {
-                     NSLog(@"isFreePlay  true");
+                    NSLog(@"isFreePlay  true");
                     if ([detailResponse.on_live isEqualToString:@"1"]) {
                         NSURL *urll = [NSURL URLWithString:detailResponse.video];
                         [self.playerView playViewPrepareWithURL:urll];
@@ -358,10 +358,10 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                         [self.playerView playViewPrepareWithURL:urll];
                     }
                 }else{
-                     NSLog(@"isFreePlay  false");
-                     NSLog(@"price%@",detailResponse.price);
-                      NSLog(@"is_buy%@",detailResponse.is_buy);
-                      NSLog(@"is_free%@",detailResponse.is_free);
+                    NSLog(@"isFreePlay  false");
+                    NSLog(@"price%@",detailResponse.price);
+                    NSLog(@"is_buy%@",detailResponse.is_buy);
+                    NSLog(@"is_free%@",detailResponse.is_free);
                     if (![detailResponse.price  isEqualToString:@"0.00"]) {
                         UILabel *tlabele_buy_num=[[UILabel alloc] init];
                         tlabele_buy_num.textAlignment=NSTextAlignmentLeft;
@@ -385,69 +385,69 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                         [self.uiview addSubview:tlabele_price];
                         
                         
-                       
-                            UIButton *btnbuy = [UIButton buttonWithType:UIButtonTypeSystem];
-                            btnbuy.frame = CGRectMake(kScreen_Width-120, playerViewh+5, 100, 30);
-                            [btnbuy setTitle:@"购买课程" forState:UIControlStateNormal];
-                            [btnbuy setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                            btnbuy.backgroundColor =[UIColor_ColorChange colorWithHexString:app_theme];
-                            btnbuy.layer.masksToBounds=YES;
-                            btnbuy.layer.cornerRadius = 10;
-                            [btnbuy addTarget:self action:@selector(buy) forControlEvents:UIControlEventTouchUpInside];
-                            btnbuy.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-                            [self.uiview addSubview:btnbuy];
-                           
-                            
-                            
                         
-                         playerViewh=playerViewh+40;
+                        UIButton *btnbuy = [UIButton buttonWithType:UIButtonTypeSystem];
+                        btnbuy.frame = CGRectMake(kScreen_Width-120, playerViewh+5, 100, 30);
+                        [btnbuy setTitle:@"购买课程" forState:UIControlStateNormal];
+                        [btnbuy setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                        btnbuy.backgroundColor =[UIColor_ColorChange colorWithHexString:app_theme];
+                        btnbuy.layer.masksToBounds=YES;
+                        btnbuy.layer.cornerRadius = 10;
+                        [btnbuy addTarget:self action:@selector(buy) forControlEvents:UIControlEventTouchUpInside];
+                        btnbuy.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+                        [self.uiview addSubview:btnbuy];
+                        
+                        
+                        
+                        
+                        playerViewh=playerViewh+40;
                         UIView *line2=[[UIView alloc] init ];
                         line2.backgroundColor=[UIColor_ColorChange grayColor];
                         line2.frame=CGRectMake(0, playerViewh , kScreen_Width,1 );
                         [self.uiview addSubview:line2];
                         playerViewh=playerViewh+1;
                     }
-     
+                    
                     
                 }
-              if([detailResponse.on_live isEqualToString:@"0"]){
-                  UIImageView *yubo_image=[[UIImageView alloc]init ];
-                  yubo_image.image=[UIImage imageNamed:@"img_hom_hot_precourse"];
-                  yubo_image.frame = CGRectMake(20, playerViewh+(80-yubo_image.image.size.height)/2, yubo_image.image.size.width, yubo_image.image.size.height);
-                   [self.uiview addSubview:yubo_image];
-                 
-                  
-                  
-                  UILabel *tlabele_start_time=[[UILabel alloc] init];
-                  tlabele_start_time.textAlignment=NSTextAlignmentRight;
-                  tlabele_start_time.textColor=[UIColor_ColorChange grayColor];
-                  tlabele_start_time.numberOfLines=1;
-                  tlabele_start_time.frame=CGRectMake(kScreen_Width/3, playerViewh,kScreen_Width/3*2-10,40);
-                  tlabele_start_time.font = [UIFont boldSystemFontOfSize:15];
-                  NSString *time=[@"开课时间：" stringByAppendingString:detailResponse.start_time ];
-                  [tlabele_start_time setText:time];
-                  [self.uiview addSubview:tlabele_start_time];
-                  
-                  
-                  UILabel *tlabele_time=[[UILabel alloc] init];
-                  tlabele_time.textAlignment=NSTextAlignmentRight;
-                  tlabele_time.textColor=[UIColor_ColorChange grayColor];
-                  tlabele_time.numberOfLines=1;
-                  tlabele_time.frame=CGRectMake(kScreen_Width/3, playerViewh+40,kScreen_Width/3*2-10,40);
-                  tlabele_time.font = [UIFont boldSystemFontOfSize:15];
-                  NSString *litime=[@"课程时长：" stringByAppendingString:detailResponse.class_hour ];
-                  litime=[litime stringByAppendingString:@"分钟" ];
-                  [tlabele_time setText:litime];
-                  [self.uiview addSubview:tlabele_time];
-                  
-                  
-                  playerViewh=playerViewh+80;
-                  UIView *line5=[[UIView alloc] init ];
-                  line5.backgroundColor=[UIColor_ColorChange grayColor];
-                  line5.frame=CGRectMake(0, playerViewh , kScreen_Width,1 );
-                  [self.uiview addSubview:line5];
-                  playerViewh=playerViewh+1;
-                  
+                if([detailResponse.on_live isEqualToString:@"0"]){
+                    UIImageView *yubo_image=[[UIImageView alloc]init ];
+                    yubo_image.image=[UIImage imageNamed:@"img_hom_hot_precourse"];
+                    yubo_image.frame = CGRectMake(20, playerViewh+(80-yubo_image.image.size.height)/2, yubo_image.image.size.width, yubo_image.image.size.height);
+                    [self.uiview addSubview:yubo_image];
+                    
+                    
+                    
+                    UILabel *tlabele_start_time=[[UILabel alloc] init];
+                    tlabele_start_time.textAlignment=NSTextAlignmentRight;
+                    tlabele_start_time.textColor=[UIColor_ColorChange grayColor];
+                    tlabele_start_time.numberOfLines=1;
+                    tlabele_start_time.frame=CGRectMake(kScreen_Width/3, playerViewh,kScreen_Width/3*2-10,40);
+                    tlabele_start_time.font = [UIFont boldSystemFontOfSize:15];
+                    NSString *time=[@"开课时间：" stringByAppendingString:detailResponse.start_time ];
+                    [tlabele_start_time setText:time];
+                    [self.uiview addSubview:tlabele_start_time];
+                    
+                    
+                    UILabel *tlabele_time=[[UILabel alloc] init];
+                    tlabele_time.textAlignment=NSTextAlignmentRight;
+                    tlabele_time.textColor=[UIColor_ColorChange grayColor];
+                    tlabele_time.numberOfLines=1;
+                    tlabele_time.frame=CGRectMake(kScreen_Width/3, playerViewh+40,kScreen_Width/3*2-10,40);
+                    tlabele_time.font = [UIFont boldSystemFontOfSize:15];
+                    NSString *litime=[@"课程时长：" stringByAppendingString:detailResponse.class_hour ];
+                    litime=[litime stringByAppendingString:@"分钟" ];
+                    [tlabele_time setText:litime];
+                    [self.uiview addSubview:tlabele_time];
+                    
+                    
+                    playerViewh=playerViewh+80;
+                    UIView *line5=[[UIView alloc] init ];
+                    line5.backgroundColor=[UIColor_ColorChange grayColor];
+                    line5.frame=CGRectMake(0, playerViewh , kScreen_Width,1 );
+                    [self.uiview addSubview:line5];
+                    playerViewh=playerViewh+1;
+                    
                 }
                 
                 
@@ -462,7 +462,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_jianjie.font = [UIFont boldSystemFontOfSize:20];
                 [tlabele_jianjie setText:@"课程简介"];
                 [self.uiview addSubview:tlabele_jianjie];
-                 playerViewh=playerViewh+40;
+                playerViewh=playerViewh+40;
                 
                 
                 UILabel *tlabele_describe=[[UILabel alloc] init];
@@ -471,10 +471,10 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_describe.frame=CGRectMake(30, playerViewh,kScreen_Width/2,40);
                 tlabele_describe.font = [UIFont boldSystemFontOfSize:18];
                 if (detailResponse.describe) {
-                     [tlabele_describe setText:detailResponse.describe];
+                    [tlabele_describe setText:detailResponse.describe];
                 }
-               
-               [self.uiview addSubview:tlabele_describe];
+                
+                [self.uiview addSubview:tlabele_describe];
                 playerViewh=playerViewh+40;
                 
                 
@@ -528,7 +528,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 
                 self.uiview.frame=CGRectMake(0, 0, kScreen_Width, playerViewh);
                 [self.scrollView addSubview: self.uiview ];
-               
+                
                 
                 self.scrollView.contentSize=CGSizeMake(kScreen_Width, playerViewh);
                 [self.view addSubview:self.scrollView];
@@ -537,29 +537,29 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 
                 [self addCollectionView];
                 [self initxiangguandata];
-               
-               
+                
+                
                 
                 
                 
             }else{
-                 [self TextButtonAction:response.msg];
+                [self TextButtonAction:response.msg];
             }
             
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }
-           
+            
             
         }else{
             
         }
         
-    
+        
         [self.scrollView.mj_header endRefreshing];
-  
+        
     }];
-
+    
     
 }
 
@@ -582,7 +582,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     
     
     [self.scrollView addSubview: self.collection ];
-   
+    
 }
 
 
@@ -598,10 +598,10 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-
     
-        return CGSizeMake(kScreen_Width, 45);
-  
+    
+    return CGSizeMake(kScreen_Width, 45);
+    
     
     
 }
@@ -629,31 +629,31 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
-   
-        NSLog(@"id %@",relevant[indexPath.row].id);
+    
+    NSLog(@"id %@",relevant[indexPath.row].id);
+    
+    if([DEFAULTS objectForKey:@"islogin"]){
+        NSUserDefaults *defaults= DEFAULTS;
         
-        if([DEFAULTS objectForKey:@"islogin"]){
-            NSUserDefaults *defaults= DEFAULTS;
-            
-            [defaults removeObjectForKey:@"play_url"];
-            [defaults synchronize];
-            [defaults setObject:relevant[indexPath.row].id forKey:@"play_url"];
-            
-            
-            [self presentViewController:[playerViewController new] animated:YES completion:nil];
-        }else{
-            
-            [self presentViewController:[LoginViewController new] animated:YES completion:nil];
-        }
+        [defaults removeObjectForKey:@"play_url"];
+        [defaults synchronize];
+        [defaults setObject:relevant[indexPath.row].id forKey:@"play_url"];
         
-       
+        
+        [self presentViewController:[playerViewController new] animated:YES completion:nil];
+    }else{
+        
+        [self presentViewController:[LoginViewController new] animated:YES completion:nil];
+    }
+    
+    
     
 }
 
 
 
 -(void)initxiangguandata{
-   
+    
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
     [parameterCountry setObject:courseId forKey:@"course_id"];
     
@@ -694,15 +694,15 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 }
 - (void)onFinishWithAliyunVodPlayerView:(AliyunVodPlayerView*)playerView{
     //播放完成事件，与stop不同，指视频正常播放完成。
-     NSLog(@"onFinish");
+    NSLog(@"onFinish");
 }
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onStop:(NSTimeInterval)currentPlayTime{
     //播放器调用stop时触发
-     NSLog(@"onStop");
+    NSLog(@"onStop");
 }
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onSeekDone:(NSTimeInterval)seekDoneTime{
     //播放器Seek完成时触发，可以用来处理界面的UI元素变化
-     NSLog(@"onSeekDone");
+    NSLog(@"onSeekDone");
 }
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView lockScreen:(BOOL)isLockScreen{
     //点击界面的锁屏按钮时触发，用来和controller交互锁定事件
@@ -715,16 +715,16 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView *)playerView fullScreen:(BOOL)isFullScreen{
     //当出发全屏旋转后出发，用于配合ViewController来展示横屏全屏、竖屏全屏。
     NSLog(@"isFullScreen");
-  
-        if (isFullScreen) {
-            
-            self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
-        }else{
-            
-            self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
-        }
     
-
+    if (isFullScreen) {
+        
+        self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
+    }else{
+        
+        self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
+    }
+    
+    
     
 }
 - (void)onCircleStartWithVodPlayerView:(AliyunVodPlayerView *)playerView{

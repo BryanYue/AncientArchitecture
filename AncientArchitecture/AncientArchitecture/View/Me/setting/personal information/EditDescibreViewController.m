@@ -103,14 +103,14 @@ UITextView  *textfild;
                 
             }else{
                 
-                
+                 [self TextButtonAction:response.msg];
             }
             
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }
             
-            [self TextButtonAction:response.msg];
+           
             
             
             

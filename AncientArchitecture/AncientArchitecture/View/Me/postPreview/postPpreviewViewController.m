@@ -12,21 +12,22 @@
 #import "CourseResponse.h"
 #import "SYDatePicker.h"
 #import <TZImagePickerController.h>
+#import "MyUITextField.h"
 
-@interface postPpreviewViewController ()<SYDatePickerDelegate,THDatePickerViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface postPpreviewViewController ()<SYDatePickerDelegate,THDatePickerViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 
 @end
 
 @implementation postPpreviewViewController
 UIImageView *Courseimage;
-UILabel *Coursename;
+UITextField *Coursename;
 UILabel *Coursesort;
 UILabel *Coursetime;
 UILabel *Courseduration;
-UILabel *Courseprize;
-UILabel *CourseIntroduction;
-UILabel *Coursecontent;
-UILabel *Coursepeople;
+UITextField *Courseprize;
+UITextField *CourseIntroduction;
+UITextField *Coursecontent;
+UITextField *Coursepeople;
 THDatePickerView *dateView;
 NSMutableDictionary *list;
 NSMutableDictionary *map;
@@ -134,48 +135,59 @@ int Coursetab;
         
         switch (i) {
             case 0:
-                Coursename=[UILabel new];
-                Coursename.textAlignment=NSTextAlignmentRight;
-                Coursename.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
+                Coursename =[[UITextField alloc] init];
+                Coursename.textColor = [UIColor_ColorChange colorWithHexString:@"666666"];
+                Coursename.placeholder = @"未设置";
+                Coursename.textAlignment = NSTextAlignmentRight;
+                [Coursename setValue:[UIColor_ColorChange colorWithHexString:@"666666"] forKeyPath:@"_placeholderLabel.textColor"];
                 Coursename.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Coursename];
-                [Coursename setText:@"点击设置课程名称"];
+                 Coursename.delegate = self;
+                Coursename.returnKeyType = UIReturnKeyDone;
                 break;
                 
             case 1:
-                Coursesort=[UILabel new];
+                Coursesort=[[UILabel alloc] init];
                 Coursesort.textAlignment=NSTextAlignmentRight;
                 Coursesort.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
                 Coursesort.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Coursesort];
-                [Coursesort setText:@"点击选择课程分类"];
+                [Coursesort setText:@"未设置"];
                 break;
                 
             case 2:
                 
-                Coursetime=[UILabel new];
+                Coursetime=[[UILabel alloc] init];
                 Coursetime.textAlignment=NSTextAlignmentRight;
                 Coursetime.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
                 Coursetime.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Coursetime];
-                [Coursetime setText:@"点击选择开课时间"];
+                [Coursetime setText:@"未设置"];
                 break;
             case 3:
-                Courseduration=[UILabel new];
+                Courseduration=[[UILabel alloc] init];
                 Courseduration.textAlignment=NSTextAlignmentRight;
                 Courseduration.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
                 Courseduration.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Courseduration];
-                [Courseduration setText:@"点击选择课程时长"];
+                [Courseduration setText:@"未设置"];
                 
                 break;
             case 4:
-                Courseprize=[UILabel new];
-                Courseprize.textAlignment=NSTextAlignmentRight;
-                Courseprize.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
+                Courseprize =[[UITextField alloc] init];
+                Courseprize.textColor = [UIColor_ColorChange colorWithHexString:@"666666"];
+                Courseprize.placeholder = @"免费";
+                [Courseprize setValue:[UIColor_ColorChange colorWithHexString:@"666666"] forKeyPath:@"_placeholderLabel.textColor"];
+                Courseprize.delegate = self;
+                Courseprize.returnKeyType = UIReturnKeyDone;
+                Courseprize.textAlignment = NSTextAlignmentRight;
+                //数字模式键盘
+                Courseprize.keyboardType=UIKeyboardTypeNumberPad;
                 Courseprize.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Courseprize];
-                [Courseprize setText:@"点击设置课程价格"];
+               
+                
+               
                 
                 
                 break;
@@ -184,9 +196,10 @@ int Coursetab;
               
                 
                 Courseimage=[UIImageView new];
-                Courseimage.frame=CGRectMake(10, 55,view.frame.size.width-20,view.frame.size.height-20 );
+               
                 [view addSubview:Courseimage];
                 [Courseimage setImage:[UIImage imageNamed:@"img_add_image"]];
+                 Courseimage.frame=CGRectMake((kScreen_Width-Courseimage.image.size.width)/2+10, 55,Courseimage.image.size.width,Courseimage.image.size.height );
                 [Courseimage setContentScaleFactor:[[UIScreen mainScreen] scale]];
                 Courseimage.contentMode =  UIViewContentModeScaleAspectFill;
                 Courseimage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -195,33 +208,43 @@ int Coursetab;
                 
                 
             case 6:
-               
-                CourseIntroduction =[UILabel new];
-                CourseIntroduction.textAlignment=NSTextAlignmentLeft;
-                CourseIntroduction.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
+                CourseIntroduction =[[UITextField alloc] init];
+                CourseIntroduction.textColor = [UIColor_ColorChange colorWithHexString:@"666666"];
+                CourseIntroduction.placeholder = @"未设置";
+                 [CourseIntroduction setValue:[UIColor_ColorChange colorWithHexString:@"666666"] forKeyPath:@"_placeholderLabel.textColor"];
+                CourseIntroduction.textAlignment = NSTextAlignmentLeft;
                 CourseIntroduction.frame=CGRectMake(10, 46, kScreen_Width-20,40 );
-                [CourseIntroduction setText:@"点击设置课程简介"];
                 [view addSubview:CourseIntroduction];
+                CourseIntroduction.delegate = self;
+            CourseIntroduction.returnKeyType = UIReturnKeyDone;
               
                 break;
             case 7:
-                Coursecontent =[UILabel new];
-                Coursecontent.textAlignment=NSTextAlignmentLeft;
-                Coursecontent.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
+                Coursecontent =[[UITextField alloc] init];
+                Coursecontent.textAlignment = NSTextAlignmentLeft;
+                Coursecontent.textColor = [UIColor_ColorChange colorWithHexString:@"666666"];
+                Coursecontent.placeholder = @"未设置";
+                [Coursecontent setValue:[UIColor_ColorChange colorWithHexString:@"666666"] forKeyPath:@"_placeholderLabel.textColor"];
+
                 Coursecontent.frame=CGRectMake(10, 46, kScreen_Width-20,40 );
-                [Coursecontent setText:@"点击设置课程内容"];
                 [view addSubview:Coursecontent];
+                Coursecontent.delegate = self;
+                Coursecontent.returnKeyType = UIReturnKeyDone;
+        
                 
                
                 break;
             case 8:
-                Coursepeople =[UILabel new];
-                Coursepeople.textAlignment=NSTextAlignmentLeft;
-                Coursepeople.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
+                Coursepeople =[[UITextField alloc] init];
+                Coursepeople.textColor = [UIColor_ColorChange colorWithHexString:@"666666"];
+                Coursepeople.placeholder = @"未设置";
+                 [Coursepeople setValue:[UIColor_ColorChange colorWithHexString:@"666666"] forKeyPath:@"_placeholderLabel.textColor"];
+                Coursepeople.textAlignment = NSTextAlignmentLeft;
                 Coursepeople.frame=CGRectMake(10, 46, kScreen_Width-20,40 );
-                [Coursepeople setText:@"点击设置适合人群"];
                 [view addSubview:Coursepeople];
-
+                
+             Coursepeople.delegate = self;
+Coursepeople.returnKeyType = UIReturnKeyDone;
                 
                 break;
             default:
@@ -254,8 +277,25 @@ int Coursetab;
     
    
     [self initcategroy];
+    
+   
+    
+  
    
 }
+//实现UITextField代理方法
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    [Coursename resignFirstResponder];//取消第一响应者
+    
+    [Courseprize resignFirstResponder];//取消第一响应者
+    [CourseIntroduction resignFirstResponder];//取消第一响应者
+    [Coursecontent resignFirstResponder];//取消第一响应者
+    [Coursepeople resignFirstResponder];//取消第一响应者
+    
+    return YES;
+}
+
 
 -(void)to:(id)sender
 {
@@ -266,13 +306,9 @@ int Coursetab;
     NSLog (@"%zd",[tapRecognizer.view tag]);
     Coursetab=(int)[tapRecognizer.view tag];
     switch ([tapRecognizer.view tag]) {
-        case 0:
-            
-            [self showUITextFieldAction:@"设置课程名称"];
-            
-            break;
+       
         case 1:
-            
+            [self.view endEditing:YES];
             if (list) {
                 toolView = [[UIView alloc] init];
                 toolView.frame = CGRectMake(0, kScreen_Height/3*2, kScreen_Width, kScreen_Height/3);
@@ -287,7 +323,7 @@ int Coursetab;
                 
                 UIView *view =[UIView new];
                 view.frame = CGRectMake(0, 0, kScreen_Width, 44);
-                view.backgroundColor=[UIColor grayColor];
+                view.backgroundColor= [UIColor_ColorChange colorWithHexString:app_theme];
                 
                 UIButton *saveBtn = [[UIButton alloc] init];
                 saveBtn.frame = CGRectMake(kScreen_Width - 50, 2, 40, 40);
@@ -323,6 +359,7 @@ int Coursetab;
             
             break;
         case 2:
+            [self.view endEditing:YES];
             if (!dateView) {
                 dateView = [[THDatePickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 300)];
                 [dateView setTag:2000];
@@ -336,6 +373,7 @@ int Coursetab;
             
             break;
         case 3:
+            [self.view endEditing:YES];
             if (!picker) {
                  picker= [SYDatePicker new];
             }
@@ -343,63 +381,22 @@ int Coursetab;
             picker.delegate = self;
             
             break;
-        case 4:
-            [self showUITextFieldAction:@"请设置价格"];
-            
-            
-            break;
+       
         case 5:
+            [self.view endEditing:YES];
             [self checkimage];
             
             
             break;
-        case 6:
-             [self showUITextFieldAction:@"请设置课程简介"];
-            break;
-        case 7:
-             [self showUITextFieldAction:@"请设置课程内容"];
-            break;
-        case 8:
-             [self showUITextFieldAction:@"请设置适合人群"];
-            break;
-        default:
-            break;
-    }
-}
-
-
--(void)Alertdo:(NSString *)string
-{
-    [super Alertdo:string];
-    switch (Coursetab) {
-        case 0:
-             [Coursename setText:string];
-            break;
-        case 1:
-           
-            break;
-            
-        case 2:
-            
-            break;
-            
-        case 4:
-             [Courseprize setText:string];
-            break;
-        case 6:
-            [CourseIntroduction setText:string];
-            break;
-        case 7:
-             [Coursecontent setText:string];
-            break;
-        case 8:
-            [Coursepeople setText:string];
-            break;
-        default:
-            break;
-    }
     
+        
+        default:
+            break;
+    }
 }
+
+
+
 -(void)checkimage
 {
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
@@ -428,10 +425,16 @@ int Coursetab;
                         [self.HUD hideAnimated:true];
                     }
                     
-                    [self TextButtonAction:response.msg];
+                   
                     
                     NSDictionary *data =response.data;
                     url=[data objectForKey:@"headimgurl"];
+                   CGRect btnFrame  =Courseimage.frame;
+                    btnFrame.origin.x=10;
+                    btnFrame.origin.y=55;
+                    btnFrame.size.width=kScreen_Width-20;
+                    btnFrame.size.height=271-20;
+                    Courseimage.frame=btnFrame;
                     
                     [Courseimage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
                         if (error) {
@@ -583,12 +586,14 @@ int Coursetab;
                     areas=[[list allKeys]sortedArrayUsingSelector:@selector(compare:)];
                     selectedAreas=[areas objectAtIndex:0];
                    
+                }else{
+                    [self TextButtonAction:response.msg];
                 }
                 
                 if (self.HUD) {
                     [self.HUD hideAnimated:true];
                 }
-                [self TextButtonAction:response.msg];
+                
                 
             }else{
                 if (self.HUD) {
@@ -726,12 +731,12 @@ int Coursetab;
      NSLog(@"Coursename%@", Coursename.text);
      NSLog(@"Courseduration%@", Courseduration.text);
    
-
-    
-    if ([Coursename.text isEqualToString:@"点击设置课程名称"]) {
+    if (Coursename.text.length==0) {
         [self showAction:@"请输入课程名称"];
         return;
     }
+    
+  
     if ([Coursesort.text isEqualToString:@"点击选择课程分类"]) {
         [self showAction:@"请选择课程分类"];
         return;
@@ -748,30 +753,29 @@ int Coursetab;
     }
     
     
-    if ([Courseprize.text isEqualToString:@"点击设置课程价格"]) {
-        [self showAction:@"请输入课程价格"];
-        return;
-    }
+  
     
     if (!url) {
         [self showAction:@"请添加课程图片"];
         return;
     }
     
-    if ([CourseIntroduction.text isEqualToString:@"点击设置课程简介"]) {
+    if (CourseIntroduction.text.length==0) {
         [self showAction:@"请设置课程简介"];
         return;
     }
     
-    if ([Coursecontent.text isEqualToString:@"点击选择课程内容"]) {
+    if (Coursecontent.text.length==0) {
         [self showAction:@"请设置课程内容"];
         return;
     }
     
-    if ([Coursepeople.text isEqualToString:@"点击设置适合人群"]) {
+    if (Coursepeople.text.length==0) {
         [self showAction:@"请设置适合人群"];
         return;
     }
+    
+ 
     
 
     NSUserDefaults *defaults= DEFAULTS;
@@ -785,7 +789,12 @@ int Coursetab;
     [parameterCountry setObject:Coursecontent.text forKey:@"course_content"];
     [parameterCountry setObject:timeString forKey:@"start_time"];
     [parameterCountry setObject:timehm forKey:@"class_hour"];
-    [parameterCountry setObject:Courseprize.text forKey:@"price"];
+    if (Courseprize.text.length==0) {
+         [parameterCountry setObject:@"0" forKey:@"price"];
+    }else{
+         [parameterCountry setObject:Courseprize.text forKey:@"price"];
+    }
+   
     [parameterCountry setObject:Coursepeople.text forKey:@"fit_person"];
     [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_creatCourse withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
@@ -798,7 +807,7 @@ int Coursetab;
                 if (self.HUD) {
                     [self.HUD hideAnimated:true];
                 }
-                [self TextButtonAction:response.msg];
+             
                
               [self dismissViewControllerAnimated:YES completion:nil];
             }else{

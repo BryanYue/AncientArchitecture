@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "MyUITextField.h"
 #import "RegisterViewController.h"
+//#import "forgetpasswordViewController.h"
 #import "LoginResponse.h"
 #import "WXApi.h"
 #import "NSString+AES.h"
@@ -25,6 +26,7 @@
 @implementation LoginViewController
     MyUITextField * _loginText;
     MyUITextField * _passwdText;
+    UILabel *forgetpassword;
     UIButton * btnlogin;
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -97,6 +99,8 @@
     _loginText.frame=CGRectMake(40, kScreen_Height/9*3, kScreen_Width/10*8, 40);
     //数字模式键盘
     _loginText.keyboardType=UIKeyboardTypeNumberPad;
+    _loginText.delegate = self;
+    _loginText.returnKeyType = UIReturnKeyDone;
     
     UIView *undline1 =[UIView new ];
     undline1.backgroundColor=[UIColor whiteColor];
@@ -117,9 +121,33 @@
     _passwdText.leftView=imagepasswd;
     _passwdText.leftViewMode=UITextFieldViewModeAlways;
     _passwdText.frame=CGRectMake(40, kScreen_Height/9*3+41, kScreen_Width/10*8, 40);
+    _passwdText.delegate = self;
+    _passwdText.returnKeyType = UIReturnKeyDone;
+    
     UIView *undline2 =[UIView new ];
     undline2.backgroundColor=[UIColor whiteColor];
     undline2.frame=CGRectMake(40, kScreen_Height/9*3+82, kScreen_Width/10*8, 1);
+    
+    forgetpassword =[[UILabel alloc ] init];
+    [forgetpassword setText:@"忘记密码"];
+    [forgetpassword setTextColor:[UIColor whiteColor]];
+    forgetpassword.font =[UIFont boldSystemFontOfSize:14];
+    forgetpassword.textAlignment=NSTextAlignmentRight;
+    [forgetpassword setFrame:CGRectMake(40, kScreen_Height/9*3+105, kScreen_Width-80, 20)];
+    forgetpassword.userInteractionEnabled = YES;
+
+    [forgetpassword addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tofor)]];
+    
+    
+    
+    UILabel *wechattitle =[[UILabel alloc ] init];
+    [wechattitle setText:@"微信登录"];
+    [wechattitle setTextColor:[UIColor whiteColor]];
+    wechattitle.font =[UIFont boldSystemFontOfSize:12];
+    wechattitle.textAlignment=NSTextAlignmentCenter;
+    [wechattitle setFrame:CGRectMake(kScreen_Width/2-30, kScreen_Height/9*7, 60, 20)];
+    
+    
     
     
     //创建登录按钮和注册按钮
@@ -149,13 +177,8 @@
     [btnregist addTarget:self action:@selector(regist) forControlEvents:UIControlEventTouchUpInside];
     
     
-    //微信登陆
-    UILabel *wechattitle =[UILabel new ];
-    [wechattitle setText:@"微信登录"];
-    [wechattitle setTextColor:[UIColor whiteColor]];
-    wechattitle.font =[UIFont boldSystemFontOfSize:12];
-    wechattitle.textAlignment=NSTextAlignmentCenter;
-    [wechattitle setFrame:CGRectMake(kScreen_Width/2-30, kScreen_Height/9*7, 60, 20)];
+    
+    
     
     UIView *undline3 =[UIView new ];
     undline3.backgroundColor=[UIColor whiteColor];
@@ -195,6 +218,7 @@
     [self.view addSubview:title];
     [self.view addSubview:_loginText];
     [self.view addSubview:_passwdText];
+    [self.view addSubview:forgetpassword];
     _loginText.delegate =self;
     _passwdText.delegate =self;
     
@@ -213,6 +237,22 @@
     
     
 }
+
+
+-(void)tofor{
+//    [self presentViewController:[forgetpasswordViewController new] animated:YES completion:nil];
+}
+
+//实现UITextField代理方法
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+
+    [_loginText resignFirstResponder];//取消第一响应者
+    [_passwdText resignFirstResponder];//取消第一响应者
+    
+    return YES;
+}
+
     
 -(void)backButtonPress{
     [self dismissViewControllerAnimated:YES completion:nil];

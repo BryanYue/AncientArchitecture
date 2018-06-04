@@ -125,7 +125,7 @@ int count;
     _codeText.textColor=[UIColor whiteColor];
     
     UIImageView *imagepasswd=[UIImageView new];
-    imagepasswd.image =[UIImage imageNamed:@"icon_password_white"];
+    imagepasswd.image =[UIImage imageNamed:@"消息"];
     imagepasswd.frame=CGRectMake(0, 0, imagepasswd.image.size.width, imagepasswd.image.size.height);
     _codeText.leftView=imagepasswd;
     _codeText.leftViewMode=UITextFieldViewModeAlways;
@@ -228,7 +228,6 @@ int count;
                 if (self.HUD) {
                     [self.HUD hideAnimated:true];
                 }
-                [self TextButtonAction:response.msg];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
             }else{
@@ -267,7 +266,6 @@ int count;
                 if (self.HUD) {
                     [self.HUD hideAnimated:true];
                 }
-                [self TextButtonAction:response.msg];
                 count = 60;
                 timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
                 

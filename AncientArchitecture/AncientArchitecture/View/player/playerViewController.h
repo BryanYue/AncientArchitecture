@@ -8,8 +8,8 @@
 
 #import "BaseViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import <AliyunPlayerSDK/AliyunPlayerSDK.h>
-#import <AliyunVodPlayerViewSDK/AliyunVodPlayerViewSDK.h>
+#import <AliyunVodPlayerViewSDK/AliyunVodPlayerView.h>
+
 
 @interface playerViewController : BaseViewController
 @property (nonatomic, strong) AliyunVodPlayerView  * playerView;

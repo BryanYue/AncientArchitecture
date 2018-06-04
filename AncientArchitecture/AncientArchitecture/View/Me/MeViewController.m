@@ -119,7 +119,12 @@ NSString *isteacher;
     [titleName addObject:@"设置"];
     
     [picArray addObject:@"退出"];
-    [titleName addObject:@"退出"];
+    if (islogin) {
+        [titleName addObject:@"退出"];
+    }else{
+        [titleName addObject:@"登录"];
+    }
+    
 //    for (int i = 0; i < 9; i++) {
 //        NSString *imageName = [NSString stringWithFormat:@"课程"];
 //        [picArray addObject:imageName];
@@ -419,12 +424,13 @@ NSString *isteacher;
                 islogin=false;
                 isteacher=false;
                  [self initview];
+                 [self TextButtonAction:response.msg];
             }
             
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }
-            [self TextButtonAction:response.msg];
+           
             
         } else {
             if (self.HUD) {
@@ -480,65 +486,70 @@ NSString *isteacher;
 
 
 -(void)loginout{
-    NSLog (@"退出");
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"退出" message:@"您确定退出登陆？" preferredStyle:UIAlertControllerStyleActionSheet];
-    // 设置popover指向的item
-    alert.popoverPresentationController.barButtonItem = self.navigationItem.leftBarButtonItem;
-    
-    // 添加按钮
-    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        //
-//        [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", false]}];
-//
-//        [self dismissViewControllerAnimated:YES completion:nil];
-        if(islogin){
-            NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-            [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
-            [self GeneralButtonAction];
-            [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_signout withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
-                
-                if (!error) {
-                    BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
-                    if (response.code  == 200) {
+    if (islogin) {
+        NSLog (@"退出");
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"退出" message:@"您确定退出登陆？" preferredStyle:UIAlertControllerStyleActionSheet];
+        // 设置popover指向的item
+        alert.popoverPresentationController.barButtonItem = self.navigationItem.leftBarButtonItem;
+        
+        // 添加按钮
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            //
+            //        [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", false]}];
+            //
+            //        [self dismissViewControllerAnimated:YES completion:nil];
+            if(islogin){
+                NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
+                [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
+                [self GeneralButtonAction];
+                [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_signout withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+                    
+                    if (!error) {
+                        BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
+                        if (response.code  == 200) {
+                            if (self.HUD) {
+                                [self.HUD hideAnimated:true];
+                            }
+                            [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+                            //            [defaults setBool:false forKey:@"islogin"];
+                            [defaults removeObjectForKey:@"islogin"];
+                            [defaults removeObjectForKey:@"token"];
+                            [defaults removeObjectForKey:@"is_teacher"];
+                            [defaults synchronize];
+                            islogin=false;
+                            isteacher=false;
+                            [self initview];
+                        }else{
+                          [self TextButtonAction:response.msg];
+                            
+                        }
                         if (self.HUD) {
                             [self.HUD hideAnimated:true];
                         }
-                        [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-                        //            [defaults setBool:false forKey:@"islogin"];
-                        [defaults removeObjectForKey:@"islogin"];
-                        [defaults removeObjectForKey:@"token"];
-                        [defaults removeObjectForKey:@"is_teacher"];
-                        [defaults synchronize];
-                        islogin=false;
-                        isteacher=false;
-                        [self initview];
-                    }else{
                         
-                        
+                    } else {
+                        if (self.HUD) {
+                            [self.HUD hideAnimated:true];
+                        }
+                        [self TextButtonAction:error.domain];
                     }
-                    if (self.HUD) {
-                        [self.HUD hideAnimated:true];
-                    }
-                    [self TextButtonAction:response.msg];
-                } else {
-                    if (self.HUD) {
-                        [self.HUD hideAnimated:true];
-                    }
-                    [self TextButtonAction:error.domain];
-                }
-               
-            }];
-        }
-
+                    
+                }];
+            }
+            
+            
+            
+            
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            NSLog(@"点击了取消按钮");
+        }]];
         
-        
-        
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        NSLog(@"点击了取消按钮");
-    }]];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else{
+          [self toLogin];
+    }
+   
     
     
 }

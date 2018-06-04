@@ -20,7 +20,7 @@
 
 - (void)showInView:(UIView *)view withFrame:(CGRect)frame andDatePickerMode:(UIDatePickerMode)mode{
     self.frame = frame;
-    self.backgroundColor = [UIColor lightGrayColor];
+    self.backgroundColor = [UIColor whiteColor];
     
     if(!self.picker){
         self.picker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 46, frame.size.width, frame.size.height - 38)];
