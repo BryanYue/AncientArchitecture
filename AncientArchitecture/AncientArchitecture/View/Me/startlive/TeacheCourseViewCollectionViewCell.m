@@ -78,6 +78,7 @@
     }
     self.timeLbl.frame = CGRectMake(kScreen_Width/2-10, 240, kScreen_Width /2, 20);
     self.timeLbl.textAlignment = NSTextAlignmentRight;
+    self.timeLbl.font = [UIFont boldSystemFontOfSize:12];
     self.timeLbl.textColor = [UIColor grayColor];
     [self.timeLbl setText: timename];
     [self addSubview:self.timeLbl];
@@ -93,6 +94,7 @@
     }
     self.titleLbl.frame = CGRectMake(kScreen_Width/2-10, 215, kScreen_Width /2, 20);
     self.titleLbl.textAlignment = NSTextAlignmentRight;
+    self.titleLbl.font = [UIFont boldSystemFontOfSize:15];
     self.titleLbl.textColor = [UIColor blackColor];
     [self.titleLbl setText:titlename];
     [self addSubview:self.titleLbl];
@@ -107,6 +109,8 @@
     
     self.teacherLbl.frame = CGRectMake(47, 227, kScreen_Width /4, 20);
     self.teacherLbl.textAlignment = NSTextAlignmentLeft;
+    self.teacherLbl.font = [UIFont boldSystemFontOfSize:12];
+
     self.teacherLbl.textColor = [UIColor blackColor];
     [self.teacherLbl setText: teachername];
     [self addSubview:self.teacherLbl];
@@ -122,6 +126,7 @@
     
     self.classification.frame = CGRectMake(kScreen_Width/3, 240, kScreen_Width /4, 20);
     self.classification.textAlignment = NSTextAlignmentRight;
+    self.classification.font = [UIFont boldSystemFontOfSize:12];
     self.classification.textColor = [UIColor_ColorChange colorWithHexString:app_theme];
     [self.classification setText: classificationname];
     [self addSubview:self.classification];

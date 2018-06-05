@@ -50,6 +50,8 @@
 		93631C1620A8335A00632B32 /* HotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631C0D20A8335A00632B32 /* HotViewController.m */; };
 		93631C1920A833F300632B32 /* attaourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631C1720A833F300632B32 /* attaourseViewController.m */; };
 		9388FA742062388300A735F6 /* MyUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9388FA732062388300A735F6 /* MyUITextField.m */; };
+		938FCF4020C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */; };
+		938FCF4120C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93AA79C5205AC8BD002E9E10 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AA79C4205AC8BD002E9E10 /* MeViewController.m */; };
 		93AEF86D20AF1F7E00D72852 /* courseReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF86C20AF1F7E00D72852 /* courseReusableView.m */; };
 		93AEF87120AF34E700D72852 /* classificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87020AF34E700D72852 /* classificationViewController.m */; };
@@ -91,6 +93,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		938FCF3E20C5A4E000DF0466 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F3731E061E14F52C0098F4A6;
+			remoteInfo = AliyunVodPlayerViewSDK;
+		};
+		938FCF4220C5A4FF00DF0466 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F3731E051E14F52C0098F4A6;
+			remoteInfo = AliyunVodPlayerViewSDK;
+		};
+		938FCF4820C5A52800DF0466 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 938FCF4420C5A52800DF0466 /* AliyunImageSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 834F58AA1FB801E40022D5F4;
+			remoteInfo = AliyunImageSource;
+		};
 		93C4C55620554B90008716B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C4C53520554B8F008716B3 /* Project object */;
@@ -114,6 +137,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				938FCF4120C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +233,8 @@
 		93631C1820A833F300632B32 /* attaourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attaourseViewController.h; sourceTree = "<group>"; };
 		9388FA722062388300A735F6 /* MyUITextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyUITextField.h; sourceTree = "<group>"; };
 		9388FA732062388300A735F6 /* MyUITextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyUITextField.m; sourceTree = "<group>"; };
+		938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AliyunVodPlayerViewSDK.xcodeproj; path = "../../../Downloads/AliyunPlayerMediaDemo 2/ALPlayerViewSDK/AliyunVodPlayerViewSDK.xcodeproj"; sourceTree = "<group>"; };
+		938FCF4420C5A52800DF0466 /* AliyunImageSource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AliyunImageSource.xcodeproj; path = "../../../Downloads/AliyunPlayerMediaDemo 2/AliyunImageSource/AliyunImageSource.xcodeproj"; sourceTree = "<group>"; };
 		93AA79C1205AC164002E9E10 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		93AA79C3205AC8BD002E9E10 /* MeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		93AA79C4205AC8BD002E9E10 /* MeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
@@ -295,6 +321,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				938FCF4020C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Frameworks */,
 				D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +525,22 @@
 			path = hot;
 			sourceTree = "<group>";
 		};
+		938FCF3B20C5A4E000DF0466 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		938FCF4520C5A52800DF0466 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				938FCF4920C5A52800DF0466 /* AliyunImageSource.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		93AA79C2205AC897002E9E10 /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +611,8 @@
 		93C4C53420554B8F008716B3 = {
 			isa = PBXGroup;
 			children = (
+				938FCF4420C5A52800DF0466 /* AliyunImageSource.xcodeproj */,
+				938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */,
 				93AA79C1205AC164002E9E10 /* PrefixHeader.pch */,
 				93C4C53F20554B90008716B3 /* AncientArchitecture */,
 				93C4C55820554B90008716B3 /* AncientArchitectureTests */,
@@ -795,6 +840,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				938FCF4320C5A4FF00DF0466 /* PBXTargetDependency */,
 			);
 			name = AncientArchitecture;
 			productName = AncientArchitecture;
@@ -873,6 +919,16 @@
 			mainGroup = 93C4C53420554B8F008716B3;
 			productRefGroup = 93C4C53E20554B90008716B3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 938FCF4520C5A52800DF0466 /* Products */;
+					ProjectRef = 938FCF4420C5A52800DF0466 /* AliyunImageSource.xcodeproj */;
+				},
+				{
+					ProductGroup = 938FCF3B20C5A4E000DF0466 /* Products */;
+					ProjectRef = 938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				93C4C53C20554B90008716B3 /* AncientArchitecture */,
@@ -881,6 +937,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AliyunVodPlayerViewSDK.framework;
+			remoteRef = 938FCF3E20C5A4E000DF0466 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		938FCF4920C5A52800DF0466 /* AliyunImageSource.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AliyunImageSource.bundle;
+			remoteRef = 938FCF4820C5A52800DF0466 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		93C4C53B20554B90008716B3 /* Resources */ = {
@@ -1090,6 +1163,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		938FCF4320C5A4FF00DF0466 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AliyunVodPlayerViewSDK;
+			targetProxy = 938FCF4220C5A4FF00DF0466 /* PBXContainerItemProxy */;
+		};
 		93C4C55720554B90008716B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 93C4C53C20554B90008716B3 /* AncientArchitecture */;

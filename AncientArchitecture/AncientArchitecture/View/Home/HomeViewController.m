@@ -47,7 +47,7 @@
 
     me.tabBarItem.title = @"我的";
     [me.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
- me.tabBarItem.selectedImage = [[UIImage imageNamed:@"ic_main_mine_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+     me.tabBarItem.selectedImage = [[UIImage imageNamed:@"ic_main_mine_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
    
    
@@ -59,14 +59,19 @@
 
 //    UINavigationController *n3 = [[UINavigationController alloc] initWithRootViewController:v3];
     
+    UIView* tabbarback = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.tabBar.frame))];
+    UIImageView *iv=[[UIImageView alloc]init];
+    iv.frame=CGRectMake(0, 0, kScreen_Width, 49);
+    [iv setImage:[UIImage imageNamed:@"img_theme_bg_bottom"]];
+    [tabbarback addSubview:iv];
+    tabbarback.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [self.tabBar insertSubview:tabbarback atIndex:0];
+  
+//    self.tabBar.frame =CGRectMake(0, kScreen_Height-44-statusBar_Height, kScreen_Width, 49);
+//    UIImage *image = [UIImage imageNamed:@"img_theme_bg_bottom"];
+//    [self.tabBar setBackgroundImage:image];
     
     self.viewControllers = @[v1,v2,me];
-    self.tabBarController.tabBar.frame =CGRectMake(0, kScreen_Height-44-statusBar_Height, kScreen_Width, 49);
-    
-    UIImage *image = [UIImage imageNamed:@"img_theme_bg_bottom"];
-    [self.tabBar setBackgroundImage:image];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -22,7 +22,7 @@ target 'AncientArchitecture' do
     
     pod 'AlivcLivePusher'
     pod 'AliyunPlayer_iOS'
-    
+
     pod 'MJRefresh'
     
     pod 'PGDatePicker'
