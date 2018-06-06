@@ -249,19 +249,17 @@ bool CateCourseDetairefreshing =false;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
-    if([DEFAULTS objectForKey:@"islogin"]){
+    if (CateCourseDetaiCourse[indexPath.row]) {
         NSUserDefaults *defaults= DEFAULTS;
         
         [defaults removeObjectForKey:@"play_url"];
         [defaults synchronize];
         [defaults setObject:CateCourseDetaiCourse[indexPath.row].id forKey:@"play_url"];
         
-        
-        [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
-    }else{
-        
-        [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
+        [self presentViewController:[playerViewController new] animated:YES completion:nil];
     }
+    
+   
 }
 
 

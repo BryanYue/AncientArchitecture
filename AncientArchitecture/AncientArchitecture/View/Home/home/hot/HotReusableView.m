@@ -19,7 +19,7 @@
         
         
             
-        self.headViewController =[headViewController new] ;
+        self.headViewController =[[headViewController alloc]init] ;
             
         [self addSubview:self.headViewController.view];
             

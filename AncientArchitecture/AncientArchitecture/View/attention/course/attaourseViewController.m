@@ -12,7 +12,8 @@
 #import "TeacheCourseViewCollectionViewCell.h"
 #import "LoginViewController.h"
 #import "playerViewController.h"
-@interface attaourseViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface attaourseViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+>
 @property(strong,nonatomic)UICollectionView *guanzhuCollectionV;
 @end
 
@@ -67,6 +68,8 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
     
     _guanzhuCollectionV.delaysContentTouches = true;
     
+    _guanzhuCollectionV.emptyDataSetSource=self;
+    _guanzhuCollectionV.emptyDataSetDelegate=self;
     
     
     [_guanzhuCollectionV registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"guanzhucellid"];
@@ -165,7 +168,9 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
 
 
 
-
+-(void)viewDidAppear:(BOOL)animated{
+    [self initgzyinluCourse];
+}
 
 
 
@@ -175,8 +180,10 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
     if([DEFAULTS objectForKey:@"islogin"]){
         NSUserDefaults *defaults= DEFAULTS;
         NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-        [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
-        
+   
+        if ([DEFAULTS objectForKey:@"memberid"]) {
+            [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
+        }
         
         
         [self GeneralButtonAction];
@@ -222,4 +229,32 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
     
 
 }
+
+
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont boldSystemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
+
+
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
+
+
+
+
 @end

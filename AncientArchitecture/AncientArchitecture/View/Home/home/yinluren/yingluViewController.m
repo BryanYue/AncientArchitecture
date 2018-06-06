@@ -11,7 +11,7 @@
 #import "MJRefresh.h"
 #import "TeacherUICollectionViewCell.h"
 #import "inlurenViewController.h"
-@interface yingluViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface yingluViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(strong,nonatomic)UICollectionView *yingluCollectionV;
 @end
 
@@ -53,6 +53,8 @@ NSMutableArray<TeacherResponse *> *yinluCourse;
     
     _yingluCollectionV.delaysContentTouches = true;
     
+    _yingluCollectionV.emptyDataSetSource=self;
+    _yingluCollectionV.emptyDataSetDelegate=self;
     
     
     [_yingluCollectionV registerClass:[TeacherUICollectionViewCell class] forCellWithReuseIdentifier:@"yinglucellid"];
@@ -134,7 +136,7 @@ NSMutableArray<TeacherResponse *> *yinluCourse;
     
     
    
-    [self GeneralButtonAction];
+//    [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_getAllTeacher withParams:nil withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
         if (!error) {
@@ -191,5 +193,27 @@ NSMutableArray<TeacherResponse *> *yinluCourse;
         [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
     }
 }
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont boldSystemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
+
+
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
+
 
 @end

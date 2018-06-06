@@ -12,7 +12,8 @@
 #import "TeacherUICollectionViewCell.h"
 #import "LoginViewController.h"
 #import "inlurenViewController.h"
-@interface attteacherViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface attteacherViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+>
 @property(strong,nonatomic)UICollectionView *gzyingluCollectionV;
 @end
 
@@ -51,7 +52,8 @@ NSMutableArray<TeacherResponse *> *gzyinluCourse;
     _gzyingluCollectionV.backgroundColor =[UIColor whiteColor];
     
     _gzyingluCollectionV.delaysContentTouches = true;
-    
+    _gzyingluCollectionV.emptyDataSetSource=self;
+    _gzyingluCollectionV.emptyDataSetDelegate=self;
     
     
     [_gzyingluCollectionV registerClass:[TeacherUICollectionViewCell class] forCellWithReuseIdentifier:@"gzyinglucellid"];
@@ -147,7 +149,9 @@ NSMutableArray<TeacherResponse *> *gzyinluCourse;
 
 
 
-
+-(void)viewDidAppear:(BOOL)animated{
+    [self initgzyinluCourse];
+}
 
 
 -(void)initgzyinluCourse
@@ -159,7 +163,7 @@ NSMutableArray<TeacherResponse *> *gzyinluCourse;
     
     
     
-    [self GeneralButtonAction];
+//    [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_getFollowTeacher withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
         if (!error) {
@@ -201,5 +205,26 @@ NSMutableArray<TeacherResponse *> *gzyinluCourse;
     }
 }
 
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont boldSystemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
+
+
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
 
 @end

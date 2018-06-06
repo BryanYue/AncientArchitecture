@@ -65,7 +65,17 @@
     
     return YES;
 }
-    
+
+
+-(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    if (self.allowRotation) {//如果设置了allowRotation属性，支持全屏
+        return UIInterfaceOrientationMaskAll;
+    }
+    return UIInterfaceOrientationMaskPortrait;//默认全局不支持横屏
+}
+
+
+
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
     {
         [WXApi handleOpenURL:url delegate:self];

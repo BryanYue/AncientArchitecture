@@ -11,7 +11,7 @@
 #import "MJRefresh.h"
 #import "TeacheCourseViewCollectionViewCell.h"
 
-@interface xianchangViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface xianchangViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(strong,nonatomic)UICollectionView *xianchangCollectionV;
 @end
 
@@ -41,8 +41,8 @@ NSMutableArray<CourseDetailResponse *> *xianchangCourse;
 
 
 
--(void)viewWillAppear:(BOOL)animated{
-    
+-(void)viewDidAppear:(BOOL)animated{
+      [self initxianchangCourse];
 }
 //创建视图
 
@@ -75,8 +75,8 @@ NSMutableArray<CourseDetailResponse *> *xianchangCourse;
     _xianchangCollectionV.delegate =self;
     
     _xianchangCollectionV.dataSource =self;
-    
-    
+    _xianchangCollectionV.emptyDataSetSource=self;
+    _xianchangCollectionV.emptyDataSetDelegate=self;
     //设置背景
     
     _xianchangCollectionV.backgroundColor =[UIColor whiteColor];
@@ -154,16 +154,13 @@ NSMutableArray<CourseDetailResponse *> *xianchangCourse;
 }
 
 
--(void)initxianchangCourse
+-(void) initxianchangCourse
 {
     
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-    
-    
-    
     [parameterCountry setObject:@"1" forKey:@"page"];
-   [parameterCountry setObject:@"1" forKey:@"type"];
-    [self GeneralButtonAction];
+    [parameterCountry setObject:@"1" forKey:@"type"];
+//    [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_allCourse withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
         if (!error) {
@@ -201,7 +198,26 @@ NSMutableArray<CourseDetailResponse *> *xianchangCourse;
         
     }];
 }
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont boldSystemFontOfSize:16],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
 
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
 
 
 @end

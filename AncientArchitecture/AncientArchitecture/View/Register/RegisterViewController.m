@@ -14,13 +14,13 @@
 @end
 
 @implementation RegisterViewController
-MyUITextField * _phoneText;
-MyUITextField * _codeText;
-MyUITextField * _passwordText;
+MyUITextField * phoneText;
+MyUITextField * codeText;
+MyUITextField * passwordText;
 
 
 UIButton * code;
-NSTimer *timer;
+NSTimer *retimer;
 int count;
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,68 +69,68 @@ int count;
     [title setFrame:CGRectMake(0, kScreen_Height/9, kScreen_Width, 20)];
     
     
-    _phoneText=[MyUITextField new];
+    phoneText=[MyUITextField new];
    
     NSAttributedString *attrphone = [[NSAttributedString alloc] initWithString:@"请输入手机号" attributes:
                                     @{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                      NSFontAttributeName:_phoneText.font
+                                      NSFontAttributeName:phoneText.font
                                       }];
-    _phoneText.attributedPlaceholder = attrphone;
-    _phoneText.textColor=[UIColor whiteColor];
+    phoneText.attributedPlaceholder = attrphone;
+    phoneText.textColor=[UIColor whiteColor];
     
     UIImageView *imagelogin=[UIImageView new];
     imagelogin.image =[UIImage imageNamed:@"icon_phone_white"];
     imagelogin.frame=CGRectMake(0, 0, imagelogin.image.size.width, imagelogin.image.size.height);
-    _phoneText.leftView=imagelogin;
-    _phoneText.leftViewMode=UITextFieldViewModeAlways;
-    _phoneText.frame=CGRectMake(40, kScreen_Height/9*2, kScreen_Width/10*5, 40);
+    phoneText.leftView=imagelogin;
+    phoneText.leftViewMode=UITextFieldViewModeAlways;
+    phoneText.frame=CGRectMake(40, kScreen_Height/9*2, kScreen_Width/10*5, 40);
     //数字模式键盘
-    _phoneText.keyboardType=UIKeyboardTypeNumberPad;
+    phoneText.keyboardType=UIKeyboardTypeNumberPad;
     
     UIView *undline1 =[UIView new ];
     undline1.backgroundColor=[UIColor whiteColor];
     undline1.frame=CGRectMake(40, kScreen_Height/9*2+40, kScreen_Width/10*8, 1);
     
     
-    _passwordText=[MyUITextField new];
+    passwordText=[MyUITextField new];
     
     NSAttributedString *attrpassword = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:
                                      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                       NSFontAttributeName:_passwordText.font
+                                       NSFontAttributeName:passwordText.font
                                        }];
-    _passwordText.attributedPlaceholder = attrpassword;
-    _passwordText.textColor=[UIColor whiteColor];
+    passwordText.attributedPlaceholder = attrpassword;
+    passwordText.textColor=[UIColor whiteColor];
     
     
     UIImageView *imagecode=[UIImageView new];
     imagecode.image =[UIImage imageNamed:@"icon_password_white"];
     imagecode.frame=CGRectMake(0, 0, imagecode.image.size.width, imagecode.image.size.height);
-    _passwordText.leftView=imagecode;
-    _passwordText.leftViewMode=UITextFieldViewModeAlways;
-    _passwordText.frame=CGRectMake(40, kScreen_Height/9*2+41, kScreen_Width/10*8, 40);
-    _passwordText.keyboardType=UIKeyboardTypeNumberPad;
+    passwordText.leftView=imagecode;
+    passwordText.leftViewMode=UITextFieldViewModeAlways;
+    passwordText.frame=CGRectMake(40, kScreen_Height/9*2+41, kScreen_Width/10*8, 40);
+    passwordText.keyboardType=UIKeyboardTypeNumberPad;
     
     UIView *undline2 =[UIView new ];
     undline2.backgroundColor=[UIColor whiteColor];
     undline2.frame=CGRectMake(40, kScreen_Height/9*2+81, kScreen_Width/10*8, 1);
     
     
-    _codeText=[MyUITextField new];
+    codeText=[MyUITextField new];
    
     NSAttributedString *attrcode = [[NSAttributedString alloc] initWithString:@"请输入验证码" attributes:
                                      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                       NSFontAttributeName:_codeText.font
+                                       NSFontAttributeName:codeText.font
                                        }];
-    _codeText.attributedPlaceholder = attrcode;
-    _codeText.textColor=[UIColor whiteColor];
+    codeText.attributedPlaceholder = attrcode;
+    codeText.textColor=[UIColor whiteColor];
     
     UIImageView *imagepasswd=[UIImageView new];
     imagepasswd.image =[UIImage imageNamed:@"消息"];
     imagepasswd.frame=CGRectMake(0, 0, imagepasswd.image.size.width, imagepasswd.image.size.height);
-    _codeText.leftView=imagepasswd;
-    _codeText.leftViewMode=UITextFieldViewModeAlways;
-    _codeText.frame=CGRectMake(40, kScreen_Height/9*2+82, kScreen_Width/10*8, 40);
-    _codeText.keyboardType=UIKeyboardTypeNumberPad;
+    codeText.leftView=imagepasswd;
+    codeText.leftViewMode=UITextFieldViewModeAlways;
+    codeText.frame=CGRectMake(40, kScreen_Height/9*2+82, kScreen_Width/10*8, 40);
+    codeText.keyboardType=UIKeyboardTypeNumberPad;
     
     UIView *undline3 =[UIView new ];
     undline3.backgroundColor=[UIColor whiteColor];
@@ -177,9 +177,9 @@ int count;
     [self.view addSubview:bg];
     [self.view addSubview:exit];
     [self.view addSubview:title];
-    [self.view addSubview:_phoneText];
-    [self.view addSubview:_codeText];
-    [self.view addSubview:_passwordText];
+    [self.view addSubview:phoneText];
+    [self.view addSubview:codeText];
+    [self.view addSubview:passwordText];
     [self.view addSubview:undline1];
     [self.view addSubview:undline2];
     [self.view addSubview:undline3];
@@ -203,22 +203,22 @@ int count;
 
 -(void)toregister{
     [self hide];
-    if (_phoneText.text.length==0) {
+    if (phoneText.text.length==0) {
         [self showAction:@"请输入手机号"];
         return;
     }
-    if (_passwordText.text.length==0) {
+    if (passwordText.text.length==0) {
         [self showAction:@"请输入密码"];
         return;
     }
-    if (_codeText.text.length==0) {
+    if (codeText.text.length==0) {
         [self showAction:@"请输入验证码"];
         return;
     }
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-     [parameterCountry setObject:_phoneText.text forKey:@"phone"];
-     [parameterCountry setObject:_passwordText.text forKey:@"password"];
-     [parameterCountry setObject:_codeText.text forKey:@"code"];
+     [parameterCountry setObject:phoneText.text forKey:@"phone"];
+     [parameterCountry setObject:passwordText.text forKey:@"password"];
+     [parameterCountry setObject:codeText.text forKey:@"code"];
     [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_Register withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
         if (!error) {
@@ -248,12 +248,12 @@ int count;
 
 -(void)code{
     [self hide];
-    if (_phoneText.text.length==0) {
+    if (phoneText.text.length==0) {
         [self showAction:@"请输入手机号"];
         return;
     }
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-    [parameterCountry setObject:_phoneText.text forKey:@"phone"];
+    [parameterCountry setObject:phoneText.text forKey:@"phone"];
     [parameterCountry setObject:@"R" forKey:@"type"];
     
     
@@ -267,7 +267,7 @@ int count;
                     [self.HUD hideAnimated:true];
                 }
                 count = 60;
-                timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
+                retimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
                 
             }else{
                 if (self.HUD) {
@@ -293,7 +293,7 @@ int count;
         code.userInteractionEnabled = YES;
         [code setTitle:[NSString stringWithFormat:@"发送验证码"] forState:UIControlStateNormal];
         count = 60;
-        [timer invalidate];
+        [retimer invalidate];
     } else {
         code.userInteractionEnabled = NO;
         [code setTitle:[NSString stringWithFormat:@"%d秒后重新获取",count] forState:UIControlStateNormal];
@@ -303,12 +303,12 @@ int count;
 
 
 -(void)hide{
-    if (_phoneText) {
-        [_phoneText resignFirstResponder];
+    if (phoneText) {
+        [phoneText resignFirstResponder];
     }
     
-    if (_codeText) {
-        [_codeText resignFirstResponder];
+    if (codeText) {
+        [codeText resignFirstResponder];
     }
 }
 
@@ -316,7 +316,7 @@ int count;
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [timer invalidate];
+    [retimer invalidate];
     
 }
 

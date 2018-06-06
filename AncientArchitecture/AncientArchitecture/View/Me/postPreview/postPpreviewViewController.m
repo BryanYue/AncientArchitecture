@@ -276,7 +276,7 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
     
     
    
-//    [self initcategroy];
+    [self initcategroy];
     
    
     

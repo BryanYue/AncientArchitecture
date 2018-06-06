@@ -7,6 +7,7 @@
 //
 
 #import "accountSettingsViewController.h"
+#import "forgetViewController.h"
 
 @interface accountSettingsViewController ()
 
@@ -47,7 +48,7 @@
     headline.backgroundColor =[UIColor_ColorChange colorWithHexString:@"f3f3f3"];
     [self.view addSubview:headline];
     
-     NSArray<NSString *> *titletext=@[@"手机",@"实名认证",@"会员状态"];
+     NSArray<NSString *> *titletext=@[@"手机",@"更改密码"];
     for (int i=0; i<titletext.count; i++) {
         UIView *view=[UIView new];
         view.backgroundColor=[UIColor clearColor];
@@ -62,8 +63,31 @@
         UIView *line=[UIView new];
         line.backgroundColor=[UIColor_ColorChange colorWithHexString:@"f3f3f3"];
         line.frame=CGRectMake(0, 45, kScreen_Width,1 );
+        
+        UIImageView *image=[UIImageView new];
+        [image setImage:[UIImage imageNamed:@"箭头"]];
+        image.frame=CGRectMake(kScreen_Width-10-image.image.size.width, (46-image.image.size.height)/2, image.image.size.width,image.image.size.height );
+        [view addSubview:image];
+        view.userInteractionEnabled = YES;
+        [view setTag:i];
+        [view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tott:)]];
+        
+        if (i==0) {
+            NSString *phone=[DEFAULTS objectForKey:@"phone"];
+            UILabel *lablep=[UILabel new];
+            [lablep setText:phone];
+            lablep.frame=CGRectMake(kScreen_Width/2-40, 0, kScreen_Width/2,45 );
+            lablep.textAlignment=NSTextAlignmentRight;
+            lablep.textColor=[UIColor blackColor];
+            lablep.font = [UIFont boldSystemFontOfSize:18];
+            [view addSubview:lablep];
+            
+        }
+        
         [view addSubview:lable];
         [view addSubview:line];
+        
+        
         
         [self.view addSubview:view];
     }
@@ -71,10 +95,23 @@
 }
 
 
+-(void)tott:(id)sender{{
+    UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
+    NSLog (@"%zd",[tapRecognizer.view tag]);
+    switch ([tapRecognizer.view tag]) {
+        case 1:
+            [self presentViewController:[forgetViewController new] animated:YES completion:nil];
+
+            break;
+    
+    }}
+}
 
 
 
-@end
+    
+    @end
+
 
 
 

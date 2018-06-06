@@ -12,7 +12,8 @@
 #import "TeacheCourseViewCollectionViewCell.h"
 #import "startLiveViewController.h"
 
-@interface TeacheCourseViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface TeacheCourseViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+>
 
 
 @end
@@ -65,6 +66,9 @@ NSString *teacher_photo;
     //代理设置
     collect.delegate=self;
     collect.dataSource=self;
+    collect.emptyDataSetSource=self;
+    collect.emptyDataSetDelegate=self;
+    
     [collect registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
     collect.backgroundColor =[UIColor whiteColor];
     collect.delaysContentTouches = true;
@@ -74,7 +78,10 @@ NSString *teacher_photo;
         [Coursearry removeAllObjects ];
     }
     [self initdata];
+    
 }
+
+
 
 -(void)initdata
 {
@@ -209,6 +216,27 @@ NSString *teacher_photo;
 }
 
 
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont boldSystemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
+
+
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
 
 
 @end

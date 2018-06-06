@@ -13,7 +13,8 @@
 #import "MJRefresh.h"
 #import "playerViewController.h"
 
-@interface searchViewController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface searchViewController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+>
 
 @end
 
@@ -59,15 +60,23 @@ NSMutableArray<CourseDetailResponse *>  *searchhCourse;
                                         }];
     searchText.attributedPlaceholder = attrpasswd;
     searchText.textColor=[UIColor whiteColor];
-    UIImageView *imagepasswd=[UIImageView new];
-    imagepasswd.image =[UIImage imageNamed:@"icon_password_white"];
+    UIImageView *imagepasswd=[[UIImageView alloc]init];
+    imagepasswd.image =[UIImage imageNamed:@"icon_search_gray"];
     imagepasswd.frame=CGRectMake(0, 0, imagepasswd.image.size.width, imagepasswd.image.size.height);
     searchText.leftView=imagepasswd;
     searchText.leftViewMode=UITextFieldViewModeAlways;
-    searchText.frame=CGRectMake(50, statusBar_Height, kScreen_Width-100, 44);
+    searchText.frame=CGRectMake(60, statusBar_Height, kScreen_Width-100, 44);
+    searchText.returnKeyType = UIReturnKeySearch;//变为搜索按钮
     searchText.delegate =self;
-    [searchText addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     
+   
+    UIView *ui =[[UIView alloc]init];
+    ui.frame=CGRectMake(50, statusBar_Height+2, kScreen_Width-80, 36);
+    ui.backgroundColor =[UIColor_ColorChange whiteColor];
+    ui.layer.masksToBounds=YES;
+    ui.layer.cornerRadius = 20;
+    
+    [self.view addSubview:ui];
     [self.view addSubview:searchText];
     [self addTheCollectionView];
     
@@ -78,13 +87,21 @@ NSMutableArray<CourseDetailResponse *>  *searchhCourse;
     }
 }
 
-- (void)textFieldDidChange {
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     if (searchText.text != nil && searchText.text.length > 0) {
         [searchhCourse removeAllObjects ];
         [self initgzyinluCourse];
     }
     [CollectionV reloadData];
+     [searchText resignFirstResponder];//取消第一响应者
+    return YES;
 }
+
+
+
+
 
 -(void)addTheCollectionView{
     UICollectionViewFlowLayout *flowL = [UICollectionViewFlowLayout new];
@@ -99,6 +116,8 @@ NSMutableArray<CourseDetailResponse *>  *searchhCourse;
     CollectionV.delaysContentTouches = true;
     
     
+    CollectionV.emptyDataSetSource=self;
+    CollectionV.emptyDataSetDelegate=self;
     
     [CollectionV registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"searchcellid"];
     
@@ -110,6 +129,14 @@ NSMutableArray<CourseDetailResponse *>  *searchhCourse;
 }
 
 
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
 
 
 

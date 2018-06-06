@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "searchViewController.h"
 #import "VTDivideViewController.h"
+#import "bannerCollectionViewCell.h"
 
 
 @interface HomeController ()<SDCycleScrollViewDelegate>
@@ -33,10 +34,7 @@ VTDivideViewController *tableview;
     [self initview];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 /*
 #pragma mark - Navigation
@@ -98,13 +96,12 @@ VTDivideViewController *tableview;
         
         
         
-    
-    
-    
-    
-        bannerAd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 224) delegate:self placeholderImage:[UIImage imageNamed:@"default"]];
+    bannerAd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 224) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    bannerAd.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
+        bannerAd.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
         bannerAd.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
         bannerAd.currentPageDotColor = [UIColor whiteColor];
+
 //        bannerAd.imageURLStringsGroup = imagesURLStrings;
         height=height+224;
   
@@ -127,7 +124,7 @@ VTDivideViewController *tableview;
     scrollView.contentSize=CGSizeMake(kScreen_Width, height);
     [self.view addSubview:scrollView];
    
-    [self initdata];
+//    [self initdata];
 }
 
 
@@ -147,7 +144,15 @@ VTDivideViewController *tableview;
 
 
 
+-(void)viewWillAppear:(BOOL)animated{
+  
+    [SDWebImageDownloader sharedDownloader].shouldDecompressImages = NO;
+}
 
+-(void)viewWillDisappear:(BOOL)animated{
+   
+    [SDWebImageDownloader sharedDownloader].shouldDecompressImages = YES;
+}
 
 
 
@@ -166,17 +171,21 @@ VTDivideViewController *tableview;
                 if (CarouselImgdata) {
                     [CarouselImgdata removeAllObjects ];
                 }else{
-                    CarouselImgdata=[NSMutableArray new];
+                    CarouselImgdata=[[NSMutableArray alloc]init];
                 }
-                NSMutableArray<CarouselImgResponse *> *imgdata =[CarouselImgResponse mj_objectArrayWithKeyValuesArray:response.data];
+                
+                NSMutableArray<CarouselImgResponse *> *imgdata =[NSMutableArray array];
+                [imgdata removeAllObjects ];
+                imgdata=[CarouselImgResponse mj_objectArrayWithKeyValuesArray:response.data];
                 if (imgdata.count>0) {
                     for (int i=0; i<imgdata.count; i++) {
-                        CarouselImgResponse *teamdate = imgdata[i];
-
-                        [CarouselImgdata addObject:teamdate.img_url];
+                        [CarouselImgdata addObject:imgdata[i].img_url];
                        
                     }
-                     bannerAd.imageURLStringsGroup = CarouselImgdata;
+                    if(CarouselImgdata.count>0){
+                        bannerAd.imageURLStringsGroup = CarouselImgdata;
+                    }
+                    
                 }
               
                 [scrollView.mj_header  endRefreshing];
@@ -205,6 +214,25 @@ VTDivideViewController *tableview;
     NSLog(@"---点击了第%ld张图片", (long)index);
     
 
+}
+
+// 不需要自定义轮播cell的请忽略下面的代理方法
+
+// 如果要实现自定义cell的轮播图，必须先实现customCollectionViewCellClassForCycleScrollView:和setupCustomCell:forIndex:代理方法
+
+- (Class)customCollectionViewCellClassForCycleScrollView:(SDCycleScrollView *)view
+{
+    if (view != bannerAd) {
+        return nil;
+    }
+    return [bannerCollectionViewCell class];
+}
+
+- (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view
+{
+    bannerCollectionViewCell *myCell = (bannerCollectionViewCell *)cell;
+    myCell.imageName =CarouselImgdata[index] ;
+    
 }
 
 

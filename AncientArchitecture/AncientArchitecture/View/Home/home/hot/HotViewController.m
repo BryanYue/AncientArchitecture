@@ -279,7 +279,7 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     if (indexPath.section==0) {
        
         
-        if([DEFAULTS objectForKey:@"islogin"]){
+      
             NSUserDefaults *defaults= DEFAULTS;
             
             [defaults removeObjectForKey:@"play_url"];
@@ -288,10 +288,7 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
             
             
             [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
-        }else{
-            
-            [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
-        }
+      
         
         
        

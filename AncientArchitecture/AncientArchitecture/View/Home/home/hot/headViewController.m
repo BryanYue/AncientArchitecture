@@ -15,12 +15,17 @@
 #import "teacherCollectionViewCell.h"
 #import "inlurenViewController.h"
 #import "LoginViewController.h"
+#import "CourseDetailResponse.h"
+#import "CustomCollectionViewCell.h"
+#import "playerViewController.h"
 @interface headViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,SDCycleScrollViewDelegate>
 
 @end
 
 @implementation headViewController
 NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
+NSMutableArray<CourseDetailResponse *> *adtitle;
+ SDCycleScrollView *_customCellScrollViewDemo;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -38,44 +43,104 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
 }
 
 -(void)addtextAd{
-    
-    UIImageView *title =[[UIImageView alloc]init];
-    title.image=[UIImage imageNamed:@"img_hom_hot_precourse"];
-    title.frame = CGRectMake(30, 33, title.image.size.width, title.image.size.height);
-    
+    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_playNowVideo withParams:nil withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+        NSLog(@"error%zd",error.code);
+        if (!error) {
+            BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
+            if (response.code  == 200) {
+              
+                adtitle=[NSMutableArray array];
+                [adtitle removeAllObjects ];
+                adtitle=[CourseDetailResponse mj_objectArrayWithKeyValuesArray:response.data];
+                _customCellScrollViewDemo = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 80) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+                _customCellScrollViewDemo.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
+                _customCellScrollViewDemo.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
+                
+                if (adtitle.count>0) {
+                
+                    NSMutableArray<NSString *> *CarouselImgdata =[[NSMutableArray alloc]init];;
+                    for (int i=0; i<adtitle.count; i++) {
+                        [CarouselImgdata addObject:adtitle[i].img_url];
+                        
+                    }
+                    _customCellScrollViewDemo.imageURLStringsGroup = CarouselImgdata;
+                }
+             
+                
+                [self.view addSubview:_customCellScrollViewDemo];
+                
+                
+            }
+            
+           
+            
+        }else{
+           
+        }
+        
+    }];
 
     
     
-    NSArray *textStrings = @[@"纯文字上下滚动轮播，纯文字上下滚动轮播1",
-                             @"纯文字上下滚动轮播，纯文字上下滚动轮播2",
-                             @"纯文字上下滚动轮播，纯文字上下滚动轮播3",
-                             @"纯文字上下滚动轮播，纯文字上下滚动轮播4"];
-    self.textAd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(100, 20, kScreen_Width-200, 54) delegate:self placeholderImage:nil];
-    self.textAd.scrollDirection = UICollectionViewScrollDirectionVertical;
-    self.textAd.onlyDisplayText = YES;
-    self.textAd.titlesGroup = textStrings;
-    self.textAd.titleLabelTextColor = [UIColor darkTextColor];
-    self.textAd.titleLabelBackgroundColor = [UIColor whiteColor];
     
     
-    
-    UIButton *enterButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreen_Width-70,
-                                                                       26, 45,40)];
-    [enterButton setTitle:@"查看" forState:UIControlStateNormal];
-    [enterButton setTitleColor:[UIColor_ColorChange colorWithHexString:@"952e3a"] forState:UIControlStateNormal];
-    [enterButton.layer setBorderWidth:1.0];
-    [enterButton.layer setBorderColor:[UIColor_ColorChange colorWithHexString:@"952e3a"].CGColor];
-     enterButton.backgroundColor =[UIColor clearColor];
-    
-    [enterButton addTarget:self action:@selector(enterBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view  addSubview:enterButton];
-   
-    
-    
-    
-    [self.view addSubview: title];
-    [self.view addSubview: self.textAd];
+ 
 }
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    NSLog(@"---点击了第%ld张图片", (long)index);
+    NSUserDefaults *defaults= DEFAULTS;
+    
+    [defaults removeObjectForKey:@"play_url"];
+    [defaults synchronize];
+    [defaults setObject:adtitle[index].id forKey:@"play_url"];
+    [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+    
+}
+
+
+
+
+// 不需要自定义轮播cell的请忽略下面的代理方法
+
+// 如果要实现自定义cell的轮播图，必须先实现customCollectionViewCellClassForCycleScrollView:和setupCustomCell:forIndex:代理方法
+
+- (Class)customCollectionViewCellClassForCycleScrollView:(SDCycleScrollView *)view
+{
+    if (view != _customCellScrollViewDemo) {
+        return nil;
+    }
+    return [CustomCollectionViewCell class];
+}
+
+- (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view
+{
+    CustomCollectionViewCell *myCell = (CustomCollectionViewCell *)cell;
+    myCell.title =adtitle[index].title ;
+    myCell.time =adtitle[index].start_time ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -(void)enterBtnClick{
     
     
@@ -316,7 +381,7 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
     
     if (guzhuyinluCourse.count>indexPath.row) {
         
-        if([DEFAULTS objectForKey:@"islogin"]){
+       
             NSLog(@"id %@",guzhuyinluCourse[indexPath.row].id);
             
             NSUserDefaults *defaults= DEFAULTS;
@@ -327,10 +392,7 @@ NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
             [defaults synchronize];
             
             [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
-        }else{
-           
-            [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
-        }
+       
         
         
      

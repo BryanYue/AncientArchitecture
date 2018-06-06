@@ -48,7 +48,7 @@
     // 在这个方法中, 我们只要根据当前的滚动, 对每个cell, 进行对应的缩放就可以了
     
     // 1. 获取所有的attributes对象
-    NSArray *arrayAttrs = [super layoutAttributesForElementsInRect:rect];
+    NSArray *arrayAttrs = [[NSArray alloc] initWithArray:[super layoutAttributesForElementsInRect:rect] copyItems:YES];
     
     // 2. 循环遍历这些attributes对象, 对每个对象进行缩放
     for (UICollectionViewLayoutAttributes *attr in arrayAttrs) {

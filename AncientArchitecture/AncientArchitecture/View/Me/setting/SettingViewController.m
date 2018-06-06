@@ -120,10 +120,10 @@
 }
 -(void)ispush:(UISwitch *)swi{
     if (swi.isOn) {
-        self.view.backgroundColor = [UIColor redColor];
+       
         
     }else{
-        self.view.backgroundColor = [UIColor whiteColor];
+      
         
     }
     

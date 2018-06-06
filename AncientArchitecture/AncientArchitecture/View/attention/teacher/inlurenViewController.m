@@ -48,7 +48,10 @@ UIImageView *rightImageView;
 -(void)initdata
 {
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-    [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
+    if ([DEFAULTS objectForKey:@"memberid"]) {
+        [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
+    }
+    
     [parameterCountry setObject:[DEFAULTS objectForKey:@"attteacher_id"] forKey:@"teacher_id"];
     
     

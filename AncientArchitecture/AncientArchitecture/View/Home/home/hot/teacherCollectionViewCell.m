@@ -37,7 +37,7 @@
     [self.teachernum setTitle: num forState:UIControlStateNormal];
     [self.teachernum setTitleColor:[UIColor_ColorChange whiteColor] forState:UIControlStateNormal];
     self.teachernum.titleLabel.font = [UIFont boldSystemFontOfSize:25];
-    self.teachernum.backgroundColor=[UIColor grayColor];
+    self.teachernum.backgroundColor=[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.4];
     self.teachernum.imageEdgeInsets = UIEdgeInsetsMake(0,-20,0,0);
     [self addSubview:self.teachernum];
 }

@@ -45,7 +45,7 @@ courseViewController *courseView;
     [self.topTitleLabel setText:@"我的课程"];
     self.view.backgroundColor =[UIColor whiteColor];
     if (!courseView) {
-        courseView =[courseViewController new];
+        courseView =[[courseViewController alloc]init];
         courseView.view.frame=CGRectMake(0, self.topView.frame.size.height, kScreen_Width,kScreen_Height-self.topView.frame.size.height);
         
        
@@ -65,16 +65,28 @@ courseViewController *courseView;
     
 
     
-    
-    
-    
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+   
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
     
 }
 
+
+
+
+
+
+
+
+
+
 -(void)dealloc{
-    if (courseView) {
-        courseView=nil;
-    }
+  
 }
 
 -(void)initdata

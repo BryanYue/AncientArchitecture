@@ -12,7 +12,8 @@
 #import "TeacheCourseViewCollectionViewCell.h"
 #import "startLiveViewController.h"
 
-@interface yuboViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface yuboViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+>
 
 @end
 
@@ -57,6 +58,8 @@ NSString *teacher_photoyb;
     yuboCollectionV.delaysContentTouches = true;
     
     
+    yuboCollectionV.emptyDataSetSource=self;
+    yuboCollectionV.emptyDataSetDelegate=self;
     
     [yuboCollectionV registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"yubocellid"];
     
@@ -195,5 +198,26 @@ NSString *teacher_photoyb;
     }
 }
 
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont boldSystemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
+
+
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
 
 @end

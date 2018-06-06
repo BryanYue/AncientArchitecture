@@ -52,6 +52,11 @@
 		9388FA742062388300A735F6 /* MyUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9388FA732062388300A735F6 /* MyUITextField.m */; };
 		938FCF4020C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */; };
 		938FCF4120C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		938FCF6A20C6FE4A00DF0466 /* AliyunImageSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 938FCF6920C6FE4A00DF0466 /* AliyunImageSource.bundle */; };
+		938FCF6B20C6FE5A00DF0466 /* AliyunImageSource.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 938FCF6920C6FE4A00DF0466 /* AliyunImageSource.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		938FCF7320C72DA100DF0466 /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7220C72DA100DF0466 /* CustomCollectionViewCell.m */; };
+		938FCF7720C7421E00DF0466 /* bannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7620C7421E00DF0466 /* bannerCollectionViewCell.m */; };
+		938FCF7D20C778DE00DF0466 /* forgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7C20C778DE00DF0466 /* forgetViewController.m */; };
 		93AA79C5205AC8BD002E9E10 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AA79C4205AC8BD002E9E10 /* MeViewController.m */; };
 		93AEF86D20AF1F7E00D72852 /* courseReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF86C20AF1F7E00D72852 /* courseReusableView.m */; };
 		93AEF87120AF34E700D72852 /* classificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87020AF34E700D72852 /* classificationViewController.m */; };
@@ -107,9 +112,9 @@
 			remoteGlobalIDString = F3731E051E14F52C0098F4A6;
 			remoteInfo = AliyunVodPlayerViewSDK;
 		};
-		938FCF4820C5A52800DF0466 /* PBXContainerItemProxy */ = {
+		938FCF5620C6F6F100DF0466 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 938FCF4420C5A52800DF0466 /* AliyunImageSource.xcodeproj */;
+			containerPortal = 938FCF5220C6F6F100DF0466 /* AliyunImageSource.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 834F58AA1FB801E40022D5F4;
 			remoteInfo = AliyunImageSource;
@@ -131,6 +136,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		938FCF6C20C6FE5B00DF0466 /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				938FCF6B20C6FE5A00DF0466 /* AliyunImageSource.bundle in Embed PlugIns */,
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		939161E720C2EB99003E9D1B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -234,7 +250,15 @@
 		9388FA722062388300A735F6 /* MyUITextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyUITextField.h; sourceTree = "<group>"; };
 		9388FA732062388300A735F6 /* MyUITextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyUITextField.m; sourceTree = "<group>"; };
 		938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AliyunVodPlayerViewSDK.xcodeproj; path = "../../../Downloads/AliyunPlayerMediaDemo 2/ALPlayerViewSDK/AliyunVodPlayerViewSDK.xcodeproj"; sourceTree = "<group>"; };
-		938FCF4420C5A52800DF0466 /* AliyunImageSource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AliyunImageSource.xcodeproj; path = "../../../Downloads/AliyunPlayerMediaDemo 2/AliyunImageSource/AliyunImageSource.xcodeproj"; sourceTree = "<group>"; };
+		938FCF4E20C6F68000DF0466 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		938FCF5220C6F6F100DF0466 /* AliyunImageSource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AliyunImageSource.xcodeproj; path = "../../../Downloads/AliyunPlayerMediaDemo 2/AliyunImageSource/AliyunImageSource.xcodeproj"; sourceTree = "<group>"; };
+		938FCF6920C6FE4A00DF0466 /* AliyunImageSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AliyunImageSource.bundle; sourceTree = "<group>"; };
+		938FCF7120C72DA100DF0466 /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
+		938FCF7220C72DA100DF0466 /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCell.m; sourceTree = "<group>"; };
+		938FCF7520C7421E00DF0466 /* bannerCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bannerCollectionViewCell.h; sourceTree = "<group>"; };
+		938FCF7620C7421E00DF0466 /* bannerCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bannerCollectionViewCell.m; sourceTree = "<group>"; };
+		938FCF7B20C778DE00DF0466 /* forgetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = forgetViewController.h; sourceTree = "<group>"; };
+		938FCF7C20C778DE00DF0466 /* forgetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = forgetViewController.m; sourceTree = "<group>"; };
 		93AA79C1205AC164002E9E10 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		93AA79C3205AC8BD002E9E10 /* MeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		93AA79C4205AC8BD002E9E10 /* MeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
@@ -482,6 +506,8 @@
 				93631BFF20A8335A00632B32 /* VTDivideViewController.m */,
 				93631C0020A8335A00632B32 /* CourseViewController.h */,
 				93631C0620A8335A00632B32 /* CourseViewController.m */,
+				938FCF7520C7421E00DF0466 /* bannerCollectionViewCell.h */,
+				938FCF7620C7421E00DF0466 /* bannerCollectionViewCell.m */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -521,6 +547,8 @@
 				93C3E3F720AEBCFA0018EA72 /* teacherCollectionViewCell.m */,
 				93AEF86B20AF1F7E00D72852 /* courseReusableView.h */,
 				93AEF86C20AF1F7E00D72852 /* courseReusableView.m */,
+				938FCF7120C72DA100DF0466 /* CustomCollectionViewCell.h */,
+				938FCF7220C72DA100DF0466 /* CustomCollectionViewCell.m */,
 			);
 			path = hot;
 			sourceTree = "<group>";
@@ -533,10 +561,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		938FCF4520C5A52800DF0466 /* Products */ = {
+		938FCF5320C6F6F100DF0466 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				938FCF4920C5A52800DF0466 /* AliyunImageSource.bundle */,
+				938FCF5720C6F6F100DF0466 /* AliyunImageSource.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -582,6 +610,8 @@
 			children = (
 				93BE914820600630009B9FF3 /* RegisterViewController.h */,
 				93BE914920600630009B9FF3 /* RegisterViewController.m */,
+				938FCF7B20C778DE00DF0466 /* forgetViewController.h */,
+				938FCF7C20C778DE00DF0466 /* forgetViewController.m */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -611,7 +641,8 @@
 		93C4C53420554B8F008716B3 = {
 			isa = PBXGroup;
 			children = (
-				938FCF4420C5A52800DF0466 /* AliyunImageSource.xcodeproj */,
+				938FCF6920C6FE4A00DF0466 /* AliyunImageSource.bundle */,
+				938FCF5220C6F6F100DF0466 /* AliyunImageSource.xcodeproj */,
 				938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */,
 				93AA79C1205AC164002E9E10 /* PrefixHeader.pch */,
 				93C4C53F20554B90008716B3 /* AncientArchitecture */,
@@ -836,6 +867,7 @@
 				C10158A0C5AE75B2B1183C31 /* [CP] Copy Pods Resources */,
 				939161E720C2EB99003E9D1B /* Embed Frameworks */,
 				EC3425BFE50C6CE97C017BC5 /* [CP] Embed Pods Frameworks */,
+				938FCF6C20C6FE5B00DF0466 /* Embed PlugIns */,
 			);
 			buildRules = (
 			);
@@ -921,8 +953,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 938FCF4520C5A52800DF0466 /* Products */;
-					ProjectRef = 938FCF4420C5A52800DF0466 /* AliyunImageSource.xcodeproj */;
+					ProductGroup = 938FCF5320C6F6F100DF0466 /* Products */;
+					ProjectRef = 938FCF5220C6F6F100DF0466 /* AliyunImageSource.xcodeproj */;
 				},
 				{
 					ProductGroup = 938FCF3B20C5A4E000DF0466 /* Products */;
@@ -946,11 +978,11 @@
 			remoteRef = 938FCF3E20C5A4E000DF0466 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		938FCF4920C5A52800DF0466 /* AliyunImageSource.bundle */ = {
+		938FCF5720C6F6F100DF0466 /* AliyunImageSource.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AliyunImageSource.bundle;
-			remoteRef = 938FCF4820C5A52800DF0466 /* PBXContainerItemProxy */;
+			remoteRef = 938FCF5620C6F6F100DF0466 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -962,6 +994,7 @@
 			files = (
 				93C4C54D20554B90008716B3 /* LaunchScreen.storyboard in Resources */,
 				93C4C54A20554B90008716B3 /* Assets.xcassets in Resources */,
+				938FCF6A20C6FE4A00DF0466 /* AliyunImageSource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,6 +1102,7 @@
 				93AA79C5205AC8BD002E9E10 /* MeViewController.m in Sources */,
 				93631BE320A832B600632B32 /* attteacherViewController.m in Sources */,
 				93631BF420A8330900632B32 /* buylistViewController.m in Sources */,
+				938FCF7320C72DA100DF0466 /* CustomCollectionViewCell.m in Sources */,
 				931CB93D206693BF009DC6EF /* MyHttpClient.m in Sources */,
 				93E0449C205D8AB700E34F96 /* BaseViewController.m in Sources */,
 				93631C1920A833F300632B32 /* attaourseViewController.m in Sources */,
@@ -1078,6 +1112,7 @@
 				93631C1220A8335A00632B32 /* TeacherUICollectionViewCell.m in Sources */,
 				93CC7CA7207277F900C7F64D /* THDatePickerView.m in Sources */,
 				931E40AA20721CFA002D1847 /* TeacheCourseResponse.m in Sources */,
+				938FCF7720C7421E00DF0466 /* bannerCollectionViewCell.m in Sources */,
 				931CB92620666FA0009DC6EF /* postPpreviewViewController.m in Sources */,
 				93552485206E31F50056A881 /* EditDescibreViewController.m in Sources */,
 				93F9FE8620AB16060026F781 /* inlurenViewController.m in Sources */,
@@ -1105,6 +1140,7 @@
 				93631BDF20A8329A00632B32 /* VTattenViewController.m in Sources */,
 				93631C0F20A8335A00632B32 /* xianchangViewController.m in Sources */,
 				93AEF87D20B08D0000D72852 /* relevantCourseResponse.m in Sources */,
+				938FCF7D20C778DE00DF0466 /* forgetViewController.m in Sources */,
 				93AEF87120AF34E700D72852 /* classificationViewController.m in Sources */,
 				93C3E40520AEE1A10018EA72 /* courseController.m in Sources */,
 				93631C1520A8335A00632B32 /* HotReusableView.m in Sources */,
@@ -1185,6 +1221,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				93C4C54C20554B90008716B3 /* Base */,
+				938FCF4E20C6F68000DF0466 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1196,6 +1233,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1239,6 +1277,7 @@
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -1255,6 +1294,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1292,6 +1332,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;

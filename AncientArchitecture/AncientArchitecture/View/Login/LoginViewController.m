@@ -13,6 +13,7 @@
 #import "LoginResponse.h"
 #import "WXApi.h"
 #import "NSString+AES.h"
+#import "forgetViewController.h"
 
 #define loginNotification @"loginstatus"
 
@@ -240,7 +241,7 @@
 
 
 -(void)tofor{
-//    [self presentViewController:[forgetpasswordViewController new] animated:YES completion:nil];
+ [self presentViewController:[forgetViewController new] animated:YES completion:nil];
 }
 
 //实现UITextField代理方法

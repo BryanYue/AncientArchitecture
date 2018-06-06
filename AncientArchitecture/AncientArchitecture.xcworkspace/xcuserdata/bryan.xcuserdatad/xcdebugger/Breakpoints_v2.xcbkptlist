@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AncientArchitecture/View/Me/startlive/TeacheCourseViewController.m"
-            timestampString = "549628637.184279"
+            timestampString = "549945419.5050451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "7">
             <Locations>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AncientArchitecture/View/Me/startlive/TeacheCourseViewController.m"
-            timestampString = "549628637.184343"
+            timestampString = "549945419.505101"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "TeacheCourseViewController"
             landmarkType = "3">
          </BreakpointContent>

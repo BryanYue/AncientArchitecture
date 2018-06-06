@@ -17,6 +17,7 @@
 #import "Pay.h"
 #import "orderresponse.h"
 #import "WXApi.h"
+#import "AppDelegate.h"
 
 #define weixinpayNotification @"weixinpay"
 @interface playerViewController ()<AliyunVodPlayerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
@@ -64,6 +65,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     if (self.playerView) {
         [self.playerView stop];
     }
+    [self endFullScreen];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -147,7 +149,14 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     NSLog(@"rightButtonPress");
     
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-    [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
+    
+    
+
+    
+    if ([DEFAULTS objectForKey:@"memberid"]) {
+        [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
+    }
+    
     [parameterCountry setObject:courseId forKey:@"course_id"];
     [parameterCountry setObject:@(is_playefollow) forKey:@"type"];
     
@@ -176,8 +185,15 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     NSUserDefaults *defaults= DEFAULTS;
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
     [parameterCountry setObject:courseId forKey:@"course_id"];
-    [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
-    [parameterCountry setObject:[defaults objectForKey:@"token"] forKey:@"token"];
+    
+    if ([DEFAULTS objectForKey:@"memberid"]) {
+        [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
+    }
+    
+    if ([DEFAULTS objectForKey:@"token"]) {
+        [parameterCountry setObject:[DEFAULTS objectForKey:@"token"] forKey:@"token"];
+    }
+ 
     
     [self GeneralButtonAction];
     
@@ -266,8 +282,15 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     NSUserDefaults *defaults= DEFAULTS;
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
     [parameterCountry setObject:courseId forKey:@"course_id"];
-    [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
-    [parameterCountry setObject:[defaults objectForKey:@"token"] forKey:@"token"];
+    
+    if ([DEFAULTS objectForKey:@"memberid"]) {
+        [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
+    }
+    if ([DEFAULTS objectForKey:@"token"]) {
+        [parameterCountry setObject:[DEFAULTS objectForKey:@"token"] forKey:@"token"];
+    }
+    
+  
     
     NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?course_id=%@&memberid=%@",url_getCourseDetail,courseId ,[defaults objectForKey:@"memberid"]];
     
@@ -717,11 +740,15 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     NSLog(@"isFullScreen");
     
     if (isFullScreen) {
-        
+       NSLog(@"isFullScreentrue");
         self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
-    }else{
+         
         
+    }else{
+        NSLog(@"isFullScreenfalse");
         self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
+        
+        
     }
     
     
@@ -731,8 +758,36 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     //开启循环播放时，循环播放开始接收的事件。
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [self begainFullScreen];
+}
 
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [self endFullScreen];
+}
+//进入全屏
+-(void)begainFullScreen
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.allowRotation = YES;
+}
+// 退出全屏
+-(void)endFullScreen
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.allowRotation = NO;
+    
+    //强制归正：
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val =UIInterfaceOrientationPortrait;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
+}
 
 
 @end

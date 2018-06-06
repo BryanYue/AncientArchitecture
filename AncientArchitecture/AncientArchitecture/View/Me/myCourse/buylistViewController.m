@@ -11,7 +11,8 @@
 #import "MJRefresh.h"
 #import "TeacheCourseViewCollectionViewCell.h"
 #import "buylist.h"
-@interface buylistViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface buylistViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+>
 @property(strong,nonatomic)UICollectionView *buylistCollectionV;
 @end
 
@@ -59,6 +60,8 @@ bool isrefreshing =false;
     _buylistCollectionV.delaysContentTouches = true;
     
     
+    _buylistCollectionV.emptyDataSetSource=self;
+    _buylistCollectionV.emptyDataSetDelegate=self;
     
     [_buylistCollectionV registerClass:[TeacheCourseViewCollectionViewCell class] forCellWithReuseIdentifier:@"buylistcellid"];
     
@@ -85,6 +88,27 @@ bool isrefreshing =false;
 
 
 
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont boldSystemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
+
+
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
 
 
 
@@ -190,7 +214,9 @@ bool isrefreshing =false;
                 if (response.page>i) {
                      i++;
                 }else{
-                     [_buylistCollectionV.mj_footer  endRefreshingWithNoMoreData];
+                         [_buylistCollectionV.mj_footer  endRefreshingWithNoMoreData];
+                    
+                    
                 }
                 
                 

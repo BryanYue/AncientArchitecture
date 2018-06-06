@@ -119,6 +119,12 @@
 //app支付
 #define url_weChatPay     @"/api/Wxpay/weChatPay"
 
+//首页增加个滚动的预告、进行中信息
+#define url_playNowVideo      @"/api/Document/playNowVideo"
+
+
+//忘记密码
+#define url_resetPwd      @"/api/index/resetPwd"
 
 
 #endif /* api_h */
