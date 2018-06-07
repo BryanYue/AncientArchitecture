@@ -57,13 +57,15 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
                 _customCellScrollViewDemo.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
                 
                 if (adtitle.count>0) {
-                
+                 _customCellScrollViewDemo.hidden=false;
                     NSMutableArray<NSString *> *CarouselImgdata =[[NSMutableArray alloc]init];;
                     for (int i=0; i<adtitle.count; i++) {
                         [CarouselImgdata addObject:adtitle[i].img_url];
                         
                     }
                     _customCellScrollViewDemo.imageURLStringsGroup = CarouselImgdata;
+                }else{
+                    _customCellScrollViewDemo.hidden=true;
                 }
              
                 
@@ -158,7 +160,7 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
     [self.teacherbtn setImage:[UIImage imageNamed:@"icon_teacher_black"] forState:UIControlStateNormal];
     [self.teacherbtn setTitle: @"推荐讲师" forState:UIControlStateNormal];
     [self.teacherbtn setTitleColor:[UIColor_ColorChange grayColor] forState:UIControlStateNormal];
-    self.teacherbtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    self.teacherbtn.titleLabel.font = [UIFont systemFontOfSize:20];
     self.teacherbtn.backgroundColor=[UIColor clearColor];
     self.teacherbtn.imageEdgeInsets = UIEdgeInsetsMake(0,-20,0,0);
 
@@ -184,7 +186,7 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
     [self.coursebtn setImage:[UIImage imageNamed:@"icon_teacher_black"] forState:UIControlStateNormal];
     [self.coursebtn setTitle: @"热门课程" forState:UIControlStateNormal];
     [self.coursebtn setTitleColor:[UIColor_ColorChange grayColor] forState:UIControlStateNormal];
-    self.coursebtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    self.coursebtn.titleLabel.font = [UIFont systemFontOfSize:20];
     self.coursebtn.backgroundColor=[UIColor clearColor];
     self.coursebtn.imageEdgeInsets = UIEdgeInsetsMake(0,-20,0,0);
     
@@ -225,6 +227,7 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
     self.myhotteacherCollectionV.delegate =self;
     self.myhotteacherCollectionV.dataSource =self;
     self.myhotteacherCollectionV.backgroundColor =[UIColor whiteColor];
+    self.myhotteacherCollectionV.showsHorizontalScrollIndicator =NO;
     
     self.myhotteacherCollectionV.delaysContentTouches = true;
     

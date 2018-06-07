@@ -74,7 +74,7 @@ bool isybrefreshing =false;
     
     //创建一个UICollectionView
     
-    _yibolistCollectionV = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0, kScreen_Width,kScreen_Height-30-statusBar_Height-49-50)collectionViewLayout:flowL];
+    _yibolistCollectionV = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0, kScreen_Width,kScreen_Height-70-statusBar_Height-49-50)collectionViewLayout:flowL];
     
     //设置代理为当前控制器
     

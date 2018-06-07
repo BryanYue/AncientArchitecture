@@ -198,7 +198,7 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     if (indexPath.section==0) {
         return CGSizeMake(kScreen_Width, 260);
     }else{
-        return CGSizeMake(kScreen_Width, 140);
+        return CGSizeMake(kScreen_Width, 125);
     }
     
     

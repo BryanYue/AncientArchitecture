@@ -13,6 +13,7 @@
 #import "LaunchIntroductionView.h"
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
+#import <Bugly/Bugly.h>
 #define weixinloginNotification @"weixinlogin"
 #define weixinpayNotification @"weixinpay"
 @interface AppDelegate ()<WXApiDelegate>
@@ -41,7 +42,7 @@
     // Override point for customization after application launch.
     
     //初始化Bugly
-//    [Bugly startWithAppId:@"b698bd0225"];
+    [Bugly startWithAppId:@"b698bd0225"];
     [WXApi registerApp:@"wx884bd8452e6e9112"];
     
     
@@ -61,7 +62,7 @@
     launch.currentColor = [UIColor grayColor];
     launch.nomalColor = [UIColor_ColorChange colorWithHexString:app_theme];;
    
-    
+//   [SDImageCache sharedImageCache].config.maxCacheSize = 1024 * 1024 * 500;    // 50M
     
     return YES;
 }

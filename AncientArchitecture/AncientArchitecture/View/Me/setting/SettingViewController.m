@@ -63,7 +63,7 @@
             button.backgroundColor=[UIColor_ColorChange colorWithHexString:app_theme];
             [button setTitle: titletext[i] forState:UIControlStateNormal];
             [button setTitleColor:[UIColor_ColorChange whiteColor] forState:UIControlStateNormal];
-            button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+            button.titleLabel.font = [UIFont systemFontOfSize:18];
             button.layer.cornerRadius = 18.0;
             [button addTarget:self action:@selector(loginout:) forControlEvents: UIControlEventTouchUpInside];
             [self.view addSubview:button];
@@ -77,7 +77,7 @@
             lable.frame=CGRectMake(10, 0, 80,45 );
             lable.textAlignment=NSTextAlignmentCenter;
             lable.textColor=[UIColor blackColor];
-            lable.font = [UIFont boldSystemFontOfSize:18];
+            lable.font = [UIFont systemFontOfSize:18];
             UIView *line=[UIView new];
             line.backgroundColor=[UIColor_ColorChange colorWithHexString:@"f3f3f3"];
             line.frame=CGRectMake(0, 45, kScreen_Width,1 );

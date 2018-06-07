@@ -12,7 +12,7 @@
 #import "TeacheCourseViewCollectionViewCell.h"
 #import "playerViewController.h"
 #import "LoginViewController.h"
-@interface jijiangViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface jijiangViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(strong,nonatomic)UICollectionView *jijianglistCollectionV;
 @end
 
@@ -81,7 +81,8 @@ bool isjjrefreshing =false;
     
     _jijianglistCollectionV.dataSource =self;
     
-    
+    _jijianglistCollectionV.emptyDataSetSource=self;
+    _jijianglistCollectionV.emptyDataSetDelegate=self;
     //设置背景
     
     _jijianglistCollectionV.backgroundColor =[UIColor whiteColor];
@@ -214,7 +215,12 @@ bool isjjrefreshing =false;
                 if (response.page>jji) {
                     jji++;
                 }else{
-                    [_jijianglistCollectionV.mj_footer  endRefreshingWithNoMoreData];
+                    if (jji==1) {
+                        [_jijianglistCollectionV.mj_footer  removeFromSuperview ];
+                    }else{
+                        [_jijianglistCollectionV.mj_footer  endRefreshingWithNoMoreData];
+                    }
+                    
                 }
                 
                 
@@ -261,4 +267,25 @@ bool isjjrefreshing =false;
 }
 
 
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
+
+
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
 @end

@@ -65,14 +65,17 @@ UIImageView *rightImageView;
                 TeacherResponse *yiluren =[TeacherResponse mj_objectWithKeyValues:response.data];
                 
                 if (yiluren.photo) {
-                    [inluren_image sd_setImageWithURL:[NSURL URLWithString:yiluren.photo] placeholderImage:nil completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-                        if (error) {
-                            NSLog(@"%@", error);
-                            [inluren_image setImage:[UIImage imageNamed:@"tab_icon_me_nor"]];
-                        }
-                        
-                        
-                    }];
+                
+                    [inluren_image yy_setImageWithURL:[NSURL URLWithString:yiluren.photo]
+                                                  placeholder:nil
+                                                      options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                                                     progress:nil
+                                                    transform:^UIImage *(UIImage *image, NSURL *url) {
+                                                        image = [image yy_imageByResizeToSize:CGSizeMake(kScreen_Width,yinluscrollView.frame.size.height/5*3) contentMode:UIViewContentModeScaleToFill];
+                                                        //                            return [image yy_imageByRoundCornerRadius:10];
+                                                        return  image;
+                                                    }
+                                                   completion:nil];
                 }
                 
                 if (yiluren.name) {

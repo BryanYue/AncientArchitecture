@@ -19,17 +19,24 @@
         self.imageview=[UIImageView new];
         self.imageview.userInteractionEnabled = YES;
     }
-    self.imageview.frame=CGRectMake(0, 0,kScreen_Width-20,110 );
+    self.imageview.frame=CGRectMake(10, 0,kScreen_Width-20,120 );
     [self.imageview setContentScaleFactor:[[UIScreen mainScreen] scale]];
     self.imageview.contentMode =  UIViewContentModeScaleAspectFill;
     self.imageview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.imageview.clipsToBounds  = YES;
-    [self.imageview sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:nil completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            
-        }
-        
-    }];
+  
+    
+    [self.imageview yy_setImageWithURL:[NSURL URLWithString:imageName]
+                                  placeholder:nil
+                                      options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                                     progress:nil
+                                    transform:^UIImage *(UIImage *image, NSURL *url) {
+                                        image = [image yy_imageByResizeToSize:CGSizeMake(kScreen_Width-20,120) contentMode:UIViewContentModeScaleToFill];
+                                        //                            return [image yy_imageByRoundCornerRadius:10];
+                                        return  image;
+                                    }
+                                   completion:nil];
+    
     
     
     [self addSubview:self.imageview];

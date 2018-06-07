@@ -108,7 +108,7 @@ int Coursetab;
         [lable setText:titletext[i]];
         lable.textAlignment=NSTextAlignmentCenter;
         lable.textColor=[UIColor blackColor];
-        lable.font = [UIFont boldSystemFontOfSize:18];
+        lable.font = [UIFont systemFontOfSize:18];
         
         UIView *line=[UIView new];
         line.backgroundColor=[UIColor_ColorChange colorWithHexString:@"f3f3f3"];
@@ -266,7 +266,7 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
     btnlogin.layer.cornerRadius = 20;
     [btnlogin setTintColor:[UIColor whiteColor]];
     [btnlogin addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-    btnlogin.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    btnlogin.titleLabel.font = [UIFont systemFontOfSize:15];
     
     [scrollView addSubview:btnlogin];
     height=height+btnlogin.frame.size.height+100;
@@ -436,16 +436,18 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
                     btnFrame.size.height=271-20;
                     Courseimage.frame=btnFrame;
                     
-                    [Courseimage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-                        if (error) {
-                            NSLog(@"%@", error);
-                            [Courseimage setImage:[UIImage imageNamed:@"tab_icon_me_nor"]];
-                        }
-                      
-                        
-                    }];
-                    
-                    
+            
+
+                    [Courseimage yy_setImageWithURL:[NSURL URLWithString:url]
+                                                  placeholder:nil
+                                                      options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                                                     progress:nil
+                                                    transform:^UIImage *(UIImage *image, NSURL *url) {
+                                                        image = [image yy_imageByResizeToSize:CGSizeMake(kScreen_Width-20, 271-20) contentMode:UIViewContentModeScaleToFill];
+                                                        //                            return [image yy_imageByRoundCornerRadius:10];
+                                                        return  image;
+                                                    }
+                                                   completion:nil];
                     
                 }else{
                     if (self.HUD) {

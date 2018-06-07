@@ -22,18 +22,20 @@
     self.headimageview.contentMode =  UIViewContentModeScaleAspectFill;
     self.headimageview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.headimageview.clipsToBounds  = YES;
-    [self.headimageview sd_setImageWithURL:[NSURL URLWithString:headimageName] placeholderImage:nil completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            NSLog(@"%@", error);
-            [self.headimageview setImage:[UIImage imageNamed:@"tab_icon_me_nor"]];
-        }
-        self.headimageview.layer.cornerRadius=self.headimageview.frame.size.width/2;//裁成圆角
-        self.headimageview.layer.masksToBounds=YES;//隐藏裁剪掉的部分
-        
-        
-        
-    }];
-    
+
+    [self.headimageview yy_setImageWithURL:[NSURL URLWithString:headimageName]
+                                  placeholder:nil
+                                      options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                                     progress:nil
+                                    transform:^UIImage *(UIImage *image, NSURL *url) {
+                                        image = [image yy_imageByResizeToSize:CGSizeMake(kScreen_Width/3,kScreen_Width/3) contentMode:UIViewContentModeScaleToFill];
+                                        //                            return [image yy_imageByRoundCornerRadius:10];
+                                        return  image;
+                                    }
+                                completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+                                    self.headimageview.layer.cornerRadius=self.headimageview.frame.size.width/2;//裁成圆角
+                                    self.headimageview.layer.masksToBounds=YES;//隐藏裁剪掉的部分
+                                }];
     
     [self addSubview:self.headimageview];
 }

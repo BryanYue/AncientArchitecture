@@ -57,6 +57,8 @@ VTDivideViewController *tableview;
     UIImageView *back =[[UIImageView alloc]init];
     back.image=[UIImage imageNamed:@"img_theme_bg_top"];
     back.frame = CGRectMake(0, 0, kScreen_Width, 44+statusBar_Height);
+    back.alpha = 0.8; // 设置透明度
+    
     
     UIImageView *title =[[UIImageView alloc]init];
     title.image=[UIImage imageNamed:@"img_logo_title"];
@@ -96,10 +98,10 @@ VTDivideViewController *tableview;
         
         
         
-    bannerAd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 224) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    bannerAd.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
+        bannerAd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 224) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        bannerAd.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
         bannerAd.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
-        bannerAd.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+        bannerAd.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         bannerAd.currentPageDotColor = [UIColor whiteColor];
 
 //        bannerAd.imageURLStringsGroup = imagesURLStrings;
@@ -124,7 +126,7 @@ VTDivideViewController *tableview;
     scrollView.contentSize=CGSizeMake(kScreen_Width, height);
     [self.view addSubview:scrollView];
    
-//    [self initdata];
+    [self initdata];
 }
 
 
@@ -183,6 +185,7 @@ VTDivideViewController *tableview;
                        
                     }
                     if(CarouselImgdata.count>0){
+                       
                         bannerAd.imageURLStringsGroup = CarouselImgdata;
                     }
                     

@@ -66,7 +66,7 @@
     [exit setTitle:@"返回" forState:UIControlStateNormal];
     [exit setImage:[UIImage imageNamed:@"nav_icon_back"] forState:UIControlStateNormal];
     [exit setTintColor:[UIColor whiteColor]];
-    exit.titleLabel.font =[UIFont boldSystemFontOfSize:15];
+    exit.titleLabel.font =[UIFont systemFontOfSize:15];
     [exit setFrame:CGRectMake(11, statusBar_Height+5, 50, 18)];
     //
     exit.titleEdgeInsets = UIEdgeInsetsMake(0,0,0,-10);
@@ -79,7 +79,7 @@
     UILabel *title =[UILabel new];
     [title setText:@"非物质"];
     [title setTextColor:[UIColor_ColorChange colorWithHexString:app_theme]];
-    title.font =[UIFont boldSystemFontOfSize:25];
+    title.font =[UIFont systemFontOfSize:25];
     title.textAlignment=NSTextAlignmentCenter;
     [title setFrame:CGRectMake(0, kScreen_Height/9*2+20, kScreen_Width, 20)];
     
@@ -132,7 +132,7 @@
     forgetpassword =[[UILabel alloc ] init];
     [forgetpassword setText:@"忘记密码"];
     [forgetpassword setTextColor:[UIColor whiteColor]];
-    forgetpassword.font =[UIFont boldSystemFontOfSize:14];
+    forgetpassword.font =[UIFont systemFontOfSize:14];
     forgetpassword.textAlignment=NSTextAlignmentRight;
     [forgetpassword setFrame:CGRectMake(40, kScreen_Height/9*3+105, kScreen_Width-80, 20)];
     forgetpassword.userInteractionEnabled = YES;
@@ -144,7 +144,7 @@
     UILabel *wechattitle =[[UILabel alloc ] init];
     [wechattitle setText:@"微信登录"];
     [wechattitle setTextColor:[UIColor whiteColor]];
-    wechattitle.font =[UIFont boldSystemFontOfSize:12];
+    wechattitle.font =[UIFont systemFontOfSize:12];
     wechattitle.textAlignment=NSTextAlignmentCenter;
     [wechattitle setFrame:CGRectMake(kScreen_Width/2-30, kScreen_Height/9*7, 60, 20)];
     
@@ -161,7 +161,7 @@
     //    btnlogin.layer.cornerRadius = 20;
     
     [btnlogin addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-    btnlogin.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    btnlogin.titleLabel.font = [UIFont systemFontOfSize:15];
     
     
     UIButton * btnregist = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -174,7 +174,7 @@
     //    btnregist.layer.cornerRadius = 20;
     [btnregist.layer setBorderWidth:1.0];
     [btnregist.layer setBorderColor:[UIColor whiteColor].CGColor];
-    btnregist.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    btnregist.titleLabel.font = [UIFont systemFontOfSize:15];
     [btnregist addTarget:self action:@selector(regist) forControlEvents:UIControlEventTouchUpInside];
     
     

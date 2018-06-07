@@ -96,7 +96,7 @@ NSMutableArray* buttons;
         lable.frame=CGRectMake(10, 0, 80,view.frame.size.height-1 );
         lable.textAlignment=NSTextAlignmentCenter;
         lable.textColor=[UIColor blackColor];
-        lable.font = [UIFont boldSystemFontOfSize:18];
+        lable.font = [UIFont systemFontOfSize:18];
         UIView *line=[UIView new];
         line.backgroundColor=[UIColor_ColorChange colorWithHexString:@"f3f3f3"];
         line.frame=CGRectMake(0, lable.frame.size.height, kScreen_Width,1 );
@@ -135,7 +135,7 @@ NSMutableArray* buttons;
                     btnRect.origin.x += 46;
                     [btn setTitle:optionTitle forState:UIControlStateNormal];
                     [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-                    btn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+                    btn.titleLabel.font = [UIFont systemFontOfSize:17];
                     [btn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
                     [btn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateSelected];
                     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
@@ -342,15 +342,17 @@ NSMutableArray* buttons;
                 NSDictionary *data =response.data;
                 NSString *url=[data objectForKey:@"headimgurl"];
                 
-                [headimage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"tab_icon_me_nor"] completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-                    if (error) {
-                        NSLog(@"%@", error);
-                        [headimage setImage:[UIImage imageNamed:@"tab_icon_me_nor"]];
-                    }
-                    
-                }];
-                
-                
+          
+                [headimage yy_setImageWithURL:[NSURL URLWithString:url]
+                                              placeholder:nil
+                                                  options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                                                 progress:nil
+                                                transform:^UIImage *(UIImage *image, NSURL *url) {
+                                                    image = [image yy_imageByResizeToSize:CGSizeMake(headimage.frame.size.width, headimage.frame.size.height) contentMode:UIViewContentModeScaleToFill];
+                                                    //                            return [image yy_imageByRoundCornerRadius:10];
+                                                    return  image;
+                                                }
+                                               completion:nil];
                 
             }else{
                 if (self.HUD) {
@@ -406,23 +408,32 @@ NSMutableArray* buttons;
                     NSDictionary *data =response.data;
                     NSString *url=[data objectForKey:@"headimgurl"];
                     
-                    [headimage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"tab_icon_me_nor"] completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-                        if (error) {
-                            NSLog(@"%@", error);
-                           [headimage setImage:[UIImage imageNamed:@"tab_icon_me_nor"]];
-                        }
-                        //  把头像设置成圆形
-                        headimage.layer.cornerRadius=headimage.frame.size.width/2;//裁成圆角
-                        headimage.layer.masksToBounds=YES;//隐藏裁剪掉的部分
-                        //  给头像加一个圆形边框
-                        headimage.layer.borderWidth = 1.5f;//宽度
-                        headimage.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
-                        
-                        [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", true]}];
-                       
-                    }];
-                    
+            
                   
+                    [headimage yy_setImageWithURL:[NSURL URLWithString:url]
+                                                  placeholder:nil
+                                                      options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                                                     progress:nil
+                                                    transform:^UIImage *(UIImage *image, NSURL *url) {
+                                                        image = [image yy_imageByResizeToSize:CGSizeMake(headimage.frame.size.width, headimage.frame.size.height) contentMode:UIViewContentModeScaleToFill];
+                                                        //                            return [image yy_imageByRoundCornerRadius:10];
+                                                        return  image;
+                                                    }
+                                       completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+                                           //  把头像设置成圆形
+                                           headimage.layer.cornerRadius=headimage.frame.size.width/2;//裁成圆角
+                                           headimage.layer.masksToBounds=YES;//隐藏裁剪掉的部分
+                                           //  给头像加一个圆形边框
+                                           headimage.layer.borderWidth = 1.5f;//宽度
+                                           headimage.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
+                                           
+                                           [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", true]}];
+                                           
+                                           
+                                           
+                                       }];
+                    
+                    
                     
                 }else{
                     if (self.HUD) {
@@ -472,18 +483,30 @@ NSMutableArray* buttons;
     
     
     
-    [headimage sd_setImageWithURL:[NSURL URLWithString:user.headimgurl] placeholderImage:[UIImage imageNamed:@"tab_icon_me_nor"] completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            NSLog(@"%@", error);
-            [headimage setImage:[UIImage imageNamed:@"tab_icon_me_nor"]];
-        }
-        //  把头像设置成圆形
-        headimage.layer.cornerRadius=headimage.frame.size.width/2;//裁成圆角
-        headimage.layer.masksToBounds=YES;//隐藏裁剪掉的部分
-        //  给头像加一个圆形边框
-        headimage.layer.borderWidth = 1.5f;//宽度
-        headimage.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
-    }];
+ 
+    
+    
+    [headimage yy_setImageWithURL:[NSURL URLWithString:user.headimgurl]
+                                  placeholder:nil
+                                      options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                                     progress:nil
+                                    transform:^UIImage *(UIImage *image, NSURL *url) {
+                                        image = [image yy_imageByResizeToSize:CGSizeMake(headimage.frame.size.width, headimage.frame.size.height) contentMode:UIViewContentModeScaleToFill];
+                                        //                            return [image yy_imageByRoundCornerRadius:10];
+                                        return  image;
+                                    }
+                       completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+                           //  把头像设置成圆形
+                           headimage.layer.cornerRadius=headimage.frame.size.width/2;//裁成圆角
+                           headimage.layer.masksToBounds=YES;//隐藏裁剪掉的部分
+                           //  给头像加一个圆形边框
+                           headimage.layer.borderWidth = 1.5f;//宽度
+                           headimage.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
+                           
+                       }];
+    
+    
+    
     if (user.nick) {
         [lablenick setText:user.nick];
     }

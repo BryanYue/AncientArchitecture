@@ -59,7 +59,7 @@ NSMutableArray<CourseDetailResponse *>  *searchhCourse;
                                         NSFontAttributeName:searchText.font
                                         }];
     searchText.attributedPlaceholder = attrpasswd;
-    searchText.textColor=[UIColor whiteColor];
+    searchText.textColor=[UIColor blackColor];
     UIImageView *imagepasswd=[[UIImageView alloc]init];
     imagepasswd.image =[UIImage imageNamed:@"icon_search_gray"];
     imagepasswd.frame=CGRectMake(0, 0, imagepasswd.image.size.width, imagepasswd.image.size.height);

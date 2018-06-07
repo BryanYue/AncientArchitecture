@@ -27,7 +27,7 @@
         [enterButton.layer setBorderWidth:1.0];
         [enterButton.layer setBorderColor:[UIColor_ColorChange colorWithHexString:@"952e3a"].CGColor];
         enterButton.backgroundColor =[UIColor clearColor];
-        enterButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        enterButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [self  addSubview:enterButton];
         [self setBackgroundColor:[UIColor whiteColor]];
     }
@@ -44,7 +44,7 @@
     self.Customtitle.frame = CGRectMake(70, 20, kScreen_Width-120, 30);
     self.Customtitle.textAlignment = NSTextAlignmentLeft;
     self.Customtitle.textColor = [UIColor blackColor];
-     self.Customtime.font = [UIFont boldSystemFontOfSize:20];
+     self.Customtime.font = [UIFont systemFontOfSize:20];
     [self.Customtitle setText: title];
     [self addSubview:self.Customtitle];
 }
@@ -56,7 +56,7 @@
     self.Customtime.frame = CGRectMake(70, 43, kScreen_Width-120, 30);
     self.Customtime.textAlignment = NSTextAlignmentLeft;
     self.Customtime.textColor = [UIColor grayColor];
-    self.Customtime.font = [UIFont boldSystemFontOfSize:16];
+    self.Customtime.font = [UIFont systemFontOfSize:16];
     [self.Customtime setText: time];
     [self addSubview:self.Customtime];
 }

@@ -11,7 +11,9 @@ target 'AncientArchitecture' do
     pod 'AFNetworking', '~> 3.0'
     
     pod 'SDWebImage'
-    
+    pod 'YYWebImage'
+  
+  
     pod 'MJExtension'
 
     pod 'WechatOpenSDK'
@@ -39,5 +41,5 @@ target 'AncientArchitecture' do
     pod 'PgyUpdate'
     
     pod 'DZNEmptyDataSet'
-    
+    pod 'Bugly'
 end

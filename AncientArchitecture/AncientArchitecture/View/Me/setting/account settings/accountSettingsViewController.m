@@ -59,7 +59,7 @@
         lable.frame=CGRectMake(10, 0, 80,45 );
         lable.textAlignment=NSTextAlignmentCenter;
         lable.textColor=[UIColor blackColor];
-        lable.font = [UIFont boldSystemFontOfSize:18];
+        lable.font = [UIFont systemFontOfSize:18];
         UIView *line=[UIView new];
         line.backgroundColor=[UIColor_ColorChange colorWithHexString:@"f3f3f3"];
         line.frame=CGRectMake(0, 45, kScreen_Width,1 );
@@ -79,7 +79,7 @@
             lablep.frame=CGRectMake(kScreen_Width/2-40, 0, kScreen_Width/2,45 );
             lablep.textAlignment=NSTextAlignmentRight;
             lablep.textColor=[UIColor blackColor];
-            lablep.font = [UIFont boldSystemFontOfSize:18];
+            lablep.font = [UIFont systemFontOfSize:18];
             [view addSubview:lablep];
             
         }

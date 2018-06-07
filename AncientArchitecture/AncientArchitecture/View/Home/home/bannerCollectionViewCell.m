@@ -23,15 +23,22 @@
     self.imageview.contentMode =  UIViewContentModeScaleAspectFill;
     self.imageview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.imageview.clipsToBounds  = YES;
-    [self.imageview sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:nil completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            
-        }
-        
-    }];
-    
-    
     [self addSubview:self.imageview];
+    
+
+    [self.imageview yy_setImageWithURL:[NSURL URLWithString:imageName]
+                      placeholder:nil
+                        options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                        progress:nil
+                        transform:^UIImage *(UIImage *image, NSURL *url) {
+                            image = [image yy_imageByResizeToSize:CGSizeMake(kScreen_Width, 224) contentMode:UIViewContentModeScaleToFill];
+//                            return [image yy_imageByRoundCornerRadius:10];
+                            return  image;
+                        }
+                       completion:nil];
+    
+  
+    
 }
 
 @end

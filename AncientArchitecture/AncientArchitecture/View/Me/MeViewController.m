@@ -144,7 +144,7 @@ NSString *isteacher;
         [button setImage:[UIImage imageNamed:pictures[i]] forState:UIControlStateNormal];
         [button setTitle: title[i] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor_ColorChange colorWithHexString:@"333333"] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
         button.backgroundColor=[UIColor whiteColor];
         
       
@@ -381,18 +381,30 @@ NSString *isteacher;
                     }
                 }
                 userid.text=[NSString stringWithFormat:@"%@%@", @"ID: ", [defaults objectForKey:@"memberid"]];
-                [imageView sd_setImageWithURL:[NSURL URLWithString:userinfo.headimgurl] placeholderImage:[UIImage imageNamed:@"tab_icon_me_nor"] completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-                    if (error) {
-                        NSLog(@"%@", error);
-                        [imageView setImage:[UIImage imageNamed:@"tab_icon_me_nor"]];
-                    }
-                    //  把头像设置成圆形
-                    imageView.layer.cornerRadius=imageView.frame.size.width/2;//裁成圆角
-                    imageView.layer.masksToBounds=YES;//隐藏裁剪掉的部分
-                    //  给头像加一个圆形边框
-                    imageView.layer.borderWidth = 1.5f;//宽度
-                    imageView.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
-                }];
+            
+                
+                
+                [imageView yy_setImageWithURL:[NSURL URLWithString:userinfo.headimgurl]
+                                              placeholder:nil
+                                                  options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                                                 progress:nil
+                                                transform:^UIImage *(UIImage *image, NSURL *url) {
+                                                    image = [image yy_imageByResizeToSize:CGSizeMake(75, 75) contentMode:UIViewContentModeScaleToFill];
+                                                    //                            return [image yy_imageByRoundCornerRadius:10];
+                                                    return  image;
+                                                }
+                                               completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+                                                   //  把头像设置成圆形
+                                                   imageView.layer.cornerRadius=imageView.frame.size.width/2;//裁成圆角
+                                                   imageView.layer.masksToBounds=YES;//隐藏裁剪掉的部分
+                                                   //  给头像加一个圆形边框
+                                                   imageView.layer.borderWidth = 1.5f;//宽度
+                                                   imageView.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
+                                               }];
+                
+                
+                
+                
               
                 NSUserDefaults *defaults =DEFAULTS;
                 if (userinfo.descibre) {

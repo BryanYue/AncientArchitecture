@@ -22,7 +22,7 @@
         self.title.textColor=[UIColor_ColorChange grayColor];
         self.title.numberOfLines=1;
         self.title.frame=CGRectMake(20,0,kScreen_Width,40);
-        self.title.font = [UIFont boldSystemFontOfSize:15];
+        self.title.font = [UIFont systemFontOfSize:15];
     }
   
    

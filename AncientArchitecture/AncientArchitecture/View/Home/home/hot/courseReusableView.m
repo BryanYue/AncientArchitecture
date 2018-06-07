@@ -21,10 +21,10 @@
         }
         
         self.courseresbtn.frame = CGRectMake(kScreen_Width/3, 20, kScreen_Width/3, 40);
-        [self.courseresbtn setImage:[UIImage imageNamed:@"icon_teacher_black"] forState:UIControlStateNormal];
-        [self.courseresbtn setTitle: @"分类课程" forState:UIControlStateNormal];
+        [self.courseresbtn setImage:[UIImage imageNamed:@"icon_course_category"] forState:UIControlStateNormal];
+        [self.courseresbtn setTitle: @"课程分类" forState:UIControlStateNormal];
         [self.courseresbtn setTitleColor:[UIColor_ColorChange grayColor] forState:UIControlStateNormal];
-        self.courseresbtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        self.courseresbtn.titleLabel.font = [UIFont systemFontOfSize:20];
         self.courseresbtn.backgroundColor=[UIColor clearColor];
         self.courseresbtn.imageEdgeInsets = UIEdgeInsetsMake(0,-20,0,0);
         

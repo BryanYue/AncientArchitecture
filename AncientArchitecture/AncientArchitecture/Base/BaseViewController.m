@@ -54,7 +54,7 @@
     self.topTitleLabel.backgroundColor=[UIColor clearColor];
     self.topTitleLabel.textAlignment=NSTextAlignmentCenter;
     self.topTitleLabel.textColor=[UIColor whiteColor];
-    self.topTitleLabel.font = [UIFont boldSystemFontOfSize:18];
+    self.topTitleLabel.font = [UIFont systemFontOfSize:18];
     [self.topView addSubview:self.topTitleLabel];
     [self.view addSubview:self.topView];
 }

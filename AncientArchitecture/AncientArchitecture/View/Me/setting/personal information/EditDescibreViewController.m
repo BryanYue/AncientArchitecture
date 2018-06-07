@@ -51,7 +51,7 @@ UITextView  *textfild;
     lable.frame=CGRectMake(14,self.topView.frame.size.height+30, 80,20 );
     lable.textAlignment=NSTextAlignmentLeft;
     lable.textColor=[UIColor blackColor];
-    lable.font = [UIFont boldSystemFontOfSize:18];
+    lable.font = [UIFont systemFontOfSize:18];
    
     [self.view addSubview:lable];
     
@@ -62,7 +62,7 @@ UITextView  *textfild;
     textfild.text= [defaults objectForKey:@"descibre"];;
     textfild.frame=CGRectMake(10, self.topView.frame.size.height+60, kScreen_Width-20, kScreen_Height/3);
     textfild.textAlignment = NSTextAlignmentCenter;
-    textfild.font =  [UIFont boldSystemFontOfSize:18];
+    textfild.font =  [UIFont systemFontOfSize:18];
     textfild.textColor=[UIColor blackColor];
     // 设置文本对齐方式
     textfild.textAlignment = NSTextAlignmentLeft;

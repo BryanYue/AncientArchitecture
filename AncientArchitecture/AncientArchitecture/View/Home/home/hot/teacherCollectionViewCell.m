@@ -36,7 +36,7 @@
     [self.teachernum setImage:[UIImage imageNamed:@"icon_colloect_white"] forState:UIControlStateNormal];
     [self.teachernum setTitle: num forState:UIControlStateNormal];
     [self.teachernum setTitleColor:[UIColor_ColorChange whiteColor] forState:UIControlStateNormal];
-    self.teachernum.titleLabel.font = [UIFont boldSystemFontOfSize:25];
+    self.teachernum.titleLabel.font = [UIFont systemFontOfSize:25];
     self.teachernum.backgroundColor=[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.4];
     self.teachernum.imageEdgeInsets = UIEdgeInsetsMake(0,-20,0,0);
     [self addSubview:self.teachernum];
@@ -55,16 +55,22 @@
     self.teacherimageview.contentMode =  UIViewContentModeScaleAspectFill;
     self.teacherimageview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.teacherimageview.clipsToBounds  = YES;
-    [self.teacherimageview sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:nil completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            NSLog(@"%@", error);
-            [self.teacherimageview setImage:[UIImage imageNamed:@"tab_icon_me_nor"]];
-        }
-        
-        
-        
-        
-    }];
+    
+    
+    [self.teacherimageview yy_setImageWithURL:[NSURL URLWithString:imageName]
+                           placeholder:nil
+                               options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                              progress:nil
+                             transform:^UIImage *(UIImage *image, NSURL *url) {
+//                                 image = [image yy_imageByResizeToSize:CGSizeMake(200, 260) contentMode:UIViewContentModeScaleToFill];
+                                 //                            return [image yy_imageByRoundCornerRadius:10];
+                                 return  image;
+                             }
+                            completion:nil];
+    
+    
+    
+    
     
     
     [self addSubview:self.teacherimageview];

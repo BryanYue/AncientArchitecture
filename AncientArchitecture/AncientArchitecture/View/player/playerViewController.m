@@ -41,6 +41,12 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     self.view.backgroundColor=[UIColor whiteColor];
     //注册观察者
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weixinpay:) name:weixinpayNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification object:nil]; //监听是否触发home键挂起程序.
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil]; //监听是否重新进入程序程序.
     [self initview];
 }
 //收到通知
@@ -68,6 +74,27 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     [self endFullScreen];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
+- (void)applicationWillResignActive:(NSNotification *)notification
+
+{
+    if (self.playerView) {
+        [self.playerView pause];
+    }
+    [self endFullScreen];
+    
+}
+
+
+- (void)applicationDidBecomeActive:(NSNotification *)notification
+{
+   [self begainFullScreen];
+}
+
+
+
+
 
 
 -(void)initview{
@@ -102,7 +129,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     //设置播放器代理
     [self.playerView setDelegate:self];
     //将播放器添加到需要展示的界面上
-    [self.view addSubview: self.playerView];
+    
     //prepareToPlay:此方法传入的参数是NSURL类型.
     self.playerView.circlePlay = NO;
     //   [self.playerView setAutoPlay:YES];
@@ -137,7 +164,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 -(void)addRightbutton:(NSString *)image{
     self.rightChangeBtn = [[UIImageView alloc] init];
     self.rightChangeBtn.image = [UIImage imageNamed:image];
-    self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
+    self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-25- self.rightChangeBtn.image.size.width, statusBar_Height,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
     
     self.rightChangeBtn.userInteractionEnabled = YES;
     [self.rightChangeBtn addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(rightButtonPress)]];
@@ -290,11 +317,11 @@ NSMutableArray<relevantCourseResponse *> *relevant;
         [parameterCountry setObject:[DEFAULTS objectForKey:@"token"] forKey:@"token"];
     }
     
-  
+   
     
     NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?course_id=%@&memberid=%@",url_getCourseDetail,courseId ,[defaults objectForKey:@"memberid"]];
     
-    [self GeneralButtonAction];
+   
     
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_isFreePlay withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
@@ -348,7 +375,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_cate_name.textColor=[UIColor_ColorChange colorWithHexString:app_theme];
                 tlabele_cate_name.numberOfLines=1;
                 tlabele_cate_name.frame=CGRectMake(20, 0,kScreen_Width/2,40);
-                tlabele_cate_name.font = [UIFont boldSystemFontOfSize:15];
+                tlabele_cate_name.font = [UIFont systemFontOfSize:15];
                 [tlabele_cate_name setText:detailResponse.cate_name];
                 [self.uiview addSubview:tlabele_cate_name];
                 
@@ -358,7 +385,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_title.textColor=[UIColor_ColorChange blackColor];
                 tlabele_title.numberOfLines=1;
                 tlabele_title.frame=CGRectMake(kScreen_Width/2, 0,kScreen_Width/2-20,40);
-                tlabele_title.font = [UIFont boldSystemFontOfSize:20];
+                tlabele_title.font = [UIFont systemFontOfSize:18];
                 [tlabele_title setText:detailResponse.title];
                 [self.uiview addSubview:tlabele_title];
                 playerViewh=playerViewh+40;
@@ -391,7 +418,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                         tlabele_buy_num.textColor=[UIColor_ColorChange grayColor];
                         tlabele_buy_num.numberOfLines=1;
                         tlabele_buy_num.frame=CGRectMake(20, playerViewh,kScreen_Width/3,40);
-                        tlabele_buy_num.font = [UIFont boldSystemFontOfSize:15];
+                        tlabele_buy_num.font = [UIFont systemFontOfSize:15];
                         NSString *num=[detailResponse.buy_num stringByAppendingString: @"位学员学习"];
                         [tlabele_buy_num setText:num];
                         [self.uiview addSubview:tlabele_buy_num];
@@ -402,7 +429,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                         tlabele_price.textColor=[UIColor_ColorChange colorWithHexString:app_theme];
                         tlabele_price.numberOfLines=1;
                         tlabele_price.frame=CGRectMake(kScreen_Width/3, playerViewh,kScreen_Width/3,40);
-                        tlabele_price.font = [UIFont boldSystemFontOfSize:15];
+                        tlabele_price.font = [UIFont systemFontOfSize:15];
                         NSString *price=[@"￥" stringByAppendingString:detailResponse.price ];
                         [tlabele_price setText:price];
                         [self.uiview addSubview:tlabele_price];
@@ -417,7 +444,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                         btnbuy.layer.masksToBounds=YES;
                         btnbuy.layer.cornerRadius = 10;
                         [btnbuy addTarget:self action:@selector(buy) forControlEvents:UIControlEventTouchUpInside];
-                        btnbuy.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+                        btnbuy.titleLabel.font = [UIFont systemFontOfSize:18];
                         [self.uiview addSubview:btnbuy];
                         
                         
@@ -446,7 +473,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                     tlabele_start_time.textColor=[UIColor_ColorChange grayColor];
                     tlabele_start_time.numberOfLines=1;
                     tlabele_start_time.frame=CGRectMake(kScreen_Width/3, playerViewh,kScreen_Width/3*2-10,40);
-                    tlabele_start_time.font = [UIFont boldSystemFontOfSize:15];
+                    tlabele_start_time.font = [UIFont systemFontOfSize:15];
                     NSString *time=[@"开课时间：" stringByAppendingString:detailResponse.start_time ];
                     [tlabele_start_time setText:time];
                     [self.uiview addSubview:tlabele_start_time];
@@ -457,7 +484,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                     tlabele_time.textColor=[UIColor_ColorChange grayColor];
                     tlabele_time.numberOfLines=1;
                     tlabele_time.frame=CGRectMake(kScreen_Width/3, playerViewh+40,kScreen_Width/3*2-10,40);
-                    tlabele_time.font = [UIFont boldSystemFontOfSize:15];
+                    tlabele_time.font = [UIFont systemFontOfSize:15];
                     NSString *litime=[@"课程时长：" stringByAppendingString:detailResponse.class_hour ];
                     litime=[litime stringByAppendingString:@"分钟" ];
                     [tlabele_time setText:litime];
@@ -482,7 +509,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_jianjie.textColor=[UIColor_ColorChange blackColor];
                 tlabele_jianjie.numberOfLines=1;
                 tlabele_jianjie.frame=CGRectMake(20, playerViewh,kScreen_Width/2,40);
-                tlabele_jianjie.font = [UIFont boldSystemFontOfSize:20];
+                tlabele_jianjie.font = [UIFont systemFontOfSize:18];
                 [tlabele_jianjie setText:@"课程简介"];
                 [self.uiview addSubview:tlabele_jianjie];
                 playerViewh=playerViewh+40;
@@ -492,13 +519,20 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_describe.textAlignment=NSTextAlignmentLeft;
                 tlabele_describe.textColor=[UIColor_ColorChange grayColor];
                 tlabele_describe.frame=CGRectMake(30, playerViewh,kScreen_Width/2,40);
-                tlabele_describe.font = [UIFont boldSystemFontOfSize:18];
+                tlabele_describe.font = [UIFont systemFontOfSize:16];
                 if (detailResponse.describe) {
                     [tlabele_describe setText:detailResponse.describe];
+                    tlabele_describe.numberOfLines=0;//行数设为0，表示不限制行数
+                    //根据label的内容和label的font为label设置frame，100为label的长度
+                    CGRect txRect = [tlabele_describe.text boundingRectWithSize:CGSizeMake(kScreen_Width, [UIScreen mainScreen].bounds.size.height*10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:tlabele_describe.font} context:nil];
+                    tlabele_describe.frame=CGRectMake(20, playerViewh, txRect.size.width, txRect.size.height+60);//重新为label设置frame
+                    
+                    
+                    
                 }
                 
                 [self.uiview addSubview:tlabele_describe];
-                playerViewh=playerViewh+40;
+                playerViewh=playerViewh+tlabele_describe.frame.size.height;;
                 
                 
                 UIView *line3=[[UIView alloc] init ];
@@ -511,9 +545,8 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 UILabel *tlabele_neirong=[[UILabel alloc] init];
                 tlabele_neirong.textAlignment=NSTextAlignmentLeft;
                 tlabele_neirong.textColor=[UIColor_ColorChange blackColor];
-                tlabele_neirong.numberOfLines=1;
                 tlabele_neirong.frame=CGRectMake(20, playerViewh,kScreen_Width/2,40);
-                tlabele_neirong.font = [UIFont boldSystemFontOfSize:20];
+                tlabele_neirong.font = [UIFont systemFontOfSize:18];
                 [tlabele_neirong setText:@"课程内容"];
                 [self.uiview addSubview:tlabele_neirong];
                 playerViewh=playerViewh+40;
@@ -523,13 +556,21 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_content.textAlignment=NSTextAlignmentLeft;
                 tlabele_content.textColor=[UIColor_ColorChange grayColor];
                 tlabele_content.frame=CGRectMake(30, playerViewh,kScreen_Width/2,40);
-                tlabele_content.font = [UIFont boldSystemFontOfSize:18];
+                tlabele_content.font = [UIFont systemFontOfSize:16];
                 if (detailResponse.content) {
                     [tlabele_content setText:detailResponse.content];
+                    
+                    tlabele_content.numberOfLines=0;//行数设为0，表示不限制行数
+                    //根据label的内容和label的font为label设置frame，100为label的长度
+                    CGRect txRect = [tlabele_content.text boundingRectWithSize:CGSizeMake(kScreen_Width, [UIScreen mainScreen].bounds.size.height*10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:tlabele_content.font} context:nil];
+                    tlabele_content.frame=CGRectMake(20, playerViewh, txRect.size.width-20, txRect.size.height+60);//重新为label设置frame
+                    
+                    
+                    
                 }
                 [tlabele_content setText:detailResponse.content];
                 [self.uiview addSubview:tlabele_content];
-                playerViewh=playerViewh+40;
+                playerViewh=playerViewh+tlabele_content.frame.size.height;
                 
                 
                 UIView *line4=[[UIView alloc] init ];
@@ -544,17 +585,16 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 tlabele_xiangguan.textColor=[UIColor_ColorChange blackColor];
                 tlabele_xiangguan.numberOfLines=1;
                 tlabele_xiangguan.frame=CGRectMake(20, playerViewh,kScreen_Width/2,40);
-                tlabele_xiangguan.font = [UIFont boldSystemFontOfSize:20];
+                tlabele_xiangguan.font = [UIFont systemFontOfSize:18];
                 [tlabele_xiangguan setText:@"相关课程"];
                 [self.uiview addSubview:tlabele_xiangguan];
                 playerViewh=playerViewh+40;
                 
-                self.uiview.frame=CGRectMake(0, 0, kScreen_Width, playerViewh);
-                [self.scrollView addSubview: self.uiview ];
+               
                 
                 
-                self.scrollView.contentSize=CGSizeMake(kScreen_Width, playerViewh);
-                [self.view addSubview:self.scrollView];
+               
+                
                 
                 
                 
@@ -601,11 +641,17 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     
     [self.collection registerClass:[xiangguanCollectionViewCell class] forCellWithReuseIdentifier:@"xiangguan"];
     
+    playerViewh=playerViewh+kScreen_Height/3*2;
     
     
+    [self.uiview addSubview: self.collection ];
+    self.uiview.frame=CGRectMake(0, 0, kScreen_Width, playerViewh);
+    [self.scrollView addSubview: self.uiview ];
     
-    [self.scrollView addSubview: self.collection ];
     
+    self.scrollView.contentSize=CGSizeMake(kScreen_Width, playerViewh);
+    [self.view addSubview:self.scrollView];
+    [self.view addSubview: self.playerView];
 }
 
 
@@ -742,12 +788,12 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     if (isFullScreen) {
        NSLog(@"isFullScreentrue");
         self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
-         
+        self.scrollView.hidden=true;
         
     }else{
         NSLog(@"isFullScreenfalse");
-        self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
-        
+         self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-25- self.rightChangeBtn.image.size.width, statusBar_Height,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
+        self.scrollView.hidden=false;
         
     }
     

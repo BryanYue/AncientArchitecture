@@ -57,6 +57,7 @@
 		938FCF7320C72DA100DF0466 /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7220C72DA100DF0466 /* CustomCollectionViewCell.m */; };
 		938FCF7720C7421E00DF0466 /* bannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7620C7421E00DF0466 /* bannerCollectionViewCell.m */; };
 		938FCF7D20C778DE00DF0466 /* forgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7C20C778DE00DF0466 /* forgetViewController.m */; };
+		938FCF9720C8652800DF0466 /* YYCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF9620C8652800DF0466 /* YYCarouselView.m */; };
 		93AA79C5205AC8BD002E9E10 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AA79C4205AC8BD002E9E10 /* MeViewController.m */; };
 		93AEF86D20AF1F7E00D72852 /* courseReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF86C20AF1F7E00D72852 /* courseReusableView.m */; };
 		93AEF87120AF34E700D72852 /* classificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AEF87020AF34E700D72852 /* classificationViewController.m */; };
@@ -259,6 +260,8 @@
 		938FCF7620C7421E00DF0466 /* bannerCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bannerCollectionViewCell.m; sourceTree = "<group>"; };
 		938FCF7B20C778DE00DF0466 /* forgetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = forgetViewController.h; sourceTree = "<group>"; };
 		938FCF7C20C778DE00DF0466 /* forgetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = forgetViewController.m; sourceTree = "<group>"; };
+		938FCF9520C8652800DF0466 /* YYCarouselView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYCarouselView.h; sourceTree = "<group>"; };
+		938FCF9620C8652800DF0466 /* YYCarouselView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYCarouselView.m; sourceTree = "<group>"; };
 		93AA79C1205AC164002E9E10 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		93AA79C3205AC8BD002E9E10 /* MeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		93AA79C4205AC8BD002E9E10 /* MeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
@@ -508,6 +511,8 @@
 				93631C0620A8335A00632B32 /* CourseViewController.m */,
 				938FCF7520C7421E00DF0466 /* bannerCollectionViewCell.h */,
 				938FCF7620C7421E00DF0466 /* bannerCollectionViewCell.m */,
+				938FCF9520C8652800DF0466 /* YYCarouselView.h */,
+				938FCF9620C8652800DF0466 /* YYCarouselView.m */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -1104,6 +1109,7 @@
 				93631BF420A8330900632B32 /* buylistViewController.m in Sources */,
 				938FCF7320C72DA100DF0466 /* CustomCollectionViewCell.m in Sources */,
 				931CB93D206693BF009DC6EF /* MyHttpClient.m in Sources */,
+				938FCF9720C8652800DF0466 /* YYCarouselView.m in Sources */,
 				93E0449C205D8AB700E34F96 /* BaseViewController.m in Sources */,
 				93631C1920A833F300632B32 /* attaourseViewController.m in Sources */,
 				93631BFA20A8335200632B32 /* HomeController.m in Sources */,

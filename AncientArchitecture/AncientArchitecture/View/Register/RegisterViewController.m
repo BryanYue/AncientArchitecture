@@ -54,7 +54,7 @@ int count;
     [exit setTitle:@"返回" forState:UIControlStateNormal];
     [exit setImage:[UIImage imageNamed:@"nav_icon_back"] forState:UIControlStateNormal];
     [exit setTintColor:[UIColor whiteColor]];
-    exit.titleLabel.font =[UIFont boldSystemFontOfSize:15];
+    exit.titleLabel.font =[UIFont systemFontOfSize:15];
     [exit setFrame:CGRectMake(11, statusBar_Height+5, 50, 18)];
     //
     exit.titleEdgeInsets = UIEdgeInsetsMake(0,0,0,-10);
@@ -64,7 +64,7 @@ int count;
     UILabel *title =[UILabel new];
     [title setText:@"注册新用户"];
     [title setTextColor:[UIColor whiteColor]];
-    title.font =[UIFont boldSystemFontOfSize:18];
+    title.font =[UIFont systemFontOfSize:18];
     title.textAlignment=NSTextAlignmentCenter;
     [title setFrame:CGRectMake(0, kScreen_Height/9, kScreen_Width, 20)];
     
@@ -148,7 +148,7 @@ int count;
     [btnregister.layer setBorderWidth:1.0];
     [btnregister.layer setBorderColor:[UIColor whiteColor].CGColor];
     [btnregister addTarget:self action:@selector(toregister) forControlEvents:UIControlEventTouchUpInside];
-    btnregister.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    btnregister.titleLabel.font = [UIFont systemFontOfSize:15];
     
     
     code = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -156,7 +156,7 @@ int count;
     [code setTitle:@"获取验证码" forState:UIControlStateNormal];
     [code setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     code.backgroundColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.1];
-    code.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    code.titleLabel.font = [UIFont systemFontOfSize:15];
     code.layer.masksToBounds=YES;
     code.layer.cornerRadius = 16;
     [code addTarget:self action:@selector(code) forControlEvents:UIControlEventTouchUpInside];
@@ -166,7 +166,7 @@ int count;
     [string addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, 4)];
     [string addAttribute:NSForegroundColorAttributeName value:[UIColor_ColorChange colorWithHexString:app_theme] range:NSMakeRange(5, 3)];
     login.attributedText=string;
-    login.font =[UIFont boldSystemFontOfSize:18];
+    login.font =[UIFont systemFontOfSize:18];
     login.textAlignment=NSTextAlignmentCenter;
     [login setFrame:CGRectMake(0, kScreen_Height/9*5+60, kScreen_Width, 20)];
     login.userInteractionEnabled = YES;

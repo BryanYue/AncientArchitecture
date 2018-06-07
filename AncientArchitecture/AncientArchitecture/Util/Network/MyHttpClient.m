@@ -142,7 +142,7 @@ static dispatch_once_t onceToken;
     if (Token !=nil) {
         [new_dict setValue:Token forKey:@"authorization"];
     }
-   
+   [new_dict setValue:@"1" forKey:@"is_phone"];
     return new_dict;
     
 }
