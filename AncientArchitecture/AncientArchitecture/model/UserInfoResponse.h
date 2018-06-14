@@ -10,14 +10,14 @@
 
 @interface UserInfoResponse : MJPropertyKey
 
-@property (nonatomic,strong)NSString   *headimgurl;
-@property (nonatomic,strong)NSString   *nick;
-@property (nonatomic,strong)NSString   *nickname;
-@property (nonatomic,strong)NSString   *sex;
-@property (nonatomic,strong)NSString   *descibre;
-@property (nonatomic,strong)NSString   *position;
-@property (nonatomic,strong)NSString   *push_url;
-@property (nonatomic,strong)NSString   *play_url;
-@property (nonatomic,strong)NSString   *app_url_name;
-@property (nonatomic,strong)NSString   *stream_name;
+@property (nonatomic,copy)NSString   *headimgurl;
+@property (nonatomic,copy)NSString   *nick;
+@property (nonatomic,copy)NSString   *nickname;
+@property (nonatomic,copy)NSString   *sex;
+@property (nonatomic,copy)NSString   *descibre;
+@property (nonatomic,copy)NSString   *position;
+@property (nonatomic,copy)NSString   *push_url;
+@property (nonatomic,copy)NSString   *play_url;
+@property (nonatomic,copy)NSString   *app_url_name;
+@property (nonatomic,copy)NSString   *stream_name;
 @end

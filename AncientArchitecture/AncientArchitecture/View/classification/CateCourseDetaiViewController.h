@@ -9,6 +9,6 @@
 #import "BaseViewController.h"
 
 @interface CateCourseDetaiViewController : BaseViewController
-@property (nonatomic, copy) NSString *CateCourseDetaiid;
-@property (nonatomic, copy) NSString *setid;
+@property (nonatomic, strong) NSString *CateCourseDetaiid;
+@property (nonatomic, strong) NSString *setid;
 @end

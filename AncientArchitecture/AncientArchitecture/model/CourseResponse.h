@@ -10,22 +10,22 @@
 
 @interface CourseResponse : MJPropertyKey
 
-    @property (nonatomic,strong)NSString   *id;
-    @property (nonatomic,strong)NSString   *pid;
-    @property (nonatomic,strong)NSString   *course_name;
-    @property (nonatomic,strong)NSString   *price;
-    @property (nonatomic,strong)NSString   *discount;
-    @property (nonatomic,strong)NSString   *describe;
-    @property (nonatomic,strong)NSString   *content;
-    @property (nonatomic,strong)NSString   *sort;
-    @property (nonatomic,strong)NSString   *is_over;
-    @property (nonatomic,strong)NSString   *start_time;
-    @property (nonatomic,strong)NSString   *end_time;
-    @property (nonatomic,strong)NSString   *course_num;
-    @property (nonatomic,strong)NSString   *course_time;
-    @property (nonatomic,strong)NSString   *visit_num;
-    @property (nonatomic,strong)NSString   *author_id;
-    @property (nonatomic,strong)NSString   *img_url;
-    @property (nonatomic,strong)NSString   *big_img_url;
+    @property (nonatomic,copy)NSString   *id;
+    @property (nonatomic,copy)NSString   *pid;
+    @property (nonatomic,copy)NSString   *course_name;
+    @property (nonatomic,copy)NSString   *price;
+    @property (nonatomic,copy)NSString   *discount;
+    @property (nonatomic,copy)NSString   *describe;
+    @property (nonatomic,copy)NSString   *content;
+    @property (nonatomic,copy)NSString   *sort;
+    @property (nonatomic,copy)NSString   *is_over;
+    @property (nonatomic,copy)NSString   *start_time;
+    @property (nonatomic,copy)NSString   *end_time;
+    @property (nonatomic,copy)NSString   *course_num;
+    @property (nonatomic,copy)NSString   *course_time;
+    @property (nonatomic,copy)NSString   *visit_num;
+    @property (nonatomic,copy)NSString   *author_id;
+    @property (nonatomic,copy)NSString   *img_url;
+    @property (nonatomic,copy)NSString   *big_img_url;
 
 @end

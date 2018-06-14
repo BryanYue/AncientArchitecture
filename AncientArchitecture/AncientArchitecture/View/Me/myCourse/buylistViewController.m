@@ -131,7 +131,7 @@ bool isrefreshing =false;
     
     TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"buylistcellid" forIndexPath:indexPath];
     
-    if (buylistCourse) {
+    if (buylistCourse.count>0) {
         if (buylistCourse[indexPath.item].img_url) {
             Coursecell.imageName =buylistCourse[indexPath.item].img_url;
         }

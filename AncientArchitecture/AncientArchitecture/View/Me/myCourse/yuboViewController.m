@@ -95,7 +95,7 @@ NSString *teacher_photoyb;
     
     TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"yubocellid" forIndexPath:indexPath];
     
-    if (yuboCourse) {
+    if (yuboCourse.count>0) {
         if (yuboCourse[indexPath.item].img_url) {
             Coursecell.imageName =yuboCourse[indexPath.item].img_url;
         }
@@ -183,19 +183,21 @@ NSString *teacher_photoyb;
 //设置点击 Cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
-    
-    if (yuboCourse.count>indexPath.row) {
-        NSLog(@"id %@",yuboCourse[indexPath.row].id);
-        
-        NSUserDefaults *defaults= DEFAULTS;
-        
-        [defaults removeObjectForKey:@"push_id"];
-        [defaults synchronize];
-        [defaults setObject:yuboCourse[indexPath.row].id forKey:@"push_id"];
-        
-        
-        [self presentViewController:[startLiveViewController new] animated:YES completion:nil];
+    if (yuboCourse.count>0) {
+        if (yuboCourse.count>indexPath.row) {
+            NSLog(@"id %@",yuboCourse[indexPath.row].id);
+            
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"push_id"];
+            [defaults synchronize];
+            [defaults setObject:yuboCourse[indexPath.row].id forKey:@"push_id"];
+            
+            
+            [self presentViewController:[startLiveViewController new] animated:YES completion:nil];
+        }
     }
+ 
 }
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {

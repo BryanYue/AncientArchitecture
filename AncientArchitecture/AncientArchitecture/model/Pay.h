@@ -9,12 +9,12 @@
 #import "MJPropertyKey.h"
 
 @interface Pay : MJPropertyKey
-@property (nonatomic,strong)NSString   *appid;
-@property (nonatomic,strong)NSString   *noncestr;
-@property (nonatomic,strong)NSString   *package;
-@property (nonatomic,strong)NSString   *prepayid;
-@property (nonatomic,strong)NSString   *partnerid;
-@property (nonatomic,strong)NSString   *timestamp;
-@property (nonatomic,strong)NSString   *sign;
+@property (nonatomic,copy)NSString   *appid;
+@property (nonatomic,copy)NSString   *noncestr;
+@property (nonatomic,copy)NSString   *package;
+@property (nonatomic,copy)NSString   *prepayid;
+@property (nonatomic,copy)NSString   *partnerid;
+@property (nonatomic,copy)NSString   *timestamp;
+@property (nonatomic,copy)NSString   *sign;
 
 @end

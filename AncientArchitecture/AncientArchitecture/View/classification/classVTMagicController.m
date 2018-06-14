@@ -30,7 +30,6 @@
     [self.view addSubview:_magicController.view];
     [self.view setNeedsUpdateConstraints];
     
-    
 //    self.edgesForExtendedLayout = UIRectEdgeAll;
 //    self.view.backgroundColor = [UIColor whiteColor];
 //    self.magicView.navigationColor = [UIColor whiteColor];
@@ -39,6 +38,7 @@
 //    self.magicView.navigationHeight = 50;
 //    self.magicView.againstStatusBar = NO;
 //    self.magicView.needPreloading = NO;
+ 
     
      [self configCustomSlider];
     [self generateTestData];
@@ -73,8 +73,8 @@
                 
                 NSMutableArray<CategoryResponse *> *Category=[CategoryResponse mj_objectArrayWithKeyValuesArray:response.data];
                 
-                NSMutableArray<NSString *> *vause=[NSMutableArray new];
-                NSMutableArray<NSString *> *idvause=[NSMutableArray new];
+                NSMutableArray<NSString *> *vause=[[NSMutableArray alloc] init];
+                NSMutableArray<NSString *> *idvause=[[NSMutableArray alloc] init];
                 for (int i=0; i<Category.count; i++) {
                     NSLog(@"Category: id%@",Category[i].id);
                     if ([nid isEqualToString:Category[i].id]) {
@@ -153,12 +153,12 @@
     NSString *gridId =[NSString stringWithFormat:@"grid%lu",pageIndex];
       NSLog(@"magicView:%lu",pageIndex);
     UIViewController *view= [magicView dequeueReusablePageWithIdentifier:gridId];
-    if (!view) {
-      CateCourseDetaiViewController  *tempview= [[CateCourseDetaiViewController alloc] init];
+    
+    CateCourseDetaiViewController  *tempview= [[CateCourseDetaiViewController alloc] init];
         tempview.setid=self.classidList[pageIndex];
         view=tempview;
-    }
     
+   
     
     return view;
 }
@@ -177,6 +177,10 @@
         _magicController.magicView.sliderExtension = 10.0;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
+        _magicController.magicView.needPreloading=NO;
+        
+
+       
     }
     return _magicController;
 }

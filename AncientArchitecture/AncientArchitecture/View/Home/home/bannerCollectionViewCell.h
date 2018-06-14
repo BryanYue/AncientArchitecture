@@ -10,5 +10,5 @@
 
 @interface bannerCollectionViewCell : UICollectionViewCell
 @property (nonatomic,strong)    UIImageView *imageview;
-@property (nonatomic, copy) NSString *imageName;
+@property (nonatomic, strong) NSString *imageName;
 @end

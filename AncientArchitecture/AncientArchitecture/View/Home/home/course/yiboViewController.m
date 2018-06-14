@@ -137,7 +137,7 @@ bool isybrefreshing =false;
     
     TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"yibocellid" forIndexPath:indexPath];
     
-    if (yibolistCourse) {
+    if (yibolistCourse.count>0) {
         if (yibolistCourse[indexPath.item].img_url) {
             Coursecell.imageName =yibolistCourse[indexPath.item].img_url;
         }
@@ -242,14 +242,17 @@ bool isybrefreshing =false;
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
     if([DEFAULTS objectForKey:@"islogin"]){
-        NSUserDefaults *defaults= DEFAULTS;
+        if (yibolistCourse.count>0) {
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"play_url"];
+            [defaults synchronize];
+            [defaults setObject:yibolistCourse[indexPath.row].id forKey:@"play_url"];
+            
+            
+            [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+        }
         
-        [defaults removeObjectForKey:@"play_url"];
-        [defaults synchronize];
-        [defaults setObject:yibolistCourse[indexPath.row].id forKey:@"play_url"];
-        
-        
-        [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
     }else{
         
         [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];

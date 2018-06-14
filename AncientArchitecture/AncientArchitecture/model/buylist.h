@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface buylist : MJPropertyKey
-@property (nonatomic,strong)NSString   *id;
-@property (nonatomic,strong)NSString   *title;
-@property (nonatomic,strong)NSString   *img_url;
-@property (nonatomic,strong)NSString   *price;
-@property (nonatomic,strong)NSString   *start_time;
-@property (nonatomic,strong)NSString   *cid;
-@property (nonatomic,strong)NSString   *vedio_id;
-@property (nonatomic,strong)NSString   *is_live;
-@property (nonatomic,strong)NSString   *order_id;
+@property (nonatomic,copy)NSString   *id;
+@property (nonatomic,copy)NSString   *title;
+@property (nonatomic,copy)NSString   *img_url;
+@property (nonatomic,copy)NSString   *price;
+@property (nonatomic,copy)NSString   *start_time;
+@property (nonatomic,copy)NSString   *cid;
+@property (nonatomic,copy)NSString   *vedio_id;
+@property (nonatomic,copy)NSString   *is_live;
+@property (nonatomic,copy)NSString   *order_id;
 @end

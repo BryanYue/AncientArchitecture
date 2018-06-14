@@ -108,7 +108,7 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
     
     TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"guanzhucellid" forIndexPath:indexPath];
     
-    if (guanzhuCourse) {
+    if (guanzhuCourse.count>0) {
         if (guanzhuCourse[indexPath.item].img_url) {
             Coursecell.imageName =guanzhuCourse[indexPath.item].img_url;
         }
@@ -147,7 +147,7 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
    
-
+    if (guanzhuCourse.count>0) {
         if([DEFAULTS objectForKey:@"islogin"]){
             NSUserDefaults *defaults= DEFAULTS;
             
@@ -161,6 +161,9 @@ NSMutableArray<CourseDetailResponse *> *guanzhuCourse;
             
             [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
         }
+        
+    }
+   
 
     
     

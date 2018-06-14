@@ -10,20 +10,20 @@
 
 @interface TeacherResponse : MJPropertyKey
 
-@property (nonatomic,strong)NSString   *id;
-@property (nonatomic,strong)NSString   *name;
-@property (nonatomic,strong)NSString   *speaker_content;
-@property (nonatomic,strong)NSString   *teacher_motto;
-@property (nonatomic,strong)NSString   *address;
-@property (nonatomic,strong)NSString   *qq;
-@property (nonatomic,strong)NSString   *email;
-@property (nonatomic,strong)NSString   *photo;
-@property (nonatomic,strong)NSString   *blog;
-@property (nonatomic,strong)NSString   *inputtime;
-@property (nonatomic,strong)NSString   *longevity;
-@property (nonatomic,strong)NSString   *descibre;
-@property (nonatomic,strong)NSString  *is_follow;
-@property (nonatomic,strong)NSString  *follow_num;
+@property (nonatomic,copy)NSString   *id;
+@property (nonatomic,copy)NSString   *name;
+@property (nonatomic,copy)NSString   *speaker_content;
+@property (nonatomic,copy)NSString   *teacher_motto;
+@property (nonatomic,copy)NSString   *address;
+@property (nonatomic,copy)NSString   *qq;
+@property (nonatomic,copy)NSString   *email;
+@property (nonatomic,copy)NSString   *photo;
+@property (nonatomic,copy)NSString   *blog;
+@property (nonatomic,copy)NSString   *inputtime;
+@property (nonatomic,copy)NSString   *longevity;
+@property (nonatomic,copy)NSString   *descibre;
+@property (nonatomic,copy)NSString  *is_follow;
+@property (nonatomic,copy)NSString  *follow_num;
 
 
 @end

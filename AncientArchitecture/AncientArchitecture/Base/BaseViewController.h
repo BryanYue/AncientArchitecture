@@ -13,9 +13,9 @@
 
 @property (nonatomic,strong)    UILabel  *topTitleLabel;
 @property (nonatomic,strong)    UIView   *topView;       //顶部的view
-@property (retain,nonatomic)UIButton     *backButton;
+@property (nonatomic,strong)UIButton     *backButton;
 // 设置右边的按钮
-@property (retain,nonatomic)UIButton     *rightChangeBtn;
+@property (nonatomic,strong)UIButton     *rightChangeBtn;
 
 //-(void)isSkidSideway;//是否侧滑返回 0不侧滑   1侧滑
 //导航按钮

@@ -133,7 +133,32 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [_HUD removeFromSuperview];
     _HUD = nil;
+    
+    
 }
+
+-(void)dealloc{
+     NSLog(@"dealloc");
+    if (self.topTitleLabel) {
+        self.topTitleLabel=nil;
+    }
+    if (self.topView) {
+        self.topView=nil;
+    }
+    if (self.backButton) {
+        self.backButton=nil;
+    }
+    
+    if (self.rightChangeBtn) {
+        self.rightChangeBtn=nil;
+    }
+    
+    if (self.HUD) {
+        self.HUD=nil;
+    }
+    
+}
+
 
 -(void)showAction:(NSString *)string{
     UIAlertController * alertCon = [UIAlertController alertControllerWithTitle:@"温馨提示" message:string preferredStyle:UIAlertControllerStyleAlert];

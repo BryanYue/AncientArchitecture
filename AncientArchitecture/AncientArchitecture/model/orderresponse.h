@@ -9,7 +9,7 @@
 #import "MJPropertyKey.h"
 
 @interface orderresponse : MJPropertyKey
-@property (nonatomic,strong)NSString   *order_id;
-@property (nonatomic,strong)NSString   *amount;
-@property (nonatomic,strong)NSString   *attach;
+@property (nonatomic,copy)NSString   *order_id;
+@property (nonatomic,copy)NSString   *amount;
+@property (nonatomic,copy)NSString   *attach;
 @end

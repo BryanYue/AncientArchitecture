@@ -94,7 +94,7 @@ NSMutableArray<TeacherResponse *> *gzyinluCourse;
     
     TeacherUICollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"gzyinglucellid" forIndexPath:indexPath];
     
-    if (gzyinluCourse) {
+    if (gzyinluCourse.count>0) {
         if (gzyinluCourse[indexPath.item].teacher_motto) {
             Coursecell.imageName =gzyinluCourse[indexPath.item].teacher_motto;
         }
@@ -129,19 +129,23 @@ NSMutableArray<TeacherResponse *> *gzyinluCourse;
 //设置点击 Cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
-    
-    if (gzyinluCourse.count>indexPath.row) {
-        NSLog(@"id %@",gzyinluCourse[indexPath.row].id);
+    if (gzyinluCourse.count>0) {
         
-        NSUserDefaults *defaults= DEFAULTS;
+        if (gzyinluCourse.count>indexPath.row) {
+            NSLog(@"id %@",gzyinluCourse[indexPath.row].id);
+            
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"attteacher_id"];
+            
+            [defaults setObject:gzyinluCourse[indexPath.row].id forKey:@"attteacher_id"];
+            [defaults synchronize];
+            
+            [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
+        }
         
-        [defaults removeObjectForKey:@"attteacher_id"];
-    
-        [defaults setObject:gzyinluCourse[indexPath.row].id forKey:@"attteacher_id"];
-        [defaults synchronize];
-        
-        [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
     }
+ 
 }
 
 

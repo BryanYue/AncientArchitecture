@@ -568,7 +568,7 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
                         NSMutableArray<CategoryResponse *> *Course=[CourseResponse mj_objectArrayWithKeyValuesArray:Category[i].subcat];
                         
                         NSLog(@"CourseResponse:%lu",Course.count);
-                        NSMutableArray<NSString *> *vause=[NSMutableArray new];
+                        NSMutableArray<NSString *> *vause=[[NSMutableArray alloc] init];
                         if (Course.count>0) {
                             for (int j=0; j<Course.count; j++) {
                                 [vause addObject: Course[j].name];

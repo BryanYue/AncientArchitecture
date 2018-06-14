@@ -11,8 +11,8 @@
 
 
 @property (nonatomic,assign)NSInteger     code;
-@property (nonatomic,strong)NSString *msg;
-@property (nonatomic,strong)id        data;
+@property (nonatomic,copy)NSString *msg;
+@property (nonatomic,copy)id        data;
 @property (nonatomic,assign)NSInteger       page;
 
 

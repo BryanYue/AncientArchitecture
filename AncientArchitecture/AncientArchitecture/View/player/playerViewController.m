@@ -301,7 +301,39 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 
 
 
-
+-(void)dealloc{
+    NSLog(@"dealloc");
+    if (self.playerView) {
+        self.playerView=nil;
+    }
+    
+    if (self.uiimage) {
+        self.uiimage=nil;
+    }
+    if (self.rightChangeBtn) {
+        self.rightChangeBtn=nil;
+    }
+    
+    if (self.uiview) {
+        self.uiview=nil;
+    }
+    
+    if (self.scrollView) {
+        self.scrollView=nil;
+    }
+    if (self.collection) {
+        self.collection=nil;
+    }
+    if (relevant) {
+        [relevant removeAllObjects];
+        relevant =nil;
+    }
+   
+    if (self) {
+        [self.view removeFromSuperview];
+        
+    }
+}
 
 
 
@@ -681,7 +713,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     
     xiangguanCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"xiangguan" forIndexPath:indexPath];
     
-    if (relevant) {
+    if (relevant.count>0) {
         if (relevant[indexPath.item].title) {
             Coursecell.titlename =relevant[indexPath.item].title;
         }
@@ -698,22 +730,24 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
-    
-    NSLog(@"id %@",relevant[indexPath.row].id);
-    
-    if([DEFAULTS objectForKey:@"islogin"]){
-        NSUserDefaults *defaults= DEFAULTS;
+    if (relevant.count>0) {
+        NSLog(@"id %@",relevant[indexPath.row].id);
         
-        [defaults removeObjectForKey:@"play_url"];
-        [defaults synchronize];
-        [defaults setObject:relevant[indexPath.row].id forKey:@"play_url"];
-        
-        
-        [self presentViewController:[playerViewController new] animated:YES completion:nil];
-    }else{
-        
-        [self presentViewController:[LoginViewController new] animated:YES completion:nil];
+        if([DEFAULTS objectForKey:@"islogin"]){
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"play_url"];
+            [defaults synchronize];
+            [defaults setObject:relevant[indexPath.row].id forKey:@"play_url"];
+            
+            
+            [self presentViewController:[playerViewController new] animated:YES completion:nil];
+        }else{
+            
+            [self presentViewController:[LoginViewController new] animated:YES completion:nil];
+        }
     }
+
     
     
     

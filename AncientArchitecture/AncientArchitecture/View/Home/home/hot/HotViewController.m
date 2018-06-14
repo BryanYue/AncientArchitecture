@@ -145,7 +145,7 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     if (indexPath.section==0) {
         TeacheCourseViewCollectionViewCell  *Coursecell  =(TeacheCourseViewCollectionViewCell *)cell;
 
-        if (hotCourse) {
+        if (hotCourse.count>0) {
             if (hotCourse[indexPath.row].img_url) {
                 Coursecell.imageName =hotCourse[indexPath.row].img_url;
             }
@@ -279,7 +279,7 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
     if (indexPath.section==0) {
        
         
-      
+        if (hotCourse.count>0) {
             NSUserDefaults *defaults= DEFAULTS;
             
             [defaults removeObjectForKey:@"play_url"];
@@ -288,6 +288,8 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
             
             
             [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+        }
+        
       
         
         
@@ -297,13 +299,16 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
         
         NSUserDefaults *defaults= DEFAULTS;
         
-        [defaults removeObjectForKey:@"classification_id"];
-        [defaults removeObjectForKey:@"classification_title"];
-        [defaults synchronize];
-        [defaults setObject:hotCategory[indexPath.row].id forKey:@"classification_id"];
-         [defaults setObject:hotCategory[indexPath.row].name forKey:@"classification_title"];
- 
-        [self.view.window.rootViewController presentViewController:[classificationViewController new] animated:YES completion:nil];
+        if (hotCategory.count>0) {
+            [defaults removeObjectForKey:@"classification_id"];
+            [defaults removeObjectForKey:@"classification_title"];
+            [defaults synchronize];
+            [defaults setObject:hotCategory[indexPath.row].id forKey:@"classification_id"];
+            [defaults setObject:hotCategory[indexPath.row].name forKey:@"classification_title"];
+            
+            [self.view.window.rootViewController presentViewController:[classificationViewController new] animated:YES completion:nil];
+        }
+       
         
     }
 //    if (Coursearry.count>indexPath.row) {

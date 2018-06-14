@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface CarouselImgResponse : MJPropertyKey
-@property (nonatomic,strong)NSString   *id;
-@property (nonatomic,strong)NSString   *title;
-@property (nonatomic,strong)NSString   *url;
-@property (nonatomic,strong)NSString   *sort;
-@property (nonatomic,strong)NSString   *img_url;
+@property (nonatomic,copy)NSString   *id;
+@property (nonatomic,copy)NSString   *title;
+@property (nonatomic,copy)NSString   *url;
+@property (nonatomic,copy)NSString   *sort;
+@property (nonatomic,copy)NSString   *img_url;
 
 @end

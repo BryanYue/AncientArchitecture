@@ -138,7 +138,7 @@ bool isjjrefreshing =false;
     
     TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"jijiangcellid" forIndexPath:indexPath];
     
-    if (jijianglistCourse) {
+    if (jijianglistCourse.count>0) {
         if (jijianglistCourse[indexPath.item].img_url) {
             Coursecell.imageName =jijianglistCourse[indexPath.item].img_url;
         }
@@ -251,14 +251,17 @@ bool isjjrefreshing =false;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     if([DEFAULTS objectForKey:@"islogin"]){
-        NSUserDefaults *defaults= DEFAULTS;
-        
-        [defaults removeObjectForKey:@"play_url"];
-        [defaults synchronize];
-        [defaults setObject:jijianglistCourse[indexPath.row].id forKey:@"play_url"];
-        
-        
-        [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+        if (jijianglistCourse.count>0) {
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"play_url"];
+            [defaults synchronize];
+            [defaults setObject:jijianglistCourse[indexPath.row].id forKey:@"play_url"];
+            
+            
+            [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+        }
+       
     }else{
         
         [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];

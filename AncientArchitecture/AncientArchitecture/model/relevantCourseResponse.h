@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface relevantCourseResponse : MJPropertyKey
-@property (nonatomic,strong)NSString   *id;
-@property (nonatomic,strong)NSString   *cid;
-@property (nonatomic,strong)NSString   *title;
-@property (nonatomic,strong)NSString   *describe;
-@property (nonatomic,strong)NSString   *start_time;
-@property (nonatomic,strong)NSString   *on_live;
-@property (nonatomic,strong)NSString   *vedio_id;
+@property (nonatomic,copy)NSString   *id;
+@property (nonatomic,copy)NSString   *cid;
+@property (nonatomic,copy)NSString   *title;
+@property (nonatomic,copy)NSString   *describe;
+@property (nonatomic,copy)NSString   *start_time;
+@property (nonatomic,copy)NSString   *on_live;
+@property (nonatomic,copy)NSString   *vedio_id;
 
 @end

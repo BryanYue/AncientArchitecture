@@ -10,15 +10,15 @@
 
 @interface LoginResponse : MJPropertyKey
 
-@property (nonatomic,strong)NSString   *token;
-@property (nonatomic,strong)NSString   *phone;
-@property (nonatomic,strong)NSString   *nickname;
-@property (nonatomic,strong)NSString   *nick;
-@property (nonatomic,strong)NSString   *is_teacher;
-@property (nonatomic,strong)NSString   *birthday;
-@property (nonatomic,strong)NSString   *headimgurl;
-@property (nonatomic,strong)NSString   *memberid;
-@property (nonatomic,strong)NSString   *teacher_id;
+@property (nonatomic,copy)NSString   *token;
+@property (nonatomic,copy)NSString   *phone;
+@property (nonatomic,copy)NSString   *nickname;
+@property (nonatomic,copy)NSString   *nick;
+@property (nonatomic,copy)NSString   *is_teacher;
+@property (nonatomic,copy)NSString   *birthday;
+@property (nonatomic,copy)NSString   *headimgurl;
+@property (nonatomic,copy)NSString   *memberid;
+@property (nonatomic,copy)NSString   *teacher_id;
 
 
 @end

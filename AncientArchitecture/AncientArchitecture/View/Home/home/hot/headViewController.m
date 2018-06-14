@@ -311,7 +311,7 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
     
     teacherCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"teacherColl" forIndexPath:indexPath];
     
-    if (guzhuyinluCourse) {
+    if (guzhuyinluCourse.count>0) {
         if (guzhuyinluCourse[indexPath.item].photo) {
             Coursecell.imageName =guzhuyinluCourse[indexPath.item].photo;
         }
@@ -382,9 +382,10 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
-    if (guzhuyinluCourse.count>indexPath.row) {
-        
-       
+    if (guzhuyinluCourse.count>0) {
+        if (guzhuyinluCourse.count>indexPath.row) {
+            
+            
             NSLog(@"id %@",guzhuyinluCourse[indexPath.row].id);
             
             NSUserDefaults *defaults= DEFAULTS;
@@ -395,11 +396,13 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
             [defaults synchronize];
             
             [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
-       
-        
-        
-     
+            
+            
+            
+            
+        }
     }
+
 }
 
 

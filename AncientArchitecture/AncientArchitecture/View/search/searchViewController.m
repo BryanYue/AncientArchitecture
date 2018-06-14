@@ -160,7 +160,7 @@ NSMutableArray<CourseDetailResponse *>  *searchhCourse;
     
     TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"searchcellid" forIndexPath:indexPath];
     
-    if (searchhCourse) {
+    if (searchhCourse.count>0) {
         if (searchhCourse[indexPath.item].img_url) {
             Coursecell.imageName =searchhCourse[indexPath.item].img_url;
         }
@@ -250,8 +250,7 @@ NSMutableArray<CourseDetailResponse *>  *searchhCourse;
     
         
         
-        
-        
+    if (searchhCourse.count>0) {
         NSUserDefaults *defaults= DEFAULTS;
         
         [defaults removeObjectForKey:@"play_url"];
@@ -260,6 +259,9 @@ NSMutableArray<CourseDetailResponse *>  *searchhCourse;
         
         
         [self presentViewController:[playerViewController new] animated:YES completion:nil];
+    }
+        
+    
         
     
 }

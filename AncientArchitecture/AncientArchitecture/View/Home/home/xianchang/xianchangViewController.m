@@ -122,7 +122,7 @@ NSMutableArray<CourseDetailResponse *> *xianchangCourse;
    
         TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"xianchangcellid" forIndexPath:indexPath];
         
-        if (xianchangCourse) {
+        if (xianchangCourse.count>0) {
             if (xianchangCourse[indexPath.item].img_url) {
                 Coursecell.imageName =xianchangCourse[indexPath.item].img_url;
             }

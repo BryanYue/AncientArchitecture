@@ -201,18 +201,21 @@ NSString *teacher_photo;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
-    if (Coursearry.count>indexPath.row) {
-         NSLog(@"id %@",Coursearry[indexPath.row].id);
-        
-        NSUserDefaults *defaults= DEFAULTS;
-        
-        [defaults removeObjectForKey:@"push_id"];
-        [defaults synchronize];
-        [defaults setObject:Coursearry[indexPath.row].id forKey:@"push_id"];
-        
-        
-         [self presentViewController:[startLiveViewController new] animated:YES completion:nil];
+    if (Coursearry.count>0) {
+        if (Coursearry.count>indexPath.row) {
+            NSLog(@"id %@",Coursearry[indexPath.row].id);
+            
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"push_id"];
+            [defaults synchronize];
+            [defaults setObject:Coursearry[indexPath.row].id forKey:@"push_id"];
+            
+            
+            [self presentViewController:[startLiveViewController new] animated:YES completion:nil];
+        }
     }
+  
 }
 
 

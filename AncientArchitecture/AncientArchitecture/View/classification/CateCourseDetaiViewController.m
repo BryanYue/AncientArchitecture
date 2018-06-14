@@ -27,20 +27,19 @@ bool CateCourseDetairefreshing =false;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if (CateCourseDetaiCourse) {
-        [CateCourseDetaiCourse removeAllObjects] ;
-    }else{
-        CateCourseDetaiCourse =[NSMutableArray array];
-    }
+ 
     
     [self addTheCollectionView];
-    [self initjijiangCourse];
+   
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 
 /*
  #pragma mark - Navigation
@@ -139,7 +138,7 @@ bool CateCourseDetairefreshing =false;
     
     TeacheCourseViewCollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"CateCourseDetai" forIndexPath:indexPath];
     
-    if (CateCourseDetaiCourse) {
+    if (CateCourseDetaiCourse.count>0) {
         if (CateCourseDetaiCourse[indexPath.item].img_url) {
             Coursecell.imageName =CateCourseDetaiCourse[indexPath.item].img_url;
         }
@@ -248,16 +247,20 @@ bool CateCourseDetairefreshing =false;
 //设置点击 Cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
-    
-    if (CateCourseDetaiCourse[indexPath.row]) {
-        NSUserDefaults *defaults= DEFAULTS;
+  
+    if (CateCourseDetaiCourse.count>0) {
+        if (CateCourseDetaiCourse[indexPath.row]) {
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"play_url"];
+            [defaults synchronize];
+            [defaults setObject:CateCourseDetaiCourse[indexPath.row].id forKey:@"play_url"];
+            [self presentViewController:[playerViewController new] animated:YES completion:nil];
+        }
+    }else{
         
-        [defaults removeObjectForKey:@"play_url"];
-        [defaults synchronize];
-        [defaults setObject:CateCourseDetaiCourse[indexPath.row].id forKey:@"play_url"];
-        
-        [self presentViewController:[playerViewController new] animated:YES completion:nil];
     }
+ 
     
    
 }
@@ -266,9 +269,15 @@ bool CateCourseDetairefreshing =false;
 
 
 - (void)setSetid:(NSString *)setid{
-    
+    NSLog(@"setid%@",setid);
     self.CateCourseDetaiid=setid;
-
+    if (CateCourseDetaiCourse) {
+        [CateCourseDetaiCourse removeAllObjects] ;
+    }else{
+        CateCourseDetaiCourse =[[NSMutableArray alloc] init];
+    }
+    CateCourseDetaii=1;
+    [self initjijiangCourse];
 }
 
 

@@ -92,7 +92,7 @@ NSMutableArray<TeacherResponse *> *yinluCourse;
     
     TeacherUICollectionViewCell  *Coursecell  =[collectionView dequeueReusableCellWithReuseIdentifier:@"yinglucellid" forIndexPath:indexPath];
     
-    if (yinluCourse) {
+    if (yinluCourse.count>0) {
         if (yinluCourse[indexPath.item].teacher_motto) {
             Coursecell.imageName =yinluCourse[indexPath.item].teacher_motto;
         }
@@ -180,18 +180,21 @@ NSMutableArray<TeacherResponse *> *yinluCourse;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
-    if (yinluCourse.count>indexPath.row) {
-        NSLog(@"id %@",yinluCourse[indexPath.row].id);
-        
-        NSUserDefaults *defaults= DEFAULTS;
-        
-        [defaults removeObjectForKey:@"attteacher_id"];
-        
-        [defaults setObject:yinluCourse[indexPath.row].id forKey:@"attteacher_id"];
-        [defaults synchronize];
-        
-        [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
+    if (yinluCourse.count>0) {
+        if (yinluCourse.count>indexPath.row) {
+            NSLog(@"id %@",yinluCourse[indexPath.row].id);
+            
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"attteacher_id"];
+            
+            [defaults setObject:yinluCourse[indexPath.row].id forKey:@"attteacher_id"];
+            [defaults synchronize];
+            
+            [self.view.window.rootViewController presentViewController:[[inlurenViewController alloc] init] animated:YES completion:nil];
+        }
     }
+ 
 }
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
     NSString *title = @"这里空空如也";
