@@ -15,6 +15,8 @@
 #import "UserInfoResponse.h"
 #import "personalInformationViewController.h"
 #import "myCourseViewController.h"
+#import "AboutusViewController.h"
+
 
 #define loginNotification @"loginstatus"
 
@@ -296,6 +298,7 @@ NSString *isteacher;
                     
                     break;
                 case 4:
+                     [self presentViewController:[AboutusViewController new] animated:YES completion:nil];
                     
                     break;
                 case 5:

@@ -154,9 +154,12 @@
       NSLog(@"magicView:%lu",pageIndex);
     UIViewController *view= [magicView dequeueReusablePageWithIdentifier:gridId];
     
-    CateCourseDetaiViewController  *tempview= [[CateCourseDetaiViewController alloc] init];
-        tempview.setid=self.classidList[pageIndex];
+    if (!view) {
+        CateCourseDetaiViewController  *tempview= [[CateCourseDetaiViewController alloc] init];
+        tempview.CateCourseDetaiid=self.classidList[pageIndex];
         view=tempview;
+    }
+  
     
    
     

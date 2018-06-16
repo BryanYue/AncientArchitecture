@@ -12,7 +12,8 @@
 #import "TeacheCourseViewCollectionViewCell.h"
 #import "playerViewController.h"
 #import "LoginViewController.h"
-@interface CateCourseDetaiViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface CateCourseDetaiViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+>
 @property(strong,nonatomic)UICollectionView *CateCourseDetaiCollectionV;
 
 
@@ -20,17 +21,22 @@
 
 @implementation CateCourseDetaiViewController
 NSMutableArray<CourseDetailResponse *> *CateCourseDetaiCourse;
-int CateCourseDetaii = 1;
 bool CateCourseDetairefreshing =false;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
- 
+    self.CateCourseDetaii=1;
     
     [self addTheCollectionView];
    
+    if (CateCourseDetaiCourse) {
+        [CateCourseDetaiCourse removeAllObjects] ;
+    }else{
+        CateCourseDetaiCourse =[[NSMutableArray alloc] init];
+    }
+    [self initjijiangCourse];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,7 +88,8 @@ bool CateCourseDetairefreshing =false;
     
     self.CateCourseDetaiCollectionV.dataSource =self;
     
-    
+    self.CateCourseDetaiCollectionV.emptyDataSetSource=self;
+    self.CateCourseDetaiCollectionV.emptyDataSetDelegate=self;
     //设置背景
     
     self.CateCourseDetaiCollectionV.backgroundColor =[UIColor whiteColor];
@@ -101,7 +108,7 @@ bool CateCourseDetairefreshing =false;
     self.CateCourseDetaiCollectionV.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.CateCourseDetaiCollectionV.mj_footer  resetNoMoreData ];
         CateCourseDetairefreshing=true;
-        CateCourseDetaii=1;
+        self.CateCourseDetaii=1;
         [self initjijiangCourse];
         
     }];
@@ -178,7 +185,7 @@ bool CateCourseDetairefreshing =false;
     
     
     
-    NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?id=%@&page=%@",url_getCateCourseDetail,self.CateCourseDetaiid,@(CateCourseDetaii)];
+    NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?id=%@&page=%@",url_getCateCourseDetail,self.CateCourseDetaiid,@(self.CateCourseDetaii)];
     
     [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:pathWithPhoneNum withParams:nil withMethodType:Get autoShowError:true andBlock:^(id data, NSError *error) {
@@ -212,16 +219,17 @@ bool CateCourseDetairefreshing =false;
                     
                     
                 }
-                if (response.page>CateCourseDetaii) {
-                    CateCourseDetaii++;
+                if (response.page>self.CateCourseDetaii) {
+                    self.CateCourseDetaii++;
                 }else{
                     [self.CateCourseDetaiCollectionV.mj_footer  endRefreshingWithNoMoreData];
                 }
                 
                 
+                if (CateCourseDetaiCourse.count==0) {
+                     [self.CateCourseDetaiCollectionV.mj_footer  removeFromSuperview ];
+                }
                 
-            }else{
-                 [self TextButtonAction:response.msg];
             }
             [self.CateCourseDetaiCollectionV reloadData];
             
@@ -231,6 +239,8 @@ bool CateCourseDetairefreshing =false;
            
             
         }else{
+            [self.CateCourseDetaiCollectionV.mj_footer  removeFromSuperview ];
+
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }
@@ -268,18 +278,28 @@ bool CateCourseDetairefreshing =false;
 
 
 
-- (void)setSetid:(NSString *)setid{
-    NSLog(@"setid%@",setid);
-    self.CateCourseDetaiid=setid;
-    if (CateCourseDetaiCourse) {
-        [CateCourseDetaiCourse removeAllObjects] ;
-    }else{
-        CateCourseDetaiCourse =[[NSMutableArray alloc] init];
-    }
-    CateCourseDetaii=1;
-    [self initjijiangCourse];
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
 }
 
+
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
+}
 
 
 

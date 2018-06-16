@@ -36,4 +36,6 @@
 
 -(void)rightButtonPress;
 -(void)addRightbuttonWithTitle:(NSString *)string;
+-(void)addRightbuttonWithtext:(NSString *)string;
+
 @end

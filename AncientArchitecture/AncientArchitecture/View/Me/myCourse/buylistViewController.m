@@ -219,7 +219,9 @@ bool isrefreshing =false;
                     
                 }
                 
-                
+                if (buylistCourse.count==0) {
+                     [_buylistCollectionV.mj_footer  removeFromSuperview];
+                }
                 
             }else{
                   [self TextButtonAction:response.msg];
@@ -231,6 +233,7 @@ bool isrefreshing =false;
           
             
         }else{
+             [_buylistCollectionV.mj_footer  removeFromSuperview];
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }

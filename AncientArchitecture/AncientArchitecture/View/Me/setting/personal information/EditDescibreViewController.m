@@ -10,11 +10,11 @@
 #define editdescibreNotification @"editdescibre"
 
 @interface EditDescibreViewController ()
-
+@property (retain,nonatomic)UITextView     *textfild;
 @end
 
 @implementation EditDescibreViewController
-UITextView  *textfild;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -44,7 +44,7 @@ UITextView  *textfild;
     [self addBackButton];
     [self.topTitleLabel setText:@"个人资料"];
     
-    [self addRightbuttonWithTitle:@"编辑"];
+    [self addRightbuttonWithtext:@"确认"];
     
     UILabel *lable=[UILabel new];
     [lable setText:@"个人简介"];
@@ -58,34 +58,34 @@ UITextView  *textfild;
     
     NSUserDefaults *defaults =DEFAULTS;
     
-    textfild=[UITextView new];
-    textfild.text= [defaults objectForKey:@"descibre"];;
-    textfild.frame=CGRectMake(10, self.topView.frame.size.height+60, kScreen_Width-20, kScreen_Height/3);
-    textfild.textAlignment = NSTextAlignmentCenter;
-    textfild.font =  [UIFont systemFontOfSize:18];
-    textfild.textColor=[UIColor blackColor];
+    _textfild=[UITextView new];
+    _textfild.text= [defaults objectForKey:@"descibre"];;
+    _textfild.frame=CGRectMake(10, self.topView.frame.size.height+60, kScreen_Width-20, kScreen_Height/3);
+    _textfild.textAlignment = NSTextAlignmentCenter;
+    _textfild.font =  [UIFont systemFontOfSize:18];
+    _textfild.textColor=[UIColor blackColor];
     // 设置文本对齐方式
-    textfild.textAlignment = NSTextAlignmentLeft;
+    _textfild.textAlignment = NSTextAlignmentLeft;
     // 设置自动纠错方式
-    textfild.autocorrectionType = UITextAutocorrectionTypeNo;
+    _textfild.autocorrectionType = UITextAutocorrectionTypeNo;
     //外框
-    textfild.layer.borderColor = [UIColor blackColor].CGColor;
-    textfild.layer.borderWidth = 1;
-    textfild.layer.cornerRadius =5;
-    [self.view addSubview:textfild];
+    _textfild.layer.borderColor = [UIColor blackColor].CGColor;
+    _textfild.layer.borderWidth = 1;
+    _textfild.layer.cornerRadius =5;
+    [self.view addSubview:_textfild];
 }
 
 -(void)rightButtonPress
 {
     [self hide];
-    if (textfild.text.length==0) {
+    if (_textfild.text.length==0) {
         [self showAction:@"请输入内容"];
         return;
     }
     NSUserDefaults *defaults= DEFAULTS;
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
     [parameterCountry setObject:[defaults objectForKey:@"memberid"] forKey:@"memberid"];
-    [parameterCountry setObject:textfild.text forKey:@"descibre"];
+    [parameterCountry setObject:_textfild.text forKey:@"descibre"];
     
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_editDescibre withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
@@ -94,8 +94,8 @@ UITextView  *textfild;
             if (response.code  == 200) {
                 NSLog(@"%@",response.data);
                 
-                [defaults setObject:textfild.text forKey:@"descibre"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:editdescibreNotification object:self userInfo:@{@"editdescibre":textfild.text}];
+                [defaults setObject:_textfild.text forKey:@"descibre"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:editdescibreNotification object:self userInfo:@{@"editdescibre":_textfild.text}];
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
@@ -131,8 +131,8 @@ UITextView  *textfild;
 
 
 -(void)hide{
-    if (textfild) {
-        [textfild resignFirstResponder];
+    if (_textfild) {
+        [_textfild resignFirstResponder];
     }
     
    

@@ -12,7 +12,8 @@
 #import "TeacheCourseViewCollectionViewCell.h"
 #import "playerViewController.h"
 #import "LoginViewController.h"
-@interface yiboViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface yiboViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+>
 @property(strong,nonatomic)UICollectionView *yibolistCollectionV;
 @end
 
@@ -82,7 +83,8 @@ bool isybrefreshing =false;
     
     _yibolistCollectionV.dataSource =self;
     
-    
+    _yibolistCollectionV.emptyDataSetSource=self;
+    _yibolistCollectionV.emptyDataSetDelegate=self;
     //设置背景
     
     _yibolistCollectionV.backgroundColor =[UIColor whiteColor];
@@ -203,7 +205,7 @@ bool isybrefreshing =false;
                     
                         [yibolistCourse addObjectsFromArray: tempCourse];
                     
-                    }
+                }
                     
                     
                     
@@ -211,7 +213,12 @@ bool isybrefreshing =false;
                 if (response.page>isybrefreshing) {
                     ybi++;
                 }else{
+                    
                     [_yibolistCollectionV.mj_footer  endRefreshingWithNoMoreData];
+                }
+                
+                if (yibolistCourse.count==0) {
+                    [_yibolistCollectionV.mj_footer  removeFromSuperview ];
                 }
                 
                 
@@ -224,6 +231,7 @@ bool isybrefreshing =false;
            
             
         }else{
+            [_yibolistCollectionV.mj_footer  removeFromSuperview ];
             if (self.HUD) {
                 [self.HUD hideAnimated:true];
             }
@@ -257,5 +265,35 @@ bool isybrefreshing =false;
         
         [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
     }
+}
+
+
+
+
+
+
+
+
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
+
+
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"img_noinfo_default"];
+}
+
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return true;
 }
 @end

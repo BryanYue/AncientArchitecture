@@ -265,4 +265,28 @@ NSMutableArray<CourseDetailResponse *>  *searchhCourse;
         
     
 }
+
+
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *title = @"这里空空如也";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:18],
+                                 NSForegroundColorAttributeName:[UIColor darkGrayColor]
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @end

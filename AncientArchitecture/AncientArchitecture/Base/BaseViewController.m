@@ -84,6 +84,20 @@
 
 }
 
+-(void)addRightbuttonWithtext:(NSString *)image{
+    UILabel *rightlble = [[UILabel alloc] init];
+    rightlble.frame=CGRectMake(kScreen_Width/3*2, statusBar_Height, kScreen_Width/3-20, 44);
+    rightlble.backgroundColor=[UIColor clearColor];
+    rightlble.textAlignment=NSTextAlignmentRight;
+    rightlble.textColor=[UIColor whiteColor];
+    rightlble.font = [UIFont systemFontOfSize:15];
+    [rightlble setText:image];
+    rightlble.userInteractionEnabled = YES;
+    [rightlble addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(rightButtonPress)]];
+    [self.topView addSubview: rightlble];
+}
+
+
 
 -(void)backButtonPress{
     [self dismissViewControllerAnimated:YES completion:nil];

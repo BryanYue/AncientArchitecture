@@ -595,7 +595,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                     tlabele_content.numberOfLines=0;//行数设为0，表示不限制行数
                     //根据label的内容和label的font为label设置frame，100为label的长度
                     CGRect txRect = [tlabele_content.text boundingRectWithSize:CGSizeMake(kScreen_Width, [UIScreen mainScreen].bounds.size.height*10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:tlabele_content.font} context:nil];
-                    tlabele_content.frame=CGRectMake(20, playerViewh, txRect.size.width-20, txRect.size.height+60);//重新为label设置frame
+                    tlabele_content.frame=CGRectMake(20, playerViewh, txRect.size.width, txRect.size.height+60);//重新为label设置frame
                     
                     
                     
@@ -701,7 +701,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    return CGSizeMake(kScreen_Width, 45);
+    return CGSizeMake(kScreen_Width, 30);
     
     
     

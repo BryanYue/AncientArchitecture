@@ -12,26 +12,27 @@
 #import "UIImage+extension.h"
 #import "RadioButton.h"
 #import "EditDescibreViewController.h"
+#import "EditnameViewController.h"
+#import "EditnickViewController.h"
 
 #define loginNotification @"loginstatus"
 #define editdescibreNotification @"editdescibre"
 
 @interface personalInformationViewController ()
+@property (retain,nonatomic)UIImageView  *headimage;
+@property (retain,nonatomic)UILabel      *lablenick;
+@property (retain,nonatomic)UILabel      *lablenickname;
+@property (retain,nonatomic)UILabel      *lablenickposition;
+@property (retain,nonatomic)UILabel      *lablenickdescibre;
 
+@property (retain,nonatomic)UIImageView      *image;
+@property (retain,nonatomic)RadioButton      *radioButton;
+@property (retain,nonatomic)NSMutableArray     *buttons;
 @end
 
 @implementation personalInformationViewController
-UIImageView *headimage;
-UILabel *lablenick;
-UILabel *lablenickname;
-UILabel *lablenickposition;
-UILabel *lablenickdescibre;
-
-
 int tab;
-UIImageView *image;
-RadioButton *radioButton;
-NSMutableArray* buttons;
+
 
 
 - (void)viewDidLoad {
@@ -69,7 +70,7 @@ NSMutableArray* buttons;
     headline.backgroundColor =[UIColor_ColorChange colorWithHexString:@"f3f3f3"];
     [self.view addSubview:headline];
     
-    NSArray<NSString *> *titletext=@[@"头像",@"姓名",@"昵称",@"性别",@"职业",@"个人简介"];
+    NSArray<NSString *> *titletext=@[@"头像",@"姓名",@"昵称",@"性别",@"个人简介"];
     
     
     float y;
@@ -106,28 +107,28 @@ NSMutableArray* buttons;
         
         switch (i) {
             case 0:
-                headimage=[UIImageView new];
-                headimage.frame=CGRectMake(kScreen_Width-10-86, 0, lable.frame.size.height,lable.frame.size.height );
-                [view addSubview:headimage];
+                _headimage=[UIImageView new];
+                _headimage.frame=CGRectMake(kScreen_Width-10-86, 0, lable.frame.size.height,lable.frame.size.height );
+                [view addSubview:_headimage];
                 break;
             case 1:
-                lablenick=[UILabel new];
-                lablenick.textAlignment=NSTextAlignmentRight;
-                lablenick.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
-                lablenick.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
-                [view addSubview:lablenick];
-                [lablenick setText:@"点击修改姓名"];
+                _lablenick=[UILabel new];
+                _lablenick.textAlignment=NSTextAlignmentRight;
+                _lablenick.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
+                _lablenick.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
+                [view addSubview:_lablenick];
+                [_lablenick setText:@"点击修改姓名"];
                 break;
             case 2:
-                lablenickname=[UILabel new];
-                lablenickname.textAlignment=NSTextAlignmentRight;
-                lablenickname.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
-                lablenickname.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
-                [view addSubview:lablenickname];
-                [lablenickname setText:@"点击修改昵称"];
+                _lablenickname=[UILabel new];
+                _lablenickname.textAlignment=NSTextAlignmentRight;
+                _lablenickname.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
+                _lablenickname.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
+                [view addSubview:_lablenickname];
+                [_lablenickname setText:@"点击修改昵称"];
                 break;
             case 3:
-                buttons = [NSMutableArray arrayWithCapacity:2];
+                _buttons = [NSMutableArray arrayWithCapacity:2];
                 CGRect btnRect = CGRectMake(kScreen_Width-10-98, 0, 46, 46);
                 for (NSString* optionTitle in @[@"男", @"女"]) {
                     RadioButton* btn = [[RadioButton alloc] initWithFrame:btnRect];
@@ -141,7 +142,7 @@ NSMutableArray* buttons;
                     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
                     btn.titleEdgeInsets = UIEdgeInsetsMake(0, 6, 0, 0);
                     [view addSubview:btn];
-                    [buttons addObject:btn];
+                    [_buttons addObject:btn];
                 }
                 
                 
@@ -150,28 +151,19 @@ NSMutableArray* buttons;
                 
                 break;
             case 4:
-                lablenickposition=[UILabel new];
-                lablenickposition.textAlignment=NSTextAlignmentRight;
-                lablenickposition.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
-                lablenickposition.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
-                [view addSubview:lablenickposition];
-                [lablenickposition setText:@"点击修改职位"];
+                _image=[[UIImageView alloc] init];
+                [_image setImage:[UIImage imageNamed:@"箭头"]];
+                _image.frame=CGRectMake(kScreen_Width-10-_image.image.size.width, (46-_image.image.size.height)/2, _image.image.size.width,_image.image.size.height );
+                [view addSubview:_image];
+                
+                _lablenickdescibre=[[UILabel alloc]init];
+                _lablenickdescibre.textAlignment=NSTextAlignmentRight;
+                _lablenickdescibre.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
+                _lablenickdescibre.frame=CGRectMake(kScreen_Width-15-kScreen_Width/2, 0, kScreen_Width/2-_image.image.size.width,view.frame.size.height-1 );
+                [view addSubview:_lablenickdescibre];
+                [_lablenickdescibre setText:@"点击修改简介"];
                 break;
-            case 5:
-                image=[UIImageView new];
-                [image setImage:[UIImage imageNamed:@"箭头"]];
-                image.frame=CGRectMake(kScreen_Width-10-image.image.size.width, (46-image.image.size.height)/2, image.image.size.width,image.image.size.height );
-                [view addSubview:image];
-                
-                lablenickdescibre=[UILabel new];
-                lablenickdescibre.textAlignment=NSTextAlignmentRight;
-                lablenickdescibre.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
-                lablenickdescibre.frame=CGRectMake(kScreen_Width-15-kScreen_Width/2, 0, kScreen_Width/2-image.image.size.width,view.frame.size.height-1 );
-                [view addSubview:lablenickdescibre];
-                [lablenickdescibre setText:@"点击修改简介"];
-                
-                
-                break;
+       ;
             default:
                 break;
         }
@@ -284,12 +276,12 @@ NSMutableArray* buttons;
             
             break;
         case 1:
-            [self showUITextFieldAction:@"请输入姓名"];
+            [self presentViewController:[EditnickViewController new] animated:YES completion:nil];
             
             
             break;
         case 2:
-            [self showUITextFieldAction:@"请输入昵称"];
+            [self presentViewController:[EditnameViewController new] animated:YES completion:nil];
             
             
             break;
@@ -299,15 +291,11 @@ NSMutableArray* buttons;
             
             break;
         case 4:
-            [self showUITextFieldAction:@"请输入职业"];
-            
-            
-            break;
-        case 5:
             [self presentViewController:[EditDescibreViewController new] animated:YES completion:nil];
             
             
             break;
+    
         default:
             break;
     }
@@ -343,12 +331,12 @@ NSMutableArray* buttons;
                 NSString *url=[data objectForKey:@"headimgurl"];
                 
           
-                [headimage yy_setImageWithURL:[NSURL URLWithString:url]
+                [_headimage yy_setImageWithURL:[NSURL URLWithString:url]
                                               placeholder:nil
                                                   options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
                                                  progress:nil
                                                 transform:^UIImage *(UIImage *image, NSURL *url) {
-                                                    image = [image yy_imageByResizeToSize:CGSizeMake(headimage.frame.size.width, headimage.frame.size.height) contentMode:UIViewContentModeScaleToFill];
+                                                    image = [image yy_imageByResizeToSize:CGSizeMake(_headimage.frame.size.width, _headimage.frame.size.height) contentMode:UIViewContentModeScaleToFill];
                                                     //                            return [image yy_imageByRoundCornerRadius:10];
                                                     return  image;
                                                 }
@@ -410,22 +398,22 @@ NSMutableArray* buttons;
                     
             
                   
-                    [headimage yy_setImageWithURL:[NSURL URLWithString:url]
+                    [_headimage yy_setImageWithURL:[NSURL URLWithString:url]
                                                   placeholder:nil
                                                       options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
                                                      progress:nil
                                                     transform:^UIImage *(UIImage *image, NSURL *url) {
-                                                        image = [image yy_imageByResizeToSize:CGSizeMake(headimage.frame.size.width, headimage.frame.size.height) contentMode:UIViewContentModeScaleToFill];
+                                                        image = [image yy_imageByResizeToSize:CGSizeMake(_headimage.frame.size.width, _headimage.frame.size.height) contentMode:UIViewContentModeScaleToFill];
                                                         //                            return [image yy_imageByRoundCornerRadius:10];
                                                         return  image;
                                                     }
                                        completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
                                            //  把头像设置成圆形
-                                           headimage.layer.cornerRadius=headimage.frame.size.width/2;//裁成圆角
-                                           headimage.layer.masksToBounds=YES;//隐藏裁剪掉的部分
+                                           _headimage.layer.cornerRadius=_headimage.frame.size.width/2;//裁成圆角
+                                           _headimage.layer.masksToBounds=YES;//隐藏裁剪掉的部分
                                            //  给头像加一个圆形边框
-                                           headimage.layer.borderWidth = 1.5f;//宽度
-                                           headimage.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
+                                           _headimage.layer.borderWidth = 1.5f;//宽度
+                                           _headimage.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
                                            
                                            [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", true]}];
                                            
@@ -486,51 +474,51 @@ NSMutableArray* buttons;
  
     
     
-    [headimage yy_setImageWithURL:[NSURL URLWithString:user.headimgurl]
+    [_headimage yy_setImageWithURL:[NSURL URLWithString:user.headimgurl]
                                   placeholder:nil
                                       options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
                                      progress:nil
                                     transform:^UIImage *(UIImage *image, NSURL *url) {
-                                        image = [image yy_imageByResizeToSize:CGSizeMake(headimage.frame.size.width, headimage.frame.size.height) contentMode:UIViewContentModeScaleToFill];
+                                        image = [image yy_imageByResizeToSize:CGSizeMake(_headimage.frame.size.width, _headimage.frame.size.height) contentMode:UIViewContentModeScaleToFill];
                                         //                            return [image yy_imageByRoundCornerRadius:10];
                                         return  image;
                                     }
                        completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
                            //  把头像设置成圆形
-                           headimage.layer.cornerRadius=headimage.frame.size.width/2;//裁成圆角
-                           headimage.layer.masksToBounds=YES;//隐藏裁剪掉的部分
+                           _headimage.layer.cornerRadius=_headimage.frame.size.width/2;//裁成圆角
+                           _headimage.layer.masksToBounds=YES;//隐藏裁剪掉的部分
                            //  给头像加一个圆形边框
-                           headimage.layer.borderWidth = 1.5f;//宽度
-                           headimage.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
+                           _headimage.layer.borderWidth = 1.5f;//宽度
+                           _headimage.layer.borderColor = [UIColor whiteColor].CGColor;//颜色
                            
                        }];
     
     
     
     if (user.nick) {
-        [lablenick setText:user.nick];
+        [_lablenick setText:user.nick];
     }
     
     if (user.nickname) {
-        [lablenickname setText:user.nickname];
+        [_lablenickname setText:user.nickname];
     }
     if (user.position) {
-        [lablenickposition setText:user.position];
+        [_lablenickposition setText:user.position];
     }
     
     if ([user.sex  isEqualToString:@"1"]) {
-        [buttons[0] setGroupButtons:buttons]; // Setting buttons into the group
-        [buttons[0] setSelected:YES]; // Making the first button initially selected
+        [_buttons[0] setGroupButtons:_buttons]; // Setting buttons into the group
+        [_buttons[0] setSelected:YES]; // Making the first button initially selected
     }else{
-        [buttons[0] setGroupButtons:buttons]; // Setting buttons into the group
-        [buttons[0] setSelected:YES]; // Making the first button initially selected
+        [_buttons[0] setGroupButtons:_buttons]; // Setting buttons into the group
+        [_buttons[0] setSelected:YES]; // Making the first button initially selected
     }
    
     
     if (user.descibre) {
-         [lablenickdescibre setText:user.descibre];
+         [_lablenickdescibre setText:user.descibre];
     }else{
-         [lablenickdescibre setText:@"点击修改简介"];
+         [_lablenickdescibre setText:@"点击修改简介"];
     }
 }
 
@@ -575,9 +563,9 @@ NSMutableArray* buttons;
                 NSDictionary *data =response.data;
                 NSString *user_name=[data objectForKey:@"user_name"];
                 if (tab==1) {
-                    [lablenick setText:user_name];
+                    [_lablenick setText:user_name];
                 }else if (tab==2){
-                    [lablenickname setText:user_name];
+                    [_lablenickname setText:user_name];
                 }
             
                 
@@ -620,7 +608,7 @@ NSMutableArray* buttons;
                 NSLog(@"%@",response.data);
                 
      
-                [lablenickposition setText:Position];
+                [_lablenickposition setText:Position];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", true]}];
                 
@@ -669,8 +657,18 @@ NSMutableArray* buttons;
 {
     NSDictionary *dic =sender.userInfo ;
     NSString *edi = [dic objectForKey:@"editdescibre"];
+    NSString *name = [dic objectForKey:@"name"];
+    NSString *nick = [dic objectForKey:@"nick"];
+    
     if (edi) {
-        [lablenickdescibre setText:edi];
+        [_lablenickdescibre setText:edi];
+    }
+    if (name) {
+        [_lablenickname setText:name];
+    }
+    
+    if (nick) {
+        [_lablenick setText:nick];
     }
 }
 

@@ -127,4 +127,11 @@
 #define url_resetPwd      @"/api/index/resetPwd"
 
 
+//关注我们
+#define aboutUs      @"/api/Document/aboutUs"
+
+
+
+
+
 #endif /* api_h */

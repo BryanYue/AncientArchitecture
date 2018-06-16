@@ -215,12 +215,14 @@ bool isjjrefreshing =false;
                 if (response.page>jji) {
                     jji++;
                 }else{
-                    if (jji==1) {
-                        [_jijianglistCollectionV.mj_footer  removeFromSuperview ];
-                    }else{
-                        [_jijianglistCollectionV.mj_footer  endRefreshingWithNoMoreData];
-                    }
+                   
+                [_jijianglistCollectionV.mj_footer  endRefreshingWithNoMoreData];
                     
+                    
+                }
+                
+                if (jijianglistCourse.count==0) {
+                    [_jijianglistCollectionV.mj_footer  removeFromSuperview ];
                 }
                 
                 
@@ -238,6 +240,7 @@ bool isjjrefreshing =false;
                 [self.HUD hideAnimated:true];
             }
             [self TextButtonAction:error.domain];
+             [_jijianglistCollectionV.mj_footer  removeFromSuperview ];
         }
         
         
