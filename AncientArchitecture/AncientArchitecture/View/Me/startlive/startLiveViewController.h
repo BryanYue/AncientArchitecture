@@ -16,6 +16,6 @@
 @property (nonatomic, strong) AlivcLivePusher *livePusher;
 @property (nonatomic, strong) AlivcLivePushConfig *pushConfig;
 @property (nonatomic, strong) UIView *previewView;
-
+@property (nonatomic, strong) UIImageView *viewstartpause;
 
 @end

@@ -138,7 +138,7 @@ int Coursetab;
                 Coursename =[[UITextField alloc] init];
                 Coursename.textColor = [UIColor_ColorChange colorWithHexString:@"666666"];
                 Coursename.placeholder = @"未设置";
-                Coursename.textAlignment = NSTextAlignmentRight;
+                Coursename.textAlignment = NSTextAlignmentLeft;
                 [Coursename setValue:[UIColor_ColorChange colorWithHexString:@"666666"] forKeyPath:@"_placeholderLabel.textColor"];
                 Coursename.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Coursename];
@@ -148,7 +148,7 @@ int Coursetab;
                 
             case 1:
                 Coursesort=[[UILabel alloc] init];
-                Coursesort.textAlignment=NSTextAlignmentRight;
+                Coursesort.textAlignment=NSTextAlignmentLeft;
                 Coursesort.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
                 Coursesort.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Coursesort];
@@ -158,7 +158,7 @@ int Coursetab;
             case 2:
                 
                 Coursetime=[[UILabel alloc] init];
-                Coursetime.textAlignment=NSTextAlignmentRight;
+                Coursetime.textAlignment=NSTextAlignmentLeft;
                 Coursetime.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
                 Coursetime.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Coursetime];
@@ -166,7 +166,7 @@ int Coursetab;
                 break;
             case 3:
                 Courseduration=[[UILabel alloc] init];
-                Courseduration.textAlignment=NSTextAlignmentRight;
+                Courseduration.textAlignment=NSTextAlignmentLeft;
                 Courseduration.textColor=[UIColor_ColorChange colorWithHexString:@"666666"];
                 Courseduration.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Courseduration];
@@ -180,7 +180,7 @@ int Coursetab;
                 [Courseprize setValue:[UIColor_ColorChange colorWithHexString:@"666666"] forKeyPath:@"_placeholderLabel.textColor"];
                 Courseprize.delegate = self;
                 Courseprize.returnKeyType = UIReturnKeyDone;
-                Courseprize.textAlignment = NSTextAlignmentRight;
+                Courseprize.textAlignment = NSTextAlignmentLeft;
                 //数字模式键盘
                 Courseprize.keyboardType=UIKeyboardTypeNumberPad;
                 Courseprize.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
@@ -199,7 +199,7 @@ int Coursetab;
                
                 [view addSubview:Courseimage];
                 [Courseimage setImage:[UIImage imageNamed:@"img_add_image"]];
-                 Courseimage.frame=CGRectMake((kScreen_Width-Courseimage.image.size.width)/2+10, 55,Courseimage.image.size.width,Courseimage.image.size.height );
+                 Courseimage.frame=CGRectMake((kScreen_Width-100)/2+10, 85,100,100 );
                 [Courseimage setContentScaleFactor:[[UIScreen mainScreen] scale]];
                 Courseimage.contentMode =  UIViewContentModeScaleAspectFill;
                 Courseimage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -399,7 +399,11 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
 
 -(void)checkimage
 {
+    
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
+    imagePickerVc.allowCrop = YES;
+    imagePickerVc.cropRect=CGRectMake(0, (kScreen_Height-(kScreen_Height/702)*250)/2, kScreen_Width, (kScreen_Height/702)*250);
+    imagePickerVc.showSelectBtn = NO;
     imagePickerVc.title =@"图片";
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         NSLog(@"%zd",photos.count);
@@ -432,8 +436,8 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
                    CGRect btnFrame  =Courseimage.frame;
                     btnFrame.origin.x=10;
                     btnFrame.origin.y=55;
-                    btnFrame.size.width=kScreen_Width-20;
-                    btnFrame.size.height=271-20;
+                    btnFrame.size.width=kScreen_Width;
+                    btnFrame.size.height=(kScreen_Height/702)*250;
                     Courseimage.frame=btnFrame;
                     
             

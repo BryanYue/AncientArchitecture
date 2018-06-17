@@ -134,14 +134,10 @@ VTDivideViewController *tableview;
 
 -(void)search{
    
-    bool islogin = [DEFAULTS objectForKey:@"islogin"];
-    
-    if (islogin) {
+
         
         [self.view.window.rootViewController presentViewController:[searchViewController new] animated:YES completion:nil];
-    }else{
-         [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
-    }
+ 
 }
 
 

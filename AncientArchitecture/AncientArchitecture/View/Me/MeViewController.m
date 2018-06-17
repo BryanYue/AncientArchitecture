@@ -280,33 +280,53 @@ NSString *isteacher;
 
 -(void)changeColor:(UIButton *)button{
     NSLog(@"========%zd",[button tag]);
-    if (!islogin) {
-        [self toLogin];
-    }else{
+   
         if ([isteacher isEqualToString:@"1"]) {
             switch ([button tag]) {
                 case 0:
+                    if (!islogin) {
+                        [self toLogin];
+                    }else{
                     [self presentViewController:[postPpreviewViewController new] animated:YES completion:nil];
+                    }
                     break;
                 case 1:
+                    if (!islogin) {
+                        [self toLogin];
+                    }else{
                     [self presentViewController:[TeacheCourseViewController new] animated:YES completion:nil];
+                    }
                     break;
                 case 2:
+                    if (!islogin) {
+                        [self toLogin];
+                    }else{
                     [self presentViewController:[myCourseViewController new] animated:YES completion:nil];
+                    }
                     break;
                 case 3:
+                     [self showUITextFieldAction:@"请拨打电话010-56126612"];
                     
                     break;
                 case 4:
+                 
                      [self presentViewController:[AboutusViewController new] animated:YES completion:nil];
                     
+            
                     break;
                 case 5:
+                    if (!islogin) {
+                            [self toLogin];
+                        }else{
                      [self presentViewController:[SettingViewController new] animated:YES completion:nil];
+                    }
                     break;
                 case 6:
+                    if (!islogin) {
+                        [self toLogin];
+                    }else{
                      [self loginout];
-                   
+                    }
                     break;
                 case 7:
                    
@@ -316,14 +336,38 @@ NSString *isteacher;
         }else{
             switch ([button tag]) {
                 case 0:
+                    if (!islogin) {
+                        [self toLogin];
+                    }else{
                      [self presentViewController:[myCourseViewController new] animated:YES completion:nil];
+                    }
+                    break;
+                    
+                    case 1:
+                    [self showUITextFieldAction:@"请拨打电话010-56126612"];
+                    
+                    
+                    break;
+                    
+                    
+                    case 2:
+                  
+                        [self presentViewController:[AboutusViewController new] animated:YES completion:nil];
+                    
                     break;
                 case 3:
-                    
+                    if (!islogin) {
+                        [self toLogin];
+                    }else{
                     [self presentViewController:[SettingViewController new] animated:YES completion:nil];
+                    }
                     break;
                 case 4:
+                    if (!islogin) {
+                        [self toLogin];
+                    }else{
                     [self loginout];
+                    }
                     break;
                 default:
                     break;
@@ -331,9 +375,32 @@ NSString *isteacher;
         }
 
         
-    }
+    
    
  }
+
+-(void)showUITextFieldAction:(NSString *)string{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"联系客服" message:string preferredStyle:UIAlertControllerStyleAlert];
+    //增加确定按钮；
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"01056126612"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        
+
+        
+    }]];
+    
+    //增加取消按钮；
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    
+  
+    
+    
+    [self presentViewController:alertController animated:true completion:nil];
+}
+
+
 
 
  -(void)toMessage{

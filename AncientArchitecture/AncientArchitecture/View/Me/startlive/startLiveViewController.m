@@ -16,6 +16,7 @@
 
 @implementation startLiveViewController
 NSString *pushurl;
+bool ispushing=false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +45,14 @@ NSString *pushurl;
     [self addBackButton];
     [self.topTitleLabel setText:@"直播课程"];
     [self addRightbuttonWithTitle:@"camera_id"];
+    
+    if (!_viewstartpause) {
+        _viewstartpause = [[UIImageView alloc] init];
+        _viewstartpause.frame=CGRectMake((kScreen_Width- 50)/2, kScreen_Height-100, 50,50 );
+
+    }
+   
+   
     
 }
 
@@ -78,10 +87,14 @@ NSString *pushurl;
                     
                     if (pushurl) {
                         if (!self.previewView) {
-                            _previewView =[UIView new];
+                            _previewView =[[UIView alloc] init];
                             _previewView.backgroundColor=[UIColor clearColor];
                             _previewView.frame=CGRectMake(0, self.topView.frame.size.height, kScreen_Width,kScreen_Height-self.topView.frame.size.height );
+                           
                             [self.view addSubview:_previewView];
+                            [self.view addSubview:_viewstartpause];
+                            _viewstartpause.userInteractionEnabled = YES;
+                            [_viewstartpause addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toMessage)]];
                         }
                         
                         [self initconfing];
@@ -240,6 +253,9 @@ NSString *pushurl;
     dispatch_sync(dispatch_get_main_queue(), ^{
         /* Do UI work here */
          [self.topTitleLabel setText:@"直播课程(正在推流)"];
+        ispushing=true;
+        _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_pause"];
+        
     });
     
 }
@@ -255,6 +271,8 @@ NSString *pushurl;
     dispatch_sync(dispatch_get_main_queue(), ^{
         /* Do UI work here */
        [self.topTitleLabel setText:@"直播课程(推流暂停)"];
+         ispushing=false;
+         _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_record"];
     });
     
 }
@@ -270,6 +288,8 @@ NSString *pushurl;
     dispatch_sync(dispatch_get_main_queue(), ^{
         /* Do UI work here */
        [self.topTitleLabel setText:@"直播课程(推流恢复)"];
+        ispushing=true;
+         _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_pause"];
     });
     
 }
@@ -282,8 +302,23 @@ NSString *pushurl;
  */
 - (void)onPushRestart:(AlivcLivePusher *)pusher{
      NSLog(@"onPushRestart:" );
-    
+    [self.topTitleLabel setText:@"直播课程(重新推流)"];
+    ispushing=true;
+    _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_pause"];
 }
+
+
+-(void)toMessage{
+  
+    if (self.livePusher) {
+        if (ispushing) {
+            [self.livePusher pause];
+        }else{
+            [self.livePusher resumeAsync];
+        }
+    }
+}
+
 
 
 /**

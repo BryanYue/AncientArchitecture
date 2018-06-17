@@ -24,7 +24,6 @@
 #import "api.h"
 #import "BaseResponse.h"
 #import "BaseViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 #import <YYWebImage.h>
 
 #import "UIScrollView+EmptyDataSet.h"

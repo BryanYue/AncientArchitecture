@@ -64,6 +64,12 @@
    
 //   [SDImageCache sharedImageCache].config.maxCacheSize = 1024 * 1024 * 500;    // 50M
     
+    
+
+    
+   
+    
+    
     return YES;
 }
 

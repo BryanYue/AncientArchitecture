@@ -14,26 +14,35 @@
 - (void)setImageName:(NSString *)imageName
 {
     
-    if (!self.imageview) {
-        self.imageview=[[UIImageView alloc]init];
-        self.imageview.userInteractionEnabled = YES;
+    if (!_imageview) {
+        _imageview=[[UIImageView alloc]init];
+        _imageview.userInteractionEnabled = YES;
     }
-    self.imageview.frame=CGRectMake(0, 0,kScreen_Width,224 );
-    [self.imageview setContentScaleFactor:[[UIScreen mainScreen] scale]];
-    self.imageview.contentMode =  UIViewContentModeScaleAspectFill;
-    self.imageview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.imageview.clipsToBounds  = YES;
-    [self addSubview:self.imageview];
+    _imageview.frame=CGRectMake(0, 0,kScreen_Width,224 );
+    [_imageview setContentScaleFactor:[[UIScreen mainScreen] scale]];
+    _imageview.contentMode =  UIViewContentModeScaleAspectFill;
+    _imageview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    _imageview.clipsToBounds  = YES;
+    [self addSubview:_imageview];
     
 
-    [self.imageview yy_setImageWithURL:[NSURL URLWithString:imageName]
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    [_imageview yy_setImageWithURL:[NSURL URLWithString:imageName]
                       placeholder:nil
                         options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
                         progress:nil
                         transform:^UIImage *(UIImage *image, NSURL *url) {
-                            image = [image yy_imageByResizeToSize:CGSizeMake(kScreen_Width, 224) contentMode:UIViewContentModeScaleToFill];
+                          
 //                            return [image yy_imageByRoundCornerRadius:10];
-                            return  image;
+                            return  [image yy_imageByResizeToSize:CGSizeMake(kScreen_Width, 224) contentMode:UIViewContentModeScaleToFill];;
                         }
                        completion:nil];
     

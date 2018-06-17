@@ -18,7 +18,7 @@
 #import "CourseDetailResponse.h"
 #import "CustomCollectionViewCell.h"
 #import "playerViewController.h"
-@interface headViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,SDCycleScrollViewDelegate>
+@interface headViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,SDCycleScrollViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @end
 
@@ -64,12 +64,21 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
                         
                     }
                     _customCellScrollViewDemo.imageURLStringsGroup = CarouselImgdata;
+                      [self.view addSubview:_customCellScrollViewDemo];
                 }else{
                     _customCellScrollViewDemo.hidden=true;
+                    UILabel *lablen=[[UILabel alloc]init];
+                    [lablen setText:@"这里空空如也"];
+                    lablen.frame=CGRectMake(0,0, kScreen_Width,80 );
+                    lablen.textAlignment=NSTextAlignmentCenter;
+                    lablen.textColor=[UIColor_ColorChange colorWithHexString:app_theme];
+                    
+                    lablen.font = [UIFont systemFontOfSize:20];
+                    [self.view addSubview:lablen];
                 }
-             
                 
-                [self.view addSubview:_customCellScrollViewDemo];
+                
+             
                 
                 
             }
