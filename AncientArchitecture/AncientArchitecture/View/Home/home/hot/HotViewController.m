@@ -18,6 +18,8 @@
 #import "CoursefeileiCollectionViewCell.h"
 #import "classificationViewController.h"
 #import "LoginViewController.h"
+#import "classVTMagicController.h"
+
 @interface HotViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property(strong,nonatomic)UICollectionView *myhotCollectionV;
 @end
@@ -285,9 +287,10 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
             [defaults removeObjectForKey:@"play_url"];
             [defaults synchronize];
             [defaults setObject:hotCourse[indexPath.row].id forKey:@"play_url"];
-            
-            
-            [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
+            playerViewController *classificationView=[[playerViewController alloc]init];
+            [self.view.window.rootViewController presentViewController:classificationView animated:YES completion:nil];
+
+//            [self.magicController presentViewController:[playerViewController new] animated:YES completion:nil];
         }
         
       
@@ -306,7 +309,10 @@ NSMutableArray<CourseDetailResponse *> *hotCourse;
             [defaults setObject:hotCategory[indexPath.row].id forKey:@"classification_id"];
             [defaults setObject:hotCategory[indexPath.row].name forKey:@"classification_title"];
             
-            [self.view.window.rootViewController presentViewController:[classificationViewController new] animated:YES completion:nil];
+            
+          
+            classVTMagicController *classificationView=[[classVTMagicController alloc]init];
+            [self.view.window.rootViewController presentViewController:classificationView animated:YES completion:nil];
         }
        
         

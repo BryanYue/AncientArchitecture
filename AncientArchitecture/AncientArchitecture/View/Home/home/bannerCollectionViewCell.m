@@ -40,8 +40,7 @@
                         options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
                         progress:nil
                         transform:^UIImage *(UIImage *image, NSURL *url) {
-                          
-//                            return [image yy_imageByRoundCornerRadius:10];
+                         
                             return  [image yy_imageByResizeToSize:CGSizeMake(kScreen_Width, 224) contentMode:UIViewContentModeScaleToFill];;
                         }
                        completion:nil];

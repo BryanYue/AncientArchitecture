@@ -10,4 +10,6 @@
 
 @interface classVTMagicController : VTMagicController
 
+-(void)initbaseView;
+-(void)addBackButton;//返回按钮戴尖头图片
 @end

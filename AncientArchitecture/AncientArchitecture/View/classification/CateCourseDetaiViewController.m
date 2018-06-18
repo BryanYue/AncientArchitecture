@@ -63,7 +63,7 @@ bool CateCourseDetairefreshing =false;
     
     //创建一个块状表格布局对象
     
-    UICollectionViewFlowLayout *flowL = [UICollectionViewFlowLayout new];
+    UICollectionViewFlowLayout *flowL = [[UICollectionViewFlowLayout alloc]init];
     
     //格子的大小 (长，高)
     
@@ -275,7 +275,15 @@ bool CateCourseDetairefreshing =false;
    
 }
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (CateCourseDetaiCourse.count>0) {
+        
+    }else{
+         [self initjijiangCourse];
+    }
+    
+}
 
 
 

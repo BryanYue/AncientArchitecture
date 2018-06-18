@@ -142,15 +142,6 @@ VTDivideViewController *tableview;
 
 
 
--(void)viewWillAppear:(BOOL)animated{
-  
-    [SDWebImageDownloader sharedDownloader].shouldDecompressImages = NO;
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-   
-    [SDWebImageDownloader sharedDownloader].shouldDecompressImages = YES;
-}
 
 
 

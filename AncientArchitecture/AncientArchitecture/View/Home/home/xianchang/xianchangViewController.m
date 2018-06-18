@@ -10,6 +10,8 @@
 #import "CourseDetailResponse.h"
 #import "MJRefresh.h"
 #import "TeacheCourseViewCollectionViewCell.h"
+#import "playerViewController.h"
+
 
 @interface xianchangViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(strong,nonatomic)UICollectionView *xianchangCollectionV;
@@ -218,6 +220,42 @@ NSMutableArray<CourseDetailResponse *> *xianchangCourse;
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
     return true;
 }
+
+
+
+
+
+
+
+//设置点击 Cell的点击事件
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
+  
+        
+        
+        if (xianchangCourse.count>0) {
+            NSUserDefaults *defaults= DEFAULTS;
+            
+            [defaults removeObjectForKey:@"play_url"];
+            [defaults synchronize];
+            [defaults setObject:xianchangCourse[indexPath.row].id forKey:@"play_url"];
+            playerViewController *classificationView=[[playerViewController alloc]init];
+            [self.view.window.rootViewController presentViewController:classificationView animated:YES completion:nil];
+            
+            //            [self.magicController presentViewController:[playerViewController new] animated:YES completion:nil];
+        }
+        
+        
+        
+        
+        
+  
+
+}
+
+
+
+
 
 
 @end

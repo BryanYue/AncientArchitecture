@@ -253,7 +253,7 @@ bool isjjrefreshing =false;
 //设置点击 Cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
-    if([DEFAULTS objectForKey:@"islogin"]){
+   
         if (jijianglistCourse.count>0) {
             NSUserDefaults *defaults= DEFAULTS;
             
@@ -264,11 +264,7 @@ bool isjjrefreshing =false;
             
             [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
         }
-       
-    }else{
-        
-        [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
-    }
+
     
 }
 

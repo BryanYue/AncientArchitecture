@@ -59,15 +59,25 @@
 
 
 - (UIButton *)magicView:(VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
-    static NSString *itemIdentifier = @"itemIdentifier";
+
+     NSString *itemIdentifier =[NSString stringWithFormat:@"itemIdentifier%lu",itemIndex];
     UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
     
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        if (itemIndex==0) {
+            [menuItem setImage:[UIImage imageNamed:@"icon_home_live"] forState:UIControlStateNormal];
+            }else{
+               [menuItem setImage:[UIImage imageNamed:@"icon_course_playde"] forState:UIControlStateNormal];
+            }
         [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
         [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
         menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
-        
+      
+//        [menuItem setBackgroundImage:[self imageWithColor:RGBCOLOR(169, 37, 37)] forState:UIControlStateNormal];
+//        [menuItem setBackgroundImage:[self imageWithColor: [UIColor_ColorChange colorWithHexString:app_theme]] forState:UIControlStateHighlighted];
+      
     }
     
     return menuItem;
@@ -99,14 +109,28 @@
 }
 
 
+//  颜色转换为背景图片
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 
 
 - (void)configCustomSlider {
-    UIImageView *sliderView = [[UIImageView alloc] init];
-    [sliderView setImage:[UIImage imageNamed:@"magic_arrow"]];
-    sliderView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.magicView setSliderView:sliderView];
-    self.magicView.sliderHeight = 5.f;
-    self.magicView.sliderOffset = -2;
+//    UIImageView *sliderView = [[UIImageView alloc] init];
+//    [sliderView setImage:[UIImage imageNamed:@"magic_arrow"]];
+//    sliderView.contentMode = UIViewContentModeScaleAspectFit;
+//    [self.magicView setSliderView:sliderView];
+//    self.magicView.sliderHeight = 5.f;
+//    self.magicView.sliderOffset = -2;
 }
 @end

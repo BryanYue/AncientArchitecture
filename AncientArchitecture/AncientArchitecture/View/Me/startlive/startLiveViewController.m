@@ -18,6 +18,12 @@
 NSString *pushurl;
 bool ispushing=false;
 
+
+NSTimer *retimers;
+int second;
+int minute;
+int hour;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -168,6 +174,7 @@ bool ispushing=false;
         self.pushConfig.previewMirror = false; // 关闭预览镜像
         self.pushConfig.orientation = AlivcLivePushOrientationPortrait; // Left横屏推流
         self.pushConfig.beautyOn=false;
+        self.pushConfig.enableAutoResolution = true;
         [self.livePusher setAudioDenoise:true];// 降噪打开
         [self.livePusher setBGMEarsBack:true];// 打开耳返
         [self.livePusher setCaptureVolume:50];;// 设置人声采集音量为50
@@ -255,7 +262,11 @@ bool ispushing=false;
          [self.topTitleLabel setText:@"直播课程(正在推流)"];
         ispushing=true;
         _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_pause"];
-        
+        second = 0;
+        minute= 0;
+        hour= 0;
+        [self.topTitleLabel setText: [NSString stringWithFormat:@"%02d:%02d.%02d",hour,minute,second]];
+        retimers = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(startTimer) userInfo:nil repeats:YES];
     });
     
 }
@@ -270,6 +281,7 @@ bool ispushing=false;
     NSLog(@"onPushPauesed:" );
     dispatch_sync(dispatch_get_main_queue(), ^{
         /* Do UI work here */
+        [retimers setFireDate:[NSDate distantFuture]];
        [self.topTitleLabel setText:@"直播课程(推流暂停)"];
          ispushing=false;
          _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_record"];
@@ -287,13 +299,31 @@ bool ispushing=false;
     NSLog(@"onPushResumed:" );
     dispatch_sync(dispatch_get_main_queue(), ^{
         /* Do UI work here */
+       
        [self.topTitleLabel setText:@"直播课程(推流恢复)"];
+         [retimers setFireDate:[NSDate date]];
         ispushing=true;
          _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_pause"];
     });
     
 }
 
+
+/**
+ 推流停止回调
+ 
+ @param pusher 推流AlivcLivePusher
+ */
+- (void)onPushStoped:(AlivcLivePusher *)pusher{
+    NSLog(@"onPushStoped:" );
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        /* Do UI work here */
+        ispushing=false;
+         _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_record"];
+        [self.topTitleLabel setText:@"直播课程(推流停止)"];
+    });
+    
+}
 
 /**
  重新推流回调
@@ -308,32 +338,40 @@ bool ispushing=false;
 }
 
 
+-(void)startTimer{
+    second++;
+    //没过１００毫秒，就让秒＋１，然后让毫秒在归零
+    if(second==60){
+        minute++;
+        second = 0;
+    }
+    if (minute == 60) {
+        hour++;
+        minute = 0;
+    }
+    [self.topTitleLabel setText: [NSString stringWithFormat:@"%02d:%02d:%02d",hour,minute,second]];
+}
+
 -(void)toMessage{
   
-    if (self.livePusher) {
+    if (_livePusher) {
         if (ispushing) {
-            [self.livePusher pause];
+            
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                // 处理耗时操作的代码块...
+                 [self pausePush];
+                
+               
+                
+                });
+           
         }else{
-            [self.livePusher resumeAsync];
+            [self resumePush];
         }
     }
 }
 
 
-
-/**
- 推流停止回调
- 
- @param pusher 推流AlivcLivePusher
- */
-- (void)onPushStoped:(AlivcLivePusher *)pusher{
-     NSLog(@"onPushStoped:" );
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        /* Do UI work here */
-        [self.topTitleLabel setText:@"直播课程(推流停止)"];
-    });
-    
-}
 
 
 
@@ -539,6 +577,8 @@ bool ispushing=false;
     self.pushConfig = nil;
     self.livePusher = nil;
     self.previewView = nil;
+    [retimers invalidate];
+    retimers = nil;
 }
 
 

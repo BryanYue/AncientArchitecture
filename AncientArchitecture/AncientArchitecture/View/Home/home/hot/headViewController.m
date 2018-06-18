@@ -66,10 +66,15 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
                     _customCellScrollViewDemo.imageURLStringsGroup = CarouselImgdata;
                       [self.view addSubview:_customCellScrollViewDemo];
                 }else{
+                    UIImageView *title =[[UIImageView alloc]init];
+                    title.image=[UIImage imageNamed:@"img_hom_hot_precourse"];
+                    title.frame = CGRectMake(30,20+ title.image.size.height/2, title.image.size.width, title.image.size.height);
+                    [self.view addSubview: title];
+                    
                     _customCellScrollViewDemo.hidden=true;
                     UILabel *lablen=[[UILabel alloc]init];
-                    [lablen setText:@"这里空空如也"];
-                    lablen.frame=CGRectMake(0,0, kScreen_Width,80 );
+                    [lablen setText:@"暂无预告课程"];
+                    lablen.frame=CGRectMake(0,5, kScreen_Width,80 );
                     lablen.textAlignment=NSTextAlignmentCenter;
                     lablen.textColor=[UIColor_ColorChange colorWithHexString:app_theme];
                     

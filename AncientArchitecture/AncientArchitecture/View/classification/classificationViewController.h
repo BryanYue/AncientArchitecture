@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 #import "classVTMagicController.h"
 @interface classificationViewController : BaseViewController
-@property(strong,nonatomic)classVTMagicController *classVTMagicController;
+@property(nonatomic,strong)classVTMagicController *classVTMagicController;
 @end

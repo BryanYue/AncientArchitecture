@@ -32,15 +32,15 @@
     self.view.backgroundColor =[UIColor whiteColor];
     
     
-    if (!self.classVTMagicController) {
-        self.classVTMagicController =[[classVTMagicController alloc] init] ;
-        self.classVTMagicController.view.frame=CGRectMake(0, self.topView.frame.size.height, kScreen_Width,kScreen_Height-self.topView.frame.size.height);
+    if (!_classVTMagicController) {
+        _classVTMagicController =[[classVTMagicController alloc] init] ;
+        _classVTMagicController.view.frame=CGRectMake(0, 44+statusBar_Height, kScreen_Width,kScreen_Height-44-statusBar_Height);
         
         
     }
    
-    [self.view addSubview: self.classVTMagicController.view];
-    
+   
+     [self.view addSubview: _classVTMagicController.view];
     
     
     
@@ -57,7 +57,13 @@
 }
 
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+}
 
+-(void)viewWillDisappear:(BOOL)animated{
+ 
+}
 
 /*
 #pragma mark - Navigation

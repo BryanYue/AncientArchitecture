@@ -31,6 +31,8 @@
 		935E490620D4C48B00E4D39E /* aboutus.m in Sources */ = {isa = PBXBuildFile; fileRef = 935E490520D4C48B00E4D39E /* aboutus.m */; };
 		935E490920D4FC8000E4D39E /* EditnameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935E490820D4FC8000E4D39E /* EditnameViewController.m */; };
 		935E490C20D5113D00E4D39E /* EditnickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935E490B20D5113D00E4D39E /* EditnickViewController.m */; };
+		935E491C20D7EC6200E4D39E /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935E491B20D7EC6200E4D39E /* HomeController.m */; };
+		935E491F20D7FA6400E4D39E /* LLFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 935E491E20D7FA6400E4D39E /* LLFileTool.m */; };
 		93631ADC20A8306300632B32 /* CarouselImgResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631ADB20A8306300632B32 /* CarouselImgResponse.m */; };
 		93631ADF20A8307000632B32 /* TeacherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631ADE20A8307000632B32 /* TeacherResponse.m */; };
 		93631AE820A830CA00632B32 /* NSString+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631AE320A830CA00632B32 /* NSString+AES.m */; };
@@ -43,7 +45,6 @@
 		93631BF320A8330900632B32 /* yuboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631BEC20A8330800632B32 /* yuboViewController.m */; };
 		93631BF420A8330900632B32 /* buylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631BED20A8330900632B32 /* buylistViewController.m */; };
 		93631BF920A8335200632B32 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631BF520A8335100632B32 /* HomeViewController.m */; };
-		93631BFA20A8335200632B32 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631BF620A8335100632B32 /* HomeController.m */; };
 		93631C0F20A8335A00632B32 /* xianchangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631BFD20A8335A00632B32 /* xianchangViewController.m */; };
 		93631C1020A8335A00632B32 /* VTDivideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631BFF20A8335A00632B32 /* VTDivideViewController.m */; };
 		93631C1120A8335A00632B32 /* yingluViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631C0320A8335A00632B32 /* yingluViewController.m */; };
@@ -215,6 +216,10 @@
 		935E490820D4FC8000E4D39E /* EditnameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditnameViewController.m; sourceTree = "<group>"; };
 		935E490A20D5113D00E4D39E /* EditnickViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditnickViewController.h; sourceTree = "<group>"; };
 		935E490B20D5113D00E4D39E /* EditnickViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditnickViewController.m; sourceTree = "<group>"; };
+		935E491A20D7EC5C00E4D39E /* HomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
+		935E491B20D7EC6200E4D39E /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
+		935E491D20D7FA6400E4D39E /* LLFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFileTool.h; sourceTree = "<group>"; };
+		935E491E20D7FA6400E4D39E /* LLFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFileTool.m; sourceTree = "<group>"; };
 		93631ADA20A8305C00632B32 /* CarouselImgResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarouselImgResponse.h; sourceTree = "<group>"; };
 		93631ADB20A8306300632B32 /* CarouselImgResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselImgResponse.m; sourceTree = "<group>"; };
 		93631ADD20A8306A00632B32 /* TeacherResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherResponse.h; sourceTree = "<group>"; };
@@ -239,8 +244,6 @@
 		93631BEF20A8330900632B32 /* yuboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yuboViewController.h; sourceTree = "<group>"; };
 		93631BF020A8330900632B32 /* myCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myCourseViewController.h; sourceTree = "<group>"; };
 		93631BF520A8335100632B32 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		93631BF620A8335100632B32 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
-		93631BF720A8335200632B32 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
 		93631BF820A8335200632B32 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		93631BFD20A8335A00632B32 /* xianchangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xianchangViewController.m; sourceTree = "<group>"; };
 		93631BFE20A8335A00632B32 /* xianchangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xianchangViewController.h; sourceTree = "<group>"; };
@@ -526,6 +529,8 @@
 		93631BFB20A8335A00632B32 /* home */ = {
 			isa = PBXGroup;
 			children = (
+				935E491A20D7EC5C00E4D39E /* HomeController.h */,
+				935E491B20D7EC6200E4D39E /* HomeController.m */,
 				93C3E40220AEE14D0018EA72 /* course */,
 				93631C0820A8335A00632B32 /* hot */,
 				93631C0120A8335A00632B32 /* yinluren */,
@@ -749,8 +754,6 @@
 			isa = PBXGroup;
 			children = (
 				93631BFB20A8335A00632B32 /* home */,
-				93631BF720A8335200632B32 /* HomeController.h */,
-				93631BF620A8335100632B32 /* HomeController.m */,
 				93631BF820A8335200632B32 /* HomeViewController.h */,
 				93631BF520A8335100632B32 /* HomeViewController.m */,
 			);
@@ -801,6 +804,8 @@
 				93E04486205CEF7800E34F96 /* UIColor+ColorChange.m */,
 				9320B54F206B7CDD0055D9F1 /* UIImage+extension.h */,
 				9320B550206B7CDD0055D9F1 /* UIImage+extension.m */,
+				935E491D20D7FA6400E4D39E /* LLFileTool.h */,
+				935E491E20D7FA6400E4D39E /* LLFileTool.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1140,7 +1145,6 @@
 				938FCF9720C8652800DF0466 /* YYCarouselView.m in Sources */,
 				93E0449C205D8AB700E34F96 /* BaseViewController.m in Sources */,
 				93631C1920A833F300632B32 /* attaourseViewController.m in Sources */,
-				93631BFA20A8335200632B32 /* HomeController.m in Sources */,
 				9320B551206B7CDD0055D9F1 /* UIImage+extension.m in Sources */,
 				9357693F207CFA9600871D95 /* CourseDetailResponse.m in Sources */,
 				93631C1220A8335A00632B32 /* TeacherUICollectionViewCell.m in Sources */,
@@ -1196,6 +1200,7 @@
 				93631C1320A8335A00632B32 /* CourseViewController.m in Sources */,
 				93BE914A20600630009B9FF3 /* RegisterViewController.m in Sources */,
 				93C3E3F520AEBA790018EA72 /* headViewController.m in Sources */,
+				935E491C20D7EC6200E4D39E /* HomeController.m in Sources */,
 				93631BF220A8330900632B32 /* courseViewController.m in Sources */,
 				93631AE820A830CA00632B32 /* NSString+AES.m in Sources */,
 				931E40A720721C7C002D1847 /* TeacheCourseViewController.m in Sources */,
@@ -1205,6 +1210,7 @@
 				93C3E3EF20AEB5430018EA72 /* GLCoverFlowLayout.m in Sources */,
 				93C3E40B20AEE2480018EA72 /* yiboViewController.m in Sources */,
 				93EF3D342067E06A005139EC /* BaseResponse.m in Sources */,
+				935E491F20D7FA6400E4D39E /* LLFileTool.m in Sources */,
 				93C4C54220554B90008716B3 /* AppDelegate.m in Sources */,
 				935E490620D4C48B00E4D39E /* aboutus.m in Sources */,
 				93AEF87420AF37AC00D72852 /* classVTMagicController.m in Sources */,

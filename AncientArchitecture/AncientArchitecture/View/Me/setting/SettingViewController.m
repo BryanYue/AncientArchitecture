@@ -9,8 +9,10 @@
 #import "SettingViewController.h"
 #import "personalInformationViewController.h"
 #import "accountSettingsViewController.h"
+#import "LLFileTool.h"
 
 #define loginNotification @"loginstatus"
+#define cachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 
 @interface SettingViewController ()
 
@@ -100,6 +102,25 @@
                 [view setTag:i];
                 [view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(to:)]];
             }
+            
+            if (i==2) {
+                NSString *string = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+                UILabel *lable2=[UILabel new];
+                [lable2 setText:string];
+                lable2.frame=CGRectMake(kScreen_Width-10-50-45, 0, 80,45 );
+                lable2.textAlignment=NSTextAlignmentCenter;
+                lable2.textColor=[UIColor grayColor];
+                lable2.font = [UIFont systemFontOfSize:18];
+                 [view addSubview:lable2];
+                
+                
+            }
+            
+            if (i==3) {
+              
+                
+                
+            }
            
             [self.view addSubview:view];
         }
@@ -118,6 +139,18 @@
     
 //    [self.view addSubview:personal];
 }
+
+
+
+
+
+
+
+
+
+
+
+
 -(void)ispush:(UISwitch *)swi{
     if (swi.isOn) {
        

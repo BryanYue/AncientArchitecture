@@ -45,29 +45,29 @@
 -(void)initbaseView{
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     //自定义标题栏
-    self.topView=[[UIView alloc] init];
-    self.topView.frame=CGRectMake(0, 0, kScreen_Width, 44+statusBar_Height);
-    self.topView.backgroundColor=[UIColor_ColorChange colorWithHexString:app_theme ];
+    _topView=[[UIView alloc] init];
+    _topView.frame=CGRectMake(0, 0, kScreen_Width, 44+statusBar_Height);
+    _topView.backgroundColor=[UIColor_ColorChange colorWithHexString:app_theme ];
     
-    self.topTitleLabel=[[UILabel alloc] init];
-    self.topTitleLabel.frame=CGRectMake(50, statusBar_Height, kScreen_Width-100, 44);
-    self.topTitleLabel.backgroundColor=[UIColor clearColor];
-    self.topTitleLabel.textAlignment=NSTextAlignmentCenter;
-    self.topTitleLabel.textColor=[UIColor whiteColor];
-    self.topTitleLabel.font = [UIFont systemFontOfSize:18];
-    [self.topView addSubview:self.topTitleLabel];
-    [self.view addSubview:self.topView];
+    _topTitleLabel=[[UILabel alloc] init];
+    _topTitleLabel.frame=CGRectMake(50, statusBar_Height, kScreen_Width-100, 44);
+    _topTitleLabel.backgroundColor=[UIColor clearColor];
+    _topTitleLabel.textAlignment=NSTextAlignmentCenter;
+    _topTitleLabel.textColor=[UIColor whiteColor];
+    _topTitleLabel.font = [UIFont systemFontOfSize:18];
+    [_topView addSubview:_topTitleLabel];
+    [self.view addSubview:_topView];
 }
 -(void)addBackButton{
     UIImageView *backImageView = [[UIImageView alloc] init];
     backImageView.image = [UIImage imageNamed:@"nav_icon_back"];
     backImageView.frame = CGRectMake(10, statusBar_Height+18-backImageView.image.size.height/2, backImageView.image.size.width, backImageView.image.size.height);
-    [self.topView addSubview:backImageView];
+    [_topView addSubview:backImageView];
     
     _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_backButton setFrame:CGRectMake(0, statusBar_Height, 80, 44)];
     [_backButton addTarget:self action:@selector(backButtonPress) forControlEvents:UIControlEventTouchUpInside];
-    [self.topView addSubview:_backButton];
+    [_topView addSubview:_backButton];
 }
 
 
@@ -75,12 +75,12 @@
     UIImageView *rightImageView = [[UIImageView alloc] init];
     rightImageView.image = [UIImage imageNamed:image];
     rightImageView.frame  = CGRectMake(kScreen_Width-10-rightImageView.image.size.width, statusBar_Height+18-rightImageView.image.size.height/2, rightImageView.image.size.width, rightImageView.image.size.height);
-    [self.topView addSubview:rightImageView];
+    [_topView addSubview:rightImageView];
     
     _rightChangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_rightChangeBtn setFrame:CGRectMake(kScreen_Width-20-rightImageView.image.size.width, statusBar_Height, 80, rightImageView.image.size.height)];
     [_rightChangeBtn addTarget:self action:@selector(rightButtonPress) forControlEvents:UIControlEventTouchUpInside];
-    [self.topView addSubview:_rightChangeBtn];
+    [_topView addSubview:_rightChangeBtn];
 
 }
 
@@ -94,7 +94,7 @@
     [rightlble setText:image];
     rightlble.userInteractionEnabled = YES;
     [rightlble addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(rightButtonPress)]];
-    [self.topView addSubview: rightlble];
+    [_topView addSubview: rightlble];
 }
 
 
@@ -153,22 +153,22 @@
 
 -(void)dealloc{
      NSLog(@"dealloc");
-    if (self.topTitleLabel) {
-        self.topTitleLabel=nil;
+    if (_topTitleLabel) {
+        _topTitleLabel=nil;
     }
-    if (self.topView) {
-        self.topView=nil;
+    if (_topView) {
+        _topView=nil;
     }
-    if (self.backButton) {
-        self.backButton=nil;
-    }
-    
-    if (self.rightChangeBtn) {
-        self.rightChangeBtn=nil;
+    if (_backButton) {
+        _backButton=nil;
     }
     
-    if (self.HUD) {
-        self.HUD=nil;
+    if (_rightChangeBtn) {
+        _rightChangeBtn=nil;
+    }
+    
+    if (_HUD) {
+        _HUD=nil;
     }
     
 }

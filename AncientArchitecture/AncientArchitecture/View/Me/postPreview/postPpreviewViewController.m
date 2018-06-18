@@ -436,7 +436,7 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
                    CGRect btnFrame  =Courseimage.frame;
                     btnFrame.origin.x=10;
                     btnFrame.origin.y=55;
-                    btnFrame.size.width=kScreen_Width;
+                    btnFrame.size.width=kScreen_Width-20;
                     btnFrame.size.height=(kScreen_Height/702)*250;
                     Courseimage.frame=btnFrame;
                     

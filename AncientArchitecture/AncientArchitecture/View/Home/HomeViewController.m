@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    HomeController *v1=[HomeController new];
+    HomeController *v1=[[HomeController alloc] init];
     v1.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-44-statusBar_Height-49);
     v1.tabBarItem.image = [[UIImage imageNamed:@"ic_main_home_normal"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
 
@@ -32,7 +32,7 @@
     [v1.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     v1.tabBarItem.selectedImage = [[UIImage imageNamed:@"ic_main_home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 
-    VTattenViewController *v2 = [VTattenViewController new];
+    VTattenViewController *v2 = [[VTattenViewController alloc]init];
     v2.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-44-statusBar_Height-49);
     v2.tabBarItem.image = [[UIImage imageNamed:@"ic_main_attention_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     v2.tabBarItem.title = @"关注";
@@ -40,7 +40,7 @@
     v2.tabBarItem.selectedImage = [[UIImage imageNamed:@"ic_main_attention_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 
     
-    MeViewController *me = [MeViewController new];
+    MeViewController *me = [[MeViewController alloc]init];
     me.view.frame=CGRectMake(0, 0, kScreen_Width, kScreen_Height-49);
     me.tabBarItem.image = [[UIImage imageNamed:@"ic_main_mine_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
    

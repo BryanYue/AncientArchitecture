@@ -13,6 +13,9 @@
 @interface courseViewController ()
 @property (nonatomic, strong) VTMagicController *magicController;
 @property (nonatomic, strong)  NSArray <NSString *> *menuList;
+@property (nonatomic,strong)    UILabel  *topTitleLabel;
+@property (nonatomic,strong)    UIView   *topView;       //顶部的view
+@property (nonatomic,strong)UIButton     *backButton;
 @end
 
 @implementation courseViewController
@@ -31,8 +34,60 @@
     }
     [self generateTestData];
     [_magicController.magicView reloadData];
+   
+    [self initbaseView];
+    [self addBackButton];
     
+    
+    
+    
+    
+    
+    [self.topTitleLabel setText:@"我的课程"];
 }
+
+
+-(void)initbaseView{
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    //自定义标题栏
+    _topView=[[UIView alloc] init];
+    _topView.frame=CGRectMake(0, 0, kScreen_Width, 44+statusBar_Height);
+    _topView.backgroundColor=[UIColor_ColorChange colorWithHexString:app_theme ];
+    
+    _topTitleLabel=[[UILabel alloc] init];
+    _topTitleLabel.frame=CGRectMake(50, statusBar_Height, kScreen_Width-100, 44);
+    _topTitleLabel.backgroundColor=[UIColor clearColor];
+    _topTitleLabel.textAlignment=NSTextAlignmentCenter;
+    _topTitleLabel.textColor=[UIColor whiteColor];
+    _topTitleLabel.font = [UIFont systemFontOfSize:18];
+    [_topView addSubview:_topTitleLabel];
+    [self.view addSubview:_topView];
+}
+-(void)addBackButton{
+    UIImageView *backImageView = [[UIImageView alloc] init];
+    backImageView.image = [UIImage imageNamed:@"nav_icon_back"];
+    backImageView.frame = CGRectMake(10, statusBar_Height+18-backImageView.image.size.height/2, backImageView.image.size.width, backImageView.image.size.height);
+    [_topView addSubview:backImageView];
+    
+    _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_backButton setFrame:CGRectMake(0, statusBar_Height, 80, 44)];
+    [_backButton addTarget:self action:@selector(backButtonPress) forControlEvents:UIControlEventTouchUpInside];
+    [_topView addSubview:_backButton];
+}
+
+
+-(void)backButtonPress{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -79,10 +134,10 @@
     if (!view) {
         switch (pageIndex) {
             case 0:
-                view= [buylistViewController new];
+                view= [[buylistViewController alloc] init];
                 break;
             case 1:
-                view= [yuboViewController new];
+                view= [[yuboViewController alloc]init];
                 break;
                 
                 
@@ -119,6 +174,9 @@
         _magicController.magicView.sliderExtension = 10.0;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
+//         _magicController.magicView.needPreloading=NO;
+        _magicController.view.frame=CGRectMake(0, 44+statusBar_Height, kScreen_Width, kScreen_Height-44+statusBar_Height);
+
     }
     return _magicController;
 }

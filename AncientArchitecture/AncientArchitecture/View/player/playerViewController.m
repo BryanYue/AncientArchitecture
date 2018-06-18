@@ -37,6 +37,9 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    
+    
     // Do any additional setup after loading the view.
     self.view.backgroundColor=[UIColor whiteColor];
     //注册观察者
@@ -653,10 +656,30 @@ NSMutableArray<relevantCourseResponse *> *relevant;
         
         [self.scrollView.mj_header endRefreshing];
         
+        if([DEFAULTS objectForKey:@"islogin"]){
+            
+        }else{
+            [self showActions:@"您账户号未登录！"];
+           
+        }
+        
     }];
     
     
 }
+
+
+
+-(void)showActions:(NSString *)string{
+    UIAlertController * alertCon = [UIAlertController alertControllerWithTitle:@"温馨提示" message:string preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * action = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         [self presentViewController:[LoginViewController new] animated:YES completion:nil];
+    }];
+    [alertCon addAction:action];
+    [self presentViewController:alertCon animated:YES completion:nil];
+}
+
+
 
 -(void)addCollectionView{
     UICollectionViewFlowLayout *flowL = [[UICollectionViewFlowLayout alloc] init];

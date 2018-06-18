@@ -16,7 +16,7 @@
 #import "personalInformationViewController.h"
 #import "myCourseViewController.h"
 #import "AboutusViewController.h"
-
+#import "CourseViewController.h"
 
 #define loginNotification @"loginstatus"
 
@@ -301,7 +301,10 @@ NSString *isteacher;
                     if (!islogin) {
                         [self toLogin];
                     }else{
-                    [self presentViewController:[myCourseViewController new] animated:YES completion:nil];
+                        
+                        
+                         [self presentViewController:[courseViewController new] animated:YES completion:nil];
+//                    [self presentViewController:[myCourseViewController new] animated:YES completion:nil];
                     }
                     break;
                 case 3:
@@ -339,7 +342,9 @@ NSString *isteacher;
                     if (!islogin) {
                         [self toLogin];
                     }else{
-                     [self presentViewController:[myCourseViewController new] animated:YES completion:nil];
+                        [self presentViewController:[courseViewController new] animated:YES completion:nil];
+
+//                     [self presentViewController:[myCourseViewController new] animated:YES completion:nil];
                     }
                     break;
                     

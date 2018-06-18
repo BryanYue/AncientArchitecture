@@ -13,7 +13,7 @@
 #import "buylist.h"
 @interface buylistViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 >
-@property(strong,nonatomic)UICollectionView *buylistCollectionV;
+@property(nonatomic,strong)UICollectionView *buylistCollectionV;
 @end
 
 @implementation buylistViewController
@@ -176,7 +176,7 @@ bool isrefreshing =false;
     
     
     
-    [self GeneralButtonAction];
+//    [self GeneralButtonAction];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_buyCourse withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
          [_buylistCollectionV.mj_header  endRefreshing];

@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AncientArchitecture/View/Me/startlive/TeacheCourseViewController.m"
-            timestampString = "550866354.105311"
+            timestampString = "550938945.634758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "243"
@@ -32,22 +32,6 @@
             startingLineNumber = "13"
             endingLineNumber = "13"
             landmarkName = "-initWithDict:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AncientArchitecture/View/Me/MeViewController.m"
-            timestampString = "550866354.105496"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
-            landmarkName = "-changeColor:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

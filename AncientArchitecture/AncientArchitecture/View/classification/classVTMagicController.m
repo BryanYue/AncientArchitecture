@@ -15,6 +15,10 @@
 @property (nonatomic, strong) VTMagicController *magicController;
 @property (nonatomic, strong)  NSArray <NSString *> *menuList;
 @property (nonatomic, strong)  NSArray <NSString *> *classidList;
+
+@property (nonatomic,strong)    UILabel  *topTitleLabel;
+@property (nonatomic,strong)    UIView   *topView;       //顶部的view
+@property (nonatomic,strong)UIButton     *backButton;
 @end
 
 @implementation classVTMagicController
@@ -23,7 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
- 
+    
+   
+    
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.view.backgroundColor = [UIColor whiteColor];
     [self addChildViewController:self.magicController];
@@ -43,7 +49,60 @@
      [self configCustomSlider];
     [self generateTestData];
    
+    
+    [self initbaseView];
+    [self addBackButton];
+    
+    NSString *title =[DEFAULTS objectForKey:@"classification_title"];
+    
+    
+    
+    
+    [self.topTitleLabel setText:title];
 }
+
+-(void)initbaseView{
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    //自定义标题栏
+    _topView=[[UIView alloc] init];
+    _topView.frame=CGRectMake(0, 0, kScreen_Width, 44+statusBar_Height);
+    _topView.backgroundColor=[UIColor_ColorChange colorWithHexString:app_theme ];
+    
+    _topTitleLabel=[[UILabel alloc] init];
+    _topTitleLabel.frame=CGRectMake(50, statusBar_Height, kScreen_Width-100, 44);
+    _topTitleLabel.backgroundColor=[UIColor clearColor];
+    _topTitleLabel.textAlignment=NSTextAlignmentCenter;
+    _topTitleLabel.textColor=[UIColor whiteColor];
+    _topTitleLabel.font = [UIFont systemFontOfSize:18];
+    [_topView addSubview:_topTitleLabel];
+    [self.view addSubview:_topView];
+}
+-(void)addBackButton{
+    UIImageView *backImageView = [[UIImageView alloc] init];
+    backImageView.image = [UIImage imageNamed:@"nav_icon_back"];
+    backImageView.frame = CGRectMake(10, statusBar_Height+18-backImageView.image.size.height/2, backImageView.image.size.width, backImageView.image.size.height);
+    [_topView addSubview:backImageView];
+    
+    _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_backButton setFrame:CGRectMake(0, statusBar_Height, 80, 44)];
+    [_backButton addTarget:self action:@selector(backButtonPress) forControlEvents:UIControlEventTouchUpInside];
+    [_topView addSubview:_backButton];
+}
+
+
+-(void)backButtonPress{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -175,13 +234,13 @@
         _magicController.magicView.sliderColor = RGBCOLOR(169, 37, 37);
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
-        _magicController.magicView.navigationHeight = 44.f;
-        _magicController.magicView.againstStatusBar = NO;
+        _magicController.magicView.navigationHeight = 50;
+        _magicController.magicView.againstStatusBar = false;
         _magicController.magicView.sliderExtension = 10.0;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.needPreloading=NO;
-        
+        _magicController.view.frame=CGRectMake(0, 44+statusBar_Height, kScreen_Width, kScreen_Height-44+statusBar_Height);
 
        
     }

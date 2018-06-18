@@ -114,7 +114,7 @@ UIImageView *rightImageView;
                     tinluren_descibre.numberOfLines=0;//行数设为0，表示不限制行数
                     //根据label的内容和label的font为label设置frame，100为label的长度
                     CGRect txRect = [tinluren_descibre.text boundingRectWithSize:CGSizeMake(kScreen_Width, [UIScreen mainScreen].bounds.size.height*10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:tinluren_descibre.font} context:nil];
-                    tinluren_descibre.frame=CGRectMake(20, h, txRect.size.width-20, txRect.size.height+20);//重新为label设置frame
+                    tinluren_descibre.frame=CGRectMake(20, h, txRect.size.width, txRect.size.height+20);//重新为label设置frame
                     h=h+tinluren_descibre.frame.size.height;
                     yinluscrollView.contentSize=CGSizeMake(kScreen_Width-40, h);
                     [self.view addSubview:yinluscrollView];
