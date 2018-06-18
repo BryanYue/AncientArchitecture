@@ -252,14 +252,15 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                             
                             if ([WXApi isWXAppInstalled]) {
                                 //调起微信支付
-                                PayReq* req = [[PayReq alloc] init];
-                                req.partnerId  = paydata.partnerid;
-                                req.prepayId   = paydata.prepayid;
-                                req.nonceStr  = paydata.noncestr;
-                                req.timeStamp = [paydata.timestamp intValue];
-                                req.package  = paydata.package;
-                                req.sign    = paydata.sign;
-                                [WXApi sendReq:req];
+                                 NSLog(@"调起微信支付");
+                                PayReq* reqs = [[PayReq alloc] init];
+                                reqs.partnerId  = paydata.partnerid;
+                                reqs.prepayId   = paydata.prepayid;
+                                reqs.nonceStr  = paydata.noncestr;
+                                reqs.timeStamp = [paydata.timestamp intValue];
+                                reqs.package  = paydata.package;
+                                reqs.sign    = paydata.sign;
+                                [WXApi sendReq:reqs];
                             }else {
                                 [self showAction:@"请先安装微信客户端"];
                             }

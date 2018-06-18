@@ -9,7 +9,7 @@
 #import "MJPropertyKey.h"
 #import "Pay.h"
 @interface weChatPay : MJPropertyKey
-@property (nonatomic,copy)  Pay       *datas;
+@property (nonatomic,strong)  Pay       *datas;
 @property (nonatomic,copy) NSString   *ordersn;
 @property (nonatomic,copy) NSString   *message;
 @end
