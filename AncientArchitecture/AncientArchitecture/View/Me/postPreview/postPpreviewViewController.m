@@ -315,6 +315,9 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
     NSDictionary *userInfo = note.userInfo;
     CGFloat duration = [userInfo[@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
     
+   
+    
+    
     CGRect keyFrame = [userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     CGFloat moveY = keyFrame.origin.y - self.view.frame.size.height;//这个64是我减去的navigationbar加上状态栏20的高度,可以看自己的实际情况决定是否减去;
     
@@ -322,6 +325,11 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
         self.view.transform = CGAffineTransformMakeTranslation(0, moveY);
     }];
 
+    
+    
+ 
+    
+  
 
 }
 

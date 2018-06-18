@@ -114,6 +114,7 @@
                                       @{NSForegroundColorAttributeName:[UIColor whiteColor],
                                         NSFontAttributeName:_passwdText.font
                                         }];
+    _passwdText.secureTextEntry = YES;//设置密文
     _passwdText.attributedPlaceholder = attrpasswd;
     _passwdText.textColor=[UIColor whiteColor];
     UIImageView *imagepasswd=[UIImageView new];
