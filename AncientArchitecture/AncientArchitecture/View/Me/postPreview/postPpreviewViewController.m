@@ -13,6 +13,7 @@
 #import "SYDatePicker.h"
 #import <TZImagePickerController.h>
 #import "MyUITextField.h"
+#define loginNotification @"keyboardWillChange"
 
 @interface postPpreviewViewController ()<SYDatePickerDelegate,THDatePickerViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 
@@ -65,6 +66,17 @@ int Coursetab;
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)dealloc
+{
+    [self animated];
+}
+
+
+-(void)animated{
+    //移除观察者 self
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 -(void)initview{
     [self initbaseView];
@@ -182,7 +194,8 @@ int Coursetab;
                 Courseprize.returnKeyType = UIReturnKeyDone;
                 Courseprize.textAlignment = NSTextAlignmentLeft;
                 //数字模式键盘
-                Courseprize.keyboardType=UIKeyboardTypeNumberPad;
+                Courseprize.keyboardType = UIKeyboardTypeDecimalPad;
+             
                 Courseprize.frame=CGRectMake(kScreen_Width-10-kScreen_Width/2, 0, kScreen_Width/2,view.frame.size.height-1 );
                 [view addSubview:Courseprize];
                
@@ -280,7 +293,7 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
     
    
     
-  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
    
 }
 //实现UITextField代理方法
@@ -294,6 +307,22 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
     [Coursepeople resignFirstResponder];//取消第一响应者
     
     return YES;
+}
+
+
+- (void)keyboardWillChange:(NSNotification *)note
+{
+    NSDictionary *userInfo = note.userInfo;
+    CGFloat duration = [userInfo[@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+    
+    CGRect keyFrame = [userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    CGFloat moveY = keyFrame.origin.y - self.view.frame.size.height;//这个64是我减去的navigationbar加上状态栏20的高度,可以看自己的实际情况决定是否减去;
+    
+    [UIView animateWithDuration:duration animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, moveY);
+    }];
+
+
 }
 
 
