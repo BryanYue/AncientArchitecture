@@ -20,9 +20,8 @@
 #define weixinloginNotification @"weixinlogin"
 
 @interface LoginViewController ()<UITextFieldDelegate>
-    
-    
-    @end
+
+@end
 
 @implementation LoginViewController
     MyUITextField * _loginText;
@@ -138,8 +137,10 @@
     [forgetpassword setFrame:CGRectMake(40, kScreen_Height/9*3+105, kScreen_Width-80, 20)];
     forgetpassword.userInteractionEnabled = YES;
 
-    [forgetpassword addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tofor)]];
-    
+    [forgetpassword addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toforget)]];
+  
+ 
+
     
     
     UILabel *wechattitle =[[UILabel alloc ] init];
@@ -241,8 +242,9 @@
 }
 
 
--(void)tofor{
+-(void)toforget{
  [self presentViewController:[forgetViewController new] animated:YES completion:nil];
+//     [self presentViewController:[RegisterViewController new] animated:YES completion:nil];
 }
 
 //实现UITextField代理方法

@@ -212,62 +212,70 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 
 -(void)buy{
     NSLog(@"buy");
-    NSUserDefaults *defaults= DEFAULTS;
-    NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
-    [parameterCountry setObject:courseId forKey:@"course_id"];
     
-    if ([DEFAULTS objectForKey:@"memberid"]) {
-        [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
-    }
-    
-    if ([DEFAULTS objectForKey:@"token"]) {
-        [parameterCountry setObject:[DEFAULTS objectForKey:@"token"] forKey:@"token"];
-    }
- 
-    
-    [self GeneralButtonAction];
-    
-    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_makeOrder withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
-        NSLog(@"error%zd",error.code);
-        if (!error) {
-            BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
-            if (response.code  == 200) {
-                orderresponse *orderr =[orderresponse mj_objectWithKeyValues:response.data];
-                
-                NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
-                [parameter setObject:orderr.order_id forKey:@"order_id"];
-                [parameter setObject:orderr.amount forKey:@"amount"];
-                
-                [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_weChatPay withParams:parameter withMethodType:Post autoShowError:true andBlock:^(id datas, NSError *errors) {
-                    NSLog(@"errors%zd",errors.code);
-                    if (!errors) {
-                        BaseResponse *responses = [BaseResponse mj_objectWithKeyValues:datas];
-                        if (responses.code  == 200) {
-                            
-                            weChatPay *weChatdata =[weChatPay mj_objectWithKeyValues:responses.data];
-                            
-                            Pay *paydata=weChatdata.datas;
-                            
-                            
-                            
-                            if ([WXApi isWXAppInstalled]) {
-                                //调起微信支付
-                                 NSLog(@"调起微信支付");
-                                PayReq* reqs = [[PayReq alloc] init];
-                                reqs.partnerId  = paydata.partnerid;
-                                reqs.prepayId   = paydata.prepayid;
-                                reqs.nonceStr  = paydata.noncestr;
-                                reqs.timeStamp = [paydata.timestamp intValue];
-                                reqs.package  = paydata.package;
-                                reqs.sign    = paydata.sign;
-                                [WXApi sendReq:reqs];
-                            }else {
-                                [self showAction:@"请先安装微信客户端"];
-                            }
-                            
-                            
-                            if (self.HUD) {
-                                [self.HUD hideAnimated:true];
+    if([DEFAULTS objectForKey:@"islogin"]){
+        NSUserDefaults *defaults= DEFAULTS;
+        NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
+        [parameterCountry setObject:courseId forKey:@"course_id"];
+        
+        if ([DEFAULTS objectForKey:@"memberid"]) {
+            [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
+        }
+        
+        if ([DEFAULTS objectForKey:@"token"]) {
+            [parameterCountry setObject:[DEFAULTS objectForKey:@"token"] forKey:@"token"];
+        }
+        
+        
+        [self GeneralButtonAction];
+        
+        [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_makeOrder withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+            NSLog(@"error%zd",error.code);
+            if (!error) {
+                BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
+                if (response.code  == 200) {
+                    orderresponse *orderr =[orderresponse mj_objectWithKeyValues:response.data];
+                    
+                    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+                    [parameter setObject:orderr.order_id forKey:@"order_id"];
+                    [parameter setObject:orderr.amount forKey:@"amount"];
+                    
+                    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_weChatPay withParams:parameter withMethodType:Post autoShowError:true andBlock:^(id datas, NSError *errors) {
+                        NSLog(@"errors%zd",errors.code);
+                        if (!errors) {
+                            BaseResponse *responses = [BaseResponse mj_objectWithKeyValues:datas];
+                            if (responses.code  == 200) {
+                                
+                                weChatPay *weChatdata =[weChatPay mj_objectWithKeyValues:responses.data];
+                                
+                                Pay *paydata=weChatdata.datas;
+                                
+                                
+                                
+                                if ([WXApi isWXAppInstalled]) {
+                                    //调起微信支付
+                                    NSLog(@"调起微信支付");
+                                    PayReq* reqs = [[PayReq alloc] init];
+                                    reqs.partnerId  = paydata.partnerid;
+                                    reqs.prepayId   = paydata.prepayid;
+                                    reqs.nonceStr  = paydata.noncestr;
+                                    reqs.timeStamp = [paydata.timestamp intValue];
+                                    reqs.package  = paydata.package;
+                                    reqs.sign    = paydata.sign;
+                                    [WXApi sendReq:reqs];
+                                }else {
+                                    [self showAction:@"请先安装微信客户端"];
+                                }
+                                
+                                
+                                if (self.HUD) {
+                                    [self.HUD hideAnimated:true];
+                                }
+                                
+                            }else{
+                                if (self.HUD) {
+                                    [self.HUD hideAnimated:true];
+                                }
                             }
                             
                         }else{
@@ -276,30 +284,29 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                             }
                         }
                         
-                    }else{
-                        if (self.HUD) {
-                            [self.HUD hideAnimated:true];
-                        }
+                    }];
+                }else{
+                    if (self.HUD) {
+                        [self.HUD hideAnimated:true];
                     }
+                    [self TextButtonAction:response.msg];
                     
-                }];
+                }
             }else{
                 if (self.HUD) {
                     [self.HUD hideAnimated:true];
                 }
-                [self TextButtonAction:response.msg];
-                
             }
-        }else{
-            if (self.HUD) {
-                [self.HUD hideAnimated:true];
-            }
-        }
+            
+            
+            
+            
+        }];
+    }else{
+        [self presentViewController:[LoginViewController new] animated:YES completion:nil];
         
-        
-        
-        
-    }];
+    }
+  
     
 }
 
@@ -346,16 +353,25 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
     [parameterCountry setObject:courseId forKey:@"course_id"];
     
-    if ([DEFAULTS objectForKey:@"memberid"]) {
-        [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
-    }
-    if ([DEFAULTS objectForKey:@"token"]) {
-        [parameterCountry setObject:[DEFAULTS objectForKey:@"token"] forKey:@"token"];
-    }
+ 
     
+    NSString *pathWithPhoneNum;
+    
+    if([DEFAULTS objectForKey:@"islogin"]){
+         pathWithPhoneNum = [NSString stringWithFormat:@"%@?course_id=%@&memberid=%@",url_getCourseDetail,courseId ,[defaults objectForKey:@"memberid"]];
+        
+        if ([DEFAULTS objectForKey:@"memberid"]) {
+            [parameterCountry setObject:[DEFAULTS objectForKey:@"memberid"] forKey:@"memberid"];
+        }
+        if ([DEFAULTS objectForKey:@"token"]) {
+            [parameterCountry setObject:[DEFAULTS objectForKey:@"token"] forKey:@"token"];
+        }
+    }else{
+        pathWithPhoneNum = [NSString stringWithFormat:@"%@?course_id=%@",url_getCourseDetail,courseId ];
+    }
    
     
-    NSString *pathWithPhoneNum = [NSString stringWithFormat:@"%@?course_id=%@&memberid=%@",url_getCourseDetail,courseId ,[defaults objectForKey:@"memberid"]];
+   
     
    
     
@@ -657,12 +673,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
         
         [self.scrollView.mj_header endRefreshing];
         
-        if([DEFAULTS objectForKey:@"islogin"]){
-            
-        }else{
-            [self showActions:@"您账户号未登录！"];
-           
-        }
+    
         
     }];
     
@@ -671,14 +682,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 
 
 
--(void)showActions:(NSString *)string{
-    UIAlertController * alertCon = [UIAlertController alertControllerWithTitle:@"温馨提示" message:string preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * action = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-         [self presentViewController:[LoginViewController new] animated:YES completion:nil];
-    }];
-    [alertCon addAction:action];
-    [self presentViewController:alertCon animated:YES completion:nil];
-}
+
 
 
 
@@ -803,6 +807,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
         
     }];
 }
+
 
 
 - (void)onBackViewClickWithAliyunVodPlayerView:(AliyunVodPlayerView*)playerView{

@@ -13,10 +13,10 @@
 #import "SYDatePicker.h"
 #import <TZImagePickerController.h>
 #import "MyUITextField.h"
-#define loginNotification @"keyboardWillChange"
-
+#define loginNotification @"keyboardWillShow"
+#define loginNotification @"keyboardWillHide"
 @interface postPpreviewViewController ()<SYDatePickerDelegate,THDatePickerViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
-
+@property(nonatomic,strong)UITextField* tf;
 @end
 
 @implementation postPpreviewViewController
@@ -293,8 +293,13 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
     
    
     
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
-   
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 //实现UITextField代理方法
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -310,20 +315,28 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
 }
 
 
-- (void)keyboardWillChange:(NSNotification *)note
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    _tf=textField;
+}
+
+- (void)keyboardWillShow:(NSNotification *)note
 {
     NSDictionary *userInfo = note.userInfo;
-    CGFloat duration = [userInfo[@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
-    
-   
-    
-    
     CGRect keyFrame = [userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    CGFloat moveY = keyFrame.origin.y - self.view.frame.size.height;//这个64是我减去的navigationbar加上状态栏20的高度,可以看自己的实际情况决定是否减去;
     
-    [UIView animateWithDuration:duration animations:^{
-        self.view.transform = CGAffineTransformMakeTranslation(0, moveY);
-    }];
+    CGRect  contentRc = [self.view convertRect:_tf.frame fromView:_tf.superview];
+    
+    CGFloat offsetY = self.view.frame.size.height-contentRc.origin.y-keyFrame.size.height-64;
+    
+    if (offsetY < 0) {
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect frame=self.view.frame;
+            frame.origin.y=offsetY;
+            self.view.frame=frame;
+        }];
+    }
+
 
     
     
@@ -332,6 +345,19 @@ Coursepeople.returnKeyType = UIReturnKeyDone;
   
 
 }
+
+
+
+- (void)keyboardWillHide:(NSNotification *)aNotification
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame=self.view.frame;
+        frame.origin.y=0;
+        self.view.frame=frame;
+    }];
+    
+}
+
 
 
 -(void)to:(id)sender

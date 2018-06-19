@@ -234,7 +234,7 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
     // 创建自定义布局
     MRLineLayout *layout = [[MRLineLayout alloc] init];
     // 设置UICollectionView中每个Item的size
-    layout.itemSize = CGSizeMake(200, 300);
+    layout.itemSize = CGSizeMake(100, 230);
     
   
     self.myhotteacherCollectionV=[[UICollectionView alloc]initWithFrame:CGRectMake(0,120, kScreen_Width,340)collectionViewLayout:layout];

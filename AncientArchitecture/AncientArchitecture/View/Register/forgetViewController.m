@@ -96,7 +96,7 @@ int pbcount;
                                           }];
     fppasswordText.attributedPlaceholder = attrpassword;
     fppasswordText.textColor=[UIColor whiteColor];
-    
+    fppasswordText.secureTextEntry = YES;//设置密文
     
     UIImageView *imagecode=[UIImageView new];
     imagecode.image =[UIImage imageNamed:@"icon_password_white"];
@@ -111,8 +111,8 @@ int pbcount;
     undline2.frame=CGRectMake(40, kScreen_Height/9*2+81, kScreen_Width/10*8, 1);
     
     
-    fpcodeText=[MyUITextField new];
     
+    fpcodeText=[MyUITextField new];
     NSAttributedString *attrcode = [[NSAttributedString alloc] initWithString:@"请输入验证码" attributes:
                                     @{NSForegroundColorAttributeName:[UIColor whiteColor],
                                       NSFontAttributeName:fpcodeText.font
@@ -147,7 +147,7 @@ int pbcount;
     btnregister.titleLabel.font = [UIFont systemFontOfSize:15];
     
     
-    fpcode = [UIButton buttonWithType:UIButtonTypeSystem];
+    fpcode = [UIButton buttonWithType:UIButtonTypeCustom];
     fpcode.frame = CGRectMake(240, kScreen_Height/9*2, statusBar_Height+101, 30);
     [fpcode setTitle:@"获取验证码" forState:UIControlStateNormal];
     [fpcode setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -156,7 +156,7 @@ int pbcount;
     fpcode.layer.masksToBounds=YES;
     fpcode.layer.cornerRadius = 16;
     [fpcode addTarget:self action:@selector(code) forControlEvents:UIControlEventTouchUpInside];
-    
+ 
 //    UILabel *login =[UILabel new];
 //    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"已有账号 去登录"];
 //    [string addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, 4)];

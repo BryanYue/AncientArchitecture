@@ -100,7 +100,7 @@ int count;
                                        }];
     passwordText.attributedPlaceholder = attrpassword;
     passwordText.textColor=[UIColor whiteColor];
-    
+     passwordText.secureTextEntry = YES;//设置密文
     
     UIImageView *imagecode=[UIImageView new];
     imagecode.image =[UIImage imageNamed:@"icon_password_white"];
@@ -151,7 +151,7 @@ int count;
     btnregister.titleLabel.font = [UIFont systemFontOfSize:15];
     
     
-    code = [UIButton buttonWithType:UIButtonTypeSystem];
+    code = [UIButton buttonWithType:UIButtonTypeCustom];
     code.frame = CGRectMake(240, kScreen_Height/9*2, statusBar_Height+101, 30);
     [code setTitle:@"获取验证码" forState:UIControlStateNormal];
     [code setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
