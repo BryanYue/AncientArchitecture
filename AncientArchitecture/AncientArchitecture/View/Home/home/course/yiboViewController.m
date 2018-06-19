@@ -249,7 +249,7 @@ bool isybrefreshing =false;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
-    if([DEFAULTS objectForKey:@"islogin"]){
+
         if (yibolistCourse.count>0) {
             NSUserDefaults *defaults= DEFAULTS;
             
@@ -261,10 +261,7 @@ bool isybrefreshing =false;
             [self.view.window.rootViewController presentViewController:[playerViewController new] animated:YES completion:nil];
         }
         
-    }else{
-        
-        [self.view.window.rootViewController presentViewController:[LoginViewController new] animated:YES completion:nil];
-    }
+  
 }
 
 

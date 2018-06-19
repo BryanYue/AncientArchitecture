@@ -17,7 +17,7 @@
         self.teachername.userInteractionEnabled = YES;
     }
     
-    self.teachername.frame = CGRectMake(0, 168, 100, 30);
+    self.teachername.frame = CGRectMake(0, 260, 200, 30);
     self.teachername.textAlignment = NSTextAlignmentCenter;
     self.teachername.textColor = [UIColor blackColor];
     
