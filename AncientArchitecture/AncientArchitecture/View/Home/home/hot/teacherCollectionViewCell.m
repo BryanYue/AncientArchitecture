@@ -17,7 +17,7 @@
         self.teachername.userInteractionEnabled = YES;
     }
     
-    self.teachername.frame = CGRectMake(0, 260, 200, 30);
+    self.teachername.frame = CGRectMake(0, 200, 120, 30);
     self.teachername.textAlignment = NSTextAlignmentCenter;
     self.teachername.textColor = [UIColor blackColor];
     
@@ -32,7 +32,7 @@
         self.teachernum.userInteractionEnabled = YES;
     }
     
-    self.teachernum.frame = CGRectMake(0, 220, 200, 40);
+    self.teachernum.frame = CGRectMake(0, 160, 120, 40);
     [self.teachernum setImage:[UIImage imageNamed:@"icon_colloect_white"] forState:UIControlStateNormal];
     [self.teachernum setTitle: num forState:UIControlStateNormal];
     [self.teachernum setTitleColor:[UIColor_ColorChange whiteColor] forState:UIControlStateNormal];
@@ -50,23 +50,26 @@
         self.teacherimageview=[[UIImageView alloc] init];
         self.teacherimageview.userInteractionEnabled = YES;
     }
-    self.teacherimageview.frame=CGRectMake(0,0,200,260 );
+    self.teacherimageview.frame=CGRectMake(0,40,120,160 );
     [self.teacherimageview setContentScaleFactor:[[UIScreen mainScreen] scale]];
-    self.teacherimageview.contentMode =  UIViewContentModeScaleAspectFill;
+    self.teacherimageview.contentMode =  UIViewContentModeScaleToFill;
     self.teacherimageview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.teacherimageview.clipsToBounds  = YES;
+
     
+    [self.teacherimageview sd_setImageWithURL:[NSURL URLWithString:imageName]];
     
-    [self.teacherimageview yy_setImageWithURL:[NSURL URLWithString:imageName]
-                           placeholder:nil
-                               options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
-                              progress:nil
-                             transform:^UIImage *(UIImage *image, NSURL *url) {
-//                                 image = [image yy_imageByResizeToSize:CGSizeMake(200, 260) contentMode:UIViewContentModeScaleToFill];
-                                 //                            return [image yy_imageByRoundCornerRadius:10];
-                                 return  image;
-                             }
-                            completion:nil];
+//     [self.teacherimageview yy_setImageWithURL:[NSURL URLWithString:imageName] placeholder:nil]  ;
+//    [self.teacherimageview yy_setImageWithURL:[NSURL URLWithString:imageName]
+//                           placeholder:nil
+//                               options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+//                              progress:nil
+//                             transform:^UIImage *(UIImage *image, NSURL *url) {
+////                                 image = [image yy_imageByResizeToSize:CGSizeMake(200, 260) contentMode:UIViewContentModeScaleToFill];
+//                                 //                            return [image yy_imageByRoundCornerRadius:10];
+//                                 return  image;
+//                             }
+//                            completion:nil];
     
     
     

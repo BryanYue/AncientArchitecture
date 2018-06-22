@@ -137,7 +137,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     self.playerView.circlePlay = NO;
     //   [self.playerView setAutoPlay:YES];
     
-    [self addRightbutton:@"icon_colloect_white"];
+   
     self.uiview =[[UIView alloc]init ];
     //    self.uiview.frame=CGRectMake(0, kScreen_Height/3, kScreen_Width, 320);
     
@@ -148,7 +148,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     
     
     
-    
+     [self addRightbutton:@"icon_colloect_white"];
     
     
     courseId =[DEFAULTS objectForKey:@"play_url"];
@@ -165,13 +165,16 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 }
 
 -(void)addRightbutton:(NSString *)image{
-    self.rightChangeBtn = [[UIImageView alloc] init];
-    self.rightChangeBtn.image = [UIImage imageNamed:image];
-    self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-25- self.rightChangeBtn.image.size.width, statusBar_Height,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
+    if (_rightimmm) {
+         _rightimmm.image = [[UIImageView alloc] init];
+    }
+   
+    _rightimmm.image = [UIImage imageNamed:image];
+    _rightimmm.frame  = CGRectMake(kScreen_Width-25- _rightimmm.image.size.width, statusBar_Height,  _rightimmm.image.size.width,  _rightimmm.image.size.height);
     
-    self.rightChangeBtn.userInteractionEnabled = YES;
-    [self.rightChangeBtn addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(rightButtonPress)]];
-    [self.view addSubview: self.rightChangeBtn];
+    _rightimmm.userInteractionEnabled = YES;
+    [_rightimmm addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(rightButtonPress)]];
+    [self.view addSubview: _rightimmm];
     
 }
 
@@ -195,7 +198,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
             BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
             if (response.code  == 200) {
                 NSLog(@"%@",response.data);
-                self.rightChangeBtn.image = [UIImage imageNamed:is_playefollow==0?@"icon_colloect_white":@"icon_colloect_pink"];
+                _rightimmm.image = [UIImage imageNamed:is_playefollow==0?@"icon_colloect_white":@"icon_colloect_pink"];
                 is_playefollow=is_playefollow==1?0:1;
                 
                 
@@ -214,7 +217,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     NSLog(@"buy");
     
     if([DEFAULTS objectForKey:@"islogin"]){
-        NSUserDefaults *defaults= DEFAULTS;
+      
         NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
         [parameterCountry setObject:courseId forKey:@"course_id"];
         
@@ -321,8 +324,8 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     if (self.uiimage) {
         self.uiimage=nil;
     }
-    if (self.rightChangeBtn) {
-        self.rightChangeBtn=nil;
+    if (_rightimmm.image) {
+        _rightimmm.image=nil;
     }
     
     if (self.uiview) {
@@ -407,10 +410,10 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 CourseDetailResponse *detailResponse =[CourseDetailResponse mj_objectWithKeyValues:response.data];
                 
                 if ((int)1==[detailResponse.is_follow intValue]) {
-                    self.rightChangeBtn.image = [UIImage imageNamed:@"icon_colloect_pink"];
+                    _rightimmm.image = [UIImage imageNamed:@"icon_colloect_pink"];
                     is_playefollow=0;
                 }else{
-                    self.rightChangeBtn.image = [UIImage imageNamed:@"icon_colloect_white"];
+                    _rightimmm.image = [UIImage imageNamed:@"icon_colloect_white"];
                     is_playefollow=1;
                 }
                 NSLog(@"is_follow%@",detailResponse.is_follow);
@@ -850,12 +853,12 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     
     if (isFullScreen) {
        NSLog(@"isFullScreentrue");
-        self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-10- self.rightChangeBtn.image.size.width, statusBar_Height+18,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
+        _rightimmm.frame  = CGRectMake(kScreen_Width-10- _rightimmm.image.size.width, statusBar_Height+18,  _rightimmm.image.size.width,  _rightimmm.image.size.height);
         self.scrollView.hidden=true;
         
     }else{
         NSLog(@"isFullScreenfalse");
-         self.rightChangeBtn.frame  = CGRectMake(kScreen_Width-25- self.rightChangeBtn.image.size.width, statusBar_Height,  self.rightChangeBtn.image.size.width,  self.rightChangeBtn.image.size.height);
+         _rightimmm.frame  = CGRectMake(kScreen_Width-25- _rightimmm.image.size.width, statusBar_Height,  _rightimmm.image.size.width,  _rightimmm.image.size.height);
         self.scrollView.hidden=false;
         
     }

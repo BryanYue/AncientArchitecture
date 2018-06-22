@@ -14,7 +14,7 @@
 @interface playerViewController : BaseViewController
 @property (weak, nonatomic) AliyunVodPlayerView  * playerView;
 @property (weak, nonatomic) UIImageView  * uiimage;
-@property (nonatomic,strong) UIImageView     *rightChangeBtn;
+@property (nonatomic,strong) UIImageView   *rightimmm;
 @property (nonatomic,strong) UIView     *uiview;
 @property (nonatomic,strong) UIScrollView * scrollView;
 

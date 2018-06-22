@@ -33,9 +33,6 @@ PODS:
   - PGPickerView (1.2.6)
   - Pgyer (2.8.9)
   - PgyUpdate (1.6)
-  - PLPlayerKit (3.3.1):
-    - PLPlayerKit/iphoneos (= 3.3.1)
-  - PLPlayerKit/iphoneos (3.3.1)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
   - SDWebImage (4.4.0):
@@ -67,7 +64,6 @@ DEPENDENCIES:
   - PGDatePicker
   - Pgyer
   - PgyUpdate
-  - PLPlayerKit
   - SDCycleScrollView
   - SDWebImage
   - TZImagePickerController
@@ -90,7 +86,6 @@ SPEC REPOS:
     - PGPickerView
     - Pgyer
     - PgyUpdate
-    - PLPlayerKit
     - SDCycleScrollView
     - SDWebImage
     - TZImagePickerController
@@ -114,7 +109,6 @@ SPEC CHECKSUMS:
   PGPickerView: 8fbbf63d0404065a43a495a0115d339455e0f819
   Pgyer: 830654e51e23f754cce5d8b3ea9ba72be68452eb
   PgyUpdate: cd6c2ada5928f36a9f904d8f96a9b3b53e190755
-  PLPlayerKit: 63a9c6a7661f497591c84121e854e8e6ac003256
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: b534502786e43dde36dfcaee89356fe6df30e203
   TZImagePickerController: 2a8f41ba058e215bc9b699ade241fdbcc910c2bd
@@ -125,6 +119,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 0b2516f5c957ecbd60f2712b9b8efe88d75b0945
+PODFILE CHECKSUM: 66744f04b247f4d0e201138dd8f65156feef43af
 
 COCOAPODS: 1.5.2

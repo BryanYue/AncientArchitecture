@@ -35,8 +35,8 @@ target 'AncientArchitecture' do
     
     pod 'VTMagic'
     
-    pod 'PLPlayerKit'
-    
+#    pod 'PLPlayerKit'
+
     pod 'Pgyer'
     pod 'PgyUpdate'
     

@@ -1111,7 +1111,6 @@
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerSDK.framework",
-				"${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1122,7 +1121,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunPlayerSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliThirdparty.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PLPlayerKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1402,9 +1400,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/arm",
-					"$(PROJECT_DIR)/arm/arm&simulator",
-					"$(PROJECT_DIR)/arm&simulator",
 				);
 				INFOPLIST_FILE = AncientArchitecture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1476,8 +1471,6 @@
 					"\"MobileCoreServices\"",
 					"-framework",
 					"\"OpenGLES\"",
-					"-framework",
-					"\"PLPlayerKit\"",
 					"-framework",
 					"\"PgySDK\"",
 					"-framework",
@@ -1515,9 +1508,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/arm",
-					"$(PROJECT_DIR)/arm/arm&simulator",
-					"$(PROJECT_DIR)/arm&simulator",
 				);
 				INFOPLIST_FILE = AncientArchitecture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1589,8 +1579,6 @@
 					"\"MobileCoreServices\"",
 					"-framework",
 					"\"OpenGLES\"",
-					"-framework",
-					"\"PLPlayerKit\"",
 					"-framework",
 					"\"PgySDK\"",
 					"-framework",

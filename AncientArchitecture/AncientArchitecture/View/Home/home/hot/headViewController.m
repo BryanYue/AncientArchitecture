@@ -170,7 +170,7 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
         self.teacherbtn.userInteractionEnabled = YES;
     }
     
-    self.teacherbtn.frame = CGRectMake(kScreen_Width/3, 80, kScreen_Width/3, 40);
+    self.teacherbtn.frame = CGRectMake(kScreen_Width/3, 90, kScreen_Width/3, 40);
     [self.teacherbtn setImage:[UIImage imageNamed:@"icon_teacher_black"] forState:UIControlStateNormal];
     [self.teacherbtn setTitle: @"推荐讲师" forState:UIControlStateNormal];
     [self.teacherbtn setTitleColor:[UIColor_ColorChange grayColor] forState:UIControlStateNormal];
@@ -182,12 +182,12 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
     
     UIView *line1=[[UIView alloc] init ];
     line1.backgroundColor=[UIColor_ColorChange blackColor];
-    line1.frame=CGRectMake(0, 80+self.teacherbtn.frame.size.height/2 , kScreen_Width/3,1 );
+    line1.frame=CGRectMake(0, 90+self.teacherbtn.frame.size.height/2 , kScreen_Width/3,1 );
     [self.view addSubview:line1];
  
     UIView *line2=[[UIView alloc] init ];
     line2.backgroundColor=[UIColor_ColorChange blackColor];
-    line2.frame=CGRectMake(kScreen_Width/3*2, 80+self.teacherbtn.frame.size.height/2 , kScreen_Width/3,1 );
+    line2.frame=CGRectMake(kScreen_Width/3*2, 90+self.teacherbtn.frame.size.height/2 , kScreen_Width/3,1 );
     [self.view addSubview:line2];
     
     
@@ -196,7 +196,7 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
         self.coursebtn.userInteractionEnabled = YES;
     }
     
-    self.coursebtn.frame = CGRectMake(kScreen_Width/3, 450, kScreen_Width/3, 40);
+    self.coursebtn.frame = CGRectMake(kScreen_Width/3, 420, kScreen_Width/3, 40);
     [self.coursebtn setImage:[UIImage imageNamed:@"icon_teacher_black"] forState:UIControlStateNormal];
     [self.coursebtn setTitle: @"热门课程" forState:UIControlStateNormal];
     [self.coursebtn setTitleColor:[UIColor_ColorChange grayColor] forState:UIControlStateNormal];
@@ -208,12 +208,12 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
     
     UIView *line3=[[UIView alloc] init ];
     line3.backgroundColor=[UIColor_ColorChange blackColor];
-    line3.frame=CGRectMake(0, 450+self.coursebtn.frame.size.height/2 , kScreen_Width/3,1 );
+    line3.frame=CGRectMake(0, 420+self.coursebtn.frame.size.height/2 , kScreen_Width/3,1 );
     [self.view addSubview:line3];
     
     UIView *line4=[[UIView alloc] init ];
     line4.backgroundColor=[UIColor_ColorChange blackColor];
-    line4.frame=CGRectMake(kScreen_Width/3*2, 450+self.coursebtn.frame.size.height/2 , kScreen_Width/3,1 );
+    line4.frame=CGRectMake(kScreen_Width/3*2, 420+self.coursebtn.frame.size.height/2 , kScreen_Width/3,1 );
     [self.view addSubview:line4];
     
     
@@ -234,10 +234,10 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
     // 创建自定义布局
     MRLineLayout *layout = [[MRLineLayout alloc] init];
     // 设置UICollectionView中每个Item的size
-    layout.itemSize = CGSizeMake(200, 300);
-    
+    layout.itemSize = CGSizeMake(120, 240);
+    [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
   
-    self.myhotteacherCollectionV=[[UICollectionView alloc]initWithFrame:CGRectMake(0,120, kScreen_Width,340)collectionViewLayout:layout];
+    self.myhotteacherCollectionV=[[UICollectionView alloc]initWithFrame:CGRectMake(0,80, kScreen_Width,350)collectionViewLayout:layout];
     self.myhotteacherCollectionV.delegate =self;
     self.myhotteacherCollectionV.dataSource =self;
     self.myhotteacherCollectionV.backgroundColor =[UIColor whiteColor];
@@ -422,22 +422,22 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    
+
+
     // 坐标系转换获得collectionView上面的位于中心的cell
     CGPoint pointInView = [self.view convertPoint:self.myhotteacherCollectionV.center toView:self.myhotteacherCollectionV];
     // 获取这一点的indexPath
     NSIndexPath *indexPathNow = [self.myhotteacherCollectionV indexPathForItemAtPoint:pointInView];
-    
-    
-    
+
+
+
     teacherCollectionViewCell  *cell= (teacherCollectionViewCell *)[self.myhotteacherCollectionV cellForItemAtIndexPath:indexPathNow];
-    
-    
+
+
     [self.myhotteacherCollectionV bringSubviewToFront:cell];
-    
-    
-    
+
+
+
 }
 
 @end

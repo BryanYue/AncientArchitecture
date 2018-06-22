@@ -150,7 +150,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerSDK.framework"
-  install_framework "${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${PODS_ROOT}/AlivcLivePusher/AlivcLivePusher.framework"
@@ -160,7 +159,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerSDK.framework"
-  install_framework "${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -128,7 +128,7 @@
 - (void)configCustomSlider {
 //    UIImageView *sliderView = [[UIImageView alloc] init];
 //    [sliderView setImage:[UIImage imageNamed:@"magic_arrow"]];
-//    sliderView.contentMode = UIViewContentModeScaleAspectFit;
+//    sliderView.contentMode = UIViewContentModeScaleToFill;
 //    [self.magicView setSliderView:sliderView];
 //    self.magicView.sliderHeight = 5.f;
 //    self.magicView.sliderOffset = -2;
