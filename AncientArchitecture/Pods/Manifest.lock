@@ -55,7 +55,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - AlivcLivePusher
-  - AliyunPlayer_iOS
+  - AliyunPlayer_iOS (~> 3.4.3)
   - Bugly
   - DZNEmptyDataSet
   - MBProgressHUD
@@ -119,6 +119,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 66744f04b247f4d0e201138dd8f65156feef43af
+PODFILE CHECKSUM: 18d1817c8214fa3295950c8e88da306bc004644c
 
 COCOAPODS: 1.5.2

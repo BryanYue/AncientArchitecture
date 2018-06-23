@@ -23,7 +23,7 @@ target 'AncientArchitecture' do
     
     
     pod 'AlivcLivePusher'
-    pod 'AliyunPlayer_iOS'
+    pod 'AliyunPlayer_iOS', '~> 3.4.3'
 
     pod 'MJRefresh'
     
