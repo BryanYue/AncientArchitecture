@@ -155,6 +155,7 @@ NSString *teacher_photoyl;
                 UIView *line3=[[UIView alloc] init ];
                 line3.backgroundColor=[UIColor_ColorChange colorWithHexString:app_theme];
                 line3.frame=CGRectMake(0, h , 20+txRect.size.width,1 );
+                
                 [_yinluscrollView addSubview:line3];
                 h=h+line3.frame.size.height;
                 
@@ -163,7 +164,7 @@ NSString *teacher_photoyl;
                  _yinluscrollView.contentSize=CGSizeMake(kScreen_Width-40, h);
                 
                 
-                if ((int)1==[yiluren.is_follow intValue]) {
+              if ((int)1==[yiluren.is_follow intValue]) {
                    _rightImageView.image = [UIImage imageNamed:@"icon_colloect_pink"];
                     is_follow=0;
                 }else{

@@ -415,14 +415,9 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 
                 CourseDetailResponse *detailResponse =[CourseDetailResponse mj_objectWithKeyValues:response.data];
                 
-                if ((int)1==[detailResponse.is_follow intValue]) {
-                    self.rightimmm.image = [UIImage imageNamed:@"icon_colloect_pink"];
-                    is_playefollow=0;
-                }else{
-                    self.rightimmm.image = [UIImage imageNamed:@"icon_colloect_white"];
-                    is_playefollow=1;
-                }
-                NSLog(@"is_follow%@",detailResponse.is_follow);
+               
+                
+             
                 
                 //设置播放器封面，封面地址和标题可以从服务端下发，封面地址请使用https 地址。
                 self.playerView.coverUrl = [NSURL URLWithString:detailResponse.img_url];
@@ -655,15 +650,26 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 
                 
                
+               
                 
                 
                 
-                
+               
                 [self addCollectionView];
+                
+                
+               
                 [self initxiangguandata];
                 
                 
-                
+                if ((int)1== [detailResponse.is_follow integerValue]) {
+                    _rightimmm.image = [UIImage imageNamed:@"icon_colloect_pink"];
+                    is_playefollow=0;
+                }else{
+                    _rightimmm.image = [UIImage imageNamed:@"icon_colloect_white"];
+                    is_playefollow=1;
+                }
+                NSLog(@"is_follow%@",detailResponse.is_follow);
                 
                 
             }else{
@@ -722,10 +728,8 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     self.scrollView.contentSize=CGSizeMake(kScreen_Width, playerViewh);
     [self.view addSubview:self.scrollView];
     [self.view addSubview: self.playerView];
-    if (! _rightimmm) {
-         [self addRightbutton:@"icon_colloect_white"];
-    }
    
+   [self addRightbutton:@"icon_colloect_white"];
 }
 
 
@@ -820,6 +824,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
         [self.collection.mj_header endRefreshing];
         
     }];
+  
 }
 
 
