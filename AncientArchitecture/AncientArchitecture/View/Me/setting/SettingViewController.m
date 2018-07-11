@@ -56,10 +56,10 @@
     headline.backgroundColor =[UIColor_ColorChange colorWithHexString:@"f3f3f3"];
     [self.view addSubview:headline];
     
-    NSArray<NSString *> *titletext=@[@"个人资料",@"账号设置",@"版本更新",@"清除缓存",@"消息推送",@"退出登陆"];
+    NSArray<NSString *> *titletext=@[@"个人资料",@"账号设置",@"版本更新",@"退出登陆"];
     
     for (int i=0; i<titletext.count; i++) {
-        if (i==5) {
+        if (i==3) {
             UIButton *button=[UIButton new];
             button.frame=CGRectMake((kScreen_Width-160)/2, self.topView.frame.size.height+6+46*i+25, 160,40);
             button.backgroundColor=[UIColor_ColorChange colorWithHexString:app_theme];
