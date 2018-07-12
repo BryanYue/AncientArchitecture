@@ -1,5 +1,5 @@
 // UIImageView+AFNetworking.m
-// Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
+// Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,11 @@
 @implementation UIImageView (AFNetworking)
 
 + (AFImageDownloader *)sharedImageDownloader {
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
     return objc_getAssociatedObject(self, @selector(sharedImageDownloader)) ?: [AFImageDownloader defaultInstance];
+#pragma clang diagnostic pop
 }
 
 + (void)setSharedImageDownloader:(AFImageDownloader *)imageDownloader {
@@ -75,20 +79,17 @@
                        success:(void (^)(NSURLRequest *request, NSHTTPURLResponse * _Nullable response, UIImage *image))success
                        failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse * _Nullable response, NSError *error))failure
 {
-    
+
     if ([urlRequest URL] == nil) {
+        [self cancelImageDownloadTask];
         self.image = placeholderImage;
-        if (failure) {
-            NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
-            failure(urlRequest, nil, error);
-        }
         return;
     }
-    
+
     if ([self isActiveTaskURLEqualToURLRequest:urlRequest]){
         return;
     }
-    
+
     [self cancelImageDownloadTask];
 
     AFImageDownloader *downloader = [[self class] sharedImageDownloader];
@@ -102,37 +103,35 @@
         } else {
             self.image = cachedImage;
         }
-        [self clearActiveDownloadInformation];
+        self.af_activeImageDownloadReceipt = nil;
     } else {
         if (placeholderImage) {
             self.image = placeholderImage;
         }
 
         __weak __typeof(self)weakSelf = self;
-        NSUUID *downloadID = [NSUUID UUID];
         AFImageDownloadReceipt *receipt;
         receipt = [downloader
                    downloadImageForURLRequest:urlRequest
-                   withReceiptID:downloadID
                    success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
                        __strong __typeof(weakSelf)strongSelf = weakSelf;
-                       if ([strongSelf.af_activeImageDownloadReceipt.receiptID isEqual:downloadID]) {
+                       if ([strongSelf isActiveTaskURLEqualToURLRequest:request]) {
                            if (success) {
                                success(request, response, responseObject);
                            } else if(responseObject) {
                                strongSelf.image = responseObject;
                            }
-                           [strongSelf clearActiveDownloadInformation];
+                           strongSelf.af_activeImageDownloadReceipt = nil;
                        }
 
                    }
                    failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
                        __strong __typeof(weakSelf)strongSelf = weakSelf;
-                        if ([strongSelf.af_activeImageDownloadReceipt.receiptID isEqual:downloadID]) {
+                        if ([strongSelf isActiveTaskURLEqualToURLRequest:request]) {
                             if (failure) {
                                 failure(request, response, error);
                             }
-                            [strongSelf clearActiveDownloadInformation];
+                            strongSelf.af_activeImageDownloadReceipt = nil;
                         }
                    }];
 
@@ -143,12 +142,8 @@
 - (void)cancelImageDownloadTask {
     if (self.af_activeImageDownloadReceipt != nil) {
         [[self.class sharedImageDownloader] cancelTaskForImageDownloadReceipt:self.af_activeImageDownloadReceipt];
-        [self clearActiveDownloadInformation];
+        self.af_activeImageDownloadReceipt = nil;
      }
-}
-
-- (void)clearActiveDownloadInformation {
-    self.af_activeImageDownloadReceipt = nil;
 }
 
 - (BOOL)isActiveTaskURLEqualToURLRequest:(NSURLRequest *)urlRequest {

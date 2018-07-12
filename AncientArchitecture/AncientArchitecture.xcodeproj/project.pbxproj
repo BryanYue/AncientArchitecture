@@ -55,10 +55,6 @@
 		93631C1620A8335A00632B32 /* HotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631C0D20A8335A00632B32 /* HotViewController.m */; };
 		93631C1920A833F300632B32 /* attaourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631C1720A833F300632B32 /* attaourseViewController.m */; };
 		9388FA742062388300A735F6 /* MyUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9388FA732062388300A735F6 /* MyUITextField.m */; };
-		938FCF4020C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */; };
-		938FCF4120C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		938FCF6A20C6FE4A00DF0466 /* AliyunImageSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 938FCF6920C6FE4A00DF0466 /* AliyunImageSource.bundle */; };
-		938FCF6B20C6FE5A00DF0466 /* AliyunImageSource.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 938FCF6920C6FE4A00DF0466 /* AliyunImageSource.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		938FCF7320C72DA100DF0466 /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7220C72DA100DF0466 /* CustomCollectionViewCell.m */; };
 		938FCF7720C7421E00DF0466 /* bannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7620C7421E00DF0466 /* bannerCollectionViewCell.m */; };
 		938FCF7D20C778DE00DF0466 /* forgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7C20C778DE00DF0466 /* forgetViewController.m */; };
@@ -104,27 +100,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		938FCF3E20C5A4E000DF0466 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F3731E061E14F52C0098F4A6;
-			remoteInfo = AliyunVodPlayerViewSDK;
-		};
-		938FCF4220C5A4FF00DF0466 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F3731E051E14F52C0098F4A6;
-			remoteInfo = AliyunVodPlayerViewSDK;
-		};
-		938FCF5620C6F6F100DF0466 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 938FCF5220C6F6F100DF0466 /* AliyunImageSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 834F58AA1FB801E40022D5F4;
-			remoteInfo = AliyunImageSource;
-		};
 		93C4C55620554B90008716B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C4C53520554B8F008716B3 /* Project object */;
@@ -148,7 +123,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				938FCF6B20C6FE5A00DF0466 /* AliyunImageSource.bundle in Embed PlugIns */,
 			);
 			name = "Embed PlugIns";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,7 +133,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				938FCF4120C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,10 +238,7 @@
 		93631C1820A833F300632B32 /* attaourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attaourseViewController.h; sourceTree = "<group>"; };
 		9388FA722062388300A735F6 /* MyUITextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyUITextField.h; sourceTree = "<group>"; };
 		9388FA732062388300A735F6 /* MyUITextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyUITextField.m; sourceTree = "<group>"; };
-		938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AliyunVodPlayerViewSDK.xcodeproj; path = "../../../Downloads/AliyunPlayerMediaDemo 2/ALPlayerViewSDK/AliyunVodPlayerViewSDK.xcodeproj"; sourceTree = "<group>"; };
 		938FCF4E20C6F68000DF0466 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		938FCF5220C6F6F100DF0466 /* AliyunImageSource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AliyunImageSource.xcodeproj; path = "../../../Downloads/AliyunPlayerMediaDemo 2/AliyunImageSource/AliyunImageSource.xcodeproj"; sourceTree = "<group>"; };
-		938FCF6920C6FE4A00DF0466 /* AliyunImageSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AliyunImageSource.bundle; sourceTree = "<group>"; };
 		938FCF7120C72DA100DF0466 /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
 		938FCF7220C72DA100DF0466 /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCell.m; sourceTree = "<group>"; };
 		938FCF7520C7421E00DF0466 /* bannerCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bannerCollectionViewCell.h; sourceTree = "<group>"; };
@@ -363,7 +333,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				938FCF4020C5A4FF00DF0466 /* AliyunVodPlayerViewSDK.framework in Frameworks */,
 				D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,22 +557,6 @@
 			path = hot;
 			sourceTree = "<group>";
 		};
-		938FCF3B20C5A4E000DF0466 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		938FCF5320C6F6F100DF0466 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				938FCF5720C6F6F100DF0466 /* AliyunImageSource.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		93AA79C2205AC897002E9E10 /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -677,9 +630,6 @@
 		93C4C53420554B8F008716B3 = {
 			isa = PBXGroup;
 			children = (
-				938FCF6920C6FE4A00DF0466 /* AliyunImageSource.bundle */,
-				938FCF5220C6F6F100DF0466 /* AliyunImageSource.xcodeproj */,
-				938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */,
 				93AA79C1205AC164002E9E10 /* PrefixHeader.pch */,
 				93C4C53F20554B90008716B3 /* AncientArchitecture */,
 				93C4C55820554B90008716B3 /* AncientArchitectureTests */,
@@ -910,7 +860,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				938FCF4320C5A4FF00DF0466 /* PBXTargetDependency */,
 			);
 			name = AncientArchitecture;
 			productName = AncientArchitecture;
@@ -989,16 +938,6 @@
 			mainGroup = 93C4C53420554B8F008716B3;
 			productRefGroup = 93C4C53E20554B90008716B3 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 938FCF5320C6F6F100DF0466 /* Products */;
-					ProjectRef = 938FCF5220C6F6F100DF0466 /* AliyunImageSource.xcodeproj */;
-				},
-				{
-					ProductGroup = 938FCF3B20C5A4E000DF0466 /* Products */;
-					ProjectRef = 938FCF3A20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				93C4C53C20554B90008716B3 /* AncientArchitecture */,
@@ -1008,23 +947,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		938FCF3F20C5A4E000DF0466 /* AliyunVodPlayerViewSDK.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AliyunVodPlayerViewSDK.framework;
-			remoteRef = 938FCF3E20C5A4E000DF0466 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		938FCF5720C6F6F100DF0466 /* AliyunImageSource.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AliyunImageSource.bundle;
-			remoteRef = 938FCF5620C6F6F100DF0466 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		93C4C53B20554B90008716B3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -1032,7 +954,6 @@
 			files = (
 				93C4C54D20554B90008716B3 /* LaunchScreen.storyboard in Resources */,
 				93C4C54A20554B90008716B3 /* Assets.xcassets in Resources */,
-				938FCF6A20C6FE4A00DF0466 /* AliyunImageSource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,6 +1000,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-resources.sh",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLibFaceResource.bundle",
+				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunImageSource.bundle",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunLanguageSource.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/PGDatePicker/PGDatePicker/PGDatePicker.bundle",
@@ -1087,6 +1009,7 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlivcLibFaceResource.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AliyunImageSource.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AliyunLanguageSource.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PGDatePicker.bundle",
@@ -1106,8 +1029,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLivePusher.framework",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLibRtmp.framework",
-				"${PODS_ROOT}/AlivcLivePusher/AlivcLibBeauty.framework",
-				"${PODS_ROOT}/AlivcLivePusher/AlivcLibFace.framework",
+				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerViewSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerSDK.framework",
@@ -1116,8 +1038,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLivePusher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibRtmp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibBeauty.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibFace.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerViewSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunPlayerSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliThirdparty.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerSDK.framework",
@@ -1241,11 +1162,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		938FCF4320C5A4FF00DF0466 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AliyunVodPlayerViewSDK;
-			targetProxy = 938FCF4220C5A4FF00DF0466 /* PBXContainerItemProxy */;
-		};
 		93C4C55720554B90008716B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 93C4C53C20554B90008716B3 /* AncientArchitecture */;

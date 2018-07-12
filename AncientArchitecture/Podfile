@@ -8,7 +8,7 @@ target 'AncientArchitecture' do
     
     # Pods for AncientArchitecture
     
-    pod 'AFNetworking', '~> 3.0'
+    pod 'AFNetworking', '3.0'
     
     pod 'SDWebImage'
     pod 'YYWebImage'
@@ -23,7 +23,7 @@ target 'AncientArchitecture' do
     
     
     pod 'AlivcLivePusher'
-    pod 'AliyunPlayer_iOS', '~> 3.4.3'
+    pod 'AliyunPlayer_iOS', '3.4.3'
 
     pod 'MJRefresh'
     
