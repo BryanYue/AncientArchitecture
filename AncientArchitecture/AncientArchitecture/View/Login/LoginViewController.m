@@ -19,7 +19,7 @@
 
 #define weixinloginNotification @"weixinlogin"
 
-@interface LoginViewController ()<UITextFieldDelegate>
+@interface LoginViewController ()<UITextFieldDelegate,WXApiDelegate>
 
 @end
 
@@ -89,6 +89,7 @@
                                      @{NSForegroundColorAttributeName:[UIColor whiteColor],
                                        NSFontAttributeName:_loginText.font
                                        }];
+    
     _loginText.attributedPlaceholder = attrlogin;
     _loginText.textColor=[UIColor whiteColor];
     UIImageView *imagelogin=[UIImageView new];
@@ -361,17 +362,20 @@
     
     
 -(void)wechatlogin{
-    NSLog(@"微信登录");
+    
     if ([WXApi isWXAppInstalled]) {
         SendAuthReq *req = [[SendAuthReq alloc] init];
         req.scope = @"snsapi_userinfo";
         req.state = @"App";
         [WXApi sendReq:req];
-    }
-    else {
-        [self showAction:@"请先安装微信客户端"];
+    }else {
+        SendAuthReq *req = [[SendAuthReq alloc] init];
+            req.scope = @"snsapi_userinfo";
+            req.state = @"App";
+        [WXApi sendAuthReq:req viewController:self delegate:self];
     }
 }
+
     
     
     

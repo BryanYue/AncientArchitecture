@@ -26,7 +26,7 @@
     [self.view addSubview:_magicController.view];
     [self.view setNeedsUpdateConstraints];
     
-    [self generateTestData];
+    [self generateData];
     [_magicController.magicView reloadData];
     
 }
@@ -91,7 +91,7 @@
 }
 
 
-- (void)generateTestData {
+- (void)generateData {
     _menuList = @[@"课程",@"引路人"];
 }
 

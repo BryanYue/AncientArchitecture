@@ -173,15 +173,11 @@ description:__VA_ARGS__];                             \
 
 #define _GTMCompileAssertSymbolInner(line, msg) _GTMCOMPILEASSERT ## line ## __ ## msg
 #define _GTMCompileAssertSymbol(line, msg) _GTMCompileAssertSymbolInner(line, msg)
-#define _GTMCompileAssert(test, msg) \
-typedef char _GTMCompileAssertSymbol(__LINE__, msg) [ ((test) ? 1 : -1) ]
+#define _GTMCompileAssert(t, msg) \
+typedef char _GTMCompileAssertSymbol(__LINE__, msg) [ ((t) ? 1 : -1) ]
 #endif // _GTMCompileAssert
 
-// ----------------------------------------------------------------------------
-// CPP symbols defined based on the project settings so the GTM code has
-// simple things to test against w/o scattering the knowledge of project
-// setting through all the code.
-// ----------------------------------------------------------------------------
+
 
 // Provide a single constant CPP symbol that all of GTM uses for ifdefing
 // iPhone code.
@@ -193,11 +189,9 @@ typedef char _GTMCompileAssertSymbol(__LINE__, msg) [ ((test) ? 1 : -1) ]
 #else
 #define GTM_IPHONE_DEVICE 1
 #endif  // TARGET_IPHONE_SIMULATOR
-// By default, GTM has provided it's own unittesting support, define this
-// to use the support provided by Xcode, especially for the Xcode4 support
-// for unittesting.
-#ifndef GTM_IPHONE_USE_SENTEST
-#define GTM_IPHONE_USE_SENTEST 0
+
+#ifndef GTM_IPHONE_USE_SENT
+#define GTM_IPHONE_USE_SENT 0
 #endif
 #else
 // For MacOS specific stuff
@@ -250,7 +244,7 @@ typedef unsigned int NSUInteger;
 // CGFloat
 #ifndef CGFLOAT_DEFINED
 #if defined(__LP64__) && __LP64__
-// This really is an untested path (64bit on Tiger?)
+
 typedef double CGFloat;
 #define CGFLOAT_MIN DBL_MIN
 #define CGFLOAT_MAX DBL_MAX
@@ -354,9 +348,9 @@ typedef float CGFloat;
 #ifdef __OBJC__
 
 // Declared here so that it can easily be used for logging tracking if
-// necessary. See GTMUnitTestDevLog.h for details.
+
 @class NSString;
-GTM_EXTERN void _GTMUnitTestDevLog(NSString *format, ...);
+GTM_EXTERN void _GTMUnitTDevLog(NSString *format, ...);
 
 // Macro to allow you to create NSStrings out of other macros.
 // #define FOO foo

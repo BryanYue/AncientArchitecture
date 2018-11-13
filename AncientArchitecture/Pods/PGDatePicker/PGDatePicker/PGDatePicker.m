@@ -33,6 +33,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 - (instancetype)init {
     if (self = [super init]) {
         self.isHiddenMiddleText = true;
+        self.isHiddenWheels = true;
     }
     return self;
 }
@@ -56,28 +57,6 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
     }else {
         self.selectComponents = [self.calendar components:self.unitFlags fromDate:[NSDate date]];
     }
-    if (self.minimumDate || self.maximumDate) {
-        if (self.currentComponents.year < self.minimumComponents.year) {
-            self.selectComponents.year = self.minimumComponents.year;
-        }
-        if (self.currentComponents.year > self.maximumComponents.year && self.selectComponents.year != self.minimumComponents.year) {
-            self.selectComponents.year = self.maximumComponents.year;
-        }
-        if (self.currentComponents.year == self.minimumComponents.year && self.currentComponents.month != self.minimumComponents.month) {
-            self.selectComponents.month = self.maximumComponents.month;
-        }
-        if (self.currentComponents.year == self.minimumComponents.year && self.currentComponents.month<= self.minimumComponents.month) {
-            self.selectComponents.month = self.minimumComponents.month;
-        }
-        if (self.currentComponents.year == self.minimumComponents.year && self.currentComponents.month == self.minimumComponents.month) {
-            self.selectComponents.day = self.minimumComponents.day;
-        }
-        if (self.maximumComponents.year == self.minimumComponents.year &&
-            self.maximumComponents.month == self.minimumComponents.month &&
-            self.maximumComponents.day == self.minimumComponents.day) {
-            self.selectComponents.hour = self.minimumComponents.hour;
-        }
-    }
     NSInteger day = [self howManyDaysWithMonthInThisYear:self.selectComponents.year withMonth:self.selectComponents.month];
     [self setDayListForMonthDays:day];
     CGFloat bottom = 0;
@@ -92,6 +71,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
     pickerView.rowHeight = self.rowHeight;
     pickerView.isHiddenMiddleText = self.isHiddenMiddleText;
     pickerView.middleTextColor = self.middleTextColor;
+    pickerView.isHiddenWheels = self.isHiddenWheels;
     pickerView.lineBackgroundColor = self.lineBackgroundColor;
     if (_titleColorForOtherRow) {
         self.textColorOfOtherRow = _titleColorForOtherRow;
@@ -1147,22 +1127,19 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
     if (!_monthList) {
         NSInteger minimum = 1;
         NSInteger maximum = 12;
+        if (_setDate == nil && self.maximumComponents.year <= self.currentComponents.year) {
+            maximum = self.maximumComponents.month;
+        }
         if (self.selectComponents.year == self.minimumComponents.year) {
             minimum = self.minimumComponents.month;
         }
-        if (_setDate != nil) {
-            NSDateComponents *components = [self.calendar components:self.unitFlags fromDate:_setDate];
-            if (components.year == self.maximumComponents.year) {
-                maximum = self.maximumComponents.month;
-            }
-        }
-        if (self.yearList.count == 1) {
-            minimum = self.minimumComponents.month;
+        if (self.selectComponents.year == self.maximumComponents.year) {
             maximum = self.maximumComponents.month;
         }
-        if (self.datePickerMode == PGDatePickerModeDateAndTime) {
-            minimum = 1;
-            maximum = 12;
+        if (self.minimumComponents.year == self.maximumComponents.year) {
+            minimum = self.minimumComponents.month;
+            maximum = self.maximumComponents.month;
+            
         }
         NSMutableArray *months = [NSMutableArray arrayWithCapacity:maximum];
         for (NSUInteger i = minimum; i <= maximum; i++) {
@@ -1187,6 +1164,12 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
             self.selectComponents.month == self.minimumComponents.month &&
             self.selectComponents.day == self.minimumComponents.day) {
             minimum = self.minimumComponents.hour;
+        }
+        if (self.maximumComponents.year == self.minimumComponents.year &&
+            self.maximumComponents.month == self.minimumComponents.month &&
+            self.maximumComponents.day == self.minimumComponents.day) {
+            minimum = self.minimumComponents.hour;
+            maximum = self.maximumComponents.hour;
         }
         NSInteger index = maximum - minimum;
         if (self.datePickerMode == PGDatePickerModeTime || self.datePickerMode == PGDatePickerModeTimeAndSecond) {
@@ -1219,7 +1202,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
         if (self.selectComponents.year == self.maximumComponents.year &&
             self.selectComponents.month == self.maximumComponents.month &&
             self.selectComponents.day == self.maximumComponents.day &&
-            self.selectComponents.hour == self.maximumComponents.hour) {
+            self.selectComponents.hour >= self.maximumComponents.hour) {
             maximum = self.maximumComponents.minute;
         }
         if (self.selectComponents.year == self.minimumComponents.year &&
@@ -1227,6 +1210,13 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
             self.selectComponents.day == self.minimumComponents.day &&
             self.selectComponents.hour <= self.minimumComponents.hour) {
             minimum = self.minimumComponents.minute;
+        }
+        if (self.maximumComponents.year == self.minimumComponents.year &&
+            self.maximumComponents.month == self.minimumComponents.month &&
+            self.maximumComponents.day == self.minimumComponents.day &&
+            self.maximumComponents.hour == self.minimumComponents.hour) {
+            minimum = self.minimumComponents.minute;
+            maximum = self.maximumComponents.minute;
         }
         if (self.datePickerMode == PGDatePickerModeTime || self.datePickerMode == PGDatePickerModeTimeAndSecond) {
             if (self.selectComponents.hour == self.minimumComponents.hour) {
@@ -1278,6 +1268,14 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
             self.selectComponents.minute == self.minimumComponents.minute) {
             minimum = self.minimumComponents.second;
         }
+        if (self.maximumComponents.year == self.minimumComponents.year &&
+            self.maximumComponents.month == self.minimumComponents.month &&
+            self.maximumComponents.day == self.minimumComponents.day &&
+            self.maximumComponents.hour == self.minimumComponents.hour &&
+            self.maximumComponents.minute == self.minimumComponents.minute) {
+            minimum = self.minimumComponents.second;
+            maximum = self.maximumComponents.second;
+        }
         if (self.datePickerMode == PGDatePickerModeTime || self.datePickerMode == PGDatePickerModeTimeAndSecond) {
             if (self.selectComponents.hour == self.minimumComponents.hour &&
                 self.selectComponents.minute == self.minimumComponents.minute) {
@@ -1307,8 +1305,8 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
         NSMutableArray *array = [NSMutableArray array];
         NSInteger firstIndex = self.minimumComponents.month - 1;
         NSInteger lastIndex = self.maximumComponents.month - 1;
-        NSString *monthString = [NSBundle localizedStringForKey:@"monthString"];
-        NSString *dayString = [NSBundle localizedStringForKey:@"dayString"];
+        NSString *monthString = [NSBundle pg_localizedStringForKey:@"monthString" language:self.language];
+        NSString *dayString = [NSBundle pg_localizedStringForKey:@"dayString" language:self.language];
         
         for (NSInteger i = firstIndex; i <= lastIndex; i++) {
             NSString *month = self.monthList[i];
@@ -1384,7 +1382,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (UIColor *)lineBackgroundColor {
     if (!_lineBackgroundColor) {
-        _lineBackgroundColor = [UIColor colorWithHexString:@"#69BDFF"];
+        _lineBackgroundColor = [UIColor pg_colorWithHexString:@"#69BDFF"];
     }
     return _lineBackgroundColor;
 }
@@ -1398,7 +1396,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (UIColor *)textColorOfSelectedRow {
     if (!_textColorOfSelectedRow) {
-        _textColorOfSelectedRow = [UIColor colorWithHexString:@"#69BDFF"];
+        _textColorOfSelectedRow = [UIColor pg_colorWithHexString:@"#69BDFF"];
     }
     return _textColorOfSelectedRow;
 }
@@ -1426,7 +1424,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (UIColor *)middleTextColor {
     if (!_middleTextColor) {
-        _middleTextColor = [UIColor colorWithHexString:@"#69BDFF"];
+        _middleTextColor = [UIColor pg_colorWithHexString:@"#69BDFF"];
     }
     return _middleTextColor;
 }
@@ -1436,7 +1434,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
         if (!self.isHiddenMiddleText) {
             _yearString = @"";
         }else {
-            _yearString = [NSBundle localizedStringForKey:@"yearString"];
+            _yearString = [NSBundle pg_localizedStringForKey:@"yearString" language:self.language];
         }
     }
     return _yearString;
@@ -1444,7 +1442,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSString *)middleYearString {
     if (!_middleYearString) {
-        _middleYearString = [NSBundle localizedStringForKey:@"yearString"];
+        _middleYearString = [NSBundle pg_localizedStringForKey:@"yearString" language:self.language];
     }
     return _middleYearString;
 }
@@ -1454,7 +1452,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
         if (!self.isHiddenMiddleText) {
             _monthString = @"";
         }else {
-            _monthString = [NSBundle localizedStringForKey:@"monthString"];
+            _monthString = [NSBundle pg_localizedStringForKey:@"monthString" language:self.language];
         }
     }
     return _monthString;
@@ -1462,7 +1460,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSString *)middleMonthString {
     if (!_middleMonthString) {
-        _middleMonthString = [NSBundle localizedStringForKey:@"monthString"];
+        _middleMonthString = [NSBundle pg_localizedStringForKey:@"monthString" language:self.language];
     }
     return _middleMonthString;
 }
@@ -1472,7 +1470,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
         if (!self.isHiddenMiddleText) {
             _dayString = @"";
         }else {
-            _dayString = [NSBundle localizedStringForKey:@"dayString"];
+            _dayString = [NSBundle pg_localizedStringForKey:@"dayString" language:self.language];
         }
     }
     return _dayString;
@@ -1480,7 +1478,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSString *)middleDayString {
     if (!_middleDayString) {
-        _middleDayString = [NSBundle localizedStringForKey:@"dayString"];
+        _middleDayString = [NSBundle pg_localizedStringForKey:@"dayString" language:self.language];
     }
     return _middleDayString;
 }
@@ -1490,7 +1488,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
         if (!self.isHiddenMiddleText) {
             _hourString = @"";
         }else {
-            _hourString = [NSBundle localizedStringForKey:@"hourString"];
+            _hourString = [NSBundle pg_localizedStringForKey:@"hourString" language:self.language];
         }
     }
     return _hourString;
@@ -1498,7 +1496,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSString *)middleHourString {
     if (!_middleHourString) {
-        _middleHourString = [NSBundle localizedStringForKey:@"hourString"];
+        _middleHourString = [NSBundle pg_localizedStringForKey:@"hourString" language:self.language];
     }
     return _middleHourString;
 }
@@ -1508,7 +1506,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
         if (!self.isHiddenMiddleText) {
             _minuteString = @"";
         }else {
-            _minuteString = [NSBundle localizedStringForKey:@"minuteString"];
+            _minuteString = [NSBundle pg_localizedStringForKey:@"minuteString" language:self.language];
         }
     }
     return _minuteString;
@@ -1516,7 +1514,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSString *)middleMinuteString {
     if (!_middleMinuteString) {
-        _middleMinuteString = [NSBundle localizedStringForKey:@"minuteString"];
+        _middleMinuteString = [NSBundle pg_localizedStringForKey:@"minuteString" language:self.language];
     }
     return _middleMinuteString;
 }
@@ -1526,7 +1524,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
         if (!self.isHiddenMiddleText) {
             _secondString = @"";
         }else {
-            _secondString = [NSBundle localizedStringForKey:@"secondString"];
+            _secondString = [NSBundle pg_localizedStringForKey:@"secondString" language:self.language];
         }
     }
     return _secondString;
@@ -1534,56 +1532,56 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSString *)middleSecondString {
     if (!_middleSecondString) {
-        _middleSecondString = [NSBundle localizedStringForKey:@"secondString"];
+        _middleSecondString = [NSBundle pg_localizedStringForKey:@"secondString" language:self.language];
     }
     return _middleSecondString;
 }
 
 - (NSString *)mondayString {
     if (!_mondayString) {
-        _mondayString = [NSBundle localizedStringForKey:@"mondayString"];
+        _mondayString = [NSBundle pg_localizedStringForKey:@"mondayString" language:self.language];
     }
     return _mondayString;
 }
 
 - (NSString *)tuesdayString {
     if (!_tuesdayString) {
-        _tuesdayString = [NSBundle localizedStringForKey:@"tuesdayString"];
+        _tuesdayString = [NSBundle pg_localizedStringForKey:@"tuesdayString" language:self.language];
     }
     return _tuesdayString;
 }
 
 - (NSString *)wednesdayString {
     if (!_wednesdayString) {
-        _wednesdayString = [NSBundle localizedStringForKey:@"wednesdayString"];
+        _wednesdayString = [NSBundle pg_localizedStringForKey:@"wednesdayString" language:self.language];
     }
     return _wednesdayString;
 }
 
 - (NSString *)thursdayString {
     if (!_thursdayString) {
-        _thursdayString = [NSBundle localizedStringForKey:@"thursdayString"];
+        _thursdayString = [NSBundle pg_localizedStringForKey:@"thursdayString" language:self.language];
     }
     return _thursdayString;
 }
 
 - (NSString *)fridayString {
     if (!_fridayString) {
-        _fridayString = [NSBundle localizedStringForKey:@"fridayString"];
+        _fridayString = [NSBundle pg_localizedStringForKey:@"fridayString" language:self.language];
     }
     return _fridayString;
 }
 
 - (NSString *)saturdayString {
     if (!_saturdayString) {
-        _saturdayString = [NSBundle localizedStringForKey:@"saturdayString"];
+        _saturdayString = [NSBundle pg_localizedStringForKey:@"saturdayString" language:self.language];
     }
     return _saturdayString;
 }
 
 - (NSString *)sundayString {
     if (!_sundayString) {
-        _sundayString = [NSBundle localizedStringForKey:@"sundayString"];
+        _sundayString = [NSBundle pg_localizedStringForKey:@"sundayString" language:self.language];
     }
     return _sundayString;
 }

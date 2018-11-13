@@ -31,7 +31,7 @@
     
     [self configCustomSlider];
     
-    [self generateTestData];
+    [self generateData];
     [self.magicView reloadData];
 }
 
@@ -104,7 +104,7 @@
 
 
 
-- (void)generateTestData {
+- (void)generateData {
     _menuList = @[@"即将开播", @"已播课程"];
 }
 

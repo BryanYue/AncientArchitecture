@@ -32,7 +32,7 @@
     if (_menuList) {
         _menuList=nil;
     }
-    [self generateTestData];
+    [self generateData];
     [_magicController.magicView reloadData];
    
     [self initbaseView];
@@ -149,7 +149,7 @@
 }
 
 
-- (void)generateTestData {
+- (void)generateData {
     NSString *isteacher=[DEFAULTS objectForKey:@"is_teacher"];
     NSLog(@"isteacher: %@" ,isteacher);
     if ([@"1" isEqualToString:isteacher]) {

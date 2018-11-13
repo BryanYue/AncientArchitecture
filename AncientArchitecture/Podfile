@@ -37,9 +37,9 @@ target 'AncientArchitecture' do
     
 #    pod 'PLPlayerKit'
 
-    pod 'Pgyer'
-    pod 'PgyUpdate'
-    
+#    pod 'Pgyer'
+#    pod 'PgyUpdate'
+
     pod 'DZNEmptyDataSet'
     pod 'Bugly'
 end

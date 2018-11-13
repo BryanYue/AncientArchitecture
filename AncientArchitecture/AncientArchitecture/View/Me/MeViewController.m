@@ -204,15 +204,15 @@ NSString *isteacher;
     UIView *avr = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, high)];
     avr.backgroundColor =[UIColor_ColorChange colorWithHexString:app_theme];
     
-    UIImageView *message =[[UIImageView alloc]init];
-    message.image=[UIImage imageNamed:@"消息"];
-    message.frame = CGRectMake(10, 6+statusBar_Height, message.image.size.width, message.image.size.height);
-    message.userInteractionEnabled = YES;
-    [message addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toMessage)]];
+//    UIImageView *message =[[UIImageView alloc]init];
+//    message.image=[UIImage imageNamed:@"消息"];
+//    message.frame = CGRectMake(10, 6+statusBar_Height, message.image.size.width, message.image.size.height);
+//    message.userInteractionEnabled = YES;
+//    [message addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toMessage)]];
    
     UIImageView *edit =[[UIImageView alloc]init];
     edit.image=[UIImage imageNamed:@"编辑"];
-    edit.frame = CGRectMake(kScreen_Width-10-message.image.size.width, 6+statusBar_Height, message.image.size.width, message.image.size.height);
+    edit.frame = CGRectMake(kScreen_Width-10-edit.image.size.width, 6+statusBar_Height, edit.image.size.width, edit.image.size.height);
     edit.userInteractionEnabled = YES;
     [edit addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toEdit)]];
     
@@ -268,7 +268,7 @@ NSString *isteacher;
     
     
     
-    [avr addSubview:message];
+//    [avr addSubview:message];
     [avr addSubview:edit];
     
     [self.view addSubview:avr];

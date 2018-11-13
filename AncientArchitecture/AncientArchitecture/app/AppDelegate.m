@@ -11,8 +11,7 @@
 #import "WXApi.h"
 #import <AFNetworking.h>
 #import "LaunchIntroductionView.h"
-#import <PgySDK/PgyManager.h>
-#import <PgyUpdate/PgyUpdateManager.h>
+
 #import <Bugly/Bugly.h>
 #define weixinloginNotification @"weixinlogin"
 #define weixinpayNotification @"weixinpay"
@@ -47,10 +46,7 @@
     
     
     
-    //启动基本SDK
-    [[PgyManager sharedPgyManager] startManagerWithAppId:@"f5bc49c0c1f23243dddd6938c32f20d5"];
-    //启动更新检查SDK
-    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"f5bc49c0c1f23243dddd6938c32f20d5"];
+
     
     
     LaunchIntroductionView *launch=[LaunchIntroductionView sharedWithImages:@[@"img_launch_1",
@@ -62,7 +58,7 @@
     launch.currentColor = [UIColor grayColor];
     launch.nomalColor = [UIColor_ColorChange colorWithHexString:app_theme];;
    
-//   [SDImageCache sharedImageCache].config.maxCacheSize = 1024 * 1024 * 500;    // 50M
+
     
     
 

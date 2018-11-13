@@ -36,7 +36,7 @@
 
     [self configCustomSlider];
     
-    [self generateTestData];
+    [self generateData];
     [self.magicView reloadData];
 }
 
@@ -104,7 +104,7 @@
 
 
 
-- (void)generateTestData {
+- (void)generateData {
     _menuList = @[@"热门", @"课程",
                   @"现场", @"引路人"];
 }

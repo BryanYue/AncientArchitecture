@@ -1,4 +1,4 @@
-# WMPageController <a href="https://github.com/wangmchn/WMPageController/blob/master/README_zh-CN.md">中文介绍</a>
+# WMPageController [中文介绍](https://github.com/wangmchn/WMPageController/blob/master/README_zh-CN.md)
 [![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat
 )](https://developer.apple.com/iphone/index.action)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
@@ -7,17 +7,13 @@
 
 An easy solution to page controllers like `NetEase News`
 ## Overview
-<img height="400" src="https://github.com/wangmchn/WMPageController/blob/master/WMPageControllerDemo/Code/WMPageController/ScreenShot/ScreenShot.gif" />
-<br>
+<img height="600" src="https://github.com/wangmchn/WMPageController/blob/master/WMPageControllerDemo/Overview.gif" />
 
-## Swift Version
-Click here: https://github.com/wangmchn/WMPageController-Swift
+## Change Log
+See [CHANGELOG](https://github.com/wangmchn/WMPageController/blob/master/CHANGELOG.md) for more information.
 
 ## Basic use
-1. Drag files in red frame to your project.<br>
-<img height="300" src="https://github.com/wangmchn/WMPageController/blob/master/WMPageControllerDemo/Code/WMPageController/ScreenShot/guide.png" />
-
-2. Create an controller extends from `WMPageController`.There are two ways to init the `WMPageController`:
+Create an controller extends from `WMPageController`.There are two ways to init the `WMPageController`:
 
 #### Init with Classes
 Use the following constructor to init the controller:
@@ -30,7 +26,7 @@ Here are two important porperties:
     classes :contains the classes of child view controllers, just like [UITableViewController class];
     titles  :Each View controller's title to show in the menu view at the top of the view;
 
-#### Use datasource
+#### Use datasource (Recommend This Way!)
 The usage is very familiar to `UITableView`, these are the methods need to implement:
 ```objective-c 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController;
@@ -39,16 +35,17 @@ The usage is very familiar to `UITableView`, these are the methods need to imple
 
 - (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index;
 ```
-Just implement these three datasource methods in YOUR WMPageController after initialize it.
+Just implement these datasource methods in YOUR WMPageController after initialize it.
 
-## More
-To have a custom page controller,please set the properties in `WMPageController` ,They are: `titleSize`, `titleColor`, `menuHeight`, `pageAnimatable`, `menuBGColor`, `menuItemWidth`,and also `itemsWidths`.<br>
+## Customize Content's Frame 
+It's easy for you to customize your controller as following, just implement these two datasource methods.<br>
+```
+- (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView;
 
-## ViewFrame 
-It's easy for you to customize your controller as following, just set `viewFrame` and done.<br>
-See <a href="https://github.com/wangmchn/WMPageController/tree/master/WMPageControllerDemo/ViewFrameDemo">ViewFrameDemo</a> for more information.
-
-<img height="300" src="https://github.com/wangmchn/WMPageController/blob/master/WMPageControllerDemo/Code/WMPageController/ScreenShot/ViewFrameDemo.gif" />
+- (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView;
+```
+When you want to change the frame of contentView, you need to call `-forceLayoutSubViews` method. This will recall the datasource method above and re-layout subviews.
+If you are interested, see `viewFrameExample` for more detail.
 
 ## Use Storyboard / xib
 1.If you init the `WMPageController` with child controller's class,override the `-init` method in `WMPageController's childViewController`, For example:
@@ -65,18 +62,27 @@ See <a href="https://github.com/wangmchn/WMPageController/tree/master/WMPageCont
     return vc;
 }
 ```
+See `StoryboardExample` for more detail.
 
 ## Styles
-There are 4 styles to choose,  They are `WMMenuViewStyleDefault`, `WMMenuViewStyleLine`, `WMMenuViewStyleFoold`, `WMMenuViewStyleFooldHollow`;<br>
 
 You can easily change style by setting `xxxPageController.style = WMMenuViewStyleLine`.<br>
 If you want `menuView` to show on the navigation bar, set `.showOnNavigationBar = YES`;
 
 ## Using CocoaPods
-    pod 'WMPageController'
+If you want the newest version, try 2.4.0 (This has some API modified)
+```
+pod 'WMPageController', '~> 2.4.0' 
+```
+If you perfer the old, just use 2.3.0 and it's fine.
+```
+pod 'WMPageController', '2.3.0' 
+```
 
 ## Note
-You can put every controller in `WMPageController`,But if you want have a `UICollectionViewController` in, please have an attention to `UICollectionViewController's` init method.<br>
+1. If you have any trouble with content controller's frame or size,just try set `viewFrame` property, which make you free to customize your own size.
+
+2. You can put every controller in `WMPageController`,But if you want have a `UICollectionViewController` in, please have an attention to `UICollectionViewController's` init method.<br>
 You should override the `- init` to give `UICollectionViewController` a `UICollectionViewLayout`.
 Here is an example:
 ```objective-c

@@ -4,10 +4,10 @@
 > 由于使用UIPickerView的话，列表会有个弧度，所以这里用了[PGPickerView](https://github.com/xiaozhuxiong121/PGPickerView)  
 
 ![PGDatePicker](F734F5F9-FB12-4BA7-B43E-B39D0FF1DA3B.png)
-[![CocoaPods compatible](https://img.shields.io/cocoapods/v/PGDatePicker.svg)](https://cocoapods.org/pods/PGDatePicker)
-![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg)
-![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg) 
- [![](https://img.shields.io/badge/jianshu-piggybear-red.svg)](http://www.jianshu.com/u/3740632b2002)   
+[![CocoaPods compatible](https://img.shields.io/cocoapods/v/PGDatePicker.svg?style=for-the-badge)](https://cocoapods.org/pods/PGDatePicker)
+![](https://img.shields.io/badge/platform-iOS-red.svg?style=for-the-badge) ![](https://img.shields.io/badge/language-Objective--C-orange.svg?style=for-the-badge)
+![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg?style=for-the-badge) 
+ [![](https://img.shields.io/badge/jianshu-piggybear-red.svg?style=for-the-badge)](http://www.jianshu.com/u/3740632b2002)   
 
 
 #### 直接看如何使用:[Wiki](https://github.com/xiaozhuxiong121/PGDatePicker/wiki)
@@ -95,11 +95,19 @@ PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
 PGDatePicker *datePicker = datePickManager.datePicker;
 datePicker.delegate = self;
 [self presentViewController:datePickManager animated:false completion:nil];
-
+```
+#### Delegate
+```
 #pragma PGDatePickerDelegate
 - (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents {
 NSLog(@"dateComponents = %@", dateComponents);
 }
+```
+#### Block
+```
+datePicker.selectedDate = ^(NSDateComponents *dateComponents) {
+    NSLog(@"dateComponents = %@", dateComponents);
+};
 ```
 > 如果不设置```minimumDate```和```maximumDate```默认是无穷小和无穷大 
 
@@ -141,7 +149,10 @@ datePickManager.confirmButtonFont = [UIFont boldSystemFontOfSize:17];
 ```
 
 # 最新版本
-[![CocoaPods compatible](https://img.shields.io/cocoapods/v/PGDatePicker.svg)]()
+[![CocoaPods compatible](https://img.shields.io/cocoapods/v/PGDatePicker.svg?style=for-the-badge)]()
+
+# 想说的话
+大家有好的idea欢迎随时提交PR，共同维护。
 
 # 许可证
 

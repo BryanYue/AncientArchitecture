@@ -1,6 +1,6 @@
 //
 //  MRGridLayout.m
-//  PhotoGalleryDemo
+//  PhotoGallery
 //
 //  Created by Andrew554 on 16/7/25.
 //  Copyright © 2016年 Andrew554. All rights reserved.

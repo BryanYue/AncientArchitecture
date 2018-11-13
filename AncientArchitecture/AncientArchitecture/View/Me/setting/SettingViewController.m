@@ -56,7 +56,7 @@
     headline.backgroundColor =[UIColor_ColorChange colorWithHexString:@"f3f3f3"];
     [self.view addSubview:headline];
     
-    NSArray<NSString *> *titletext=@[@"个人资料",@"账号设置",@"版本更新",@"退出登陆"];
+    NSArray<NSString *> *titletext=@[@"个人资料",@"账号设置",@"当前版本",@"退出登陆"];
     
     for (int i=0; i<titletext.count; i++) {
         if (i==3) {

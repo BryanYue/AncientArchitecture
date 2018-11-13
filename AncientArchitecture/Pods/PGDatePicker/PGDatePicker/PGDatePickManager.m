@@ -30,11 +30,18 @@
     self.view.backgroundColor = [UIColor clearColor];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    self.headerView.language = self.datePicker.language;
+}
+
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
     self.headerView.style = self.style;
     self.dismissView.frame = self.view.bounds;
+    self.contentView.backgroundColor = self.datePicker.backgroundColor;
     if (self.style == PGDatePickManagerStyle1) {
         [self setupStyle1];
     }else if (self.style == PGDatePickManagerStyle2) {
@@ -46,15 +53,18 @@
 }
 
 - (void)setupDismissViewTapHandler {
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(cancelButtonHandler)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissViewTapMonitor)];
     [self.dismissView addGestureRecognizer:tap];
 }
 
 - (void)headerViewButtonHandler {
     __weak id weak_self = self;
     self.headerView.cancelButtonHandlerBlock = ^{
-        __strong id strong_self = weak_self;
+        __strong PGDatePickManager *strong_self = weak_self;
         [strong_self cancelButtonHandler];
+        if (strong_self.cancelButtonMonitor) {
+            strong_self.cancelButtonMonitor();
+        }
     };
     self.headerView.confirmButtonHandlerBlock =^{
         __strong PGDatePickManager *strong_self = weak_self;
@@ -75,6 +85,13 @@
         }];
     }else {
         [self dismissViewControllerAnimated:false completion:nil];
+    }
+}
+
+- (void)dismissViewTapMonitor {
+    [self cancelButtonHandler];
+    if (self.cancelButtonMonitor) {
+        self.cancelButtonMonitor();
     }
 }
 
@@ -186,32 +203,32 @@
 
 - (void)setCancelButtonFont:(UIFont *)cancelButtonFont {
     _cancelButtonFont = cancelButtonFont;
-    self.headerView.cancelButton.titleLabel.font = cancelButtonFont;
+    self.headerView.cancelButtonFont = cancelButtonFont;
 }
 
 - (void)setCancelButtonText:(NSString *)cancelButtonText {
     _cancelButtonText = cancelButtonText;
-    [self.headerView.cancelButton setTitle:cancelButtonText forState:UIControlStateNormal];
+    self.headerView.cancelButtonText = cancelButtonText;
 }
 
 - (void)setCancelButtonTextColor:(UIColor *)cancelButtonTextColor {
     _cancelButtonTextColor = cancelButtonTextColor;
-    [self.headerView.cancelButton setTitleColor:cancelButtonTextColor forState:UIControlStateNormal];
+    self.headerView.cancelButtonTextColor = cancelButtonTextColor;
 }
 
 - (void)setConfirmButtonFont:(UIFont *)confirmButtonFont {
     _confirmButtonFont = confirmButtonFont;
-    self.headerView.confirmButton.titleLabel.font = confirmButtonFont;
+    self.headerView.confirmButtonFont = confirmButtonFont;
 }
 
 - (void)setConfirmButtonText:(NSString *)confirmButtonText {
     _confirmButtonText = confirmButtonText;
-    [self.headerView.confirmButton setTitle:confirmButtonText forState:UIControlStateNormal];
+    self.headerView.confirmButtonText = confirmButtonText;
 }
 
 - (void)setConfirmButtonTextColor:(UIColor *)confirmButtonTextColor {
     _confirmButtonTextColor = confirmButtonTextColor;
-    [self.headerView.confirmButton setTitleColor:confirmButtonTextColor forState:UIControlStateNormal];
+    self.headerView.confirmButtonTextColor = confirmButtonTextColor;
 }
 
 #pragma Getter
@@ -219,7 +236,6 @@
 - (UIView *)contentView {
     if (!_contentView) {
         UIView *view = [[UIView alloc]init];
-        view.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:view];
         _contentView =view;
     }
@@ -247,7 +263,7 @@
 
 - (UIColor *)headerViewBackgroundColor {
     if (!_headerViewBackgroundColor) {
-        _headerViewBackgroundColor = [UIColor colorWithHexString:@"#F1EDF6"];
+        _headerViewBackgroundColor = [UIColor pg_colorWithHexString:@"#F1EDF6"];
     }
     return _headerViewBackgroundColor;
 }

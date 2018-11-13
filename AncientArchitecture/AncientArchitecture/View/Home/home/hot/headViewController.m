@@ -25,7 +25,7 @@
 @implementation headViewController
 NSMutableArray<TeacherResponse *> *guzhuyinluCourse;
 NSMutableArray<CourseDetailResponse *> *adtitle;
- SDCycleScrollView *_customCellScrollViewDemo;
+ SDCycleScrollView *_customCellScrollViewDd;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -52,26 +52,26 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
                 adtitle=[NSMutableArray array];
                 [adtitle removeAllObjects ];
                 adtitle=[CourseDetailResponse mj_objectArrayWithKeyValuesArray:response.data];
-                _customCellScrollViewDemo = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 80) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
-                _customCellScrollViewDemo.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
-                _customCellScrollViewDemo.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
+                _customCellScrollViewDd = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 80) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+                _customCellScrollViewDd.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
+                _customCellScrollViewDd.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
                 
                 if (adtitle.count>0) {
-                 _customCellScrollViewDemo.hidden=false;
+                 _customCellScrollViewDd.hidden=false;
                     NSMutableArray<NSString *> *CarouselImgdata =[[NSMutableArray alloc]init];;
                     for (int i=0; i<adtitle.count; i++) {
                         [CarouselImgdata addObject:adtitle[i].img_url];
                         
                     }
-                    _customCellScrollViewDemo.imageURLStringsGroup = CarouselImgdata;
-                      [self.view addSubview:_customCellScrollViewDemo];
+                    _customCellScrollViewDd.imageURLStringsGroup = CarouselImgdata;
+                      [self.view addSubview:_customCellScrollViewDd];
                 }else{
                     UIImageView *title =[[UIImageView alloc]init];
                     title.image=[UIImage imageNamed:@"img_hom_hot_precourse"];
                     title.frame = CGRectMake(30,20+ title.image.size.height/2, title.image.size.width, title.image.size.height);
                     [self.view addSubview: title];
                     
-                    _customCellScrollViewDemo.hidden=true;
+                    _customCellScrollViewDd.hidden=true;
                     UILabel *lablen=[[UILabel alloc]init];
                     [lablen setText:@"暂无预告课程"];
                     lablen.frame=CGRectMake(0,5, kScreen_Width,80 );
@@ -124,7 +124,7 @@ NSMutableArray<CourseDetailResponse *> *adtitle;
 
 - (Class)customCollectionViewCellClassForCycleScrollView:(SDCycleScrollView *)view
 {
-    if (view != _customCellScrollViewDemo) {
+    if (view != _customCellScrollViewDd) {
         return nil;
     }
     return [CustomCollectionViewCell class];

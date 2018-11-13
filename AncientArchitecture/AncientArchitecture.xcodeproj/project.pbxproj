@@ -1029,6 +1029,8 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLivePusher.framework",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLibRtmp.framework",
+				"${PODS_ROOT}/AlivcLivePusher/AlivcLibBeauty.framework",
+				"${PODS_ROOT}/AlivcLivePusher/AlivcLibFace.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerViewSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework",
@@ -1038,6 +1040,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLivePusher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibRtmp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibBeauty.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibFace.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerViewSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunPlayerSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliThirdparty.framework",
@@ -1320,6 +1324,7 @@
 				INFOPLIST_FILE = AncientArchitecture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"$(inherited)",
 					"-ObjC",
@@ -1388,10 +1393,6 @@
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"PgySDK\"",
-					"-framework",
-					"\"PgyUpdate\"",
-					"-framework",
 					"\"Photos\"",
 					"-framework",
 					"\"QuartzCore\"",
@@ -1406,8 +1407,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.feiwuzhi.AncientArchitecture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1496,10 +1498,6 @@
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"PgySDK\"",
-					"-framework",
-					"\"PgyUpdate\"",
-					"-framework",
 					"\"Photos\"",
 					"-framework",
 					"\"QuartzCore\"",
@@ -1514,8 +1512,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.feiwuzhi.AncientArchitecture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

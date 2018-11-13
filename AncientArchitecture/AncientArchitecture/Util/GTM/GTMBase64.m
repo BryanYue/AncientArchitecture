@@ -147,7 +147,7 @@ static const char kWebSafeBase64DecodeChars[] = {
 };
 
 
-// Tests a character to see if it's a whitespace character.
+//  a character to see if it's a whitespace character.
 //
 // Returns:
 //   YES if the character is a whitespace character.

@@ -9,10 +9,7 @@
 #import "PGPickerView.h"
 #import "PGPickerColumnView.h"
 
-@interface PGPickerView()<PGPickerColumnViewDelegate> {
-    BOOL _isSubViewLayout;
-    BOOL _isSelected;
-}
+@interface PGPickerView()<PGPickerColumnViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *animationOfSelectedRowList;
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *numberOfSelectedRowList;
@@ -22,11 +19,15 @@
 @property (nonatomic, strong) NSArray<UIView *> *downLines;
 @property (nonatomic, assign) NSUInteger numberOfRows;
 @property (nonatomic, strong) NSArray<PGPickerColumnView *> *columnViewList;
+
+@property (nonatomic, assign) BOOL isSubViewLayouted;
+@property (nonatomic, assign) BOOL isSelected;
 @end
+
+@implementation PGPickerView
 
 #define kWidth self.frame.size.width
 #define kHeight self.frame.size.height
-@implementation PGPickerView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -44,10 +45,10 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (_isSubViewLayout) {
+    if (_isSubViewLayouted) {
         return;
     }
-    _isSubViewLayout = true;
+    _isSubViewLayouted = true;
     [self setupColumnView];
     [self setupView];
     [self.upLines enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -69,6 +70,7 @@
     self.textColorOfSelectedRow = [UIColor blackColor];
     self.textColorOfOtherRow = [UIColor lightGrayColor];
     self.isHiddenMiddleText = true;
+    self.isHiddenWheels = true;
     self.lineHeight = 0.5;
     self.verticalLineWidth = 0.5;
     self.verticalLineBackgroundColor = self.lineBackgroundColor;
@@ -117,6 +119,7 @@
         view.delegate = self;
         [self addSubview:view];
     }
+    view.isHiddenWheels = self.isHiddenWheels;
     view.refresh = refresh;
     view.viewBackgroundColors = colors;
     view.textFontOfSelectedRow = [self textFontOfSelectedRowInComponent:component];
@@ -346,12 +349,12 @@
 }
 
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {
-    if (_isSubViewLayout) {
+    if (_isSubViewLayouted) {
         PGPickerColumnView *view = [self columnViewInComponent:component];
         [view selectRow:row animated:animated];
         return;
     }
-    if (!_isSubViewLayout) {
+    if (!_isSubViewLayouted) {
         [self.numberOfSelectedComponentList addObject:@(component)];
         [self.numberOfSelectedRowList addObject:@(row)];
         [self.animationOfSelectedRowList addObject:@(animated)];

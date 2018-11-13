@@ -47,7 +47,7 @@
  
     
      [self configCustomSlider];
-    [self generateTestData];
+    [self generateData];
    
     
     [self initbaseView];
@@ -120,7 +120,7 @@
 */
 
 
-- (void)generateTestData {
+- (void)generateData {
     NSString *nid =[DEFAULTS objectForKey:@"classification_id"];
     [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_getCategory withParams:nil withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
         NSLog(@"error%zd",error.code);
