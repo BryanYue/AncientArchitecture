@@ -42,4 +42,7 @@ target 'AncientArchitecture' do
 
     pod 'DZNEmptyDataSet'
     pod 'Bugly'
+    
+    pod 'BEMCheckBox'
+    
 end

@@ -23,6 +23,7 @@
 		9320B551206B7CDD0055D9F1 /* UIImage+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9320B550206B7CDD0055D9F1 /* UIImage+extension.m */; };
 		932575582068DA8E0073E458 /* LoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 932575572068DA8E0073E458 /* LoginResponse.m */; };
 		932C376B207A069000985372 /* SYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C376A207A069000985372 /* SYDatePicker.m */; };
+		934CA5DB21A0601B00CA5610 /* webViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 934CA5DA21A0601B00CA5610 /* webViewController.m */; };
 		93552482206E263E0056A881 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 93552481206E263E0056A881 /* RadioButton.m */; };
 		93552485206E31F50056A881 /* EditDescibreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93552484206E31F50056A881 /* EditDescibreViewController.m */; };
 		9357693F207CFA9600871D95 /* CourseDetailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9357693E207CFA9600871D95 /* CourseDetailResponse.m */; };
@@ -173,6 +174,8 @@
 		932575572068DA8E0073E458 /* LoginResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginResponse.m; sourceTree = "<group>"; };
 		932C3769207A069000985372 /* SYDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDatePicker.h; sourceTree = "<group>"; };
 		932C376A207A069000985372 /* SYDatePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDatePicker.m; sourceTree = "<group>"; };
+		934CA5D921A0601B00CA5610 /* webViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = webViewController.h; sourceTree = "<group>"; };
+		934CA5DA21A0601B00CA5610 /* webViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = webViewController.m; sourceTree = "<group>"; };
 		93552480206E26380056A881 /* RadioButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
 		93552481206E263E0056A881 /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
 		93552483206E31F50056A881 /* EditDescibreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditDescibreViewController.h; sourceTree = "<group>"; };
@@ -601,6 +604,8 @@
 				93BE914920600630009B9FF3 /* RegisterViewController.m */,
 				938FCF7B20C778DE00DF0466 /* forgetViewController.h */,
 				938FCF7C20C778DE00DF0466 /* forgetViewController.m */,
+				934CA5D921A0601B00CA5610 /* webViewController.h */,
+				934CA5DA21A0601B00CA5610 /* webViewController.m */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -1074,6 +1079,7 @@
 				93CC7CA7207277F900C7F64D /* THDatePickerView.m in Sources */,
 				931E40AA20721CFA002D1847 /* TeacheCourseResponse.m in Sources */,
 				938FCF7720C7421E00DF0466 /* bannerCollectionViewCell.m in Sources */,
+				934CA5DB21A0601B00CA5610 /* webViewController.m in Sources */,
 				931CB92620666FA0009DC6EF /* postPpreviewViewController.m in Sources */,
 				93552485206E31F50056A881 /* EditDescibreViewController.m in Sources */,
 				93F9FE8620AB16060026F781 /* inlurenViewController.m in Sources */,

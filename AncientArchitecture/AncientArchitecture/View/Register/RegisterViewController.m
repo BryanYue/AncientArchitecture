@@ -8,6 +8,8 @@
 
 #import "RegisterViewController.h"
 #import "MyUITextField.h"
+#import "BEMCheckBox.h"
+#import "webViewController.h"
 
 @interface RegisterViewController ()
 
@@ -17,7 +19,7 @@
 MyUITextField * phoneText;
 MyUITextField * codeText;
 MyUITextField * passwordText;
-
+BEMCheckBox *myCheckBox;
 
 UIButton * code;
 NSTimer *retimer;
@@ -151,6 +153,26 @@ int count;
     btnregister.titleLabel.font = [UIFont systemFontOfSize:15];
     
     
+    myCheckBox = [[BEMCheckBox alloc] initWithFrame:CGRectMake(40, kScreen_Height/9*5-70, 25, 25)];
+    myCheckBox.on = YES;
+    
+    
+    
+    UILabel *look =[UILabel new];
+    NSMutableAttributedString *stringlook = [[NSMutableAttributedString alloc] initWithString:@"我已阅读并同意《非物质隐私策略》"];
+    [stringlook addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, 7)];
+    [stringlook addAttribute:NSForegroundColorAttributeName value:[UIColor_ColorChange colorWithHexString:app_theme] range:NSMakeRange(7, 9)];
+    look.attributedText=stringlook;
+    look.font =[UIFont systemFontOfSize:18];
+    look.textAlignment=NSTextAlignmentCenter;
+    [look setFrame:CGRectMake(80, kScreen_Height/9*5-70, kScreen_Width-100, 20)];
+    look.userInteractionEnabled = YES;
+    [look addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(look)]];
+    
+    
+    
+    
+    
     code = [UIButton buttonWithType:UIButtonTypeCustom];
     code.frame = CGRectMake(240, kScreen_Height/9*2, statusBar_Height+101, 30);
     [code setTitle:@"获取验证码" forState:UIControlStateNormal];
@@ -187,10 +209,15 @@ int count;
     
     [self.view addSubview:code];
     [self.view addSubview:login];
+    [self.view addSubview:myCheckBox];
+    [self.view addSubview:look];
 }
 
 
-
+-(void)look{
+    [self presentViewController:[webViewController new] animated:YES completion:nil];
+   
+}
 
 
 -(void)backButtonPress{
@@ -203,6 +230,10 @@ int count;
 
 -(void)toregister{
     [self hide];
+    if (!myCheckBox.on) {
+        [self showAction:@"请勾选同意隐私策略"];
+        return;
+    }
     if (phoneText.text.length==0) {
         [self showAction:@"请输入手机号"];
         return;
