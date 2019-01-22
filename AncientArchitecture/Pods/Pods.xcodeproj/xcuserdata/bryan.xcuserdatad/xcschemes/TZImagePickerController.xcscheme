@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EFE8EAF35A0DE0E9B635E06653E09A38"
+               BlueprintIdentifier = "504B83ADB627F2AD6CC0B6FB665C9BE7"
                BlueprintName = "TZImagePickerController"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libTZImagePickerController.a">

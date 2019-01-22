@@ -1034,8 +1034,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLivePusher.framework",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLibRtmp.framework",
-				"${PODS_ROOT}/AlivcLivePusher/AlivcLibBeauty.framework",
-				"${PODS_ROOT}/AlivcLivePusher/AlivcLibFace.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerViewSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework",
@@ -1045,8 +1043,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLivePusher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibRtmp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibBeauty.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibFace.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerViewSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunPlayerSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliThirdparty.framework",

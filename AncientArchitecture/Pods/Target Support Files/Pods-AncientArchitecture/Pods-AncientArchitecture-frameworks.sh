@@ -145,8 +145,6 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_ROOT}/AlivcLivePusher/AlivcLivePusher.framework"
   install_framework "${PODS_ROOT}/AlivcLivePusher/AlivcLibRtmp.framework"
-  install_framework "${PODS_ROOT}/AlivcLivePusher/AlivcLibBeauty.framework"
-  install_framework "${PODS_ROOT}/AlivcLivePusher/AlivcLibFace.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerViewSDK.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework"
@@ -155,8 +153,6 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${PODS_ROOT}/AlivcLivePusher/AlivcLivePusher.framework"
   install_framework "${PODS_ROOT}/AlivcLivePusher/AlivcLibRtmp.framework"
-  install_framework "${PODS_ROOT}/AlivcLivePusher/AlivcLibBeauty.framework"
-  install_framework "${PODS_ROOT}/AlivcLivePusher/AlivcLibFace.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerViewSDK.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework"
   install_framework "${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework"

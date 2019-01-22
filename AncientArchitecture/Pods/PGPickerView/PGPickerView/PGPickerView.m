@@ -115,7 +115,7 @@
         CGFloat rowHeight = [self rowHeightInComponent:component];
         CGFloat upLineHeight = [self upLineHeightForComponent:component];
         CGFloat downLineHeight = [self downLineHeightForComponent:component];
-        view = [[PGPickerColumnView alloc]initWithFrame:CGRectMake(component * width, 0, width, kHeight) rowHeight: rowHeight upLineHeight:upLineHeight downLineHeight:downLineHeight];
+        view = [[PGPickerColumnView alloc]initWithFrame:CGRectMake(component * width, 0, width, kHeight) rowHeight: rowHeight upLineHeight:upLineHeight downLineHeight:downLineHeight isCycleScroll:self.isCycleScroll datas:datas];
         view.delegate = self;
         [self addSubview:view];
     }
@@ -145,17 +145,17 @@
         [self setupMiddleTextLogic];
     }
     switch (self.type) {
-        case PGPickerViewType1:
+        case PGPickerViewLineTypeline:
         {
             [self setupLineView1];
             return;
         }
-        case PGPickerViewType2:
+        case PGPickerViewLineTypelineSegment:
         {
             [self setupLineView2];
             return;
         }
-        case PGPickerViewType3:
+        case PGPickerViewLineTypelineVertical:
         {
             [self setupLineView3];
             return;
@@ -401,7 +401,7 @@
 }
 
 - (void)reloadComponent:(NSInteger)component {
-     [self createColumnViewAtComponent:component refresh:false];
+    [self createColumnViewAtComponent:component refresh:false];
 }
 
 - (void)reloadComponent:(NSInteger)component refresh:(BOOL)refresh {
