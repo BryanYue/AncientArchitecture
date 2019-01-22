@@ -95,6 +95,7 @@
 		93E7031B206E867B000BF485 /* accountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E7031A206E867B000BF485 /* accountSettingsViewController.m */; };
 		93EC6D1F20AC1A980065A1FF /* searchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EC6D1E20AC1A970065A1FF /* searchViewController.m */; };
 		93EF3D342067E06A005139EC /* BaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EF3D332067E06A005139EC /* BaseResponse.m */; };
+		93F2E35421F751F40099EF67 /* H5PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2E35321F751F40099EF67 /* H5PayViewController.m */; };
 		93F9FE8320AA060F0026F781 /* buylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F9FE8220AA060F0026F781 /* buylist.m */; };
 		93F9FE8620AB16060026F781 /* inlurenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F9FE8520AB16060026F781 /* inlurenViewController.m */; };
 		D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F44495653776C857D3020C /* libPods-AncientArchitecture.a */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -322,6 +323,8 @@
 		93EC6D1E20AC1A970065A1FF /* searchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = searchViewController.m; sourceTree = "<group>"; };
 		93EF3D322067E06A005139EC /* BaseResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseResponse.h; sourceTree = "<group>"; };
 		93EF3D332067E06A005139EC /* BaseResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseResponse.m; sourceTree = "<group>"; };
+		93F2E35221F751F40099EF67 /* H5PayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = H5PayViewController.h; sourceTree = "<group>"; };
+		93F2E35321F751F40099EF67 /* H5PayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = H5PayViewController.m; sourceTree = "<group>"; };
 		93F9FE8120AA060F0026F781 /* buylist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = buylist.h; sourceTree = "<group>"; };
 		93F9FE8220AA060F0026F781 /* buylist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = buylist.m; sourceTree = "<group>"; };
 		93F9FE8420AB16060026F781 /* inlurenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inlurenViewController.h; sourceTree = "<group>"; };
@@ -606,6 +609,8 @@
 				938FCF7C20C778DE00DF0466 /* forgetViewController.m */,
 				934CA5D921A0601B00CA5610 /* webViewController.h */,
 				934CA5DA21A0601B00CA5610 /* webViewController.m */,
+				93F2E35221F751F40099EF67 /* H5PayViewController.h */,
+				93F2E35321F751F40099EF67 /* H5PayViewController.m */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -1136,6 +1141,7 @@
 				93C3E40B20AEE2480018EA72 /* yiboViewController.m in Sources */,
 				93EF3D342067E06A005139EC /* BaseResponse.m in Sources */,
 				935E491F20D7FA6400E4D39E /* LLFileTool.m in Sources */,
+				93F2E35421F751F40099EF67 /* H5PayViewController.m in Sources */,
 				93C4C54220554B90008716B3 /* AppDelegate.m in Sources */,
 				935E490620D4C48B00E4D39E /* aboutus.m in Sources */,
 				93AEF87420AF37AC00D72852 /* classVTMagicController.m in Sources */,

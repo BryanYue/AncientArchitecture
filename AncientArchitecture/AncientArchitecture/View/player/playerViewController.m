@@ -13,6 +13,7 @@
 #import "xiangguanCollectionViewCell.h"
 #import "LoginViewController.h"
 #import "relevantCourseResponse.h"
+#import "H5PayViewController.h"
 #import "weChatPay.h"
 #import "Pay.h"
 #import "orderresponse.h"
@@ -246,53 +247,65 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                     
                     NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
                     [parameter setObject:orderr.order_id forKey:@"order_id"];
-                    [parameter setObject:orderr.amount forKey:@"amount"];
+//                    [parameter setObject:orderr.amount forKey:@"amount"];
+                     NSString *order_id = orderr.order_id;
+                     NSString *url =[NSString stringWithFormat:@"%s%@","http://www.feiwuzhi.com/api/wxpay/payH5?order_id=",order_id];
+                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
                     
-                    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_weChatPay withParams:parameter withMethodType:Post autoShowError:true andBlock:^(id datas, NSError *errors) {
-                        NSLog(@"errors%zd",errors.code);
-                        if (!errors) {
-                            BaseResponse *responses = [BaseResponse mj_objectWithKeyValues:datas];
-                            if (responses.code  == 200) {
+                                                    if (self.HUD) {
+                                                        [self.HUD hideAnimated:true];
+                                                    }
+                    
+//                    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:h5pay withParams:parameter withMethodType:Post autoShowError:true andBlock:^(id datas, NSError *errors) {
+//                        NSLog(@"errors%zd",errors.code);
+//                        if (!errors) {
+//                            BaseResponse *responses = [BaseResponse mj_objectWithKeyValues:datas];
+//                            if (responses.code  == 200) {
+//
+//                                if (responses.data) {
+//                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:responses.data]];
+//                                    H5PayViewController *pay =[[H5PayViewController alloc ] init];
+//                                    pay.url=responses.data;
+//                                    [self presentViewController:pay animated:YES completion:nil];
+//                                }
+//                                weChatPay *weChatdata =[weChatPay mj_objectWithKeyValues:responses.data];
+//
+//                                Pay *paydata=weChatdata.datas;
                                 
-                                weChatPay *weChatdata =[weChatPay mj_objectWithKeyValues:responses.data];
-                                
-                                Pay *paydata=weChatdata.datas;
-                                
-                                
-                                
-                                if ([WXApi isWXAppInstalled]) {
-                                    //调起微信支付
-                                    NSLog(@"调起微信支付");
-                                    PayReq* reqs = [[PayReq alloc] init];
-                                    reqs.partnerId  = paydata.partnerid;
-                                    reqs.prepayId   = paydata.prepayid;
-                                    reqs.nonceStr  = paydata.noncestr;
-                                    reqs.timeStamp = [paydata.timestamp intValue];
-                                    reqs.package  = paydata.package;
-                                    reqs.sign    = paydata.sign;
-                                    [WXApi sendReq:reqs];
-                                }else {
-                                    [self showAction:@"请先安装微信客户端"];
-                                }
+                               
+//                                if ([WXApi isWXAppInstalled]) {
+//                                    //调起微信支付
+//                                    NSLog(@"调起微信支付");
+//                                    PayReq* reqs = [[PayReq alloc] init];
+//                                    reqs.partnerId  = paydata.partnerid;
+//                                    reqs.prepayId   = paydata.prepayid;
+//                                    reqs.nonceStr  = paydata.noncestr;
+//                                    reqs.timeStamp = [paydata.timestamp intValue];
+//                                    reqs.package  = paydata.package;
+//                                    reqs.sign    = paydata.sign;
+//                                    [WXApi sendReq:reqs];
+//                                }else {
+//                                    [self showAction:@"请先安装微信客户端"];
+//                                }
                                 
                                 
-                                if (self.HUD) {
-                                    [self.HUD hideAnimated:true];
-                                }
-                                
-                            }else{
-                                if (self.HUD) {
-                                    [self.HUD hideAnimated:true];
-                                }
-                            }
-                            
-                        }else{
-                            if (self.HUD) {
-                                [self.HUD hideAnimated:true];
-                            }
-                        }
+//                                if (self.HUD) {
+//                                    [self.HUD hideAnimated:true];
+//                                }
+//
+//                            }else{
+//                                if (self.HUD) {
+//                                    [self.HUD hideAnimated:true];
+//                                }
+//                            }
+//
+//                        }else{
+//                            if (self.HUD) {
+//                                [self.HUD hideAnimated:true];
+//                            }
+//                        }
                         
-                    }];
+//                    }];
                 }else{
                     if (self.HUD) {
                         [self.HUD hideAnimated:true];

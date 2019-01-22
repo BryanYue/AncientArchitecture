@@ -130,8 +130,8 @@
 //关注我们
 #define aboutUs      @"/api/Document/aboutUs"
 
-
-
+//h5 支付
+#define h5pay      @"/api/wxpay/payH5"
 
 
 #endif /* api_h */
