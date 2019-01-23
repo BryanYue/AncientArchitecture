@@ -81,7 +81,12 @@
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
     {
-        [WXApi handleOpenURL:url delegate:self];
+        if (url) {
+            NSLog(@"url:%@", url);
+          
+             [WXApi handleOpenURL:url delegate:self];
+        }
+       
         
         return YES;
     }
@@ -101,27 +106,27 @@
    
     
     
-    if([resp isKindOfClass:[PayResp class]]){
-        //支付返回结果，实际支付结果需要去微信服务器端查询
-        NSString *strMsg,*strTitle = [NSString stringWithFormat:@"支付结果"];
-        
-        switch (resp.errCode) {
-            case WXSuccess:
-                strMsg = @"支付结果：成功！";
-                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
-                // 这里别用返回的状态来确定是否正真支付成功了，这样是不对的，我们必须拿着存到本地的traderID去服务器再次check，这样和服务器收到的异步回调结果匹配之后才能确认是否真的已经支付成功了
-               
-                // 二次确认
-             [[NSNotificationCenter defaultCenter] postNotificationName:weixinpayNotification object:self userInfo:@{@"weixinpay":[NSString stringWithFormat:@"%d", true]}];
-                break;
-                
-            default:
-                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
-                NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
-                 [[NSNotificationCenter defaultCenter] postNotificationName:weixinpayNotification object:self userInfo:@{@"weixinpay":[NSString stringWithFormat:@"%d", false]}];
-                break;
-        }
-    }
+//    if([resp isKindOfClass:[PayResp class]]){
+//        //支付返回结果，实际支付结果需要去微信服务器端查询
+//        NSString *strMsg,*strTitle = [NSString stringWithFormat:@"支付结果"];
+//        
+//        switch (resp.errCode) {
+//            case WXSuccess:
+//                strMsg = @"支付结果：成功！";
+//                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+//                // 这里别用返回的状态来确定是否正真支付成功了，这样是不对的，我们必须拿着存到本地的traderID去服务器再次check，这样和服务器收到的异步回调结果匹配之后才能确认是否真的已经支付成功了
+//               
+//                // 二次确认
+//             [[NSNotificationCenter defaultCenter] postNotificationName:weixinpayNotification object:self userInfo:@{@"weixinpay":[NSString stringWithFormat:@"%d", true]}];
+//                break;
+//                
+//            default:
+//                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+//                NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+//                 [[NSNotificationCenter defaultCenter] postNotificationName:weixinpayNotification object:self userInfo:@{@"weixinpay":[NSString stringWithFormat:@"%d", false]}];
+//                break;
+//        }
+//    }
 
 }
     

@@ -21,6 +21,14 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fwz</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.feiwuzhi.AncientArchitecture</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>

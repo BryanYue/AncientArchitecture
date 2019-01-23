@@ -94,6 +94,13 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
    [self begainFullScreen];
+    
+    if (self.playerView) {
+        [self.playerView stop];
+        [self initdata];
+    }
+    
+    
 }
 
 
@@ -249,7 +256,14 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                     [parameter setObject:orderr.order_id forKey:@"order_id"];
 //                    [parameter setObject:orderr.amount forKey:@"amount"];
                      NSString *order_id = orderr.order_id;
-                     NSString *url =[NSString stringWithFormat:@"%s%@","http://www.feiwuzhi.com/api/wxpay/payH5?order_id=",order_id];
+                    NSString *is_install;
+                    if ([WXApi isWXAppInstalled]) {
+                        is_install=@"&is_install=1";
+                    }else{
+                        is_install=@"&is_install=0";
+                    }
+                    
+                     NSString *url =[NSString stringWithFormat:@"%s%@%@","http://www.feiwuzhi.com/api/wxpay/payH5?order_id=",order_id,is_install];
                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
                     
                                                     if (self.HUD) {
@@ -901,7 +915,15 @@ NSMutableArray<relevantCourseResponse *> *relevant;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self begainFullScreen];
+    
+  
+    
 }
+
+
+
+
+
 
 -(void)viewWillDisappear:(BOOL)animated{
     [self endFullScreen];
