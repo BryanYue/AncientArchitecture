@@ -19,9 +19,11 @@
 #import "orderresponse.h"
 #import "WXApi.h"
 #import "AppDelegate.h"
+#import <StoreKit/StoreKit.h>
+
 
 #define weixinpayNotification @"weixinpay"
-@interface playerViewController ()<AliyunVodPlayerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface playerViewController ()<AliyunVodPlayerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,SKPaymentTransactionObserver,SKProductsRequestDelegate>
 
 
 
@@ -51,6 +53,8 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil]; //监听是否重新进入程序程序.
+    
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     [self initview];
 }
 //收到通知
@@ -226,6 +230,135 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     }];
 }
 
+//去苹果服务器请求商品
+- (void)requestProductData:(NSString *)type{
+    NSLog(@"-------------请求对应的产品信息----------------");
+    
+    
+    
+    NSArray *product = [[NSArray alloc] initWithObjects:type,nil];
+    
+    NSSet *nsset = [NSSet setWithArray:product];
+    SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:nsset];
+    request.delegate = self;
+    [request start];
+    
+}
+
+
+//收到产品返回信息
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
+    
+    NSLog(@"--------------收到产品反馈消息---------------------");
+    NSArray *product = response.products;
+    if([product count] == 0){
+        
+        NSLog(@"--------------没有商品------------------");
+        return;
+    }
+    
+    NSLog(@"productID:%@", response.invalidProductIdentifiers);
+    NSLog(@"产品付费数量:%lu",(unsigned long)[product count]);
+    
+   
+    SKProduct *p = nil;
+    for (SKProduct *pro in product) {
+        NSLog(@"%@", [pro description]);
+        NSLog(@"%@", [pro localizedTitle]);
+        NSLog(@"%@", [pro localizedDescription]);
+        NSLog(@"%@", [pro price]);
+        NSLog(@"%@", [pro productIdentifier]);
+        
+        if([pro.productIdentifier isEqualToString:@"com.feiwuzhi.AncientArchitectures001"]){
+            p = pro;
+        }
+    }
+    
+    SKPayment *payment = [SKPayment paymentWithProduct:p];
+    
+    NSLog(@"发送购买请求");
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+
+
+
+//请求失败
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
+
+    NSLog(@"------------------错误-----------------:%@", error);
+}
+
+- (void)requestDidFinish:(SKRequest *)request{
+    
+    NSLog(@"------------反馈信息结束-----------------");
+}
+
+
+//监听购买结果
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transaction{
+    for(SKPaymentTransaction *tran in transaction){
+       
+        switch (tran.transactionState) {
+            case SKPaymentTransactionStatePurchased:{
+                NSLog(@"------------交易完成------------");
+                // 发送到苹果服务器验证凭证
+                //从沙盒中获取交易凭证并且拼接成请求体数据
+                NSURL *receiptUrl=[[NSBundle mainBundle] appStoreReceiptURL];
+                NSData *receiptData=[NSData dataWithContentsOfURL:receiptUrl];
+                
+                NSString *str = [[NSString alloc] initWithData:receiptData encoding:NSUTF8StringEncoding];
+                 NSLog(@"------------%@",str);
+                NSString *receiptString=[receiptData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];//转化为base64字符串
+                
+                NSString *bodyString = [NSString stringWithFormat:@"{\"receipt-data\" : \"%@\"}", receiptString];//拼接请求数据
+                NSData *bodyData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
+            NSLog(@"------------------------%@",bodyString);
+              NSLog(@"------------------------%@",[bodyData description]);
+//                NSString *receiptString=[receiptData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];//转化为base64字符串
+//
+//                NSString *bodyString = [NSString stringWithFormat:@"{\"receipt-data\" : \"%@\"}", receiptString];//拼接请求数据
+//                NSData *bodyData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
+                
+                 [[SKPaymentQueue defaultQueue] finishTransaction:tran];
+            }
+                break;
+            case SKPaymentTransactionStatePurchasing:
+                NSLog(@"------------商品添加进列表------------");
+                
+                break;
+            case SKPaymentTransactionStateRestored:{
+                NSLog(@"------------已经购买过商品------------");
+                
+                [[SKPaymentQueue defaultQueue] finishTransaction:tran];
+            }
+                break;
+            case SKPaymentTransactionStateFailed:{
+                NSLog(@"------------交易失败------------");
+                [[SKPaymentQueue defaultQueue] finishTransaction:tran];
+                
+            }
+                break;
+            default:
+                
+                break;
+        }
+    }
+}
+
+//交易结束
+- (void)completeTransaction:(SKPaymentTransaction *)transaction{
+    NSLog(@"------------------------交易结束------------------------");
+    
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+}
+
+
+
+
+
+
+
+
 -(void)buy{
     NSLog(@"buy");
     
@@ -252,23 +385,35 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                 if (response.code  == 200) {
                     orderresponse *orderr =[orderresponse mj_objectWithKeyValues:response.data];
                     
-                    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
-                    [parameter setObject:orderr.order_id forKey:@"order_id"];
-//                    [parameter setObject:orderr.amount forKey:@"amount"];
-                     NSString *order_id = orderr.order_id;
-                    NSString *is_install;
-                    if ([WXApi isWXAppInstalled]) {
-                        is_install=@"&is_install=1";
-                    }else{
-                        is_install=@"&is_install=0";
+                    
+                    if ([SKPaymentQueue canMakePayments]) {
+                        //允许应用内付费购买
+                        [self requestProductData:@"com.feiwuzhi.AncientArchitectures001"];
+                        
+                        
+                    }else {
+                        //用户禁止应用内付费购买.
                     }
                     
-                     NSString *url =[NSString stringWithFormat:@"%s%@%@","http://www.feiwuzhi.com/api/wxpay/payH5?order_id=",order_id,is_install];
-                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                
                     
-                                                    if (self.HUD) {
-                                                        [self.HUD hideAnimated:true];
-                                                    }
+//                    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+//                    [parameter setObject:orderr.order_id forKey:@"order_id"];
+//                    [parameter setObject:orderr.amount forKey:@"amount"];
+//                     NSString *order_id = orderr.order_id;
+//                    NSString *is_install;
+//                    if ([WXApi isWXAppInstalled]) {
+//                        is_install=@"&is_install=1";
+//                    }else{
+//                        is_install=@"&is_install=0";
+//                    }
+                    
+//                     NSString *url =[NSString stringWithFormat:@"%s%@%@","http://www.feiwuzhi.com/api/wxpay/payH5?order_id=",order_id,is_install];
+//                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                    
+//                                                    if (self.HUD) {
+//                                                        [self.HUD hideAnimated:true];
+//                                                    }
                     
 //                    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:h5pay withParams:parameter withMethodType:Post autoShowError:true andBlock:^(id datas, NSError *errors) {
 //                        NSLog(@"errors%zd",errors.code);
@@ -380,6 +525,9 @@ NSMutableArray<relevantCourseResponse *> *relevant;
         [self.view removeFromSuperview];
         
     }
+    
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+
 }
 
 

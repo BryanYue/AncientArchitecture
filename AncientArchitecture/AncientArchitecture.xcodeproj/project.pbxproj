@@ -89,6 +89,7 @@
 		93CC7CA7207277F900C7F64D /* THDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CC7CA6207277F900C7F64D /* THDatePickerView.m */; };
 		93CC7CAA2072866400C7F64D /* CategoryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CC7CA92072866400C7F64D /* CategoryResponse.m */; };
 		93CC7CAD20728A3200C7F64D /* CourseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CC7CAC20728A3200C7F64D /* CourseResponse.m */; };
+		93DDA9D022315D8100ED0000 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DDA9CF22315D8100ED0000 /* StoreKit.framework */; };
 		93E04487205CEF7800E34F96 /* UIColor+ColorChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E04486205CEF7800E34F96 /* UIColor+ColorChange.m */; };
 		93E04491205D794900E34F96 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E04490205D794900E34F96 /* SettingViewController.m */; };
 		93E0449C205D8AB700E34F96 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E0449B205D8AB700E34F96 /* BaseViewController.m */; };
@@ -311,6 +312,7 @@
 		93CC7CA92072866400C7F64D /* CategoryResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryResponse.m; sourceTree = "<group>"; };
 		93CC7CAB20728A3200C7F64D /* CourseResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseResponse.h; sourceTree = "<group>"; };
 		93CC7CAC20728A3200C7F64D /* CourseResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseResponse.m; sourceTree = "<group>"; };
+		93DDA9CF22315D8100ED0000 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		93E04485205CEF7800E34F96 /* UIColor+ColorChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorChange.h"; sourceTree = "<group>"; };
 		93E04486205CEF7800E34F96 /* UIColor+ColorChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorChange.m"; sourceTree = "<group>"; };
 		93E0448F205D794900E34F96 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */,
+				93DDA9D022315D8100ED0000 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +366,7 @@
 		5087E793C6971F78B4896A5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93DDA9CF22315D8100ED0000 /* StoreKit.framework */,
 				A6F44495653776C857D3020C /* libPods-AncientArchitecture.a */,
 			);
 			name = Frameworks;
@@ -924,6 +928,11 @@
 					93C4C53C20554B90008716B3 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					93C4C55420554B90008716B3 = {
 						CreatedOnToolsVersion = 9.0;
@@ -1324,7 +1333,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WEBZ2BKCZS;
+				DEVELOPMENT_TEAM = J7P2YKKKWB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1413,7 +1422,7 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.feiwuzhi.AncientArchitecture;
+				PRODUCT_BUNDLE_IDENTIFIER = com.feiwuzhi.AncientArchitectures;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1430,7 +1439,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WEBZ2BKCZS;
+				DEVELOPMENT_TEAM = J7P2YKKKWB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1518,7 +1527,7 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.feiwuzhi.AncientArchitecture;
+				PRODUCT_BUNDLE_IDENTIFIER = com.feiwuzhi.AncientArchitectures;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
