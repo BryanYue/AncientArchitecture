@@ -21,6 +21,7 @@
 		931E40AA20721CFA002D1847 /* TeacheCourseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E40A920721CFA002D1847 /* TeacheCourseResponse.m */; };
 		9320B54E206B40710055D9F1 /* UserInfoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9320B54D206B40710055D9F1 /* UserInfoResponse.m */; };
 		9320B551206B7CDD0055D9F1 /* UIImage+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9320B550206B7CDD0055D9F1 /* UIImage+extension.m */; };
+		93233B35223B793A00ED2AC5 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93233B34223B793A00ED2AC5 /* BuyViewController.m */; };
 		932575582068DA8E0073E458 /* LoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 932575572068DA8E0073E458 /* LoginResponse.m */; };
 		932C376B207A069000985372 /* SYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C376A207A069000985372 /* SYDatePicker.m */; };
 		934CA5DB21A0601B00CA5610 /* webViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 934CA5DA21A0601B00CA5610 /* webViewController.m */; };
@@ -55,6 +56,7 @@
 		93631C1520A8335A00632B32 /* HotReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631C0C20A8335A00632B32 /* HotReusableView.m */; };
 		93631C1620A8335A00632B32 /* HotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631C0D20A8335A00632B32 /* HotViewController.m */; };
 		93631C1920A833F300632B32 /* attaourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93631C1720A833F300632B32 /* attaourseViewController.m */; };
+		937FD4AC224B708100D6064B /* SingleSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FD4AB224B708100D6064B /* SingleSelectedCell.m */; };
 		9388FA742062388300A735F6 /* MyUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9388FA732062388300A735F6 /* MyUITextField.m */; };
 		938FCF7320C72DA100DF0466 /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7220C72DA100DF0466 /* CustomCollectionViewCell.m */; };
 		938FCF7720C7421E00DF0466 /* bannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938FCF7620C7421E00DF0466 /* bannerCollectionViewCell.m */; };
@@ -172,6 +174,8 @@
 		9320B54D206B40710055D9F1 /* UserInfoResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoResponse.m; sourceTree = "<group>"; };
 		9320B54F206B7CDD0055D9F1 /* UIImage+extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+extension.h"; sourceTree = "<group>"; };
 		9320B550206B7CDD0055D9F1 /* UIImage+extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+extension.m"; sourceTree = "<group>"; };
+		93233B33223B793A00ED2AC5 /* BuyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyViewController.h; sourceTree = "<group>"; };
+		93233B34223B793A00ED2AC5 /* BuyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyViewController.m; sourceTree = "<group>"; };
 		932575562068DA8E0073E458 /* LoginResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginResponse.h; sourceTree = "<group>"; };
 		932575572068DA8E0073E458 /* LoginResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginResponse.m; sourceTree = "<group>"; };
 		932C3769207A069000985372 /* SYDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDatePicker.h; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 		93631C0E20A8335A00632B32 /* CoursefeileiCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursefeileiCollectionViewCell.h; sourceTree = "<group>"; };
 		93631C1720A833F300632B32 /* attaourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = attaourseViewController.m; sourceTree = "<group>"; };
 		93631C1820A833F300632B32 /* attaourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attaourseViewController.h; sourceTree = "<group>"; };
+		937FD4AA224B708100D6064B /* SingleSelectedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleSelectedCell.h; sourceTree = "<group>"; };
+		937FD4AB224B708100D6064B /* SingleSelectedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleSelectedCell.m; sourceTree = "<group>"; };
 		9388FA722062388300A735F6 /* MyUITextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyUITextField.h; sourceTree = "<group>"; };
 		9388FA732062388300A735F6 /* MyUITextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyUITextField.m; sourceTree = "<group>"; };
 		938FCF4E20C6F68000DF0466 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -578,6 +584,10 @@
 				93E0448E205D790F00E34F96 /* setting */,
 				93AA79C3205AC8BD002E9E10 /* MeViewController.h */,
 				93AA79C4205AC8BD002E9E10 /* MeViewController.m */,
+				93233B33223B793A00ED2AC5 /* BuyViewController.h */,
+				93233B34223B793A00ED2AC5 /* BuyViewController.m */,
+				937FD4AA224B708100D6064B /* SingleSelectedCell.h */,
+				937FD4AB224B708100D6064B /* SingleSelectedCell.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -953,6 +963,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 93C4C53420554B8F008716B3;
 			productRefGroup = 93C4C53E20554B90008716B3 /* Products */;
@@ -1138,11 +1149,13 @@
 				935E490C20D5113D00E4D39E /* EditnickViewController.m in Sources */,
 				93631C1320A8335A00632B32 /* CourseViewController.m in Sources */,
 				93BE914A20600630009B9FF3 /* RegisterViewController.m in Sources */,
+				937FD4AC224B708100D6064B /* SingleSelectedCell.m in Sources */,
 				93C3E3F520AEBA790018EA72 /* headViewController.m in Sources */,
 				935E491C20D7EC6200E4D39E /* HomeController.m in Sources */,
 				93631BF220A8330900632B32 /* courseViewController.m in Sources */,
 				93631AE820A830CA00632B32 /* NSString+AES.m in Sources */,
 				931E40A720721C7C002D1847 /* TeacheCourseViewController.m in Sources */,
+				93233B35223B793A00ED2AC5 /* BuyViewController.m in Sources */,
 				93BE9145206005DF009B9FF3 /* LoginViewController.m in Sources */,
 				93AEF87A20B0834B00D72852 /* xiangguanCollectionViewCell.m in Sources */,
 				93576942207D09CC00871D95 /* TeacheCourseViewCollectionViewCell.m in Sources */,

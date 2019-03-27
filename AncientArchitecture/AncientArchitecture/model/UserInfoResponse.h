@@ -20,4 +20,5 @@
 @property (nonatomic,copy)NSString   *play_url;
 @property (nonatomic,copy)NSString   *app_url_name;
 @property (nonatomic,copy)NSString   *stream_name;
+@property (nonatomic,copy)NSString   *balance;
 @end

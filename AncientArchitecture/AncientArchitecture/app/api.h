@@ -133,5 +133,11 @@
 //h5 支付
 #define h5pay      @"/api/wxpay/payH5"
 
+//会员充值
+#define rechargeMoney      @"/api/Wxpay/rechargeMoney"
+
+
+//课程购买
+#define iosBuyCourse      @"/api/Wxpay/iosBuyCourse"
 
 #endif /* api_h */

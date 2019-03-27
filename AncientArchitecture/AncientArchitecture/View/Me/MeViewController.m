@@ -17,6 +17,7 @@
 #import "myCourseViewController.h"
 #import "AboutusViewController.h"
 #import "CourseViewController.h"
+#import "BuyViewController.h"
 
 #define loginNotification @"loginstatus"
 
@@ -37,6 +38,7 @@
 @implementation MeViewController
 UILabel *username;
 UILabel *userid;
+UILabel *money;
 UIImageView *imageView;
 
 NSArray<NSString *> *pictures;
@@ -244,8 +246,23 @@ NSString *isteacher;
         userid.font = [UIFont systemFontOfSize:15];
         userid.textColor=[UIColor whiteColor];
         userid.textAlignment=NSTextAlignmentCenter;
-        userid.frame = CGRectMake(0, high/4*3+25, kScreen_Width, 20);
+        userid.frame = CGRectMake(0, high/4*3+25, kScreen_Width/2, 20);
         [avr addSubview:userid];
+        
+        
+        money=[[UILabel alloc]init];
+//        NSString *m=[defaults objectForKey:@"balance"];
+        
+//        money.text=[NSString stringWithFormat:@"%@%@%@", @"余额: ", m,@"  去充值"];
+        money.font = [UIFont systemFontOfSize:15];
+        money.textColor=[UIColor whiteColor];
+        money.textAlignment=NSTextAlignmentCenter;
+        money.frame = CGRectMake(kScreen_Width/2, high/4*3+25, kScreen_Width/2, 20);
+        money.userInteractionEnabled = YES;
+        [money addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toBuy)]];
+        
+        [avr addSubview:money];
+        
         
         
         imageView = [[UIImageView alloc]init];
@@ -427,6 +444,19 @@ NSString *isteacher;
     }
 }
 
+-(void)toBuy{
+    NSLog(@"充值");
+    
+    if (islogin) {
+        [self presentViewController:[BuyViewController new] animated:YES completion:nil];
+    }else{
+        [self toLogin];
+    }
+}
+
+
+
+
 -(void)toLogin{
     NSLog(@"登陆");
      [self presentViewController:[LoginViewController new] animated:YES completion:nil];
@@ -456,7 +486,7 @@ NSString *isteacher;
                     }
                 }
                 userid.text=[NSString stringWithFormat:@"%@%@", @"ID: ", [defaults objectForKey:@"memberid"]];
-            
+                money.text= [NSString stringWithFormat:@"%@%@%@", @"余额: ", userinfo.balance,@"  去充值"];
                 
                 
                 [imageView yy_setImageWithURL:[NSURL URLWithString:userinfo.headimgurl]

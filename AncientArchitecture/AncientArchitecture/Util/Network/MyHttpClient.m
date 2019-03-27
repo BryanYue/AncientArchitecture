@@ -64,7 +64,7 @@ static dispatch_once_t onceToken;
     if (Token!=nil) {
          [self.requestSerializer setValue:Token forHTTPHeaderField:@"authorization"];
     }
-    
+//     [self.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
    
     
    
@@ -143,6 +143,7 @@ static dispatch_once_t onceToken;
         [new_dict setValue:Token forKey:@"authorization"];
     }
    [new_dict setValue:@"1" forKey:@"is_phone"];
+   
     return new_dict;
     
 }
