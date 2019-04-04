@@ -659,7 +659,7 @@ int tab;
     NSString *edi = [dic objectForKey:@"editdescibre"];
     NSString *name = [dic objectForKey:@"name"];
     NSString *nick = [dic objectForKey:@"nick"];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", true]}];
     if (edi) {
         [_lablenickdescibre setText:edi];
     }

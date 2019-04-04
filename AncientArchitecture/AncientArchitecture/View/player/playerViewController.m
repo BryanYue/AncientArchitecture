@@ -19,7 +19,7 @@
 #import "orderresponse.h"
 #import "WXApi.h"
 #import "AppDelegate.h"
-
+#define loginNotification @"loginstatus"
 
 
 #define weixinpayNotification @"weixinpay"
@@ -294,7 +294,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                         if (!errors) {
                             BaseResponse *responses = [BaseResponse mj_objectWithKeyValues:datas];
                             if (responses.code  == 200) {
-
+                         [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", true]}];
 //                                if (responses.data) {
 //                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:responses.data]];
 //                                    H5PayViewController *pay =[[H5PayViewController alloc ] init];

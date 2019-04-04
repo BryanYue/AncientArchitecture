@@ -10,6 +10,9 @@
 #import <StoreKit/StoreKit.h>
 #import "SingleSelectedCell.h"
 
+#define loginNotification @"loginstatus"
+
+
 @interface BuyViewController ()<SKPaymentTransactionObserver,SKProductsRequestDelegate,UITableViewDelegate, UITableViewDataSource>{
      NSInteger selectRow;
 }
@@ -74,20 +77,24 @@
     
 //    [_tableView reloadData];
     
-//   if ([SKPaymentQueue canMakePayments]) {
-//        //允许应用内付费购买
-//        [self requestProductData:@"com.feiwuzhi.AncientArchitectures001"];
-//
-//
-//    }else {
-//        //用户禁止应用内付费购买.
-//    }
+
 
 }
 -(void)btnAction:(UIButton *)sender{
     NSLog(@"selectRow == %ld",selectRow);
+    
     NSLog(@"selectRow == %@",_dataId[selectRow]);
    
+    
+       if ([SKPaymentQueue canMakePayments]) {
+            //允许应用内付费购买
+            [self requestProductData:_dataId[selectRow]];
+            [self GeneralButtonAction];
+    
+        }else {
+            //用户禁止应用内付费购买.
+            [self TextButtonAction:@"用户禁止应用内付费购买"];
+        }
 }
 
 
@@ -181,9 +188,9 @@
         NSLog(@"%@", [pro price]);
         NSLog(@"%@", [pro productIdentifier]);
         
-        if([pro.productIdentifier isEqualToString:@"com.feiwuzhi.AncientArchitectures001"]){
-            p = pro;
-        }
+       
+        p = pro;
+        
     }
     
     SKPayment *payment = [SKPayment paymentWithProduct:p];
@@ -198,6 +205,10 @@
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
     
     NSLog(@"------------------错误-----------------:%@", error);
+     [self TextButtonAction: error.domain];
+    if (self.HUD) {
+        [self.HUD hideAnimated:true];
+    }
 }
 
 - (void)requestDidFinish:(SKRequest *)request{
@@ -213,6 +224,8 @@
         switch (tran.transactionState) {
             case SKPaymentTransactionStatePurchased:{
                 NSLog(@"------------交易完成------------");
+                
+               
                 // 发送到苹果服务器验证凭证
                 //从沙盒中获取交易凭证并且拼接成请求体数据
                 NSURL *receiptUrl=[[NSBundle mainBundle] appStoreReceiptURL];
@@ -240,10 +253,13 @@
                     if (!error) {
                         BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
                         if (response.code  == 200) {
-                            
+                            [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", true]}];
+
                             if (self.HUD) {
                                 [self.HUD hideAnimated:true];
                             }
+                              [self TextButtonAction: @"交易完成"];
+                           
                             
                         }else{
                             if (self.HUD) {
@@ -278,12 +294,19 @@
                 NSLog(@"------------已经购买过商品------------");
                 
                 [[SKPaymentQueue defaultQueue] finishTransaction:tran];
+                 [self TextButtonAction: @"已经购买过商品"];
+                if (self.HUD) {
+                    [self.HUD hideAnimated:true];
+                }
             }
                 break;
             case SKPaymentTransactionStateFailed:{
                 NSLog(@"------------交易失败------------");
                 [[SKPaymentQueue defaultQueue] finishTransaction:tran];
-                
+                  [self TextButtonAction: @"交易失败"];
+                if (self.HUD) {
+                    [self.HUD hideAnimated:true];
+                }
             }
                 break;
             default:
