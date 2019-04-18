@@ -76,7 +76,7 @@
     [titleimage setFrame:CGRectMake(kScreen_Width/2-titleimage.image.size.width/2, kScreen_Height/9*2-titleimage.image.size.height, titleimage.image.size.width, titleimage.image.size.height)];
     
     UILabel *title =[UILabel new];
-    [title setText:@"非物质"];
+    [title setText:@"非物质教育"];
     [title setTextColor:[UIColor_ColorChange colorWithHexString:app_theme]];
     title.font =[UIFont systemFontOfSize:25];
     title.textAlignment=NSTextAlignmentCenter;

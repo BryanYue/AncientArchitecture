@@ -24,6 +24,17 @@
 		93233B35223B793A00ED2AC5 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93233B34223B793A00ED2AC5 /* BuyViewController.m */; };
 		932575582068DA8E0073E458 /* LoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 932575572068DA8E0073E458 /* LoginResponse.m */; };
 		932C376B207A069000985372 /* SYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C376A207A069000985372 /* SYDatePicker.m */; };
+		932D46B82261CE9D0072760C /* AliyunVodPlayerViewSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932D46B22261CE9D0072760C /* AliyunVodPlayerViewSDK.framework */; };
+		932D46B92261CE9D0072760C /* AliThirdparty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932D46B32261CE9D0072760C /* AliThirdparty.framework */; };
+		932D46BA2261CE9D0072760C /* AliyunImageSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 932D46B42261CE9D0072760C /* AliyunImageSource.bundle */; };
+		932D46BB2261CE9D0072760C /* AliyunLanguageSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 932D46B52261CE9D0072760C /* AliyunLanguageSource.bundle */; };
+		932D46C22261CEDB0072760C /* AliyunVodPlayerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932D46B62261CE9D0072760C /* AliyunVodPlayerSDK.framework */; };
+		932D46C42261CEDB0072760C /* AliyunPlayerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932D46B72261CE9D0072760C /* AliyunPlayerSDK.framework */; };
+		932D46CC2261CF560072760C /* AlivcLibRtmp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932D46C72261CF560072760C /* AlivcLibRtmp.framework */; };
+		932D46CD2261CF560072760C /* AlivcLibFaceResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 932D46C82261CF560072760C /* AlivcLibFaceResource.bundle */; };
+		932D46CE2261CF560072760C /* AlivcLivePusher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932D46C92261CF560072760C /* AlivcLivePusher.framework */; };
+		932D46CF2261CF560072760C /* AlivcLibFace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932D46CA2261CF560072760C /* AlivcLibFace.framework */; };
+		932D46D72261CF690072760C /* AlivcLibBeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932D46CB2261CF560072760C /* AlivcLibBeauty.framework */; };
 		934CA5DB21A0601B00CA5610 /* webViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 934CA5DA21A0601B00CA5610 /* webViewController.m */; };
 		93552482206E263E0056A881 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 93552481206E263E0056A881 /* RadioButton.m */; };
 		93552485206E31F50056A881 /* EditDescibreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93552484206E31F50056A881 /* EditDescibreViewController.m */; };
@@ -101,7 +112,7 @@
 		93F2E35421F751F40099EF67 /* H5PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2E35321F751F40099EF67 /* H5PayViewController.m */; };
 		93F9FE8320AA060F0026F781 /* buylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F9FE8220AA060F0026F781 /* buylist.m */; };
 		93F9FE8620AB16060026F781 /* inlurenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F9FE8520AB16060026F781 /* inlurenViewController.m */; };
-		D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F44495653776C857D3020C /* libPods-AncientArchitecture.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F44495653776C857D3020C /* libPods-AncientArchitecture.a */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,16 +141,6 @@
 			files = (
 			);
 			name = "Embed PlugIns";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		939161E720C2EB99003E9D1B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -180,6 +181,17 @@
 		932575572068DA8E0073E458 /* LoginResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginResponse.m; sourceTree = "<group>"; };
 		932C3769207A069000985372 /* SYDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDatePicker.h; sourceTree = "<group>"; };
 		932C376A207A069000985372 /* SYDatePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDatePicker.m; sourceTree = "<group>"; };
+		932D46B22261CE9D0072760C /* AliyunVodPlayerViewSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AliyunVodPlayerViewSDK.framework; sourceTree = "<group>"; };
+		932D46B32261CE9D0072760C /* AliThirdparty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AliThirdparty.framework; sourceTree = "<group>"; };
+		932D46B42261CE9D0072760C /* AliyunImageSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AliyunImageSource.bundle; sourceTree = "<group>"; };
+		932D46B52261CE9D0072760C /* AliyunLanguageSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AliyunLanguageSource.bundle; sourceTree = "<group>"; };
+		932D46B62261CE9D0072760C /* AliyunVodPlayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AliyunVodPlayerSDK.framework; sourceTree = "<group>"; };
+		932D46B72261CE9D0072760C /* AliyunPlayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AliyunPlayerSDK.framework; sourceTree = "<group>"; };
+		932D46C72261CF560072760C /* AlivcLibRtmp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlivcLibRtmp.framework; sourceTree = "<group>"; };
+		932D46C82261CF560072760C /* AlivcLibFaceResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlivcLibFaceResource.bundle; sourceTree = "<group>"; };
+		932D46C92261CF560072760C /* AlivcLivePusher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlivcLivePusher.framework; sourceTree = "<group>"; };
+		932D46CA2261CF560072760C /* AlivcLibFace.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlivcLibFace.framework; sourceTree = "<group>"; };
+		932D46CB2261CF560072760C /* AlivcLibBeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlivcLibBeauty.framework; sourceTree = "<group>"; };
 		934CA5D921A0601B00CA5610 /* webViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = webViewController.h; sourceTree = "<group>"; };
 		934CA5DA21A0601B00CA5610 /* webViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = webViewController.m; sourceTree = "<group>"; };
 		93552480206E26380056A881 /* RadioButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
@@ -347,7 +359,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				932D46B92261CE9D0072760C /* AliThirdparty.framework in Frameworks */,
+				932D46CF2261CF560072760C /* AlivcLibFace.framework in Frameworks */,
+				932D46B82261CE9D0072760C /* AliyunVodPlayerViewSDK.framework in Frameworks */,
+				932D46C42261CEDB0072760C /* AliyunPlayerSDK.framework in Frameworks */,
+				932D46D72261CF690072760C /* AlivcLibBeauty.framework in Frameworks */,
+				932D46CC2261CF560072760C /* AlivcLibRtmp.framework in Frameworks */,
 				D773F4D033344BAFF954408C /* libPods-AncientArchitecture.a in Frameworks */,
+				932D46CE2261CF560072760C /* AlivcLivePusher.framework in Frameworks */,
+				932D46C22261CEDB0072760C /* AliyunVodPlayerSDK.framework in Frameworks */,
 				93DDA9D022315D8100ED0000 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +464,31 @@
 				931CB93C206693BF009DC6EF /* MyHttpClient.m */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		932D46B12261CE9D0072760C /* arm&simulator */ = {
+			isa = PBXGroup;
+			children = (
+				932D46B22261CE9D0072760C /* AliyunVodPlayerViewSDK.framework */,
+				932D46B32261CE9D0072760C /* AliThirdparty.framework */,
+				932D46B42261CE9D0072760C /* AliyunImageSource.bundle */,
+				932D46B52261CE9D0072760C /* AliyunLanguageSource.bundle */,
+				932D46B62261CE9D0072760C /* AliyunVodPlayerSDK.framework */,
+				932D46B72261CE9D0072760C /* AliyunPlayerSDK.framework */,
+			);
+			path = "arm&simulator";
+			sourceTree = "<group>";
+		};
+		932D46C62261CF560072760C /* pusher_arm&simulator */ = {
+			isa = PBXGroup;
+			children = (
+				932D46C72261CF560072760C /* AlivcLibRtmp.framework */,
+				932D46C82261CF560072760C /* AlivcLibFaceResource.bundle */,
+				932D46C92261CF560072760C /* AlivcLivePusher.framework */,
+				932D46CA2261CF560072760C /* AlivcLibFace.framework */,
+				932D46CB2261CF560072760C /* AlivcLibBeauty.framework */,
+			);
+			path = "pusher_arm&simulator";
 			sourceTree = "<group>";
 		};
 		935E48FF20D4C0DE00E4D39E /* aboutus */ = {
@@ -655,6 +700,8 @@
 			isa = PBXGroup;
 			children = (
 				93AA79C1205AC164002E9E10 /* PrefixHeader.pch */,
+				932D46C62261CF560072760C /* pusher_arm&simulator */,
+				932D46B12261CE9D0072760C /* arm&simulator */,
 				93C4C53F20554B90008716B3 /* AncientArchitecture */,
 				93C4C55820554B90008716B3 /* AncientArchitectureTests */,
 				93C4C56320554B90008716B3 /* AncientArchitectureUITests */,
@@ -877,9 +924,8 @@
 				93C4C53A20554B90008716B3 /* Frameworks */,
 				93C4C53B20554B90008716B3 /* Resources */,
 				C10158A0C5AE75B2B1183C31 /* [CP] Copy Pods Resources */,
-				939161E720C2EB99003E9D1B /* Embed Frameworks */,
-				EC3425BFE50C6CE97C017BC5 /* [CP] Embed Pods Frameworks */,
 				938FCF6C20C6FE5B00DF0466 /* Embed PlugIns */,
+				C33AB0C7CB4C549CE9A4E8E9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -983,7 +1029,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				93C4C54D20554B90008716B3 /* LaunchScreen.storyboard in Resources */,
+				932D46CD2261CF560072760C /* AlivcLibFaceResource.bundle in Resources */,
 				93C4C54A20554B90008716B3 /* Assets.xcassets in Resources */,
+				932D46BB2261CE9D0072760C /* AliyunLanguageSource.bundle in Resources */,
+				932D46BA2261CE9D0072760C /* AliyunImageSource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1028,7 +1077,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-resources.sh",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLibFaceResource.bundle",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunImageSource.bundle",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunLanguageSource.bundle",
@@ -1047,27 +1096,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC3425BFE50C6CE97C017BC5 /* [CP] Embed Pods Frameworks */ = {
+		C33AB0C7CB4C549CE9A4E8E9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLivePusher.framework",
 				"${PODS_ROOT}/AlivcLivePusher/AlivcLibRtmp.framework",
+				"${PODS_ROOT}/AlivcLivePusher/AlivcLibBeauty.framework",
+				"${PODS_ROOT}/AlivcLivePusher/AlivcLibFace.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerViewSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunPlayerSDK.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliThirdparty.framework",
 				"${PODS_ROOT}/AliyunPlayer_iOS/AliyunVodPlayerSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLivePusher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibRtmp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibBeauty.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlivcLibFace.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunVodPlayerViewSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunPlayerSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliThirdparty.framework",
@@ -1075,7 +1132,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AncientArchitecture/Pods-AncientArchitecture-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1350,6 +1407,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/arm&simulator",
+					"$(PROJECT_DIR)/pusher_arm&simulator",
 				);
 				INFOPLIST_FILE = AncientArchitecture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1456,10 +1515,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/arm&simulator",
+					"$(PROJECT_DIR)/pusher_arm&simulator",
 				);
 				INFOPLIST_FILE = AncientArchitecture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"$(inherited)",
 					"-ObjC",

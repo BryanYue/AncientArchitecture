@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "558909CCE38497F3E653802CD1271CE1"
+               BlueprintIdentifier = "BB3823420BD24AE85781A91DDDA2BA39"
+               BuildableName = "libPGDatePicker.a"
                BlueprintName = "PGDatePicker"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libPGDatePicker.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

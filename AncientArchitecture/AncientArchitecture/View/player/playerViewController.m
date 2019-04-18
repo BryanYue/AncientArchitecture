@@ -140,7 +140,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     //    self.mediaPlayer.dropBufferDuration = 8000;
     
     //创建播放器对象，AliyunVodPlayerView继承自UIView，可以创建多实例，提供4套皮肤可设置
-    self.playerView = [[AliyunVodPlayerView alloc] initWithFrame:CGRectMake(0,0, kScreen_Width, kScreen_Height/3) andSkin:AliyunVodPlayerViewSkinRed];
+    self.playerView = [[AliyunVodPlayerView alloc] initWithFrame:CGRectMake(0,statusBar_Height, kScreen_Width, kScreen_Height/3) andSkin:AliyunVodPlayerViewSkinRed];
     //设置播放器代理
     [self.playerView setDelegate:self];
     //将播放器添加到需要展示的界面上
@@ -536,7 +536,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
                         tlabele_price.numberOfLines=1;
                         tlabele_price.frame=CGRectMake(kScreen_Width/3, playerViewh,kScreen_Width/3,40);
                         tlabele_price.font = [UIFont systemFontOfSize:15];
-                        NSString *price=[@"￥" stringByAppendingString:detailResponse.price ];
+                        NSString *price=[@"彩钻" stringByAppendingString:detailResponse.price ];
                         [tlabele_price setText:price];
                         [self.uiview addSubview:tlabele_price];
                         

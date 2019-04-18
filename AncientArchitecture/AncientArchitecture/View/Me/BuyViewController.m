@@ -53,10 +53,11 @@
     
     
     
-    self.dataId = @[@"com.feiwuzhi.AncientArchitectures001",@"com.feiwuzhi.AncientArchitectures012",@"com.feiwuzhi.AncientArchitectures098",@"com.feiwuzhi.AncientArchitectures198",
-                @"com.feiwuzhi.AncientArchitectures298",@"com.feiwuzhi.AncientArchitectures388",@"com.feiwuzhi.AncientArchitectures518",@"com.feiwuzhi.AncientArchitectures618"];
+    self.dataId = @[@"com.feiwuzhi.AncientArchitectures0001",@"com.feiwuzhi.AncientArchitectures0012",@"com.feiwuzhi.AncientArchitectures0098",
+                    @"com.feiwuzhi.AncientArchitectures0198",@"com.feiwuzhi.AncientArchitectures0298",@"com.feiwuzhi.AncientArchitectures0388",
+                    @"com.feiwuzhi.AncientArchitectures0518",@"com.feiwuzhi.AncientArchitectures0618"];
     
-    self.dataPrice=@[@"1元",@"12元",@"98元",@"198元",@"298元",@"388元",@"518元",@"688元"];
+    self.dataPrice=@[@"1彩钻",@"12彩钻",@"98彩钻",@"198彩钻",@"298彩钻",@"388彩钻",@"518彩钻",@"688彩钻"];
     
     
     

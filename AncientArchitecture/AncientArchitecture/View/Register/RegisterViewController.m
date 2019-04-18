@@ -159,7 +159,7 @@ int count;
     
     
     UILabel *look =[UILabel new];
-    NSMutableAttributedString *stringlook = [[NSMutableAttributedString alloc] initWithString:@"我已阅读并同意《非物质隐私策略》"];
+    NSMutableAttributedString *stringlook = [[NSMutableAttributedString alloc] initWithString:@"我已阅读并同意《非物质教育隐私策略》"];
     [stringlook addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, 7)];
     [stringlook addAttribute:NSForegroundColorAttributeName value:[UIColor_ColorChange colorWithHexString:app_theme] range:NSMakeRange(7, 9)];
     look.attributedText=stringlook;

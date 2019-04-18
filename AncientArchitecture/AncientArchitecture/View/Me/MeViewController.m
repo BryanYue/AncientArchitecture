@@ -490,7 +490,7 @@ NSString *isteacher;
                     }
                 }
                 userid.text=[NSString stringWithFormat:@"%@%@", @"ID: ", [defaults objectForKey:@"memberid"]];
-                money.text= [NSString stringWithFormat:@"%@%@%@", @"余额: ", userinfo.balance,@"  去充值"];
+                money.text= [NSString stringWithFormat:@"%@%@%@", @"彩钻: ", userinfo.balance,@"  去充值"];
                 
                 
                 [imageView yy_setImageWithURL:[NSURL URLWithString:userinfo.headimgurl]

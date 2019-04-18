@@ -129,7 +129,7 @@ NSString *storyboard;
             //判断要不要添加button
             if (!isScrollOut) {
                 UIButton *enterButton = [[UIButton alloc] initWithFrame:CGRectMake(enterBtnFrame.origin.x, enterBtnFrame.origin.y, enterBtnFrame.size.width, enterBtnFrame.size.height)];
-                [enterButton setTitle:@"开启非物质" forState:UIControlStateNormal];
+                [enterButton setTitle:@"开启非物质教育" forState:UIControlStateNormal];
                 [enterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [enterButton.layer setBorderWidth:1.0];
                 [enterButton.layer setBorderColor:[UIColor whiteColor].CGColor];
