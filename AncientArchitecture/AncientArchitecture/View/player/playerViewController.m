@@ -770,7 +770,7 @@ NSMutableArray<relevantCourseResponse *> *relevant;
     
     
     [self.uiview addSubview: self.collection ];
-    self.uiview.frame=CGRectMake(0, 0, kScreen_Width, playerViewh);
+    self.uiview.frame=CGRectMake(0, statusBar_Height, kScreen_Width, playerViewh);
    
     [self.scrollView addSubview: self.uiview ];
     

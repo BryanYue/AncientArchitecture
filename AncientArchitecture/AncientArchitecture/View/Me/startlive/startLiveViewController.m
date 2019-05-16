@@ -320,6 +320,7 @@ int hour;
         /* Do UI work here */
         ispushing=false;
          _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_record"];
+        [retimers setFireDate:[NSDate distantFuture]];
         [self.topTitleLabel setText:@"直播课程(推流停止)"];
     });
     
@@ -333,6 +334,7 @@ int hour;
 - (void)onPushRestart:(AlivcLivePusher *)pusher{
      NSLog(@"onPushRestart:" );
     [self.topTitleLabel setText:@"直播课程(重新推流)"];
+     [retimers setFireDate:[NSDate date]];
     ispushing=true;
     _viewstartpause.image = [UIImage imageNamed:@"img_video_btn_pause"];
 }
@@ -353,9 +355,9 @@ int hour;
 }
 
 -(void)toMessage{
-  
+    NSLog(@"toMessage:%@",_livePusher.isPushing?@"YES":@"NO");
     if (_livePusher) {
-        if (ispushing) {
+        if (_livePusher.getLiveStatus ==5) {
             
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 // 处理耗时操作的代码块...
@@ -505,6 +507,8 @@ int hour;
     }
     
     int ret = [_livePusher stopPush];
+  
+    NSLog(@"stopPush:%i",ret );
     return ret;
 }
 
@@ -520,6 +524,7 @@ int hour;
     }
     
     int ret = [_livePusher pause];
+   NSLog(@"pausePush:%i",ret );
     return ret;
 }
 
@@ -537,8 +542,8 @@ int hour;
     
   
         // 使用异步接口
-        ret = [_livePusher resumeAsync];
-        
+    ret = [_livePusher resumeAsync];
+   NSLog(@"resumePush:%i",ret );
   
     return ret;
 }
@@ -558,8 +563,8 @@ int hour;
    
         // 使用异步接口
         ret = [_livePusher restartPushAsync];
-        
-  
+    
+  NSLog(@"restartPush:%i",ret );
     return ret;
 }
 

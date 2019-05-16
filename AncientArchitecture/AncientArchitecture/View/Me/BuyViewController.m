@@ -53,11 +53,11 @@
     
     
     
-    self.dataId = @[@"com.feiwuzhi.AncientArchitectures0001",@"com.feiwuzhi.AncientArchitectures0012",@"com.feiwuzhi.AncientArchitectures0098",
+    self.dataId = @[@"com.feiwuzhi.AncientArchitectures0012",@"com.feiwuzhi.AncientArchitectures0098",
                     @"com.feiwuzhi.AncientArchitectures0198",@"com.feiwuzhi.AncientArchitectures0298",@"com.feiwuzhi.AncientArchitectures0388",
                     @"com.feiwuzhi.AncientArchitectures0518",@"com.feiwuzhi.AncientArchitectures0618"];
     
-    self.dataPrice=@[@"1彩钻",@"12彩钻",@"98彩钻",@"198彩钻",@"298彩钻",@"388彩钻",@"518彩钻",@"688彩钻"];
+    self.dataPrice=@[@"12彩钻",@"98彩钻",@"198彩钻",@"298彩钻",@"388彩钻",@"518彩钻",@"688彩钻"];
     
     
     
@@ -213,7 +213,9 @@
 }
 
 - (void)requestDidFinish:(SKRequest *)request{
-    
+    if (self.HUD) {
+        [self.HUD hideAnimated:true];
+    }
     NSLog(@"------------反馈信息结束-----------------");
 }
 

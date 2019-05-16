@@ -25,6 +25,7 @@
 
 @implementation LoginViewController
     MyUITextField * _loginText;
+    UIButton * btnloginYK;
     MyUITextField * _passwdText;
     UILabel *forgetpassword;
     UIButton * btnlogin;
@@ -182,6 +183,21 @@
     
     
     
+    //游客登录
+    btnloginYK = [UIButton buttonWithType:UIButtonTypeSystem];
+    btnloginYK.frame = CGRectMake(40, kScreen_Height/9*5+110, kScreen_Width/10*8, 40);
+    [btnloginYK setTitle:@"游客登录" forState:UIControlStateNormal];
+    [btnloginYK setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btnloginYK.backgroundColor =[UIColor_ColorChange colorWithHexString:app_theme];
+    //    btnlogin.layer.masksToBounds=YES;
+    //    btnlogin.layer.cornerRadius = 20;
+    
+    [btnloginYK addTarget:self action:@selector(loginYk) forControlEvents:UIControlEventTouchUpInside];
+    btnloginYK.titleLabel.font = [UIFont systemFontOfSize:15];
+    
+    
+    
+    
     
     
     UIView *undline3 =[UIView new ];
@@ -229,6 +245,7 @@
     [self.view addSubview:undline1];
     [self.view addSubview:undline2];
     [self.view addSubview:btnlogin];
+    [self.view addSubview:btnloginYK];
     [self.view addSubview:btnregist];
     
     [self.view addSubview:wechattitle];
@@ -263,8 +280,103 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
     
+
+//游客登录
+-(void)loginYk{
+     [self hide];
+     btnloginYK.userInteractionEnabled = NO;
+     NSMutableDictionary *parameterCountry = [NSMutableDictionary dictionary];
+     [parameterCountry setObject: [[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"ios_sign"];
+     [self GeneralButtonAction];
     
     
+    [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_Register withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+        
+        if (!error) {
+            BaseResponse *responseyk = [BaseResponse mj_objectWithKeyValues:data];
+            if (responseyk.code  == 200 || responseyk.code  == 409013) {
+                [[MyHttpClient sharedJsonClient]requestJsonDataWithPath:url_Login withParams:parameterCountry withMethodType:Post autoShowError:true andBlock:^(id data, NSError *error) {
+                    btnloginYK.userInteractionEnabled = YES;
+                    if (!error) {
+                        BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
+                        if (response.code  == 200) {
+                            LoginResponse *login = [LoginResponse mj_objectWithKeyValues:response.data];
+                            NSLog(@"%@",login.token);
+                            NSLog(@"%@",login.phone);
+                            NSLog(@"%@",login.memberid);
+                            
+                            NSUserDefaults *defaults =DEFAULTS;
+                            
+                            if (login.token) {
+                                [defaults setObject:login.token forKey:@"token"];
+                            }
+                            if (login.phone) {
+                                [defaults setObject:login.phone forKey:@"phone"];
+                            }
+                            if (login.nickname) {
+                                [defaults setObject:login.nickname forKey:@"nickname"];
+                            }
+                            if (login.nick) {
+                                [defaults setObject:login.nick forKey:@"nick"];
+                            }
+                            if (login.is_teacher) {
+                                [defaults setObject:login.is_teacher forKey:@"is_teacher"];
+                            }
+                            if (login.birthday) {
+                                [defaults setObject:login.birthday forKey:@"birthday"];
+                            }
+                            if (login.is_teacher) {
+                                [defaults setObject:login.is_teacher forKey:@"is_teacher"];
+                            }
+                            if (login.headimgurl) {
+                                [defaults setObject:login.headimgurl forKey:@"headimgurl"];
+                            }
+                            if (login.memberid) {
+                                [defaults setObject:login.memberid forKey:@"memberid"];
+                            }
+                            if (login.teacher_id) {
+                                [defaults setObject:login.teacher_id forKey:@"teacher_id"];
+                            }
+                            
+                            [[NSNotificationCenter defaultCenter] postNotificationName:loginNotification object:self userInfo:@{@"isLogin":[NSString stringWithFormat:@"%d", true]}];
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                            
+                            if (self.HUD) {
+                                [self.HUD hideAnimated:true];
+                            }
+                            
+                        }else{
+                            if (self.HUD) {
+                                [self.HUD hideAnimated:true];
+                            }
+                            [self TextButtonAction:response.msg];
+                        }
+                    } else {
+                        
+                        if (self.HUD) {
+                            [self.HUD hideAnimated:true];
+                        }
+                        [self TextButtonAction:error.domain];
+                        
+                    }
+                    
+                }];
+            }
+            
+        }else{
+            if (self.HUD) {
+                [self.HUD hideAnimated:true];
+            }
+            [self TextButtonAction:error.domain];
+        }
+    }];
+    
+    
+    
+    
+    
+    
+}
     
 -(void)login{
     [self hide];

@@ -134,7 +134,7 @@ NSString *teacher_photoyl;
                      [_tinluren_descibre setText: yiluren.descibre ];
                     _tinluren_descibre.numberOfLines=0;//行数设为0，表示不限制行数
                     //根据label的内容和label的font为label设置frame，100为label的长度
-                    CGRect txRect = [_tinluren_descibre.text boundingRectWithSize:CGSizeMake(kScreen_Width, [UIScreen mainScreen].bounds.size.height*10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:_tinluren_descibre.font} context:nil];
+                    CGRect txRect = [_tinluren_descibre.text boundingRectWithSize:CGSizeMake(kScreen_Width-40, [UIScreen mainScreen].bounds.size.height*10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:_tinluren_descibre.font} context:nil];
                     _tinluren_descibre.frame=CGRectMake(20, h, txRect.size.width, txRect.size.height+20);//重新为label设置frame
                     h=h+_tinluren_descibre.frame.size.height;
                     [self.view addSubview:_yinluscrollView];
@@ -332,12 +332,14 @@ NSString *teacher_photoyl;
                 _tinlurenCourse=[CourseDetailResponse mj_objectArrayWithKeyValuesArray:response.data];
                 
                 NSLog(@"tinlurenCourse%@",_tinlurenCourse);
-                if (_tinlurenCourse) {
+                if (_tinlurenCourse.count >0) {
                     
                     
                     [_tinlurenCollectionV reloadData];
                     
                 }else{
+                    
+                  
                     NSLog(@"hotCourse.count==nil");
                 }
             }else{

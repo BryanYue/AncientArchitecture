@@ -628,9 +628,7 @@ NSString *isteacher;
                     if (!error) {
                         BaseResponse *response = [BaseResponse mj_objectWithKeyValues:data];
                         if (response.code  == 200) {
-                            if (self.HUD) {
-                                [self.HUD hideAnimated:true];
-                            }
+                          
                             [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
                             //            [defaults setBool:false forKey:@"islogin"];
                             [defaults removeObjectForKey:@"islogin"];
@@ -715,7 +713,14 @@ NSString *isteacher;
             [self initdata];
         
         }else{
-             [self initdata];
+            NSLog(@"刷新view");
+            [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            [defaults setBool:true forKey:@"islogin"];
+            isteacher=[defaults objectForKey:@"is_teacher"];
+            [defaults synchronize];
+            islogin=true;
+            [self initview];
+            [self initdata];
         }
     }else{
         NSLog(@"观察者退出");
